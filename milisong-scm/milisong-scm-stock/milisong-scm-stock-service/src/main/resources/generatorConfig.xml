@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry location="C:/mysql-connector-java-5.1.7-bin.jar" />
+    <context id="milisong-scm-stock" targetRuntime="MyBatis3"> 
+    	<property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="autoDelimitKeywords" value="false"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+    
+        <plugin type="com.milisong.common.plugin.IngoreSetterAndGetterPlugin"/>
+        <commentGenerator type="com.milisong.common.plugin.MyCommentGenerator"/>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://dbtest.jshuii.com:3306/milisong_scm"
+                        userId="milisong_scm" password="JZ0eujf8Tn5k7ryWS54x">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.milisong.scm.stock.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper/base" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.milisong.scm.stock.mapper.base" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+       <table tableName="t_shop_onsale_goods_stock" domainObjectName="ShopOnsaleGoodsStock" mapperName="BaseShopOnsaleGoodsStockMapper"  enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+       
+       
+    </context>
+</generatorConfiguration>

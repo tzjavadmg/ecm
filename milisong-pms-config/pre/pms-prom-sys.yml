@@ -1,0 +1,32 @@
+server:
+  port: 20110
+management:
+  health:
+    defaults:
+      enabled: false
+
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeout: 1000
+
+ecm:
+  lunch-domain: http://mls-api.jshuii.com
+  breakfast-domain: http://mls-bapi.jshuii.com
+  send-advertise-sms: ${ecm.lunch-domain}/v1/notify/sendAdvertiseSms
+  send-breakfast-sms: ${ecm.breakfast-domain}/v1/notify/sendAdvertiseSms
+
+delay:
+  base-url: http://mls-dqsapi.jshuii.com
+  cancel-groupbuy-callback-url: http://mls-pmsin.jshuii.com/v1/GroupBuyService/refundSigleGroupBuy
+  notify-groupbuy-callback-url: http://mls-pmsin.jshuii.com/v1/GroupBuyService/leftTimeNotifyGroupBuy
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://172.16.14.60:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+
+user-point-switch: false

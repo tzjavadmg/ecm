@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!--<classPathEntry location="D:/maven-repo/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar"/>-->
+
+    <context id="context" targetRuntime="MyBatis3">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="autoDelimitKeywords" value="false"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="com.milisong.common.plugin.IngoreSetterAndGetterPlugin"/>
+        <!--<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.CachePlugin"/>-->
+
+        <commentGenerator type="com.milisong.common.plugin.MyCommentGenerator"/>
+
+        <jdbcConnection userId="milisong_ecm" password="K%K4v4Bzdaq2fRo1o55o" driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://dbtest.jshuii.com:3306/milisong_ecm"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.milisong.pms.prom.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper/base" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.milisong.pms.prom.mapper.base" type="XMLMAPPER" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <table schema="milisong_ecm" tableName="marketing_qrcode" domainObjectName="MarketingQrcode" mapperName="BaseMarketingQrcode" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+    </context>
+</generatorConfiguration>

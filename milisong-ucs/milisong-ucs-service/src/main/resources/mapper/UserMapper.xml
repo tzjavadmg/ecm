@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.ucs.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.ucs.domain.User">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="head_portrait_url" jdbcType="VARCHAR" property="headPortraitUrl" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="is_new" jdbcType="TINYINT" property="isNew" />
+    <result column="business_line" jdbcType="TINYINT" property="businessLine" />
+    <result column="received_new_red_packet" jdbcType="TINYINT" property="receivedNewRedPacket" />
+    <result column="received_new_coupon" jdbcType="TINYINT" property="receivedNewCoupon" />
+    <result column="register_source" jdbcType="TINYINT" property="registerSource" />
+    <result column="register_shop_id" jdbcType="VARCHAR" property="registerShopId" />
+    <result column="register_qrcode" jdbcType="VARCHAR" property="registerQrcode" />
+    <result column="register_date" jdbcType="TIMESTAMP" property="registerDate" />
+    <result column="wechat_contract_no" jdbcType="VARCHAR" property="wechatContractNo" />
+    <result column="useful_point" jdbcType="INTEGER" property="usefulPoint" />
+    <result column="used_point" jdbcType="INTEGER" property="usedPoint" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, real_name, mobile_no, nick_name, head_portrait_url, birthday, sex, open_id, is_new,
+    business_line, received_new_red_packet, received_new_coupon, register_source,
+    register_shop_id, register_qrcode, register_date, wechat_contract_no, useful_point, used_point, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.ucs.domain.User">
+    insert into t_user (id, real_name, mobile_no,
+    nick_name, head_portrait_url, birthday,
+    sex, open_id, is_new, business_line, received_new_red_packet, received_new_coupon, register_source,
+    register_shop_id, register_qrcode, register_date, wechat_contract_no, useful_point, used_point,
+    create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, #{mobileNo,jdbcType=VARCHAR},
+    #{nickName,jdbcType=VARCHAR}, #{headPortraitUrl,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP},
+    #{sex,jdbcType=TINYINT}, #{openId,jdbcType=VARCHAR}, #{isNew,jdbcType=TINYINT}, #{businessLine,jdbcType=TINYINT}, #{receivedNewRedPacket,jdbcType=TINYINT},#{receivedNewCoupon,jdbcType=TINYINT}, #{registerSource,jdbcType=TINYINT},
+    #{registerShopId,jdbcType=VARCHAR}, #{registerQrcode,jdbcType=VARCHAR}, #{registerDate,jdbcType=TIMESTAMP}, #{wechatContractNo,jdbcType=VARCHAR}, #{usefulPoint,jdbcType=INTEGER}, #{usedPoint,jdbcType=INTEGER},
+    #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.ucs.domain.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="mobileNo != null">
+        mobile_no,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="headPortraitUrl != null">
+        head_portrait_url,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="isNew != null">
+        is_new,
+      </if>
+      <if test="businessLine != null">
+        business_line,
+      </if>
+      <if test="receivedNewRedPacket != null">
+        received_new_red_packet,
+      </if>
+      <if test="receivedNewCoupon != null">
+        received_new_coupon,
+      </if>
+      <if test="registerSource != null">
+        register_source,
+      </if>
+      <if test="registerShopId != null">
+        register_shop_id,
+      </if>
+      <if test="registerQrcode != null">
+        register_qrcode,
+      </if>
+      <if test="registerDate != null">
+        register_date,
+      </if>
+      <if test="wechatContractNo != null">
+        wechat_contract_no,
+      </if>
+      <if test="usefulPoint != null">
+        useful_point,
+      </if>
+      <if test="usedPoint != null">
+        used_point,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null">
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null">
+        #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="isNew != null">
+        #{isNew,jdbcType=TINYINT},
+      </if>
+      <if test="businessLine != null">
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="receivedNewRedPacket != null">
+        #{receivedNewRedPacket,jdbcType=TINYINT},
+      </if>
+      <if test="receivedNewCoupon != null">
+        #{receivedNewCoupon,jdbcType=TINYINT},
+      </if>
+      <if test="registerSource != null">
+        #{registerSource,jdbcType=TINYINT},
+      </if>
+      <if test="registerShopId != null">
+        #{registerShopId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerQrcode != null">
+        #{registerQrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechatContractNo != null">
+        #{wechatContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="usefulPoint != null">
+        #{usefulPoint,jdbcType=INTEGER},
+      </if>
+      <if test="usedPoint != null">
+        #{usedPoint,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.ucs.domain.User">
+    update t_user
+    <set>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null">
+        mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null">
+        head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="isNew != null">
+        is_new = #{isNew,jdbcType=TINYINT},
+      </if>
+      <if test="businessLine != null">
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="receivedNewRedPacket != null">
+        received_new_red_packet = #{receivedNewRedPacket,jdbcType=TINYINT},
+      </if>
+      <if test="receivedNewCoupon != null">
+        received_new_coupon = #{receivedNewCoupon,jdbcType=TINYINT},
+      </if>
+      <if test="registerSource != null">
+        register_source = #{registerSource,jdbcType=TINYINT},
+      </if>
+      <if test="registerShopId != null">
+        register_shop_id = #{registerShopId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerQrcode != null">
+        register_qrcode = #{registerQrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        register_date = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechatContractNo != null">
+        wechat_contract_no = #{wechatContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="usefulPoint != null">
+        useful_point = #{usefulPoint,jdbcType=INTEGER},
+      </if>
+      <if test="usedPoint != null">
+        used_point = #{usedPoint,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.ucs.domain.User">
+    update t_user
+    set real_name = #{realName,jdbcType=VARCHAR},
+    mobile_no = #{mobileNo,jdbcType=VARCHAR},
+    nick_name = #{nickName,jdbcType=VARCHAR},
+    head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+    birthday = #{birthday,jdbcType=TIMESTAMP},
+    sex = #{sex,jdbcType=TINYINT},
+    open_id = #{openId,jdbcType=VARCHAR},
+    is_new = #{isNew,jdbcType=TINYINT},
+    business_line = #{businessLine,jdbcType=TINYINT},
+    received_new_red_packet = #{receivedNewRedPacket,jdbcType=TINYINT},
+    received_new_coupon = #{receivedNewCoupon,jdbcType=TINYINT},
+    register_source = #{registerSource,jdbcType=TINYINT},
+    register_shop_id = #{registerShopId,jdbcType=VARCHAR},
+    register_qrcode = #{registerQrcode,jdbcType=VARCHAR},
+    register_date = #{registerDate,jdbcType=TIMESTAMP},
+    wechat_contract_no = #{wechatContractNo,jdbcType=VARCHAR},
+    useful_point = #{usefulPoint,jdbcType=INTEGER},
+    used_point = #{usedPoint,jdbcType=INTEGER},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByOpenid" resultType="com.milisong.ucs.domain.User">
+    select id, real_name, mobile_no, nick_name, head_portrait_url, birthday, sex, open_id, is_new,
+    business_line, received_new_red_packet,received_new_coupon,
+    register_source, register_shop_id, register_qrcode, register_date, wechat_contract_no, useful_point, used_point, create_time,
+    update_time
+    from t_user
+    <where>
+      open_id = #{openid} and register_source = #{registerSource}
+      <choose>
+        <when test="businessLine != null and businessLine == 1">
+          and (business_line = #{businessLine} or business_line is null)
+        </when>
+        <otherwise>
+          and business_line = #{businessLine}
+        </otherwise>
+      </choose>
+    </where>
+  </select>
+
+  <update id="updateByOpenid" parameterType="com.milisong.ucs.dto.UserDto" >
+      update t_user
+      <set >
+        <if test="mobileNo != null" >
+          mobile_no = #{mobileNo,jdbcType=VARCHAR},
+        </if>
+        <if test="realName != null" >
+          real_name = #{realName,jdbcType=VARCHAR},
+        </if>
+        <if test="nickName != null" >
+          nick_name = #{nickName,jdbcType=VARCHAR},
+        </if>
+        <if test="headPortraitUrl != null" >
+          head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="birthday != null" >
+          birthday = #{birthday,jdbcType=TIMESTAMP},
+        </if>
+        <if test="sex != null" >
+          sex = #{sex,jdbcType=TINYINT},
+        </if>
+        <if test="isNew != null" >
+          is_new = #{isNew,jdbcType=TINYINT},
+        </if>
+        <if test="businessLine != null" >
+          business_line = #{businessLine,jdbcType=TINYINT},
+        </if>
+        <if test="receivedNewRedPacket != null" >
+          received_new_red_packet = #{receivedNewRedPacket,jdbcType=TINYINT},
+        </if>
+        <if test="receivedNewCoupon != null" >
+          received_new_coupon = #{receivedNewCoupon,jdbcType=TINYINT},
+        </if>
+        <if test="wechatContractNo != null" >
+          wechat_contract_no = #{wechatContractNo,jdbcType=VARCHAR},
+        </if>
+        <if test="usefulPoint != null">
+          useful_point = #{usefulPoint,jdbcType=INTEGER},
+        </if>
+        <if test="usedPoint != null">
+          used_point = #{usedPoint,jdbcType=INTEGER},
+        </if>
+        <if test="updateTime != null" >
+          update_time = #{updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime == null" >
+          update_time = now(),
+        </if>
+      </set>
+      where open_id = #{openId,jdbcType=VARCHAR} and register_source = #{registerSource,jdbcType=TINYINT}
+      <choose>
+        <when test="businessLine != null and businessLine == 1">
+          and (business_line = #{businessLine} or business_line is null)
+        </when>
+        <otherwise>
+          and business_line = #{businessLine}
+        </otherwise>
+      </choose>
+  </update>
+
+  <select id="fetchUser" resultType="com.milisong.ucs.dto.UserDto">
+    select id, mobile_no from t_user
+    <where>
+      <if test="userId != null"> id > #{userId} </if>
+      <choose>
+        <when test="businessLine != null and businessLine == 1">
+          and (business_line = #{businessLine} or business_line is null)
+        </when>
+        <otherwise>
+          and business_line = #{businessLine}
+        </otherwise>
+      </choose>
+    </where>
+    and mobile_no is not null
+    order by id asc
+    limit #{fetchSize}
+  </select>
+
+  <select id="countWithMobile" resultType="java.lang.Long">
+    select count(*) from t_user
+    <where>
+      <choose>
+        <when test="businessLine != null and businessLine == 1">
+          and (business_line = #{businessLine} or business_line is null)
+        </when>
+        <otherwise>
+          and business_line = #{businessLine}
+        </otherwise>
+      </choose>
+    </where>
+    and mobile_no is not null
+  </select>
+
+  <select id="fetchUserInfoByIds" resultType="com.milisong.ucs.dto.UserDto">
+    select id, mobile_no from t_user
+    where id in
+    <foreach collection="ids" index="index" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </select>
+
+  <update id="calcPoint">
+    update t_user
+    set
+    <if test="action == 1">
+      useful_point = useful_point - #{point},
+      used_point = used_point + #{point},
+    </if>
+    <if test="action == 2">
+      useful_point = useful_point + #{point},
+    </if>
+    <if test="action == 3 || action == 4">
+      useful_point = useful_point + #{point},
+      used_point = used_point - #{point},
+    </if>
+    update_time = now()
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="fetchUserInfoByMobileNos" resultType="com.milisong.ucs.dto.UserDto">
+    select id, real_name, mobile_no, nick_name, sex from t_user
+    where mobile_no in
+    <foreach collection="mobileNos" index="index" item="mobileNo" open="(" close=")" separator=",">
+      #{mobileNo}
+    </foreach>
+    and business_line = #{businessLine}
+  </select>
+
+  <select id="queryUserWithMobile" resultType="com.milisong.ucs.dto.UserDto">
+    select id, real_name, mobile_no, nick_name, sex from t_user
+    where business_line = #{businessLine} and mobile_no is not null
+    order by id desc
+    limit #{startRow}, #{pageSize}
+  </select>
+
+  <update id="batchUpdateUserStatus">
+    update t_user
+    set is_new = 1, update_time = now()
+    where id in
+    <foreach collection="ids" index="index" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+    and is_new = 0
+  </update>
+</mapper>

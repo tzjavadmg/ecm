@@ -1,0 +1,7 @@
+dq:
+  host: http://mls-dqsapi.jshuii.com
+  delayUrl: ${dq.host}/v1/mq/send-delay-message
+  expireTimeUrl: ${dq.host}/v1/mq/get-expire-time
+  pauseUrl: ${dq.host}/v1/mq/pause-delay-message
+  cancelUrl:  ${dq.host}/v1/mq/cancel-message
+  callbackUrl: http://mls-posapiin.jshuii.com/callback/dq

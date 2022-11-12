@@ -1,0 +1,80 @@
+server:
+  port: 30010
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        auto-deregistration: true
+        instance:
+          prefer-ip: true
+  flyway:
+    # 配置sql脚本路径
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+# spring admin检测 默认开启
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    redis:
+      enabled: true
+    rabbit:
+      enabled: true
+    diskspace:
+      enabled: true
+
+ribbon:
+  ReadTimeout:  5000
+  SocketTimeout:  1000
+
+# 顺丰配置
+sf:
+  dev-id: 1519574124
+  key: 6af86257030181daea950bed8bd1fed1
+  version: 17
+  base-url: https://commit-openic.sf-express.com/open/api/external
+  create-order-url: ${sf.base-url}/createorder?sign=
+  rider-h5-view: ${sf.base-url}/riderh5view?sign=
+  notify-mobile: 15921557120,17150313389,18116246668
+  notify-mail: liangxuehong@jshuii.com
+  over-time: 15
+  test-flag: true
+
+dada:
+  app-key: dada7cb14c7d6b59319
+  app-secret: 0e74606b3d71b6a3cb7f3b61e110bdde
+
+# 压缩url
+url:
+  compress-url: http://api.weibo.com/2/short_url/shorten.json?source=2849184197&url_long={url}
+
+scm:
+  query-lunch-by-order-no-url: http://devmls-scmapiin.jshuii.com/order-set/get-order-set-by-order-no?orderNo={orderNo}
+  query-lunch-by-set-id-url: http://devmls-scmapiin.jshuii.com/order-set/query-detail-order-info?detailSetNo={detailSetNo}&detailSetId={detailSetId}
+  query-bf-by-order-no-url: http://devmls-bscmapiin.jshuii.com/order-set/get-order-set-by-order-no?orderNo={orderNo}
+  query-bf-by-set-id-url: http://devmls-bscmapiin.jshuii.com/order-set/query-detail-order-info?detailSetNo={detailSetNo}&detailSetId={detailSetId}
+  query-all-shop-url: http://devmls-scmapiin.jshuii.com/shop/get-all-shop-list
+  query-shop-by-id-url: http://devmls-scmapiin.jshuii.com/shop/query-by-id?id={id}
+  query-building-url: http://devmls-scmapi.jshuii.com/building/get-building-by-id?id={id}
+  query-company-url: http://devmls-bscmapiin.jshuii.com/company/inside-query-by-id?id={id}
+# sms通知
+sms:
+  send-url: http://testsms.jshuii.com/api/v1/MobileSendService/sendSms
+# 邮件通知
+mail:
+  send-url: http://email.jshuii.com/v1/emailService/sendSimpleMail
+# 延迟队列时间
+bf:
+  orderset:
+    delay: 10
+

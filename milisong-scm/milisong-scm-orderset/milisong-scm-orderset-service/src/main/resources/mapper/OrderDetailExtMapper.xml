@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.orderset.mapper.OrderDetailExtMapper">
+	<select id="getCompanyOrderDetail" resultType="com.milisong.scm.orderset.result.OrderDetailSqlResult" parameterType="com.milisong.scm.orderset.param.OrderDetailSearch4OrderSetSqlParam">
+		select d.*,t.mobile_no from t_order t left join  t_order_detail d on t.id=d.order_id 
+		where t.delivery_office_building_id=#{deliveryOfficeBuildingId} and t.delivery_company=#{deliveryCompany}
+		and t.delivery_start_date = #{beginDeliveryDate}
+		<if test="deliveryFloor != null">
+		and t.delivery_floor=#{deliveryFloor}
+		</if>
+		and t.order_status=2
+		and t.orderset_process_status=0
+		order by t.mobile_no asc
+	</select>
+	
+	<select id="getReserveOrderGroupCount" resultType="java.lang.Integer" parameterType="com.milisong.scm.orderset.param.OrderReserveSearchSqlParam">
+		select count(1) from (
+		select 
+		1
+		<include refid="getReserveOrderGroupSQL"></include>
+		) a
+	</select>
+	
+	<select id="getReserveOrderGroupList" resultType="com.milisong.scm.orderset.result.OrderReserveSearchSqlResult" parameterType="com.milisong.scm.orderset.param.OrderReserveSearchSqlParam">
+		select 
+		t.shop_id,
+		d.goods_code,
+		d.goods_name,
+		DATE_FORMAT(t.create_time,'%Y-%m-%d') as  reserveDate,
+		DATE_FORMAT(t.delivery_end_date,'%Y-%m-%d %H:%i:%s') as deliveryDate,
+		sum(d.goods_count) as number
+		<include refid="getReserveOrderGroupSQL"></include>
+    	order by t.delivery_end_date asc
+    	<if test="startRow != null">
+      		limit #{startRow}, #{pageSize} 
+    	</if>
+	</select>
+	
+	<sql id="getReserveOrderGroupSQL">
+		from t_order t,t_order_detail d where t.id=d.order_id 
+		<if test="reserveBeginDate != null">
+		and t.create_time &gt;= #{reserveBeginDate}
+		and t.create_time &lt; #{reserveEndDate}
+		</if>
+		<if test="deliveryBeginDate != null">
+		and t.delivery_start_date &gt;= #{deliveryBeginDate}
+		and t.delivery_start_date &lt; #{deliveryEndDate}
+		</if>
+		<if test="shopId != null">
+		and t.shop_id=#{shopId}
+		</if>
+		and t.order_status not in(3,4)
+		group by t.shop_id,
+		d.goods_code,
+		d.goods_name,
+		DATE_FORMAT(t.create_time,'%Y-%m-%d'),
+		DATE_FORMAT(t.delivery_end_date,'%Y-%m-%d %H:%i:%s')
+	</sql>
+</mapper>

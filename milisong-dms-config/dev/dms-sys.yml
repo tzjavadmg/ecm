@@ -1,0 +1,91 @@
+server:
+  port: 30010
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        auto-deregistration: true
+        instance:
+          prefer-ip: true
+  flyway:
+    # 配置sql脚本路径
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+    enabled: false
+# spring admin检测 默认开启
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    redis:
+      enabled: true
+    rabbit:
+      enabled: true
+    diskspace:
+      enabled: true
+
+ribbon:
+  ReadTimeout:  5000
+  SocketTimeout:  1000
+
+# 顺丰配置
+sf:
+  dev-id: 1520889677
+  key: 212704c58ab49174ed61159607fc150e
+  version: 17
+  base-url: https://commit-openic.sf-express.com/open/api/external
+  #创建顺丰单
+  create-order-url: ${sf.base-url}/createorder?sign=
+  #获取骑手信息及位置
+  rider-h5-view: ${sf.base-url}/riderh5view?sign=
+  # 通知客服号码
+  notify-mobile:
+  # 通知客服邮箱
+  notify-mail: xxx@jshuii.com
+  # 接单超时时间
+  over-time: 1
+  # 测试标识，测试环境只能使用固定的顺丰指定的门店信息
+  test-flag: true
+  # 每份订单的重量 午餐420g 早餐100g 超重5000g
+  lunch-weight: 420
+  bf-weight: 100
+
+dada:
+  app-key: dada7cb14c7d6b59319
+  app-secret: 0e74606b3d71b6a3cb7f3b61e110bdde
+
+# 压缩url
+url:
+  compress-url: http://api.weibo.com/2/short_url/shorten.json?source=2849184197&url_long={url}
+
+# 获取集单信息
+scm:
+  query-lunch-by-order-no-url: http://devml-oss.jshuii.com/orderset/get-order-set-by-order-no?orderNo={orderNo}
+  query-lunch-by-set-id-url: http://devml-oss.jshuii.com/orderset/query-detail-order-info?detailSetNo={detailSetNo}&detailSetId={detailSetId}
+  query-bf-by-order-no-url: http://devml-oss.jshuii.com/orderset/get-order-set-by-order-no?orderNo={orderNo}
+  query-bf-by-set-id-url: http://devml-oss.jshuii.com/orderset/query-detail-order-info?detailSetNo={detailSetNo}&detailSetId={detailSetId}
+  query-all-shop-url: http://devmls-scmapiin.jshuii.com/shop/get-all-shop-list
+  query-shop-by-id-url: http://devmls-scmapiin.jshuii.com/shop/query-by-id?id={id}
+  query-building-url: http://devmls-scmapi.jshuii.com/building/get-building-by-id?id={id}
+  query-company-url: http://devmls-scmapiin.jshuii.com/company/inside-query-by-id?id={id}
+# sms通知
+sms:
+  send-url: http://testsms.jshuii.com/api/v1/MobileSendService/sendSms
+# 邮件通知
+mail:
+  send-url: http://email.jshuii.com/v1/emailService/sendSimpleMail
+# 延迟队列时间(弃用)
+bf:
+  orderset:
+    delay: 10
+

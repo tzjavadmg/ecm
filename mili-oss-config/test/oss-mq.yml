@@ -1,0 +1,121 @@
+spring:
+  rabbitmq:
+    addresses: amqp://mqtest.jshuii.com:5672
+    username: milisong-scmuser
+    password: vO7kZK63W8cv
+  cloud:
+    stream:
+      # 设置默认的binder
+      default-binder: scm
+      binders:
+        oms:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-oms
+        scm:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-scm
+        scm_bf:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-scm-breakfast
+        ofc_oss:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: mili-ofc-oss
+      bindings:
+        # ---------消息消费------------
+        # 订单消费
+        order_input:
+          binder: oms
+          destination: OMS_ORDER
+          group: oss_order_set
+        # 订单退款
+        order_refund_input:
+          binder: oms
+          destination: OMS_REFUND
+          group: oss_group
+        # 顺丰订单状态变更
+        sf_status_change_input:
+          binder: scm
+          destination: SCM_SF_STATUS_CHANGE
+          group: orderset_group
+        # 消费公司信息
+        oss_company_input:
+          binder: scm_bf
+          destination: SCM_COMPANY
+          group: oss_company
+        #-----------消息生产-----------
+        # 集单中订单状态变更
+        order_set_order_status_change_output:
+          binder: oms
+          destination: OMS_ORDER_STATUS
+        # 集单生产
+        order_set_output:
+          binder: scm
+          destination: SCM_ORDER_SET
+        # 推送顺丰单
+        sf_order_set_output:
+          binder: scm_bf
+          destination: SCM_SF_ORDER_SET
+         # 集单生产_bf
+        order_set_output_bf:
+          binder: scm_bf
+          destination: SCM_ORDER_SET
+        wave_order_output:
+          binder: ofc_oss
+          destination: OSS_WAVE_ORDER
+      rabbit:
+        bindings:
+          # 消费者配置
+          order_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_ORDER_ORDER_SET_DLX
+          order_refund_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_REFUND_DLX
+          sf_status_change_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SF_STATUS_CHANGE_INPUT_DLX
+          oss_company_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OSS_COMPANY_INPUT_DLX
+          # 生产者配置
+          order_set_order_status_change_output:
+            producer:
+              exchangeType: fanout
+          order_set_output:
+            producer:
+               exchangeType: fanout
+          sf_order_set_output:
+            producer:
+               exchangeType: fanout
+          order_set_output_bf:
+            producer:
+               exchangeType: fanout
+          # 早餐波次单发送
+          wave_order_output:
+            producer:
+              exchangeType: topic
+              routingKeyExpression: headers.shopId

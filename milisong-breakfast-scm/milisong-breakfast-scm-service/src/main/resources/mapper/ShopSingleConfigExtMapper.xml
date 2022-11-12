@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.breakfast.scm.configuration.mapper.ShopSingleConfigExtMapper">
+  <resultMap extends="com.milisong.breakfast.scm.configuration.mapper.ShopSingleConfigMapper.BaseResultMap" id="BaseResultMap" type="com.milisong.breakfast.scm.configuration.domain.ShopSingleConfig" />
+  <sql id="Base_Column_List">
+    <include refid="com.milisong.breakfast.scm.configuration.mapper.ShopSingleConfigMapper.Base_Column_List" />
+  </sql>
+
+  <select id="queryByShopId" parameterType="long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from shop_single_config
+    where shop_id = #{shopId}
+    and is_deleted = 0
+  </select>
+  <select id="queryAllShop" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from shop_single_config
+    where is_deleted = 0
+  </select>
+  <select id="queryByShopIdAndKey" resultType="com.milisong.breakfast.scm.configuration.domain.ShopSingleConfig">
+    select
+    <include refid="Base_Column_List" />
+    from shop_single_config
+    where shop_id = #{shopId}
+    and is_deleted = 0
+    and config_key = #{configKey}
+    limit 0,1
+  </select>
+  <select id="getShopIdsCount" parameterType="com.milisong.breakfast.scm.configuration.dto.ShopSingleConfigParam" resultType="java.lang.Integer">
+    select
+    count(DISTINCT (shop_id))
+    from shop_single_config
+    where is_deleted = 0
+    <if test="shopId != null">
+      and shop_id = #{shopId}
+    </if>
+  </select>
+  <select id="getShopIds" parameterType="com.milisong.breakfast.scm.configuration.dto.ShopSingleConfigParam" resultType="java.lang.Long">
+    select
+    DISTINCT (shop_id)
+    from shop_single_config
+    where is_deleted = 0
+    <if test="shopId != null">
+      and shop_id = #{shopId}
+    </if>
+    <if test="pageNo != null and pageSize != null">
+      limit #{startRow},#{pageSize}
+    </if>
+    <if test="pageNo == null or pageSize == null">
+      limit 0,10
+    </if>
+  </select>
+  <select id="getShopSingleConfigByIds" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from shop_single_config
+    where is_deleted = 0
+    and shop_id IN (
+    <if test="ids.length >0">
+      ${ids}
+    </if>
+    <if test="ids == null or ids == ''">
+      ''
+    </if>
+    )
+  </select>
+</mapper>

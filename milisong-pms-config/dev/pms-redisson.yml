@@ -1,0 +1,4 @@
+redisson:
+  address: redis://devredis.jshuii.com:6385
+  password: ReyH2WMVtn0KalCA0v6385
+  database: 15

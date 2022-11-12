@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.milisong.breakfast.scm.orderset.mapper.OrderSetDetailGoodsExtMapper">
+	<select id="listDetailSetNoByOrderNo"
+		resultType="java.lang.String" parameterType="java.lang.String">
+		select detail_set_no from order_set_detail_goods where order_no=#{orderNo}
+		and is_deleted=0 GROUP BY detail_set_no
+	</select>
+	
+	<select id="listGroupStatusByOrderNo"
+		resultType="java.lang.Byte" parameterType="java.lang.String">
+		select d.status from order_set_detail d left JOIN order_set_detail_goods g on d.detail_set_no=g.detail_set_no
+		where d.is_deleted=0 and g.is_deleted=0 and g.order_no=#{orderNo} group by d.`status`
+	</select>
+		
+	<select id="listAllStatusByOrderNo"
+		resultType="com.milisong.breakfast.scm.orderset.result.OrderSetDetailStatusDto" parameterType="java.lang.String">
+		select d.status,d.distribution_status from order_set_detail d left JOIN order_set_detail_goods g on d.detail_set_no=g.detail_set_no
+		where d.is_deleted=0 and g.is_deleted=0 and g.order_no=#{orderNo} group by d.status,d.distribution_status order by  d.status,d.distribution_status
+	</select>
+
+</mapper>

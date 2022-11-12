@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.pos.production.mapper.PreProductionMapper">
+   <!-- 批量新增 -->        
+	    <insert id="savePreProductionByList" parameterType="java.util.ArrayList">
+	    insert into pre_production (id, goods_code, goods_name, 
+	      shop_id, pre_production_date, pre_production_count,
+	      actual_production_count,actual_sale_count,sales_average_count,
+	      create_time,update_time
+	      )
+	    values 
+	     <foreach collection="list" item="item"  separator=",">
+	     (#{item.id,jdbcType=BIGINT}, #{item.goodsCode}, #{item.goodsName}, 
+	      #{item.shopId}, #{item.preProductionDate}, #{item.preProductionCount},
+	       0, 0,
+	        #{item.salesAverageCount}, now(), now()
+	      )
+	      </foreach>
+	  </insert>
+	<!-- 查询门店当前时间预生产数量 -->
+	
+	<select id="getListByShopId" parameterType="java.lang.Long" resultType="com.milisong.pos.production.dto.PreProductionDto">
+		select id,
+		goods_code,goods_name,pre_production_date,pre_production_count,
+		actual_production_count,shop_id,actual_sale_count,sales_average_count
+ 		from pre_production
+		WHERE is_deleted = 0 
+		<if test="shopId != null ">
+		and shop_id = #{shopId} 
+		</if>
+		and pre_production_date = DATE_FORMAT(NOW(),'%Y-%m-%d') 
+	</select>
+	
+</mapper>

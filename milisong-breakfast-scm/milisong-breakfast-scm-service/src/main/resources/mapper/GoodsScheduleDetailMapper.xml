@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.breakfast.scm.goods.mapper.GoodsScheduleDetailMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.breakfast.scm.goods.domain.GoodsScheduleDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="shop_code" jdbcType="VARCHAR" property="shopCode" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="week_of_year" jdbcType="INTEGER" property="weekOfYear" />
+    <result column="goods_code" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="flag_1" jdbcType="BIT" property="flag1" />
+    <result column="flag_2" jdbcType="BIT" property="flag2" />
+    <result column="flag_3" jdbcType="BIT" property="flag3" />
+    <result column="flag_4" jdbcType="BIT" property="flag4" />
+    <result column="flag_5" jdbcType="BIT" property="flag5" />
+    <result column="flag_6" jdbcType="BIT" property="flag6" />
+    <result column="flag_7" jdbcType="BIT" property="flag7" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, shop_id, shop_code, shop_name, year, week_of_year, goods_code, goods_name, flag_1, 
+    flag_2, flag_3, flag_4, flag_5, flag_6, flag_7, is_deleted, create_by, create_time, 
+    update_by, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.milisong.breakfast.scm.goods.domain.GoodsScheduleDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from goods_schedule_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_schedule_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods_schedule_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.milisong.breakfast.scm.goods.domain.GoodsScheduleDetailExample">
+    delete from goods_schedule_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.milisong.breakfast.scm.goods.domain.GoodsScheduleDetail">
+    insert into goods_schedule_detail (id, shop_id, shop_code, 
+      shop_name, year, week_of_year, 
+      goods_code, goods_name, flag_1, 
+      flag_2, flag_3, flag_4, flag_5, 
+      flag_6, flag_7, is_deleted, create_by, 
+      create_time, update_by, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT}, #{shopCode,jdbcType=VARCHAR}, 
+      #{shopName,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, #{weekOfYear,jdbcType=INTEGER}, 
+      #{goodsCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{flag1,jdbcType=BIT}, 
+      #{flag2,jdbcType=BIT}, #{flag3,jdbcType=BIT}, #{flag4,jdbcType=BIT}, #{flag5,jdbcType=BIT}, 
+      #{flag6,jdbcType=BIT}, #{flag7,jdbcType=BIT}, #{isDeleted,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.breakfast.scm.goods.domain.GoodsScheduleDetail">
+    insert into goods_schedule_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="shopCode != null">
+        shop_code,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="weekOfYear != null">
+        week_of_year,
+      </if>
+      <if test="goodsCode != null">
+        goods_code,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="flag1 != null">
+        flag_1,
+      </if>
+      <if test="flag2 != null">
+        flag_2,
+      </if>
+      <if test="flag3 != null">
+        flag_3,
+      </if>
+      <if test="flag4 != null">
+        flag_4,
+      </if>
+      <if test="flag5 != null">
+        flag_5,
+      </if>
+      <if test="flag6 != null">
+        flag_6,
+      </if>
+      <if test="flag7 != null">
+        flag_7,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="weekOfYear != null">
+        #{weekOfYear,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag1 != null">
+        #{flag1,jdbcType=BIT},
+      </if>
+      <if test="flag2 != null">
+        #{flag2,jdbcType=BIT},
+      </if>
+      <if test="flag3 != null">
+        #{flag3,jdbcType=BIT},
+      </if>
+      <if test="flag4 != null">
+        #{flag4,jdbcType=BIT},
+      </if>
+      <if test="flag5 != null">
+        #{flag5,jdbcType=BIT},
+      </if>
+      <if test="flag6 != null">
+        #{flag6,jdbcType=BIT},
+      </if>
+      <if test="flag7 != null">
+        #{flag7,jdbcType=BIT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into goods_schedule_detail (id, shop_id, shop_code, 
+      shop_name, year, week_of_year, 
+      goods_code, goods_name, flag_1, 
+      flag_2, flag_3, flag_4, 
+      flag_5, flag_6, flag_7, 
+      is_deleted, create_by, create_time, 
+      update_by, update_time)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.shopId,jdbcType=BIGINT}, #{item.shopCode,jdbcType=VARCHAR}, 
+        #{item.shopName,jdbcType=VARCHAR}, #{item.year,jdbcType=INTEGER}, #{item.weekOfYear,jdbcType=INTEGER}, 
+        #{item.goodsCode,jdbcType=VARCHAR}, #{item.goodsName,jdbcType=VARCHAR}, #{item.flag1,jdbcType=BIT}, 
+        #{item.flag2,jdbcType=BIT}, #{item.flag3,jdbcType=BIT}, #{item.flag4,jdbcType=BIT}, 
+        #{item.flag5,jdbcType=BIT}, #{item.flag6,jdbcType=BIT}, #{item.flag7,jdbcType=BIT}, 
+        #{item.isDeleted,jdbcType=BIT}, #{item.createBy,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.updateBy,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into goods_schedule_detail
+    (id, shop_id, shop_code, shop_name, year, week_of_year, goods_code, goods_name, flag_1, 
+      flag_2, flag_3, flag_4, flag_5, flag_6, flag_7, is_deleted, create_by, create_time, 
+      update_by, update_time)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.shopId != null">
+          #{item.shopId,jdbcType=BIGINT},
+        </if>
+        <if test="item.shopId == null">
+          NULL,
+        </if>
+        <if test="item.shopCode != null">
+          #{item.shopCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.shopCode == null">
+          NULL,
+        </if>
+        <if test="item.shopName != null">
+          #{item.shopName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.shopName == null">
+          NULL,
+        </if>
+        <if test="item.year != null">
+          #{item.year,jdbcType=INTEGER},
+        </if>
+        <if test="item.year == null">
+          NULL,
+        </if>
+        <if test="item.weekOfYear != null">
+          #{item.weekOfYear,jdbcType=INTEGER},
+        </if>
+        <if test="item.weekOfYear == null">
+          NULL,
+        </if>
+        <if test="item.goodsCode != null">
+          #{item.goodsCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.goodsCode == null">
+          NULL,
+        </if>
+        <if test="item.goodsName != null">
+          #{item.goodsName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.goodsName == null">
+          NULL,
+        </if>
+        <if test="item.flag1 != null">
+          #{item.flag1,jdbcType=BIT},
+        </if>
+        <if test="item.flag1 == null">
+          NULL,
+        </if>
+        <if test="item.flag2 != null">
+          #{item.flag2,jdbcType=BIT},
+        </if>
+        <if test="item.flag2 == null">
+          NULL,
+        </if>
+        <if test="item.flag3 != null">
+          #{item.flag3,jdbcType=BIT},
+        </if>
+        <if test="item.flag3 == null">
+          NULL,
+        </if>
+        <if test="item.flag4 != null">
+          #{item.flag4,jdbcType=BIT},
+        </if>
+        <if test="item.flag4 == null">
+          NULL,
+        </if>
+        <if test="item.flag5 != null">
+          #{item.flag5,jdbcType=BIT},
+        </if>
+        <if test="item.flag5 == null">
+          NULL,
+        </if>
+        <if test="item.flag6 != null">
+          #{item.flag6,jdbcType=BIT},
+        </if>
+        <if test="item.flag6 == null">
+          NULL,
+        </if>
+        <if test="item.flag7 != null">
+          #{item.flag7,jdbcType=BIT},
+        </if>
+        <if test="item.flag7 == null">
+          NULL,
+        </if>
+        <if test="item.isDeleted != null">
+          #{item.isDeleted,jdbcType=BIT},
+        </if>
+        <if test="item.isDeleted == null">
+          NULL,
+        </if>
+        <if test="item.createBy != null">
+          #{item.createBy,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createBy == null">
+          NULL,
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.createTime == null">
+          NULL,
+        </if>
+        <if test="item.updateBy != null">
+          #{item.updateBy,jdbcType=VARCHAR},
+        </if>
+        <if test="item.updateBy == null">
+          NULL,
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <select id="countByExample" parameterType="com.milisong.breakfast.scm.goods.domain.GoodsScheduleDetailExample" resultType="java.lang.Long">
+    select count(*) from goods_schedule_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goods_schedule_detail
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopId != null">
+        shop_id = #{record.shopId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopCode != null">
+        shop_code = #{record.shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopName != null">
+        shop_name = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.year != null">
+        year = #{record.year,jdbcType=INTEGER},
+      </if>
+      <if test="record.weekOfYear != null">
+        week_of_year = #{record.weekOfYear,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsCode != null">
+        goods_code = #{record.goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag1 != null">
+        flag_1 = #{record.flag1,jdbcType=BIT},
+      </if>
+      <if test="record.flag2 != null">
+        flag_2 = #{record.flag2,jdbcType=BIT},
+      </if>
+      <if test="record.flag3 != null">
+        flag_3 = #{record.flag3,jdbcType=BIT},
+      </if>
+      <if test="record.flag4 != null">
+        flag_4 = #{record.flag4,jdbcType=BIT},
+      </if>
+      <if test="record.flag5 != null">
+        flag_5 = #{record.flag5,jdbcType=BIT},
+      </if>
+      <if test="record.flag6 != null">
+        flag_6 = #{record.flag6,jdbcType=BIT},
+      </if>
+      <if test="record.flag7 != null">
+        flag_7 = #{record.flag7,jdbcType=BIT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=BIT},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goods_schedule_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      shop_id = #{record.shopId,jdbcType=BIGINT},
+      shop_code = #{record.shopCode,jdbcType=VARCHAR},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      year = #{record.year,jdbcType=INTEGER},
+      week_of_year = #{record.weekOfYear,jdbcType=INTEGER},
+      goods_code = #{record.goodsCode,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      flag_1 = #{record.flag1,jdbcType=BIT},
+      flag_2 = #{record.flag2,jdbcType=BIT},
+      flag_3 = #{record.flag3,jdbcType=BIT},
+      flag_4 = #{record.flag4,jdbcType=BIT},
+      flag_5 = #{record.flag5,jdbcType=BIT},
+      flag_6 = #{record.flag6,jdbcType=BIT},
+      flag_7 = #{record.flag7,jdbcType=BIT},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.breakfast.scm.goods.domain.GoodsScheduleDetail">
+    update goods_schedule_detail
+    <set>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null">
+        shop_code = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="weekOfYear != null">
+        week_of_year = #{weekOfYear,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCode != null">
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag1 != null">
+        flag_1 = #{flag1,jdbcType=BIT},
+      </if>
+      <if test="flag2 != null">
+        flag_2 = #{flag2,jdbcType=BIT},
+      </if>
+      <if test="flag3 != null">
+        flag_3 = #{flag3,jdbcType=BIT},
+      </if>
+      <if test="flag4 != null">
+        flag_4 = #{flag4,jdbcType=BIT},
+      </if>
+      <if test="flag5 != null">
+        flag_5 = #{flag5,jdbcType=BIT},
+      </if>
+      <if test="flag6 != null">
+        flag_6 = #{flag6,jdbcType=BIT},
+      </if>
+      <if test="flag7 != null">
+        flag_7 = #{flag7,jdbcType=BIT},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.breakfast.scm.goods.domain.GoodsScheduleDetail">
+    update goods_schedule_detail
+    set shop_id = #{shopId,jdbcType=BIGINT},
+      shop_code = #{shopCode,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      year = #{year,jdbcType=INTEGER},
+      week_of_year = #{weekOfYear,jdbcType=INTEGER},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      flag_1 = #{flag1,jdbcType=BIT},
+      flag_2 = #{flag2,jdbcType=BIT},
+      flag_3 = #{flag3,jdbcType=BIT},
+      flag_4 = #{flag4,jdbcType=BIT},
+      flag_5 = #{flag5,jdbcType=BIT},
+      flag_6 = #{flag6,jdbcType=BIT},
+      flag_7 = #{flag7,jdbcType=BIT},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update goods_schedule_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="shopId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopId}
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopCode}
+        </foreach>
+      </trim>
+      <trim prefix="shopName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopName}
+        </foreach>
+      </trim>
+      <trim prefix="year =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.year}
+        </foreach>
+      </trim>
+      <trim prefix="weekOfYear =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.weekOfYear}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsCode}
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsName}
+        </foreach>
+      </trim>
+      <trim prefix="flag1 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag1}
+        </foreach>
+      </trim>
+      <trim prefix="flag2 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag2}
+        </foreach>
+      </trim>
+      <trim prefix="flag3 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag3}
+        </foreach>
+      </trim>
+      <trim prefix="flag4 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag4}
+        </foreach>
+      </trim>
+      <trim prefix="flag5 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag5}
+        </foreach>
+      </trim>
+      <trim prefix="flag6 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag6}
+        </foreach>
+      </trim>
+      <trim prefix="flag7 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag7}
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.isDeleted}
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createBy}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateBy}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+    </trim>
+    where id in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update goods_schedule_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="shopId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shopId != null ">
+            when  #{item.id} then #{item.shopId}
+          </if>
+          <if test="item.shopId == null ">
+            when  #{item.id} then goods_schedule_detail.shop_id
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shopCode != null ">
+            when  #{item.id} then #{item.shopCode}
+          </if>
+          <if test="item.shopCode == null ">
+            when  #{item.id} then goods_schedule_detail.shop_code
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shopName != null ">
+            when  #{item.id} then #{item.shopName}
+          </if>
+          <if test="item.shopName == null ">
+            when  #{item.id} then goods_schedule_detail.shop_name
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="year =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.year != null ">
+            when  #{item.id} then #{item.year}
+          </if>
+          <if test="item.year == null ">
+            when  #{item.id} then goods_schedule_detail.year
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="weekOfYear =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.weekOfYear != null ">
+            when  #{item.id} then #{item.weekOfYear}
+          </if>
+          <if test="item.weekOfYear == null ">
+            when  #{item.id} then goods_schedule_detail.week_of_year
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsCode != null ">
+            when  #{item.id} then #{item.goodsCode}
+          </if>
+          <if test="item.goodsCode == null ">
+            when  #{item.id} then goods_schedule_detail.goods_code
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsName != null ">
+            when  #{item.id} then #{item.goodsName}
+          </if>
+          <if test="item.goodsName == null ">
+            when  #{item.id} then goods_schedule_detail.goods_name
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag1 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.flag1 != null ">
+            when  #{item.id} then #{item.flag1}
+          </if>
+          <if test="item.flag1 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_1
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag2 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.flag2 != null ">
+            when  #{item.id} then #{item.flag2}
+          </if>
+          <if test="item.flag2 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_2
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag3 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.flag3 != null ">
+            when  #{item.id} then #{item.flag3}
+          </if>
+          <if test="item.flag3 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_3
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag4 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.flag4 != null ">
+            when  #{item.id} then #{item.flag4}
+          </if>
+          <if test="item.flag4 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_4
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag5 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.flag5 != null ">
+            when  #{item.id} then #{item.flag5}
+          </if>
+          <if test="item.flag5 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_5
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag6 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.flag6 != null ">
+            when  #{item.id} then #{item.flag6}
+          </if>
+          <if test="item.flag6 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_6
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag7 =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.flag7 != null ">
+            when  #{item.id} then #{item.flag7}
+          </if>
+          <if test="item.flag7 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_7
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.isDeleted != null ">
+            when  #{item.id} then #{item.isDeleted}
+          </if>
+          <if test="item.isDeleted == null ">
+            when  #{item.id} then goods_schedule_detail.is_deleted
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.createBy != null ">
+            when  #{item.id} then #{item.createBy}
+          </if>
+          <if test="item.createBy == null ">
+            when  #{item.id} then goods_schedule_detail.create_by
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then goods_schedule_detail.create_time
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.updateBy != null ">
+            when  #{item.id} then #{item.updateBy}
+          </if>
+          <if test="item.updateBy == null ">
+            when  #{item.id} then goods_schedule_detail.update_by
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then goods_schedule_detail.update_time
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByExample" parameterType="map">
+    update goods_schedule_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="shopId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopId}
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopCode}
+        </foreach>
+      </trim>
+      <trim prefix="shopName =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopName}
+        </foreach>
+      </trim>
+      <trim prefix="year =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.year}
+        </foreach>
+      </trim>
+      <trim prefix="weekOfYear =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.weekOfYear}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsCode}
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsName}
+        </foreach>
+      </trim>
+      <trim prefix="flag1 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag1}
+        </foreach>
+      </trim>
+      <trim prefix="flag2 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag2}
+        </foreach>
+      </trim>
+      <trim prefix="flag3 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag3}
+        </foreach>
+      </trim>
+      <trim prefix="flag4 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag4}
+        </foreach>
+      </trim>
+      <trim prefix="flag5 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag5}
+        </foreach>
+      </trim>
+      <trim prefix="flag6 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag6}
+        </foreach>
+      </trim>
+      <trim prefix="flag7 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.flag7}
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.isDeleted}
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createBy}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateBy}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBatchByExampleSelective" parameterType="map">
+    update goods_schedule_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="shopId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.shopId != null ">
+            when  #{item.id} then #{item.shopId}
+          </if>
+          <if test="item.shopId == null ">
+            when  #{item.id} then goods_schedule_detail.shop_id
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.shopCode != null ">
+            when  #{item.id} then #{item.shopCode}
+          </if>
+          <if test="item.shopCode == null ">
+            when  #{item.id} then goods_schedule_detail.shop_code
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopName =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.shopName != null ">
+            when  #{item.id} then #{item.shopName}
+          </if>
+          <if test="item.shopName == null ">
+            when  #{item.id} then goods_schedule_detail.shop_name
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="year =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.year != null ">
+            when  #{item.id} then #{item.year}
+          </if>
+          <if test="item.year == null ">
+            when  #{item.id} then goods_schedule_detail.year
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="weekOfYear =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.weekOfYear != null ">
+            when  #{item.id} then #{item.weekOfYear}
+          </if>
+          <if test="item.weekOfYear == null ">
+            when  #{item.id} then goods_schedule_detail.week_of_year
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.goodsCode != null ">
+            when  #{item.id} then #{item.goodsCode}
+          </if>
+          <if test="item.goodsCode == null ">
+            when  #{item.id} then goods_schedule_detail.goods_code
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.goodsName != null ">
+            when  #{item.id} then #{item.goodsName}
+          </if>
+          <if test="item.goodsName == null ">
+            when  #{item.id} then goods_schedule_detail.goods_name
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag1 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.flag1 != null ">
+            when  #{item.id} then #{item.flag1}
+          </if>
+          <if test="item.flag1 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_1
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag2 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.flag2 != null ">
+            when  #{item.id} then #{item.flag2}
+          </if>
+          <if test="item.flag2 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_2
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag3 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.flag3 != null ">
+            when  #{item.id} then #{item.flag3}
+          </if>
+          <if test="item.flag3 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_3
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag4 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.flag4 != null ">
+            when  #{item.id} then #{item.flag4}
+          </if>
+          <if test="item.flag4 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_4
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag5 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.flag5 != null ">
+            when  #{item.id} then #{item.flag5}
+          </if>
+          <if test="item.flag5 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_5
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag6 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.flag6 != null ">
+            when  #{item.id} then #{item.flag6}
+          </if>
+          <if test="item.flag6 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_6
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="flag7 =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.flag7 != null ">
+            when  #{item.id} then #{item.flag7}
+          </if>
+          <if test="item.flag7 == null ">
+            when  #{item.id} then goods_schedule_detail.flag_7
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.isDeleted != null ">
+            when  #{item.id} then #{item.isDeleted}
+          </if>
+          <if test="item.isDeleted == null ">
+            when  #{item.id} then goods_schedule_detail.is_deleted
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.createBy != null ">
+            when  #{item.id} then #{item.createBy}
+          </if>
+          <if test="item.createBy == null ">
+            when  #{item.id} then goods_schedule_detail.create_by
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then goods_schedule_detail.create_time
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.updateBy != null ">
+            when  #{item.id} then #{item.updateBy}
+          </if>
+          <if test="item.updateBy == null ">
+            when  #{item.id} then goods_schedule_detail.update_by
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then goods_schedule_detail.update_time
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

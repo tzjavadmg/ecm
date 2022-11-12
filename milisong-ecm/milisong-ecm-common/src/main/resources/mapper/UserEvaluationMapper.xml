@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.ecm.common.user.mapper.UserEvaluationMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.ecm.common.user.domain.UserEvaluation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="business_line" jdbcType="TINYINT" property="businessLine" />
+    <result column="delivery_id" jdbcType="BIGINT" property="deliveryId" />
+    <result column="delivery_goods_id" jdbcType="BIGINT" property="deliveryGoodsId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="option_one_result" jdbcType="TINYINT" property="optionOneResult" />
+    <result column="option_two_result" jdbcType="TINYINT" property="optionTwoResult" />
+    <result column="option_three_result" jdbcType="TINYINT" property="optionThreeResult" />
+    <result column="option_four_result" jdbcType="TINYINT" property="optionFourResult" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="return_call" jdbcType="TINYINT" property="returnCall" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, business_line, delivery_id, delivery_goods_id, user_id, goods_name, order_id, mobile_no, option_one_result,
+    option_two_result, option_three_result, option_four_result, content, return_call,
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_evaluation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.ecm.common.user.domain.UserEvaluation">
+    insert into user_evaluation (id, business_line, delivery_id, delivery_goods_id,
+      user_id, goods_name, order_id,
+      mobile_no, option_one_result, option_two_result,
+      option_three_result, option_four_result, content,
+      return_call, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{businessLine,jdbcType=TINYINT}, #{deliveryId,jdbcType=BIGINT}, #{deliveryGoodsId,jdbcType=BIGINT},
+      #{userId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT},
+      #{mobileNo,jdbcType=VARCHAR}, #{optionOneResult,jdbcType=TINYINT}, #{optionTwoResult,jdbcType=TINYINT},
+      #{optionThreeResult,jdbcType=TINYINT}, #{optionFourResult,jdbcType=TINYINT}, #{content,jdbcType=VARCHAR},
+      #{returnCall,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.ecm.common.user.domain.UserEvaluation">
+    insert into user_evaluation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="businessLine != null">
+        business_line,
+      </if>
+      <if test="deliveryId != null">
+        delivery_id,
+      </if>
+      <if test="deliveryGoodsId != null">
+        delivery_goods_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="mobileNo != null">
+        mobile_no,
+      </if>
+      <if test="optionOneResult != null">
+        option_one_result,
+      </if>
+      <if test="optionTwoResult != null">
+        option_two_result,
+      </if>
+      <if test="optionThreeResult != null">
+        option_three_result,
+      </if>
+      <if test="optionFourResult != null">
+        option_four_result,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="returnCall != null">
+        return_call,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="businessLine != null">
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryId != null">
+        #{deliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryGoodsId != null">
+        #{deliveryGoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="mobileNo != null">
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="optionOneResult != null">
+        #{optionOneResult,jdbcType=TINYINT},
+      </if>
+      <if test="optionTwoResult != null">
+        #{optionTwoResult,jdbcType=TINYINT},
+      </if>
+      <if test="optionThreeResult != null">
+        #{optionThreeResult,jdbcType=TINYINT},
+      </if>
+      <if test="optionFourResult != null">
+        #{optionFourResult,jdbcType=TINYINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCall != null">
+        #{returnCall,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.ecm.common.user.domain.UserEvaluation">
+    update user_evaluation
+    <set>
+      <if test="businessLine != null">
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryId != null">
+        delivery_id = #{deliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryGoodsId != null">
+        delivery_goods_id = #{deliveryGoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="mobileNo != null">
+        mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="optionOneResult != null">
+        option_one_result = #{optionOneResult,jdbcType=TINYINT},
+      </if>
+      <if test="optionTwoResult != null">
+        option_two_result = #{optionTwoResult,jdbcType=TINYINT},
+      </if>
+      <if test="optionThreeResult != null">
+        option_three_result = #{optionThreeResult,jdbcType=TINYINT},
+      </if>
+      <if test="optionFourResult != null">
+        option_four_result = #{optionFourResult,jdbcType=TINYINT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCall != null">
+        return_call = #{returnCall,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.ecm.common.user.domain.UserEvaluation">
+    update user_evaluation
+    set business_line = #{businessLine,jdbcType=TINYINT},
+      delivery_id = #{deliveryId,jdbcType=BIGINT},
+      delivery_goods_id = #{deliveryGoodsId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=BIGINT},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      option_one_result = #{optionOneResult,jdbcType=TINYINT},
+      option_two_result = #{optionTwoResult,jdbcType=TINYINT},
+      option_three_result = #{optionThreeResult,jdbcType=TINYINT},
+      option_four_result = #{optionFourResult,jdbcType=TINYINT},
+      content = #{content,jdbcType=VARCHAR},
+      return_call = #{returnCall,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByDeliveryId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select count(1) from user_evaluation where delivery_id = #{deliveryId}
+  </select>
+</mapper>

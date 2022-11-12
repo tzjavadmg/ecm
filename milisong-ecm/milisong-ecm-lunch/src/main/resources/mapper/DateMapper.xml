@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.ecm.lunch.goods.mapper.DateMapper">
+
+
+	<select id="getDate" resultType="com.milisong.ecm.lunch.goods.dto.WeekDto">
+		SELECT DATE,day_of_week AS WEEK,UNIX_TIMESTAMP(DATE)* 1000 AS dateConver FROM `t_dim_date` WHERE STATUS = 0
+		AND DATE>=DATE_FORMAT(NOW(),'%Y-%m-%d')
+		ORDER BY DATE ASC  LIMIT 5
+	</select>
+</mapper>

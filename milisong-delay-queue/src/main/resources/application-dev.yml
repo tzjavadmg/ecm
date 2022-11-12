@@ -1,0 +1,45 @@
+spring:
+  redis:
+    host: devredis.jshuii.com
+    port: 6387
+    password: ReyHsffesfc0vwerwf6387
+    database: 0
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 1
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://dbtest.jshuii.com:3306/milisong_dqs?characterEncoding=utf-8&amp;useOldAliasMetadataBehavior=true&amp;autoReconnectForPools=true;useSSL=false;
+    username: milisong_dqs
+    password: OTsjmh2Zsxa6vFwOqJ8EGTeo+nLvOUvSGFgzxM4QBrs=
+    type: com.farmland.core.db.SecureDruidDataSource
+  rabbitmq:
+    host: mqdev.jshuii.com
+    port: 5672
+    username: milisong-dqsuser
+    password: 88b00OeBPWhl
+    virtual-host: milisong-dqs
+#数据库主键生产策略
+idworker:
+  workerId: 0
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml,mapper/base/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+server:
+  port: 50020
+management:
+  health:
+    defaults:
+      enabled: false
+
+redisson:
+  address:  redis://devredis.jshuii.com:6387
+  password: ReyHsffesfc0vwerwf6387
+  database: 15
+redisexpire:
+  topic: __keyevent@${spring.redis.database}__:expired

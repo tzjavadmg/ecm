@@ -1,0 +1,16 @@
+spring:
+  redis:
+    host: redis01.jshuii.com
+    port: 6385
+    password: A5Y@x&j1vrz!YK%f
+    database: 1
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 1
+
+redisson:
+  address:  redis://redis01.jshuii.com:6385
+  password: A5Y@x&j1vrz!YK%f
+  database: 15

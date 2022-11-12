@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.SendRedpacketWaterMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.SendRedpacketWater" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="send_redpacket_record_id" property="sendRedpacketRecordId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="mobile_no" property="mobileNo" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="delivery_company" property="deliveryCompany" jdbcType="VARCHAR" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="business_line" property="businessLine" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, send_redpacket_record_id, user_id, user_name, mobile_no, sex, delivery_company, 
+    send_time, business_line, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from send_redpacket_water
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.SendRedpacketWater" >
+    insert into send_redpacket_water (id, send_redpacket_record_id, user_id, 
+      user_name, mobile_no, sex, 
+      delivery_company, send_time, business_line, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{sendRedpacketRecordId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{userName,jdbcType=VARCHAR}, #{mobileNo,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT},
+      #{deliveryCompany,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{businessLine,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.SendRedpacketWater" >
+    insert into send_redpacket_water
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sendRedpacketRecordId != null" >
+        send_redpacket_record_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="deliveryCompany != null" >
+        delivery_company,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="businessLine != null" >
+        business_line,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sendRedpacketRecordId != null" >
+        #{sendRedpacketRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryCompany != null" >
+        #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessLine != null" >
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.SendRedpacketWater" >
+    update send_redpacket_water
+    <set >
+      <if test="sendRedpacketRecordId != null" >
+        send_redpacket_record_id = #{sendRedpacketRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryCompany != null" >
+        delivery_company = #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessLine != null" >
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.SendRedpacketWater" >
+    update send_redpacket_water
+    set send_redpacket_record_id = #{sendRedpacketRecordId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      delivery_company = #{deliveryCompany,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      business_line = #{businessLine,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="countSendRedPacketWater" resultType="int">
+    select count(id) from send_redpacket_water
+    <where>
+      send_redpacket_record_id = #{sendRedPacketRecordId}
+      <if test="mobileNo != null and mobileNo != ''">
+        and mobile_no = #{mobileNo,jdbcType=VARCHAR}
+      </if>
+      and business_line = #{businessLine}
+    </where>
+  </select>
+
+  <select id="querySendRedPacketWater" resultType="com.milisong.pms.prom.dto.SendRedpacketWaterDto">
+    select id, send_redpacket_record_id, user_id, user_name, mobile_no, sex, delivery_company,
+    send_time, business_line from send_redpacket_water
+    <where>
+      send_redpacket_record_id = #{sendRedPacketRecordId}
+      <if test="mobileNo != null and mobileNo != ''">
+        and mobile_no = #{mobileNo,jdbcType=VARCHAR}
+      </if>
+      and business_line = #{businessLine}
+    </where>
+    order by id desc
+    limit #{startRow} , #{pageSize}
+  </select>
+  <insert id="insertBatch">
+    insert into send_redpacket_water (id, send_redpacket_record_id, user_id,
+    user_name, mobile_no, sex, delivery_company, send_time, business_line, create_time, update_time)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+     (
+      #{item.id,jdbcType=BIGINT}, #{item.sendRedpacketRecordId,jdbcType=BIGINT}, #{item.userId,jdbcType=BIGINT},
+      #{item.userName,jdbcType=VARCHAR}, #{item.mobileNo,jdbcType=VARCHAR}, #{item.sex,jdbcType=TINYINT},
+      #{item.deliveryCompany,jdbcType=VARCHAR}, #{item.sendTime,jdbcType=TIMESTAMP}, #{item.businessLine,jdbcType=TINYINT},
+      #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+</mapper>

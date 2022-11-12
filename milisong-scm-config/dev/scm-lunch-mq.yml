@@ -1,0 +1,200 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        # ---------消息消费------------
+        # 订单消费
+        order_input:
+          binder: oms
+          destination: OMS_ORDER
+          group: scm_order_set
+        # 消费c端公司信息
+        company_c_2_b:
+          binder: ecm
+          destination: ECM_DELIVERY_COMPANY
+          group: scm_group
+        # 订单退款
+        order_refund_input:
+          binder: oms
+          destination: OMS_REFUND
+          group: scm_group
+        # 楼宇开通申请
+        building_apply:
+          binder: ecm
+          destination: ECM_BUILDING_APPLY
+          group: scm_group
+#        # 顺丰订单状态变更
+#        sf_status_change_input:
+#          binder: scm
+#          destination: SCM_SF_STATUS_CHANGE
+#          group: orderset_group
+        sf_order_create_input:
+          binder: scm
+          destination: SCM_SF_ORDER_CREATE
+          group: orderset_group
+        config_input:
+          binder: scm
+          destination: SCM_CONFIG_PROPERTY
+          group: scm_group
+        config_intercept_input:
+          binder: scm
+          destination: SCM_CONFIG_INTERCEPT
+          group: scm_group
+        # 消费配置新增门店的MQ信息
+        shop_create_input:
+          binder: scm
+          destination: SCM_SHOP_CREATE
+          group: scm_group
+
+        #-----------消息生产-----------
+        # 集单中订单状态变更
+        order_set_order_status_change_output:
+          binder: oms
+          destination: OMS_ORDER_STATUS
+        # 公司信息
+        company_b_2_c:
+          binder: scm
+          destination: SCM_COMPANY
+        # 楼宇信息
+        building_output:
+          binder: scm
+          destination: SCM_BUILDING
+#        # 顺丰配送单状态变更
+#        sf_status_change_output:
+#          binder: scm
+#          destination: SCM_SF_STATUS_CHANGE
+        # 配置信息
+        config_output:
+          binder: scm
+          destination: SCM_CONFIG_PROPERTY
+        # 截单配置信息
+        config_intercept_output:
+          binder: scm
+          destination: SCM_CONFIG_INTERCEPT
+        # Banner图配置信息
+        config_banner_output:
+          binder: scm
+          destination: SCM_CONFIG_BANNER
+        # 集单生产
+        order_set_output:
+          binder: scm
+          destination: SCM_ORDER_SET
+        # 公司楼层修改
+        company_modify_output:
+          binder: scm
+          destination: SCM_COMPANY_MODIFY
+         # 门店可售商品
+        goods_salable_output:
+          binder: scm
+          destination: SCM_LUNCH_GOODS_SALABLE
+         # 档期
+        goods_schedule_output:
+          binder: scm
+          destination: SCM_LUNCH_GOODS_SCHEDULE
+        # 商品
+        goods_basic_output:
+          binder: scm
+          destination: SCM_LUNCH_GOODS_BASIC
+        # 门店创建时间
+        shop_create_output:
+          binder: scm
+          destination: SCM_SHOP_CREATE
+      rabbit:
+        bindings:
+          # 消费者配置
+          order_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_ORDER_ORDER_SET_DLX
+          company_c_2_b:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: ECM_DELIVERY_COMPANY_DLX
+          order_refund_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_REFUND_DLX
+          building_apply:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: ECM_BUILDING_APPLY_SCM_DLX
+#          sf_status_change_input:
+#            consumer:
+#              exchangeType: fanout
+#              autoBindDlq: true
+#              republishToDlq: true
+#              deadLetterExchange: SCM_SF_STATUS_CHANGE_ORDERSET_DLX
+          sf_order_create_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_SF_ORDER_CREATE_DLX
+          config_input:
+            consumer:
+              exchangeType: topic
+              binding-routing-key: '#.scm.#'
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_CONFIG_PROPERTY_DLX
+          config_intercept_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_CONFIG_INTERCEPT_DLX
+          shop_create_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_SHOP_CREATE_DLX
+          # 生产者配置
+          order_set_order_status_change_output:
+            producer:
+              exchangeType: fanout
+          company_b_2_c:
+            producer:
+              exchangeType: fanout
+          building_output:
+            producer:
+              exchangeType: fanout
+          sf_status_change_output:
+            producer:
+              exchangeType: fanout
+          config_output:
+            producer:
+               exchangeType: topic
+               routing-key-expression: headers.key
+          config_intercept_output:
+            producer:
+              exchangeType: fanout
+          config_banner_output:
+            producer:
+              exchangeType: fanout
+          order_set_output:
+            producer:
+               exchangeType: fanout
+          company_modify_output:
+            producer:
+              exchangeType: fanout
+          goods_salable_output:
+            producer:
+              exchangeType: fanout
+          goods_schedule_output:
+            producer:
+              exchangeType: fanout
+          goods_basic_output:
+            producer:
+              exchangeType: fanout
+          shop_create_output:
+            producer:
+              exchangeType: fanout

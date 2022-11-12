@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.pos.production.mapper.BasePreProductionMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.pos.production.domain.PreProduction">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="goods_code" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="pre_production_date" jdbcType="DATE" property="preProductionDate" />
+    <result column="pre_production_count" jdbcType="DECIMAL" property="preProductionCount" />
+    <result column="actual_production_count" jdbcType="INTEGER" property="actualProductionCount" />
+    <result column="actual_sale_count" jdbcType="INTEGER" property="actualSaleCount" />
+    <result column="sales_average_count" jdbcType="DECIMAL" property="salesAverageCount" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, goods_code, goods_name, shop_id, pre_production_date, pre_production_count, actual_production_count, 
+    actual_sale_count, sales_average_count, create_by, update_by, create_time, update_time, 
+    is_deleted
+  </sql>
+  <select id="selectByExample" parameterType="com.milisong.pos.production.domain.PreProductionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from pre_production
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pre_production
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pre_production
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.milisong.pos.production.domain.PreProduction">
+    insert into pre_production (id, goods_code, goods_name, 
+      shop_id, pre_production_date, pre_production_count, 
+      actual_production_count, actual_sale_count, 
+      sales_average_count, create_by, update_by, 
+      create_time, update_time, is_deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodsCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=BIGINT}, #{preProductionDate,jdbcType=DATE}, #{preProductionCount,jdbcType=DECIMAL}, 
+      #{actualProductionCount,jdbcType=INTEGER}, #{actualSaleCount,jdbcType=INTEGER}, 
+      #{salesAverageCount,jdbcType=DECIMAL}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pos.production.domain.PreProduction">
+    insert into pre_production
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsCode != null">
+        goods_code,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="preProductionDate != null">
+        pre_production_date,
+      </if>
+      <if test="preProductionCount != null">
+        pre_production_count,
+      </if>
+      <if test="actualProductionCount != null">
+        actual_production_count,
+      </if>
+      <if test="actualSaleCount != null">
+        actual_sale_count,
+      </if>
+      <if test="salesAverageCount != null">
+        sales_average_count,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="preProductionDate != null">
+        #{preProductionDate,jdbcType=DATE},
+      </if>
+      <if test="preProductionCount != null">
+        #{preProductionCount,jdbcType=DECIMAL},
+      </if>
+      <if test="actualProductionCount != null">
+        #{actualProductionCount,jdbcType=INTEGER},
+      </if>
+      <if test="actualSaleCount != null">
+        #{actualSaleCount,jdbcType=INTEGER},
+      </if>
+      <if test="salesAverageCount != null">
+        #{salesAverageCount,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.milisong.pos.production.domain.PreProductionExample" resultType="java.lang.Long">
+    select count(*) from pre_production
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pre_production
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsCode != null">
+        goods_code = #{record.goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null">
+        shop_id = #{record.shopId,jdbcType=BIGINT},
+      </if>
+      <if test="record.preProductionDate != null">
+        pre_production_date = #{record.preProductionDate,jdbcType=DATE},
+      </if>
+      <if test="record.preProductionCount != null">
+        pre_production_count = #{record.preProductionCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.actualProductionCount != null">
+        actual_production_count = #{record.actualProductionCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.actualSaleCount != null">
+        actual_sale_count = #{record.actualSaleCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.salesAverageCount != null">
+        sales_average_count = #{record.salesAverageCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pre_production
+    set id = #{record.id,jdbcType=BIGINT},
+      goods_code = #{record.goodsCode,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      shop_id = #{record.shopId,jdbcType=BIGINT},
+      pre_production_date = #{record.preProductionDate,jdbcType=DATE},
+      pre_production_count = #{record.preProductionCount,jdbcType=DECIMAL},
+      actual_production_count = #{record.actualProductionCount,jdbcType=INTEGER},
+      actual_sale_count = #{record.actualSaleCount,jdbcType=INTEGER},
+      sales_average_count = #{record.salesAverageCount,jdbcType=DECIMAL},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{record.isDeleted,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pos.production.domain.PreProduction">
+    update pre_production
+    <set>
+      <if test="goodsCode != null">
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="preProductionDate != null">
+        pre_production_date = #{preProductionDate,jdbcType=DATE},
+      </if>
+      <if test="preProductionCount != null">
+        pre_production_count = #{preProductionCount,jdbcType=DECIMAL},
+      </if>
+      <if test="actualProductionCount != null">
+        actual_production_count = #{actualProductionCount,jdbcType=INTEGER},
+      </if>
+      <if test="actualSaleCount != null">
+        actual_sale_count = #{actualSaleCount,jdbcType=INTEGER},
+      </if>
+      <if test="salesAverageCount != null">
+        sales_average_count = #{salesAverageCount,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pos.production.domain.PreProduction">
+    update pre_production
+    set goods_code = #{goodsCode,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      pre_production_date = #{preProductionDate,jdbcType=DATE},
+      pre_production_count = #{preProductionCount,jdbcType=DECIMAL},
+      actual_production_count = #{actualProductionCount,jdbcType=INTEGER},
+      actual_sale_count = #{actualSaleCount,jdbcType=INTEGER},
+      sales_average_count = #{salesAverageCount,jdbcType=DECIMAL},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.pms.prom.mapper.MarketingQrcodeMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.MarketingQrcode">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="qrcode" jdbcType="VARCHAR" property="qrcode" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="page_path" jdbcType="VARCHAR" property="pagePath" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="business_line" jdbcType="TINYINT" property="businessLine" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `name`, `type`, `qrcode`, `company_id`, `company_name`, `user_name`,
+     `page_path`, `is_deleted`, `business_line`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `marketing_qrcode`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.MarketingQrcode">
+    insert into `marketing_qrcode` (`id`, `name`, `type`,
+      `qrcode`, `company_id`, `company_name`, `user_name`, `page_path`,
+      `is_deleted`, `business_line`)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT},
+      #{qrcode,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},#{pagePath,jdbcType=VARCHAR},
+      #{isDeleted,jdbcType=BIT}, #{businessLine,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.MarketingQrcode">
+    insert into `marketing_qrcode`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="qrcode != null">
+        `qrcode`,
+      </if>
+      <if test="companyId != null">
+        `company_id`,
+      </if>
+      <if test="companyName != null">
+        `company_name`,
+      </if>
+      <if test="userName != null">
+        `user_name`,
+      </if>
+      <if test="pagePath != null">
+        `page_path`,
+      </if>
+      <if test="isDeleted != null">
+        `is_deleted`,
+      </if>
+      <if test="businessLine != null">
+        `business_line`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="qrcode != null">
+        #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="pagePath != null">
+        #{pagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="businessLine != null">
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `marketing_qrcode` (`id`, `name`, `type`, `company_id`, `company_name`,
+    `qrcode`, `user_name`, `page_path`,
+    `is_deleted`, `business_line`)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.name,jdbcType=VARCHAR}, #{item.type,jdbcType=TINYINT}, #{item.companyId,jdbcType=BIGINT}, #{item.companyName,jdbcType=VARCHAR},
+      #{item.qrcode,jdbcType=VARCHAR}, #{item.userName,jdbcType=VARCHAR},
+       #{item.pagePath,jdbcType=VARCHAR},
+      #{item.isDeleted,jdbcType=BIT}, #{item.businessLine,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `marketing_qrcode`
+    (`id`, `name`, `type`, `company_id`, `company_name`, `qrcode`, `user_name`, `page_path`, `is_deleted`, `business_line`)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.name != null">
+          #{item.name,jdbcType=VARCHAR},
+        </if>
+        <if test="item.name == null">
+          NULL,
+        </if>
+        <if test="item.type != null">
+          #{item.type,jdbcType=TINYINT},
+        </if>
+        <if test="item.type == null">
+          NULL,
+        </if>
+        <if test="item.companyId != null">
+          #{item.companyId,jdbcType=BIGINT},
+        </if>
+        <if test="item.companyId == null">
+          NULL,
+        </if>
+        <if test="item.companyName != null">
+          #{item.companyName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.companyName == null">
+          NULL,
+        </if>
+        <if test="item.qrcode != null">
+          #{item.qrcode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.qrcode == null">
+          NULL,
+        </if>
+        <if test="item.userName != null">
+          #{item.userName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.userName == null">
+          NULL,
+        </if>
+        <if test="item.pagePath != null">
+          #{item.pagePath,jdbcType=VARCHAR},
+        </if>
+        <if test="item.pagePath == null">
+          NULL,
+        </if>
+        <if test="item.isDeleted != null">
+          #{item.isDeleted,jdbcType=BIT},
+        </if>
+        <if test="item.isDeleted == null">
+          NULL,
+        </if>
+        <if test="item.businessLine != null">
+          #{item.businessLine,jdbcType=TINYINT},
+        </if>
+        <if test="item.businessLine == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.MarketingQrcode">
+    update `marketing_qrcode`
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="companyId != null">
+        `company_id` = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        `company_name` = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null">
+        `qrcode` = #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        `user_name` = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="pagePath != null">
+        `page_path` = #{pagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        `is_deleted` = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="businessLine != null">
+        `business_line` = #{businessLine,jdbcType=TINYINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.MarketingQrcode">
+    update `marketing_qrcode`
+    set `name` = #{name,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=TINYINT},
+      `company_id` = #{companyId,jdbcType=BIGINT},
+      `company_name` = #{companyName,jdbcType=VARCHAR},
+      `qrcode` = #{qrcode,jdbcType=VARCHAR},
+      `user_name` = #{userName,jdbcType=VARCHAR},
+      `page_path` = #{pagePath,jdbcType=VARCHAR},
+      `is_deleted` = #{isDeleted,jdbcType=BIT},
+      `business_line` = #{businessLine,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="dto_Column_List">
+    `id`, `name`, `type`, `company_id`, `company_name`, `qrcode`, `user_name`, `page_path`, `is_deleted`, `create_time`
+  </sql>
+
+  <select id="qrcodeList" resultType="com.milisong.pms.prom.dto.MarketingQrcodeDto">
+    select
+    <include refid="dto_Column_List" />
+    from `marketing_qrcode`
+    where is_deleted = 0
+    <choose>
+      <when test="qrcode.businessLine != null and qrcode.businessLine == 1">
+        and (business_line = #{qrcode.businessLine} or business_line is null)
+      </when>
+      <otherwise>
+        and business_line = #{qrcode.businessLine}
+      </otherwise>
+    </choose>
+    <if test="qrcode.companyName != null and qrcode.companyName != ''">
+      and company_name like concat('%',#{qrcode.companyName},'%')
+    </if>
+    <if test="qrcode.name != null and qrcode.name != ''">
+      and name like concat('%',#{qrcode.name},'%')
+    </if>
+    <if test="qrcode.userName != null and qrcode.userName != ''">
+      and user_name like concat('%',#{qrcode.userName},'%')
+    </if>
+    order by create_time desc
+  </select>
+
+  <select id="getDetailByCode" resultType="com.milisong.pms.prom.dto.MarketingQrcodeDto">
+    select
+    <include refid="dto_Column_List" />
+    from `marketing_qrcode`
+    where qrcode = #{qrcode} and is_deleted = 0
+  </select>
+
+</mapper>

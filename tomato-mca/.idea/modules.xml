@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/tomato-mca.iml" filepath="$PROJECT_DIR$/.idea/tomato-mca.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tomato-mca-authorization-server/tomato-mca-authorization-server.iml" filepath="$PROJECT_DIR$/tomato-mca-authorization-server/tomato-mca-authorization-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tomato-mca-client-samples/tomato-mca-client-samples.iml" filepath="$PROJECT_DIR$/tomato-mca-client-samples/tomato-mca-client-samples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tomato-mca-resource-server-samples/tomato-mca-resource-server-samples.iml" filepath="$PROJECT_DIR$/tomato-mca-resource-server-samples/tomato-mca-resource-server-samples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tomato-mca-sdk/tomato-mca-sdk.iml" filepath="$PROJECT_DIR$/tomato-mca-sdk/tomato-mca-sdk.iml" />
+    </modules>
+  </component>
+</project>

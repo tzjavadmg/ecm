@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.base.mapper.CompanyExtMapper">
+  <select id="selectAllCompanyId" resultType="java.lang.Long">
+    select id from company
+  </select>
+
+  <select id="selectCompanyIdByParam" resultType="java.lang.Long" parameterType="com.milisong.scm.base.dto.CompanyDto">
+    select id from company where shop_id = #{shopId}
+    order by -weight desc
+  </select>
+</mapper>

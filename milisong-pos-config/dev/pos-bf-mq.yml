@@ -1,0 +1,92 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        # ---------消息消费------------
+        # 集单消费
+        order_set_input:
+          binder: scm
+          destination: SCM_ORDER_SET
+          group: pos_group
+        # 配置消费
+        config_input:
+          binder: scm
+          destination: SCM_CONFIG_PROPERTY
+          group: pos_group
+        #截单配置消费
+        config_intercept_input:
+          binder: scm
+          destination: SCM_CONFIG_INTERCEPT
+          group: pos_group
+        # 集单开始生产消费
+        order_set_start_produce_input:
+          binder: pos
+          destination: POS_ORDER_SET_STRAT_PRODUCE
+          group: pos_group
+        # 订单消费
+        order_input:
+          binder: oms
+          destination: OMS_ORDER
+          group: scm_breakfast_pos
+        # 订单退款
+        order_refund_input:
+          binder: oms
+          destination: OMS_REFUND
+          group: scm_breakfast_pos
+
+        #-----------消息生产-----------
+        # 集单开始生产通知生产
+        order_set_start_produce_output:
+          binder: pos
+          destination: POS_ORDER_SET_STRAT_PRODUCE
+      rabbit:
+         bindings:
+            # 消费者配置
+            order_input:
+              consumer:
+                exchangeType: fanout
+                autoBindDlq: true
+                republishToDlq: true
+                deadLetterExchange: OMS_ORDER_BREAKFAST_POS_DLX
+            order_refund_input:
+              consumer:
+                exchangeType: fanout
+                autoBindDlq: true
+                republishToDlq: true
+                deadLetterExchange: OMS_REFUND_BREAKFAST_POS_DLX
+            # 集单消费
+            order_set_input:
+              consumer:
+                exchangeType: fanout
+                autoBindDlq: true
+                republishToDlq: true
+                deadLetterExchange: SCM_ORDER_SET_POS_DLX
+            # 配置消费
+            config_input:
+              consumer:
+                exchangeType: topic
+                binding-routing-key: '#.pos.#'
+                autoBindDlq: true
+                republishToDlq: true
+                deadLetterExchange: SCM_CONFIG_PROPERTY_POS_DLX
+            config_intercept_input:
+              consumer:
+                exchangeType: fanout
+                autoBindDlq: true
+                republishToDlq: true
+                deadLetterExchange: SCM_CONFIG_INTERCEPT_POS_DLX
+            # 集单开始生产消费
+            order_set_start_produce_input:
+              consumer:
+                exchangeType: topic
+                autoBindDlq: true
+                republishToDlq: true
+                deadLetterExchange: POS_ORDER_SET_STRAT_PRODUCE_POS_DLX
+                #bindingRoutingKey: '#'
+  
+            # 生产者配置              
+            order_set_start_produce_output:
+              producer:
+                exchangeType: topic
+                routingKeyExpression: headers.shopId
+                # routingKeyExpression: headers['shopId']

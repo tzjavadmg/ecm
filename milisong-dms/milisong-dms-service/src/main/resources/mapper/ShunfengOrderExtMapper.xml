@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.dms.mapper.ShunfengOrderExtMapper">
+    <select id="selectSfOrderBySetDetailId" parameterType="java.lang.Long"
+            resultType="com.milisong.dms.domain.ShunfengOrder">
+      select
+          o.id,o.sf_order_id, o.delivery_date, o.distribute_time, o.delivery_address, o.confirm_time,o.business_type,
+          o.transporter_name, o.transporter_phone, o.arrived_shop_time, o.achieve_good_time, o.arrived_time
+      from shunfeng_order o
+      where o.shop_order_id = #{setDetailId} order by o.create_time LIMIT 1
+    </select>
+
+    <select id="selectSfOrderByCreateTime" resultType="com.milisong.dms.dto.shunfeng.SfOrderRspDto">
+      select  s.shop_order_id as detailSetId,s.id,s.sf_order_id
+      from shunfeng_order s
+      where s.confirm_time is not null
+      and s.delivery_date &gt;= #{startDate}
+      and s.delivery_date &lt; #{endDate}
+      and s.arrived_time is null
+      and s.business_type = #{businessType}
+    </select>
+
+    <select id="selectUnconfirmedSfOrder" resultType="com.milisong.dms.dto.shunfeng.SfOrderRspDto" parameterType="java.lang.Integer">
+      select  s.shop_order_id as detailSetId,s.id,s.sf_order_id,s.distribute_time,s.business_type
+      from shunfeng_order s
+      where s.confirm_time is null
+      and notify_status = 0
+      and TIME_TO_SEC(TIMEDIFF(now(),s.distribute_time)) &gt; #{overTime}
+    </select>
+    
+    <select id="selectOverTimeSfOrder" resultType="com.milisong.dms.domain.ShunfengOrder">
+      select <include refid="com.milisong.dms.mapper.ShunfengOrderMapper.Base_Column_List" />
+      from shunfeng_order
+      where
+        confirm_time is not null
+        and arrived_time is null
+        and expect_time &lt; now()
+        and notify_status != 2
+    </select>
+</mapper>

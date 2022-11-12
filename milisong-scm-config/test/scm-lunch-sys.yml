@@ -1,0 +1,103 @@
+server:
+  port: 30000
+#management:
+## spring admin检测 默认开启
+#  health:
+#    defaults:
+#      enabled: false
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+  cloud:
+    config:
+      override-none: true
+ecm:
+  shoponsale:
+    goods-url:  http://testmls-api.jshuii.com/v1/goods/set-onsale-goods
+    goodsStock-url: http://testmls-api.jshuii.com/v1/goods/set-onsale-stock
+    goodsStockList-url: http://testmls-api.jshuii.com/v1/goods/set-onsale-stock-list
+    buildingList-url: http://testmls-api.jshuii.com/v1/goods/building-list
+    orderList-url: http://testmls-api.jshuii.com/v1/order/get-order-details
+    goods-default-count:  100
+file:
+  oss:
+#  本地备份路径
+    localBackupPath: /data/files/images/milisong/
+#    oss上传路径
+    uploadUrl: http://testoss.jshuii.com/v1/uploadFileService/uploadByte
+#    查询路径
+    viewUrl: http://jshuii-test.oss-cn-hangzhou.aliyuncs.com
+#the maximum size of single file (unit:MB)
+    maxSingleFileSize: 4MB
+#file format
+    format: txt,word,excel,jpg,png,gif,pdf
+    bizType: 5
+#导出路径
+  export:
+    path: /data/milisong/export/
+
+# LBS公共服务的地址
+lbs:
+  pointServiceUrl: http://testmls-lbs.jshuii.com/lbs/point
+
+# 压缩url
+url:
+  compress-url: http://api.weibo.com/2/short_url/shorten.json?source=2849184197&url_long={url}
+
+# sms通知
+#sms:
+#  send-url: http://testsms.jshuii.com/api/v1/MobileSendService/sendSms
+# sms通知
+sms:
+  sendUrl: http://testsms.jshuii.com/api/v1/MobileSendService/sendSms
+  
+# oms订单检查
+oms:
+  checkUrl: http://testmls-omsapiin.jshuii.com/v1/OrderService/getDeliveryNos
+  notifyUrl: http://testmls-omsapiin.jshuii.com/v1/order/repair-order-mq  
+
+# 调用集单查询接口
+oss:
+  searchOrderSet: http://testml-oss.jshuii.com/orderset/page
+  searchCustomerOrder: http://testml-oss.jshuii.com/orderset/get-customer-order-by-set-no?setNo=
+  searchOrder: http://testml-oss.jshuii.com/order/page
+  seartchReserveGroupInfo: http://testml-oss.jshuii.com/order/page-reserve-group-list
+  orderSetInfo: http://testml-oss.jshuii.com/orderset/get-orderset-info?setNo=
+  orderCheck: http://testml-oss.jshuii.com/order/check
+  goodsCount: http://testml-oss.jshuii.com/order/goods-count
+#健康检查
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    redis:
+      enabled: true
+    rabbit:
+      enabled: true
+    diskspace:
+      enabled: true

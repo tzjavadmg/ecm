@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.goods.mapper.GoodsExtMapper">
+ 
+	<!-- 统计商品列表数量 -->
+	<select id="getGoodsListCount" resultType="java.lang.Integer" parameterType="com.milisong.scm.goods.param.GoodsQueryParam">
+		select
+			count(1)
+		from
+			t_goods t
+		where	
+			t.is_deleted = 0
+		<include refid="GOODS_QUERY_WHERE" />
+	</select>
+	
+	<!-- 分页查询商品列表信息 -->
+	<select id="getGoodsList" resultType="com.milisong.scm.goods.dto.GoodsDto" parameterType="com.milisong.scm.goods.param.GoodsQueryParam">
+		select
+			id, code, name, category_code, category_name, t.describe, advise_price, preferential_price, 
+	    discount, picture, big_picture, spicy, shelf_life, taste, weight, begin_date, end_date, 
+	    is_limited_time, rate, status, detail_status 
+		from
+			t_goods t
+		where	
+			t.is_deleted = 0
+		<include refid="GOODS_QUERY_WHERE" />
+		order by
+			t.detail_status,t.id
+		<if test="startRow != null">
+      		limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+    	</if>
+	</select>
+	
+	<sql id="GOODS_QUERY_WHERE">
+		<if test="name != null and name != ''">
+			and t.`name` like concat('%', #{name}, '%') 
+		</if>
+		<if test="code != null and code != ''">
+			and t.code like concat('%', #{code}, '%')
+		</if>
+	</sql>
+	
+	<!-- 批量更新商品状态 -->
+	<insert id="updateGoodsStatusByBatch" parameterType="java.util.List">
+    	update t_goods
+			<trim prefix="set" suffixOverrides=",">
+				<trim prefix=" status = case " suffix=" end, ">
+					<foreach collection="list" item="item" index="index">
+						when id = #{item.id, jdbcType=BIGINT} then #{item.status, jdbcType=TINYINT} 
+					</foreach>
+				</trim>
+				<trim prefix=" detail_status = case " suffix=" end, ">
+					<foreach collection="list" item="item" index="index">
+						when id = #{item.id, jdbcType=BIGINT} then #{item.detailStatus, jdbcType=TINYINT} 
+					</foreach>
+				</trim>
+			</trim>
+		where 
+			id in <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+				#{item.id, jdbcType=BIGINT}
+			</foreach>
+	</insert>
+</mapper>

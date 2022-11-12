@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.CouponMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.Coupon" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="label" property="label" jdbcType="TINYINT" />
+    <result column="limit_days" property="limitDays" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_code" property="goodsCode" jdbcType="VARCHAR" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="is_share" property="isShare" jdbcType="TINYINT" />
+    <result column="valid_days" property="validDays" jdbcType="INTEGER" />
+    <result column="rule" property="rule" jdbcType="VARCHAR" />
+    <result column="business_line" property="businessLine" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, type, label,limit_days, goods_name, goods_code, discount, is_share, valid_days,
+    rule, business_line, status, remark, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="queryByTypeNameStatusCount" resultType="java.lang.Integer" parameterType="com.milisong.pms.prom.dto.CouponQueryDto">
+      select count(1) from coupon where type  = #{type}
+      <if test="label!= null">
+        and label = #{label}
+      </if>
+      and business_line = #{businessLine}
+      <if test="name != null">
+        and name like concat('%',#{name},'%')
+      </if>
+      <if test="status != null">
+        and status = #{status}
+      </if>
+    </select>
+  <select id="queryByTypeNameStatus" resultType="com.milisong.pms.prom.dto.CouponDto" parameterType="com.milisong.pms.prom.dto.CouponQueryDto">
+    select
+    id, name, type, label,limit_days, goods_name, goods_code, discount, is_share, valid_days,
+    rule, business_line, status, remark, create_time, update_time
+    from coupon where type  = #{type}
+    <if test="label!= null">
+      and label = #{label}
+    </if>
+    and business_line = #{businessLine}
+    <if test="name != null">
+      and name like concat('%',#{name},'%')
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+    order by update_time desc
+    limit #{startRow}, #{pageSize}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.Coupon" >
+    insert into coupon (id, name, type, label,
+      limit_days, goods_name, goods_code, 
+      discount, is_share, valid_days, 
+      rule, business_line, status, 
+      remark, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{label,jdbcType=TINYINT},
+      #{limitDays,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsCode,jdbcType=VARCHAR}, 
+      #{discount,jdbcType=DECIMAL}, #{isShare,jdbcType=TINYINT}, #{validDays,jdbcType=INTEGER}, 
+      #{rule,jdbcType=VARCHAR}, #{businessLine,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.Coupon" >
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="label != null" >
+        label,
+      </if>
+      <if test="limitDays != null" >
+        limit_days,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsCode != null" >
+        goods_code,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="isShare != null" >
+        is_share,
+      </if>
+      <if test="validDays != null" >
+        valid_days,
+      </if>
+      <if test="rule != null" >
+        rule,
+      </if>
+      <if test="businessLine != null" >
+        business_line,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="label != null" >
+        #{label,jdbcType=TINYINT},
+      </if>
+      <if test="limitDays != null" >
+        #{limitDays,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="isShare != null" >
+        #{isShare,jdbcType=TINYINT},
+      </if>
+      <if test="validDays != null" >
+        #{validDays,jdbcType=INTEGER},
+      </if>
+      <if test="rule != null" >
+        #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.Coupon" >
+    update coupon
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="label != null" >
+        label = #{label,jdbcType=TINYINT},
+      </if>
+      <if test="limitDays != null">
+        limit_days = #{limitDays,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="isShare != null" >
+        is_share = #{isShare,jdbcType=TINYINT},
+      </if>
+      <if test="validDays != null" >
+        valid_days = #{validDays,jdbcType=INTEGER},
+      </if>
+      <if test="rule != null" >
+        rule = #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.Coupon" >
+    update coupon
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      label = #{label,jdbcType=TINYINT},
+      limit_days = #{limitDays,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=DECIMAL},
+      is_share = #{isShare,jdbcType=TINYINT},
+      valid_days = #{validDays,jdbcType=INTEGER},
+      rule = #{rule,jdbcType=VARCHAR},
+      business_line = #{businessLine,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryByIds" resultType="com.milisong.pms.prom.dto.CouponDto">
+    select id, `name`, `type`,label, limit_days, goods_name, goods_code, discount, is_share, valid_days,
+    rule, business_line, status, remark from coupon
+    where id in
+    <foreach collection="list" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </select>
+  <select id="queryByTypeNameStatusForSend" resultType="com.milisong.pms.prom.dto.CouponDto">
+    select
+    id, name, type, remark,business_line, status
+    from coupon where type  = #{type}
+    and business_line = #{businessLine}
+    and status = #{status}
+    <if test="name != null">
+      and name like concat('%',#{name},'%')
+    </if>
+    order by update_time desc
+    limit #{startRow}, #{pageSize}
+  </select>
+</mapper>

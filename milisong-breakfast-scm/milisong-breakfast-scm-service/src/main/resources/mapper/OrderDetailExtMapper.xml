@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.breakfast.scm.order.mapper.OrderDetailExtMapper">
+	<select id="getReserveOrderGroupCount" resultType="java.lang.Integer" parameterType="com.milisong.breakfast.scm.order.param.OrderReserveSearchSqlParam">
+		select count(1) from (
+		select 
+		1
+		<include refid="getReserveOrderGroupSQL"></include>
+		) a
+	</select>
+	
+	<select id="getReserveOrderGroupList" resultType="com.milisong.breakfast.scm.order.result.OrderReserveSearchSqlResult" parameterType="com.milisong.breakfast.scm.order.param.OrderReserveSearchSqlParam">
+		select 
+		t.shop_id,
+		d.goods_code,
+		d.goods_name,
+		DATE_FORMAT(t.create_time,'%Y-%m-%d') as  reserveDate,
+		DATE_FORMAT(t.delivery_end_date,'%Y-%m-%d %H:%i:%s') as deliveryDate,
+		sum(d.goods_count) as number
+		<include refid="getReserveOrderGroupSQL"></include>
+    	order by t.delivery_end_date asc
+    	<if test="startRow != null">
+      		limit #{startRow}, #{pageSize} 
+    	</if>
+	</select>
+	
+	<sql id="getReserveOrderGroupSQL">
+		from `order` t,`order_detail` d where t.id=d.order_id 
+		<if test="reserveBeginDate != null">
+		and t.create_time &gt;= #{reserveBeginDate}
+		and t.create_time &lt; #{reserveEndDate}
+		</if>
+		<if test="deliveryBeginDate != null">
+		and t.delivery_start_date &gt;= #{deliveryBeginDate}
+		and t.delivery_start_date &lt; #{deliveryEndDate}
+		</if>
+		<if test="shopId != null">
+		and t.shop_id=#{shopId}
+		</if>
+		and t.order_status not in(3,4)
+		group by t.shop_id,
+		d.goods_code,
+		d.goods_name,
+		DATE_FORMAT(t.create_time,'%Y-%m-%d'),
+		DATE_FORMAT(t.delivery_end_date,'%Y-%m-%d %H:%i:%s')
+	</sql>
+</mapper>

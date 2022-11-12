@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.ActivityScanQrcodeMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.ActivityScanQrcode" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="gift_type" property="giftType" jdbcType="TINYINT" />
+    <result column="gift_ids" property="giftIds" jdbcType="VARCHAR" />
+    <result column="bg_img" property="bgImg" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, type, gift_type, gift_ids, bg_img, start_date, end_date, create_time,
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bf_activity_scan_qrcode
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.ActivityScanQrcode" >
+    insert into bf_activity_scan_qrcode (id, name,
+      type, gift_type, gift_ids, 
+      bg_img, start_date, end_date, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},
+      #{type,jdbcType=TINYINT}, #{giftType,jdbcType=TINYINT}, #{giftIds,jdbcType=VARCHAR}, 
+      #{bgImg,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.ActivityScanQrcode" >
+    insert into bf_activity_scan_qrcode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="giftType != null" >
+        gift_type,
+      </if>
+      <if test="giftIds != null" >
+        gift_ids,
+      </if>
+      <if test="bgImg != null" >
+        bg_img,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="giftType != null" >
+        #{giftType,jdbcType=TINYINT},
+      </if>
+      <if test="giftIds != null" >
+        #{giftIds,jdbcType=VARCHAR},
+      </if>
+      <if test="bgImg != null" >
+        #{bgImg,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.ActivityScanQrcode" >
+    update bf_activity_scan_qrcode
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="giftType != null" >
+        gift_type = #{giftType,jdbcType=TINYINT},
+      </if>
+      <if test="giftIds != null" >
+        gift_ids = #{giftIds,jdbcType=VARCHAR},
+      </if>
+      <if test="bgImg != null" >
+        bg_img = #{bgImg,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.ActivityScanQrcode" >
+    update bf_activity_scan_qrcode
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      gift_type = #{giftType,jdbcType=TINYINT},
+      gift_ids = #{giftIds,jdbcType=VARCHAR},
+      bg_img = #{bgImg,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="qrcodeHasBindActivity" resultType="int">
+    select count(basq.id) from bf_activity_scan_qrcode basq left join bf_activity_scan_qrcode_detail basqd
+    on basq.id = basqd.act_scan_qrcode_id
+    where basqd.qrcode = #{qrcode,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getScanQrcodeActivityDetialByQrcode" resultType="com.milisong.pms.prom.dto.scanqrcode.ActivityScanQrcodeDto">
+    select basq.id, basq.name, basqd.qrcode, basq.type, basq.gift_type, basq.gift_ids, basq.bg_img, basq.start_date, basq.end_date
+    from bf_activity_scan_qrcode basq left join bf_activity_scan_qrcode_detail basqd
+    on basq.id = basqd.act_scan_qrcode_id
+    where basqd.qrcode = #{qrcode,jdbcType=VARCHAR} limit 1
+  </select>
+</mapper>

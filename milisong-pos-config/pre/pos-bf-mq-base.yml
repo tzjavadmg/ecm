@@ -1,0 +1,28 @@
+spring:
+  rabbitmq:
+    addresses: amqp://mqdev.jshuii.com:5672
+    username: milisong-posuser
+    password: f89f0IhiU3SE
+  cloud:
+    stream:
+      # 设置默认的binder
+      default-binder: pos
+      binders:
+        scm:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-scm-breakfast
+        pos:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-pos-breakfast
+        oms:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-oms

@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.base.mapper.DimDateMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.scm.base.domain.DimDate">
+    <id column="date" jdbcType="DATE" property="date" />
+    <result column="week_year" jdbcType="VARCHAR" property="weekYear" />
+    <result column="week_of_year" jdbcType="CHAR" property="weekOfYear" />
+    <result column="day_of_week" jdbcType="INTEGER" property="dayOfWeek" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `date`, `week_year`, `week_of_year`, `day_of_week`, `status`
+  </sql>
+  <select id="selectByExample" parameterType="com.milisong.scm.base.domain.DimDateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from `t_dim_date`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.util.Date" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `t_dim_date`
+    where `date` = #{date,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Date">
+    delete from `t_dim_date`
+    where `date` = #{date,jdbcType=DATE}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.milisong.scm.base.domain.DimDateExample">
+    delete from `t_dim_date`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.milisong.scm.base.domain.DimDate">
+    insert into `t_dim_date` (`date`, `week_year`, `week_of_year`, 
+      `day_of_week`, `status`)
+    values (#{date,jdbcType=DATE}, #{weekYear,jdbcType=VARCHAR}, #{weekOfYear,jdbcType=CHAR}, 
+      #{dayOfWeek,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.scm.base.domain.DimDate">
+    insert into `t_dim_date`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="date != null">
+        `date`,
+      </if>
+      <if test="weekYear != null">
+        `week_year`,
+      </if>
+      <if test="weekOfYear != null">
+        `week_of_year`,
+      </if>
+      <if test="dayOfWeek != null">
+        `day_of_week`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="weekYear != null">
+        #{weekYear,jdbcType=VARCHAR},
+      </if>
+      <if test="weekOfYear != null">
+        #{weekOfYear,jdbcType=CHAR},
+      </if>
+      <if test="dayOfWeek != null">
+        #{dayOfWeek,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `t_dim_date` (`date`, `week_year`, `week_of_year`, 
+      `day_of_week`, `status`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.date,jdbcType=DATE}, #{item.weekYear,jdbcType=VARCHAR}, #{item.weekOfYear,jdbcType=CHAR}, 
+        #{item.dayOfWeek,jdbcType=INTEGER}, #{item.status,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `t_dim_date`
+    (`date`, `week_year`, `week_of_year`, `day_of_week`, `status`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.date != null">
+          #{item.date,jdbcType=DATE},
+        </if>
+        <if test="item.date == null">
+          NULL,
+        </if>
+        <if test="item.weekYear != null">
+          #{item.weekYear,jdbcType=VARCHAR},
+        </if>
+        <if test="item.weekYear == null">
+          NULL,
+        </if>
+        <if test="item.weekOfYear != null">
+          #{item.weekOfYear,jdbcType=CHAR},
+        </if>
+        <if test="item.weekOfYear == null">
+          NULL,
+        </if>
+        <if test="item.dayOfWeek != null">
+          #{item.dayOfWeek,jdbcType=INTEGER},
+        </if>
+        <if test="item.dayOfWeek == null">
+          NULL,
+        </if>
+        <if test="item.status != null">
+          #{item.status,jdbcType=INTEGER},
+        </if>
+        <if test="item.status == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <select id="countByExample" parameterType="com.milisong.scm.base.domain.DimDateExample" resultType="java.lang.Long">
+    select count(*) from `t_dim_date`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `t_dim_date`
+    <set>
+      <if test="record.date != null">
+        `date` = #{record.date,jdbcType=DATE},
+      </if>
+      <if test="record.weekYear != null">
+        `week_year` = #{record.weekYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weekOfYear != null">
+        `week_of_year` = #{record.weekOfYear,jdbcType=CHAR},
+      </if>
+      <if test="record.dayOfWeek != null">
+        `day_of_week` = #{record.dayOfWeek,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `t_dim_date`
+    set `date` = #{record.date,jdbcType=DATE},
+      `week_year` = #{record.weekYear,jdbcType=VARCHAR},
+      `week_of_year` = #{record.weekOfYear,jdbcType=CHAR},
+      `day_of_week` = #{record.dayOfWeek,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.scm.base.domain.DimDate">
+    update `t_dim_date`
+    <set>
+      <if test="weekYear != null">
+        `week_year` = #{weekYear,jdbcType=VARCHAR},
+      </if>
+      <if test="weekOfYear != null">
+        `week_of_year` = #{weekOfYear,jdbcType=CHAR},
+      </if>
+      <if test="dayOfWeek != null">
+        `day_of_week` = #{dayOfWeek,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where `date` = #{date,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.scm.base.domain.DimDate">
+    update `t_dim_date`
+    set `week_year` = #{weekYear,jdbcType=VARCHAR},
+      `week_of_year` = #{weekOfYear,jdbcType=CHAR},
+      `day_of_week` = #{dayOfWeek,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER}
+    where `date` = #{date,jdbcType=DATE}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `t_dim_date`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="weekYear =case date" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.date} then #{item.weekYear}
+        </foreach>
+      </trim>
+      <trim prefix="weekOfYear =case date" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.date} then #{item.weekOfYear}
+        </foreach>
+      </trim>
+      <trim prefix="dayOfWeek =case date" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.date} then #{item.dayOfWeek}
+        </foreach>
+      </trim>
+      <trim prefix="status =case date" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.date} then #{item.status}
+        </foreach>
+      </trim>
+    </trim>
+    where `date` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.date} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `t_dim_date`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="weekYear =case date" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.weekYear != null ">
+            when  #{item.date} then #{item.weekYear}
+          </if>
+          <if test="item.weekYear == null ">
+            when  #{item.date} then `t_dim_date`.`week_year`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="weekOfYear =case date" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.weekOfYear != null ">
+            when  #{item.date} then #{item.weekOfYear}
+          </if>
+          <if test="item.weekOfYear == null ">
+            when  #{item.date} then `t_dim_date`.`week_of_year`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="dayOfWeek =case date" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.dayOfWeek != null ">
+            when  #{item.date} then #{item.dayOfWeek}
+          </if>
+          <if test="item.dayOfWeek == null ">
+            when  #{item.date} then `t_dim_date`.`day_of_week`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case date" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.date} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.date} then `t_dim_date`.`status`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `date` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.date} 
+    </foreach>
+  </update>
+  <update id="updateBatchByExample" parameterType="map">
+    update `t_dim_date`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="weekYear =case date" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.date} then #{item.weekYear}
+        </foreach>
+      </trim>
+      <trim prefix="weekOfYear =case date" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.date} then #{item.weekOfYear}
+        </foreach>
+      </trim>
+      <trim prefix="dayOfWeek =case date" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.date} then #{item.dayOfWeek}
+        </foreach>
+      </trim>
+      <trim prefix="status =case date" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.date} then #{item.status}
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBatchByExampleSelective" parameterType="map">
+    update `t_dim_date`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="weekYear =case date" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.weekYear != null ">
+            when  #{item.date} then #{item.weekYear}
+          </if>
+          <if test="item.weekYear == null ">
+            when  #{item.date} then `t_dim_date`.`week_year`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="weekOfYear =case date" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.weekOfYear != null ">
+            when  #{item.date} then #{item.weekOfYear}
+          </if>
+          <if test="item.weekOfYear == null ">
+            when  #{item.date} then `t_dim_date`.`week_of_year`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="dayOfWeek =case date" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.dayOfWeek != null ">
+            when  #{item.date} then #{item.dayOfWeek}
+          </if>
+          <if test="item.dayOfWeek == null ">
+            when  #{item.date} then `t_dim_date`.`day_of_week`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case date" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.date} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.date} then `t_dim_date`.`status`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.pos.production.mapper.ShopMapper">
+	
+	<!-- 统计门店数量 -->
+	<select id="getShopListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select
+			count(1)
+		from
+			t_shop t
+		<include refid="SHOP_WHERE_SQL" />
+	</select>
+	
+	<!-- 查询门店信息 -->
+	<select id="getShopList" parameterType="java.util.Map" resultType="com.milisong.pos.production.dto.ShopDto">
+		select
+			t.id shopId,
+			t.`code` shopCode,
+			t.`name` shopName,
+			t.`status` `status`,
+			t.address address
+		from
+			t_shop t
+		<include refid="SHOP_WHERE_SQL" />
+		<if test="startRow != null">
+      		limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+    	</if>
+	</select>
+
+	<select id="getShopByCode" resultType="com.milisong.pos.production.dto.ShopDto" parameterType="java.lang.String">
+		select t.id shopId,
+			t.`code` shopCode,
+			t.`name` shopName,
+			t.`status` `status`,
+			t.address address
+		from
+			t_shop t
+		where t.is_delete = 0
+		and t.code = #{shopCode}
+	</select>
+	
+	<sql id="SHOP_WHERE_SQL">
+		<where>
+			<if test="status != null">
+		    	t.`status` = #{status}
+			</if>
+		</where>
+	</sql>
+
+</mapper>

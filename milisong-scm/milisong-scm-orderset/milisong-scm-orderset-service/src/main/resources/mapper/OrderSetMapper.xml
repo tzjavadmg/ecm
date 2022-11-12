@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.orderset.mapper.OrderSetMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.scm.orderset.domain.OrderSet">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="set_no" jdbcType="VARCHAR" property="setNo" />
+    <result column="set_no_description" jdbcType="VARCHAR" property="setNoDescription" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="building_id" jdbcType="BIGINT" property="buildingId" />
+    <result column="building_abbreviation" jdbcType="VARCHAR" property="buildingAbbreviation" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="delivery_address" jdbcType="VARCHAR" property="deliveryAddress" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, set_no, set_no_description, shop_id, building_id, building_abbreviation, delivery_date, 
+    delivery_address, is_deleted, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.milisong.scm.orderset.domain.OrderSetExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_order_set
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_set
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_order_set
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.milisong.scm.orderset.domain.OrderSetExample">
+    delete from t_order_set
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.milisong.scm.orderset.domain.OrderSet">
+    insert into t_order_set (id, set_no, set_no_description, 
+      shop_id, building_id, building_abbreviation, 
+      delivery_date, delivery_address, is_deleted, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{setNo,jdbcType=VARCHAR}, #{setNoDescription,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=BIGINT}, #{buildingId,jdbcType=BIGINT}, #{buildingAbbreviation,jdbcType=VARCHAR}, 
+      #{deliveryDate,jdbcType=DATE}, #{deliveryAddress,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.scm.orderset.domain.OrderSet">
+    insert into t_order_set
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="setNo != null">
+        set_no,
+      </if>
+      <if test="setNoDescription != null">
+        set_no_description,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="buildingAbbreviation != null">
+        building_abbreviation,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="deliveryAddress != null">
+        delivery_address,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="setNo != null">
+        #{setNo,jdbcType=VARCHAR},
+      </if>
+      <if test="setNoDescription != null">
+        #{setNoDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingAbbreviation != null">
+        #{buildingAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryAddress != null">
+        #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.milisong.scm.orderset.domain.OrderSetExample" resultType="java.lang.Long">
+    select count(*) from t_order_set
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_order_set
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.setNo != null">
+        set_no = #{record.setNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.setNoDescription != null">
+        set_no_description = #{record.setNoDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null">
+        shop_id = #{record.shopId,jdbcType=BIGINT},
+      </if>
+      <if test="record.buildingId != null">
+        building_id = #{record.buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="record.buildingAbbreviation != null">
+        building_abbreviation = #{record.buildingAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryDate != null">
+        delivery_date = #{record.deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="record.deliveryAddress != null">
+        delivery_address = #{record.deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_order_set
+    set id = #{record.id,jdbcType=BIGINT},
+      set_no = #{record.setNo,jdbcType=VARCHAR},
+      set_no_description = #{record.setNoDescription,jdbcType=VARCHAR},
+      shop_id = #{record.shopId,jdbcType=BIGINT},
+      building_id = #{record.buildingId,jdbcType=BIGINT},
+      building_abbreviation = #{record.buildingAbbreviation,jdbcType=VARCHAR},
+      delivery_date = #{record.deliveryDate,jdbcType=DATE},
+      delivery_address = #{record.deliveryAddress,jdbcType=VARCHAR},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.scm.orderset.domain.OrderSet">
+    update t_order_set
+    <set>
+      <if test="setNo != null">
+        set_no = #{setNo,jdbcType=VARCHAR},
+      </if>
+      <if test="setNoDescription != null">
+        set_no_description = #{setNoDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingAbbreviation != null">
+        building_abbreviation = #{buildingAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryAddress != null">
+        delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.scm.orderset.domain.OrderSet">
+    update t_order_set
+    set set_no = #{setNo,jdbcType=VARCHAR},
+      set_no_description = #{setNoDescription,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      building_id = #{buildingId,jdbcType=BIGINT},
+      building_abbreviation = #{buildingAbbreviation,jdbcType=VARCHAR},
+      delivery_date = #{deliveryDate,jdbcType=DATE},
+      delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

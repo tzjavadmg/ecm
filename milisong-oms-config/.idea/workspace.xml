@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="46804830-ebb1-4119-b3fe-e4475f3d1ae3" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/prod/oms-sys.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pre/oms-wechat.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dev/oms-wechat.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dev/oms-sys.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="467">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dev/oms-mq.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="58" column="24" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>notify_arrive_input</find>
+      <find>base-url</find>
+      <find>promotion</find>
+      <find>topic</find>
+      <find>businessLine</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="v1.4" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/dev/oms-db.yml" />
+        <option value="$PROJECT_DIR$/pre/oms-db.yml" />
+        <option value="$PROJECT_DIR$/test/oms-db.yml" />
+        <option value="$PROJECT_DIR$/test/oms-wechat.yml" />
+        <option value="$PROJECT_DIR$/dev/oms-redis.yml" />
+        <option value="$PROJECT_DIR$/test/oms-redis.yml" />
+        <option value="$PROJECT_DIR$/prod2/oms-redis.yml" />
+        <option value="$PROJECT_DIR$/prod/oms-db.yml" />
+        <option value="$PROJECT_DIR$/prod/oms-redis.yml" />
+        <option value="$PROJECT_DIR$/dev/oms-sys.yml" />
+        <option value="$PROJECT_DIR$/prod/oms-sys.yml" />
+        <option value="$PROJECT_DIR$/pre/oms-sys.yml" />
+        <option value="$PROJECT_DIR$/pre/oms-redis.yml" />
+        <option value="$PROJECT_DIR$/test/oms-sys.yml" />
+        <option value="$PROJECT_DIR$/prod/oms-wechat.yml" />
+        <option value="$PROJECT_DIR$/pre/oms-wechat.yml" />
+        <option value="$PROJECT_DIR$/test/oms-mq.yml" />
+        <option value="$PROJECT_DIR$/prod/oms-mq.yml" />
+        <option value="$PROJECT_DIR$/pre/oms-mq.yml" />
+        <option value="$PROJECT_DIR$/dev/oms-mq.yml" />
+        <option value="$PROJECT_DIR$/dev/oms-wechat.yml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="2586" />
+    <option name="height" value="1404" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Serialization issuesJava</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SerializableHasSerialVersionUIDField</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="milisong-oms-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-oms-config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="milisong-oms-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-oms-config" type="462c0819:PsiDirectoryNode" />
+              <item name="dev" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="milisong-oms-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-oms-config" type="462c0819:PsiDirectoryNode" />
+              <item name="pre" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="milisong-oms-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-oms-config" type="462c0819:PsiDirectoryNode" />
+              <item name="prod" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="milisong-oms-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-oms-config" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551249896846" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../milisong-pms" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\milisong-workspace\milisong-oms-config\pre" />
+      <recent name="D:\milisong-workspace\milisong-oms-config\prod" />
+      <recent name="D:\milisong-workspace\milisong-oms-config\prod2" />
+      <recent name="D:\milisong-workspace\milisong-oms-config" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="46804830-ebb1-4119-b3fe-e4475f3d1ae3" name="Default Changelist" comment="" />
+      <created>1542703859855</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1542703859855</updated>
+      <workItem from="1542703863095" duration="805000" />
+      <workItem from="1542712369994" duration="3701000" />
+      <workItem from="1542938139698" duration="4051000" />
+      <workItem from="1543386714826" duration="6538000" />
+      <workItem from="1543633691354" duration="719000" />
+      <workItem from="1543641829044" duration="3213000" />
+      <workItem from="1543657621520" duration="1894000" />
+      <workItem from="1543904114552" duration="5799000" />
+      <workItem from="1543977182894" duration="4750000" />
+      <workItem from="1544007992513" duration="13356000" />
+      <workItem from="1544351098995" duration="3841000" />
+      <workItem from="1544510603558" duration="292000" />
+      <workItem from="1544511033008" duration="14198000" />
+      <workItem from="1544613106811" duration="99000" />
+      <workItem from="1544614438485" duration="8190000" />
+      <workItem from="1544687258913" duration="2544000" />
+      <workItem from="1544945260335" duration="6036000" />
+      <workItem from="1544958602981" duration="10563000" />
+      <workItem from="1545185371146" duration="8023000" />
+      <workItem from="1545216715491" duration="2753000" />
+      <workItem from="1545275313190" duration="254000" />
+      <workItem from="1545275741073" duration="9785000" />
+      <workItem from="1545395053844" duration="3389000" />
+      <workItem from="1545540592823" duration="527000" />
+      <workItem from="1545617614477" duration="10883000" />
+      <workItem from="1545889643018" duration="6383000" />
+      <workItem from="1546398035164" duration="2277000" />
+      <workItem from="1546652616309" duration="1203000" />
+      <workItem from="1547014721365" duration="6595000" />
+      <workItem from="1547431173760" duration="902000" />
+      <workItem from="1547432495011" duration="597000" />
+      <workItem from="1547546413813" duration="599000" />
+      <workItem from="1547630003827" duration="598000" />
+      <workItem from="1547641813591" duration="1299000" />
+      <workItem from="1548035918657" duration="122000" />
+      <workItem from="1550040187755" duration="1351000" />
+      <workItem from="1550196113979" duration="1238000" />
+      <workItem from="1550476915871" duration="420000" />
+      <workItem from="1550543104853" duration="1273000" />
+      <workItem from="1550729278843" duration="6056000" />
+      <workItem from="1551249996541" duration="2461000" />
+    </task>
+    <task id="LOCAL-00048" summary="订单MQ改成topic路由模式">
+      <created>1544623242308</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1544623242308</updated>
+    </task>
+    <task id="LOCAL-00049" summary="订单MQ改成topic路由模式">
+      <created>1544630259720</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1544630259720</updated>
+    </task>
+    <task id="LOCAL-00050" summary="订单MQ改成topic路由模式">
+      <created>1544945568659</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1544945568659</updated>
+    </task>
+    <task id="LOCAL-00051" summary="订单MQ改成topic路由模式">
+      <created>1544945656897</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1544945656897</updated>
+    </task>
+    <task id="LOCAL-00052" summary="生产回到28号版本">
+      <created>1544946324817</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1544946324817</updated>
+    </task>
+    <task id="LOCAL-00053" summary="生产回到28号版本">
+      <created>1544947463756</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1544947463756</updated>
+    </task>
+    <task id="LOCAL-00054" summary="生产回到28号版本">
+      <created>1544949217463</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1544949217463</updated>
+    </task>
+    <task id="LOCAL-00055" summary="生产回到28号版本">
+      <created>1544949622766</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1544949622766</updated>
+    </task>
+    <task id="LOCAL-00056" summary="生产回到28号版本">
+      <created>1544949784536</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1544949784536</updated>
+    </task>
+    <task id="LOCAL-00057" summary="生产回到28号版本">
+      <created>1544950012586</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1544950012586</updated>
+    </task>
+    <task id="LOCAL-00058" summary="生产回到28号版本">
+      <created>1544955495419</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1544955495420</updated>
+    </task>
+    <task id="LOCAL-00059" summary="修正生产配置">
+      <created>1544957321109</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1544957321110</updated>
+    </task>
+    <task id="LOCAL-00060" summary="修正生产配置">
+      <created>1544965875044</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1544965875044</updated>
+    </task>
+    <task id="LOCAL-00061" summary="修正生产配置">
+      <created>1544966061230</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1544966061230</updated>
+    </task>
+    <task id="LOCAL-00062" summary="修正生产配置">
+      <created>1544968971689</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1544968971689</updated>
+    </task>
+    <task id="LOCAL-00063" summary="修正生产配置">
+      <created>1544978178858</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1544978178859</updated>
+    </task>
+    <task id="LOCAL-00064" summary="修正生产配置">
+      <created>1544978469241</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1544978469241</updated>
+    </task>
+    <task id="LOCAL-00065" summary="修正生产配置">
+      <created>1544978885870</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1544978885870</updated>
+    </task>
+    <task id="LOCAL-00066" summary="修正生产配置">
+      <created>1544979034773</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1544979034773</updated>
+    </task>
+    <task id="LOCAL-00067" summary="修正生产配置">
+      <created>1544979432612</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1544979432612</updated>
+    </task>
+    <task id="LOCAL-00068" summary="修正生产配置">
+      <created>1544979520468</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1544979520468</updated>
+    </task>
+    <task id="LOCAL-00069" summary="修正生产配置">
+      <created>1544979607900</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1544979607900</updated>
+    </task>
+    <task id="LOCAL-00070" summary="修正生产配置">
+      <created>1545186227046</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1545186227046</updated>
+    </task>
+    <task id="LOCAL-00071" summary="配置测试">
+      <created>1545189840199</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1545189840199</updated>
+    </task>
+    <task id="LOCAL-00072" summary="配置测试">
+      <created>1545190052946</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1545190052946</updated>
+    </task>
+    <task id="LOCAL-00073" summary="配置测试">
+      <created>1545207286986</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1545207286986</updated>
+    </task>
+    <task id="LOCAL-00074" summary="配置测试">
+      <created>1545208977354</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1545208977354</updated>
+    </task>
+    <task id="LOCAL-00075" summary="配置测试">
+      <created>1545209020721</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1545209020721</updated>
+    </task>
+    <task id="LOCAL-00076" summary="配置测试">
+      <created>1545221718384</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1545221718384</updated>
+    </task>
+    <task id="LOCAL-00077" summary="配置测试">
+      <created>1545290601905</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1545290601905</updated>
+    </task>
+    <task id="LOCAL-00078" summary="配置测试">
+      <created>1545296371109</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1545296371109</updated>
+    </task>
+    <task id="LOCAL-00079" summary="配置测试">
+      <created>1545377110914</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1545377110914</updated>
+    </task>
+    <task id="LOCAL-00080" summary="配置测试">
+      <created>1545382933320</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1545382933320</updated>
+    </task>
+    <task id="LOCAL-00081" summary="配置测试">
+      <created>1545395154832</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1545395154833</updated>
+    </task>
+    <task id="LOCAL-00082" summary="配置测试">
+      <created>1545395268584</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1545395268584</updated>
+    </task>
+    <task id="LOCAL-00083" summary="配置测试">
+      <created>1545617748821</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1545617748822</updated>
+    </task>
+    <task id="LOCAL-00084" summary="配置测试">
+      <created>1545804672976</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1545804672976</updated>
+    </task>
+    <task id="LOCAL-00085" summary="去除测试配置项">
+      <created>1545805158478</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1545805158478</updated>
+    </task>
+    <task id="LOCAL-00086" summary="去除测试配置项">
+      <created>1545805329237</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1545805329237</updated>
+    </task>
+    <task id="LOCAL-00087" summary="测试配置项">
+      <created>1545807290868</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1545807290868</updated>
+    </task>
+    <task id="LOCAL-00088" summary="测试配置项">
+      <created>1545807658085</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1545807658085</updated>
+    </task>
+    <task id="LOCAL-00089" summary="测试配置项">
+      <created>1545809245561</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1545809245562</updated>
+    </task>
+    <task id="LOCAL-00090" summary="测试配置项">
+      <created>1545810109615</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1545810109615</updated>
+    </task>
+    <task id="LOCAL-00091" summary="测试配置项">
+      <created>1545812444974</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1545812444974</updated>
+    </task>
+    <task id="LOCAL-00092" summary="测试配置项">
+      <created>1545812471523</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1545812471523</updated>
+    </task>
+    <task id="LOCAL-00093" summary="测试配置项">
+      <created>1545890280084</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1545890280084</updated>
+    </task>
+    <task id="LOCAL-00094" summary="延迟队列配置不使用内部域名">
+      <created>1545965678954</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1545965678954</updated>
+    </task>
+    <task id="LOCAL-00095" summary="延迟队列配置不使用内部域名">
+      <created>1545968033359</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1545968033359</updated>
+    </task>
+    <task id="LOCAL-00096" summary="增加取消订单的topic">
+      <created>1546506662451</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1546506662451</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="159577000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1721" height="935" extended-state="7" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23440339" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" visible="true" weight="0.27506426" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Key Promoter X" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Maven Projects" order="9" />
+      <window_info anchor="right" id="Maven" order="10" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18473652" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" visible="true" weight="0.30680358" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Key Promoter X" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Maven Projects" order="9" />
+      <window_info anchor="right" id="Maven" order="10" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+    <MESSAGE value="工程初始化" />
+    <MESSAGE value="配置文件统一增加oms前缀" />
+    <MESSAGE value="修改延迟队列配置" />
+    <MESSAGE value="生产环境分布式锁配置改成15库" />
+    <MESSAGE value="生产延迟队列回调路径配置修改" />
+    <MESSAGE value="整理配置文件" />
+    <MESSAGE value="统一修改mq消费组" />
+    <MESSAGE value="统一修改mq vhost为breakfast" />
+    <MESSAGE value="redis与ecm分开" />
+    <MESSAGE value="生产回调地址修正" />
+    <MESSAGE value="订单MQ改成topic路由模式" />
+    <MESSAGE value="生产回到28号版本" />
+    <MESSAGE value="修正生产配置" />
+    <MESSAGE value="配置测试" />
+    <MESSAGE value="去除测试配置项" />
+    <MESSAGE value="测试配置项" />
+    <MESSAGE value="延迟队列配置不使用内部域名" />
+    <MESSAGE value="增加取消订单的topic" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加取消订单的topic" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/prod2/oms-redis.yml" />
+    <entry file="file://$PROJECT_DIR$/prod2/oms-db.yml" />
+    <entry file="file://$PROJECT_DIR$/prod2/oms-wechat.yml" />
+    <entry file="file://$PROJECT_DIR$/test/oms-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/oms-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/oms-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1178">
+          <caret line="62" selection-start-line="62" selection-end-line="64" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/oms-db.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="83" selection-start-line="3" selection-start-column="83" selection-end-line="3" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/oms-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/oms-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/oms-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/oms-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="8" selection-start-column="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/oms-db.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/oms-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/oms-db.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="58" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/oms-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/oms-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/oms-db.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/oms-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/oms-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/oms-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/oms-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/oms-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/oms-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="58" column="24" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

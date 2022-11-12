@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.ucs.mapper.UserDeliveryAddressMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.ucs.domain.UserDeliveryAddress">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="delivery_office_building_id" jdbcType="BIGINT" property="deliveryOfficeBuildingId" />
+    <result column="delivery_company" jdbcType="VARCHAR" property="deliveryCompany" />
+    <result column="delivery_address" jdbcType="VARCHAR" property="deliveryAddress" />
+    <result column="delivery_floor" jdbcType="VARCHAR" property="deliveryFloor" />
+    <result column="delivery_room" jdbcType="VARCHAR" property="deliveryRoom" />
+    <result column="business_line" jdbcType="TINYINT" property="businessLine" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="notify_type" jdbcType="INTEGER" property="notifyType" />
+    <result column="take_meals_addr_id" jdbcType="BIGINT" property="takeMealsAddrId" />
+    <result column="take_meals_addr_name" jdbcType="VARCHAR" property="takeMealsAddrName" />
+    <result column="delivery_time_id" jdbcType="BIGINT" property="deliveryTimeId" />
+    <result column="delivery_time_begin" jdbcType="TIME" property="deliveryTimeBegin" />
+    <result column="delivery_time_end" jdbcType="TIME" property="deliveryTimeEnd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, real_name, mobile_no, sex, delivery_office_building_id, delivery_company,
+    delivery_address, delivery_floor, delivery_room, business_line, create_time, update_time,
+    notify_type, take_meals_addr_id, take_meals_addr_name, delivery_time_id, delivery_time_begin,
+    delivery_time_end
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user_delivery_address
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.ucs.domain.UserDeliveryAddress">
+    insert into t_user_delivery_address (id, user_id, real_name,
+      mobile_no, sex, delivery_office_building_id,
+      delivery_company, delivery_address, delivery_floor,
+      delivery_room, business_line, create_time,
+      update_time, notify_type, take_meals_addr_id,
+      take_meals_addr_name, delivery_time_id, delivery_time_begin,
+      delivery_time_end)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR},
+      #{mobileNo,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{deliveryOfficeBuildingId,jdbcType=BIGINT},
+      #{deliveryCompany,jdbcType=VARCHAR}, #{deliveryAddress,jdbcType=VARCHAR}, #{deliveryFloor,jdbcType=VARCHAR},
+      #{deliveryRoom,jdbcType=VARCHAR}, #{businessLine,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP}, #{notifyType,jdbcType=INTEGER}, #{takeMealsAddrId,jdbcType=BIGINT},
+      #{takeMealsAddrName,jdbcType=VARCHAR}, #{deliveryTimeId,jdbcType=BIGINT}, #{deliveryTimeBegin,jdbcType=TIME},
+      #{deliveryTimeEnd,jdbcType=TIME})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.ucs.domain.UserDeliveryAddress">
+    insert into t_user_delivery_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="mobileNo != null">
+        mobile_no,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="deliveryOfficeBuildingId != null">
+        delivery_office_building_id,
+      </if>
+      <if test="deliveryCompany != null">
+        delivery_company,
+      </if>
+      <if test="deliveryAddress != null">
+        delivery_address,
+      </if>
+      <if test="deliveryFloor != null">
+        delivery_floor,
+      </if>
+      <if test="deliveryRoom != null">
+        delivery_room,
+      </if>
+      <if test="businessLine != null">
+        business_line,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="notifyType != null">
+        notify_type,
+      </if>
+      <if test="takeMealsAddrId != null">
+        take_meals_addr_id,
+      </if>
+      <if test="takeMealsAddrName != null">
+        take_meals_addr_name,
+      </if>
+      <if test="deliveryTimeId != null">
+        delivery_time_id,
+      </if>
+      <if test="deliveryTimeBegin != null">
+        delivery_time_begin,
+      </if>
+      <if test="deliveryTimeEnd != null">
+        delivery_time_end,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null">
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryOfficeBuildingId != null">
+        #{deliveryOfficeBuildingId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryCompany != null">
+        #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddress != null">
+        #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryFloor != null">
+        #{deliveryFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryRoom != null">
+        #{deliveryRoom,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null">
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notifyType != null">
+        #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="takeMealsAddrId != null">
+        #{takeMealsAddrId,jdbcType=BIGINT},
+      </if>
+      <if test="takeMealsAddrName != null">
+        #{takeMealsAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTimeId != null">
+        #{deliveryTimeId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryTimeBegin != null">
+        #{deliveryTimeBegin,jdbcType=TIME},
+      </if>
+      <if test="deliveryTimeEnd != null">
+        #{deliveryTimeEnd,jdbcType=TIME},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.ucs.domain.UserDeliveryAddress">
+    update t_user_delivery_address
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null">
+        mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryOfficeBuildingId != null">
+        delivery_office_building_id = #{deliveryOfficeBuildingId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryCompany != null">
+        delivery_company = #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddress != null">
+        delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryFloor != null">
+        delivery_floor = #{deliveryFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryRoom != null">
+        delivery_room = #{deliveryRoom,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null">
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notifyType != null">
+        notify_type = #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="takeMealsAddrId != null">
+        take_meals_addr_id = #{takeMealsAddrId,jdbcType=BIGINT},
+      </if>
+      <if test="takeMealsAddrName != null">
+        take_meals_addr_name = #{takeMealsAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTimeId != null">
+        delivery_time_id = #{deliveryTimeId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryTimeBegin != null">
+        delivery_time_begin = #{deliveryTimeBegin,jdbcType=TIME},
+      </if>
+      <if test="deliveryTimeEnd != null">
+        delivery_time_end = #{deliveryTimeEnd,jdbcType=TIME},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.ucs.domain.UserDeliveryAddress">
+    update t_user_delivery_address
+    set user_id = #{userId,jdbcType=BIGINT},
+      real_name = #{realName,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      delivery_office_building_id = #{deliveryOfficeBuildingId,jdbcType=BIGINT},
+      delivery_company = #{deliveryCompany,jdbcType=VARCHAR},
+      delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+      delivery_floor = #{deliveryFloor,jdbcType=VARCHAR},
+      delivery_room = #{deliveryRoom,jdbcType=VARCHAR},
+      business_line = #{businessLine,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      notify_type = #{notifyType,jdbcType=INTEGER},
+      take_meals_addr_id = #{takeMealsAddrId,jdbcType=BIGINT},
+      take_meals_addr_name = #{takeMealsAddrName,jdbcType=VARCHAR},
+      delivery_time_id = #{deliveryTimeId,jdbcType=BIGINT},
+      delivery_time_begin = #{deliveryTimeBegin,jdbcType=TIME},
+      delivery_time_end = #{deliveryTimeEnd,jdbcType=TIME}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByUserid" resultType="com.milisong.ucs.domain.UserDeliveryAddress">
+    select
+    <include refid="Base_Column_List" />
+    from t_user_delivery_address
+    where user_id = #{userId,jdbcType=BIGINT}
+    <if test = "deliveryOfficeBuildingId!=null">
+      and delivery_office_building_id = #{deliveryOfficeBuildingId,jdbcType=BIGINT}
+    </if>
+    <if test = "businessLine!=null">
+      and business_line = #{businessLine,jdbcType=TINYINT}
+    </if>
+    order by update_time desc limit 1
+  </select>
+
+  <select id="selectDeliveryAddrByManyWhere" resultType="com.milisong.ucs.domain.UserDeliveryAddress">
+    select
+    <include refid="Base_Column_List" />
+    from t_user_delivery_address
+    where mobile_no = #{mobileNo}
+    and delivery_office_building_id = #{deliveryOfficeBuildingId}
+    and delivery_floor = #{deliveryFloor}
+    and delivery_company = #{deliveryCompany}
+  </select>
+
+  <select id="selectByMobileAndId" resultType="com.milisong.ucs.domain.UserDeliveryAddress">
+    select
+    <include refid="Base_Column_List" />
+    from t_user_delivery_address
+    where mobile_no = #{mobile,jdbcType=VARCHAR}
+    and user_id = #{id,jdbcType=BIGINT}
+    order by id desc limit 1
+  </select>
+  
+  <update id="updateFloorByCondition" parameterType="map">
+  	UPDATE `t_user_delivery_address` SET `delivery_floor` =  #{afterFloor}
+  	WHERE `delivery_office_building_id` = #{deliveryOfficeBuildingId} AND `delivery_floor` = #{frontFloor}
+  </update>
+  
+  <select id="selectUserIdByCondtion" resultType="com.milisong.ucs.domain.UserDeliveryAddress" parameterType="map">
+  	SELECT `user_id` FROM `t_user_delivery_address` WHERE `delivery_floor` = #{frontFloor} AND `delivery_office_building_id` = #{deliveryOfficeBuildingId}
+  </select>
+
+  <select id="countUserByDevlieryAddr" parameterType="com.milisong.ucs.dto.SendBreakCouponRequest" resultType="int">
+    select count(distinct a.user_id) from t_user_delivery_address a
+    <where>
+      a.business_line = #{businessLine}
+        <if test="sendAllUser == null or sendAllUser == false">
+          <if test="deliveryOfficeBuildingIds != null and deliveryOfficeBuildingIds.size() > 0">
+            and a.delivery_office_building_id in
+            <foreach  collection="deliveryOfficeBuildingIds" item="buildingId" open="("  separator=","  close=")">
+              #{buildingId}
+            </foreach>
+          </if>
+          <if test="saveAddrTimeStart != null">
+            and a.create_time <![CDATA[ >= ]]> #{saveAddrTimeStart}
+          </if>
+          <if test="saveAddrTimeEnd != null">
+            and a.create_time <![CDATA[ <= ]]> #{saveAddrTimeEnd}
+          </if>
+          <if test="mobiles != null and mobiles.size() > 0">
+            and a.mobile_no in
+            <foreach  collection="mobiles" item="mobile" open="("  separator=","  close=")">
+              #{mobile}
+            </foreach>
+          </if>
+          <if test="excludeUserIds != null and excludeUserIds.size() > 0">
+            and a.user_id not in
+            <foreach  collection="excludeUserIds" item="userid" open="("  separator=","  close=")">
+              #{userid}
+            </foreach>
+          </if>
+        </if>
+      and a.update_time = (SELECT max(b.update_time) from t_user_delivery_address b where b.user_id = a.user_id and b.business_line = #{businessLine})
+    </where>
+  </select>
+  <select id="queryUserByDevlieryAddr" resultType="com.milisong.ucs.dto.UserDeliveryAddressDto">
+    select a.id, a.user_id, a.real_name, a.mobile_no, a.sex, a.delivery_office_building_id, a.delivery_company,
+    a.delivery_address from t_user_delivery_address a
+    <where>
+      a.business_line = #{businessLine}
+      <if test="sendAllUser == null or sendAllUser == false">
+        <if test="deliveryOfficeBuildingIds != null and deliveryOfficeBuildingIds.size() > 0">
+          and a.delivery_office_building_id in
+          <foreach  collection="deliveryOfficeBuildingIds" item="buildingId" open="("  separator=","  close=")">
+            #{buildingId}
+          </foreach>
+        </if>
+        <if test="saveAddrTimeStart != null">
+          and a.create_time <![CDATA[ >= ]]> #{saveAddrTimeStart}
+        </if>
+        <if test="saveAddrTimeEnd != null">
+          and a.create_time <![CDATA[ <= ]]> #{saveAddrTimeEnd}
+        </if>
+        <if test="mobiles != null and mobiles.size() > 0">
+          and a.mobile_no in
+          <foreach  collection="mobiles" item="mobile" open="("  separator=","  close=")">
+            #{mobile}
+          </foreach>
+        </if>
+        <if test="excludeUserIds != null and excludeUserIds.size() > 0">
+          and a.user_id not in
+          <foreach  collection="excludeUserIds" item="userid" open="("  separator=","  close=")">
+            #{userid}
+          </foreach>
+        </if>
+      </if>
+      and a.update_time = (SELECT max(b.update_time) from t_user_delivery_address b where b.user_id = a.user_id and b.business_line = #{businessLine})
+      group by a.user_id
+      order by a.id asc
+    </where>
+    limit #{startRow}, #{pageSize}
+  </select>
+  <select id="queryDeliveryCompany" resultType="com.milisong.ucs.dto.UserDeliveryAddressDto">
+    select delivery_office_building_id, delivery_company from t_user_delivery_address
+    where business_line = #{buzLine} and delivery_company like concat('%',#{companyName},'%')
+    GROUP BY delivery_office_building_id
+  </select>
+  <select id="queryDeliveryCompanyNames" resultType="com.milisong.ucs.dto.UserDeliveryAddressDto">
+    select id, user_id, real_name, mobile_no, sex, delivery_office_building_id, delivery_company,
+    delivery_address from t_user_delivery_address
+    where delivery_office_building_id in
+    <foreach collection="deliveryOfficeBuildingIdList" item="buildingid" open="("  separator=","  close=")">
+      #{buildingid}
+    </foreach>
+    GROUP BY delivery_office_building_id
+  </select>
+  <select id="queryDeliveryByCompanyIdAndUserId" resultMap="BaseResultMap">
+     select id, user_id, real_name, mobile_no, sex, delivery_office_building_id, delivery_company,
+    delivery_address from t_user_delivery_address
+    where user_id = #{userId}
+    and delivery_office_building_id = #{deliveryOfficeBuildingId}
+    <if test="businessLine !=null">
+      and business_line = #{businessLine}
+    </if>
+    limit 0,1
+  </select>
+</mapper>

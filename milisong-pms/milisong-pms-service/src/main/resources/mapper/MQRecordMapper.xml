@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.pms.prom.mapper.MQRecordMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.MQRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="biz_type" jdbcType="TINYINT" property="bizType" />
+    <result column="virtual_host" jdbcType="VARCHAR" property="virtualHost" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="mq_group" jdbcType="VARCHAR" property="mqGroup" />
+    <result column="destination" jdbcType="VARCHAR" property="destination" />
+    <result column="biz_method_name" jdbcType="VARCHAR" property="bizMethodName" />
+    <result column="success" jdbcType="BIT" property="success" />
+    <result column="message_headers_id" jdbcType="VARCHAR" property="messageHeadersId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.milisong.pms.prom.domain.MQRecord">
+    <result column="message_data" jdbcType="LONGVARCHAR" property="messageData" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, biz_type, virtual_host, channel, mq_group, destination, biz_method_name, success, 
+    message_headers_id, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    message_data
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mq_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.MQRecord">
+    insert into mq_record (id, biz_type, virtual_host, 
+      channel, mq_group, destination, 
+      biz_method_name, success, message_headers_id, 
+      create_time, update_time, message_data
+      )
+    values (#{id,jdbcType=BIGINT}, #{bizType,jdbcType=TINYINT}, #{virtualHost,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=VARCHAR}, #{mqGroup,jdbcType=VARCHAR}, #{destination,jdbcType=VARCHAR}, 
+      #{bizMethodName,jdbcType=VARCHAR}, #{success,jdbcType=BIT}, #{messageHeadersId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{messageData,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.MQRecord">
+    insert into mq_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bizType != null">
+        biz_type,
+      </if>
+      <if test="virtualHost != null">
+        virtual_host,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="mqGroup != null">
+        mq_group,
+      </if>
+      <if test="destination != null">
+        destination,
+      </if>
+      <if test="bizMethodName != null">
+        biz_method_name,
+      </if>
+      <if test="success != null">
+        success,
+      </if>
+      <if test="messageHeadersId != null">
+        message_headers_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="messageData != null">
+        message_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bizType != null">
+        #{bizType,jdbcType=TINYINT},
+      </if>
+      <if test="virtualHost != null">
+        #{virtualHost,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="mqGroup != null">
+        #{mqGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null">
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="bizMethodName != null">
+        #{bizMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null">
+        #{success,jdbcType=BIT},
+      </if>
+      <if test="messageHeadersId != null">
+        #{messageHeadersId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageData != null">
+        #{messageData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.MQRecord">
+    update mq_record
+    <set>
+      <if test="bizType != null">
+        biz_type = #{bizType,jdbcType=TINYINT},
+      </if>
+      <if test="virtualHost != null">
+        virtual_host = #{virtualHost,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="mqGroup != null">
+        mq_group = #{mqGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null">
+        destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="bizMethodName != null">
+        biz_method_name = #{bizMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null">
+        success = #{success,jdbcType=BIT},
+      </if>
+      <if test="messageHeadersId != null">
+        message_headers_id = #{messageHeadersId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageData != null">
+        message_data = #{messageData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.milisong.pms.prom.domain.MQRecord">
+    update mq_record
+    set biz_type = #{bizType,jdbcType=TINYINT},
+      virtual_host = #{virtualHost,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      mq_group = #{mqGroup,jdbcType=VARCHAR},
+      destination = #{destination,jdbcType=VARCHAR},
+      biz_method_name = #{bizMethodName,jdbcType=VARCHAR},
+      success = #{success,jdbcType=BIT},
+      message_headers_id = #{messageHeadersId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      message_data = #{messageData,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.MQRecord">
+    update mq_record
+    set biz_type = #{bizType,jdbcType=TINYINT},
+      virtual_host = #{virtualHost,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      mq_group = #{mqGroup,jdbcType=VARCHAR},
+      destination = #{destination,jdbcType=VARCHAR},
+      biz_method_name = #{bizMethodName,jdbcType=VARCHAR},
+      success = #{success,jdbcType=BIT},
+      message_headers_id = #{messageHeadersId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,43 @@
+redisson:
+  address: redis://10.18.75.34:6387
+  password: ReyH2WMVtn0KalCA0v6387
+  database: 11
+
+spring:
+  redis:
+    host: 10.18.75.34
+    password: ReyH2WMVtn0KalCA0v6387
+    port: 6387
+    timeout: 1000
+    database: 11
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 1
+
+sso:
+  host: http://testopenboss.jshuii.com/api/open
+  config:
+    cacheTimeOutWithMinute: 10
+    app: 
+      MLS_DEV: 
+        app-name: MLS_DEV
+        app-key: 31a9dc01-d1ed-486a-a6e4-696fa32158d1
+        app-sercet: 6ae8550dc531e9fad8e04ab516f2b753651e615352ea9c2ec163c97580ccacde
+      MILISONG: 
+        app-name: MILISONG
+        app-key: 31a9dc01-d1ed-486a-a6e4-696fa32158d1
+        app-sercet: 6ae8550dc531e9fad8e04ab516f2b753651e615352ea9c2ec163c97580ccacde
+      MLS_PRE: 
+        app-name: MLS_PRE
+        app-key: 31a9dc01-d1ed-486a-a6e4-696fa32158d1
+        app-sercet: 6ae8550dc531e9fad8e04ab516f2b753651e615352ea9c2ec163c97580ccacde
+      MLB_DEV: 
+        app-name: MLB_DEV
+        app-key: 8c13a5d2-0149-4b21-88d5-f607b1796a12
+        app-sercet: gJKpJT12VGgoOj8PzJyZwLSN65GDTTw4sY7kuusbt7xQpPlC4OS9YH9IEfVa
+      MLB_TEST: 
+        app-name: MLB_TEST
+        app-key: 98e79d06-831c-4997-a74b-b19edbba17a9
+        app-sercet: 91wTNgx2F4k9EaHIqrBeWBVIAsGFxyN1uZvn581IbMvxT5DbYdrDEVJqiVKf

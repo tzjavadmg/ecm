@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.breakfast.scm.configuration.mapper.GlobalConfigExtMapper">
+  <resultMap extends="com.milisong.breakfast.scm.configuration.mapper.GlobalConfigMapper.BaseResultMap" id="BaseResultMap" type="com.milisong.breakfast.scm.configuration.domain.GlobalConfig" />
+  <sql id="Base_Column_List">
+    <include refid="com.milisong.breakfast.scm.configuration.mapper.GlobalConfigMapper.Base_Column_List" />
+  </sql>
+
+<select id="queryGlobalConfig" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from global_config
+    where is_deleted = 0
+</select>
+<select id="queryByKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from global_config
+    where is_deleted = 0
+    and config_key = #{configKey}
+</select>
+
+</mapper>

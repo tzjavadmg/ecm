@@ -1,0 +1,60 @@
+server:
+  port: 30002
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+  flyway:
+    enabled: false
+  cloud:
+    config:
+      override-none: true
+bfscm:
+  sys:
+    fileOss:
+      viewUrl: http://jshuii-dev.oss-cn-hangzhou.aliyuncs.com
+      exportPath: /data/milisong/export/
+    ecmUrl:
+      goodsDefaultCount: 200
+      goodsStockUrl: http://devmls-bapi.jshuii.com/v1/goods/set-onsale-stock
+      goodsStockListUrl: http://devmls-bapi.jshuii.com/v1/goods/set-onsale-stock-list
+      orderListUrl: http://devmls-api.jshuii.com/v1/order/get-order-details
+      buildingListUrl: http://devmls-api.jshuii.com/v1/goods/building-list
+      specialGoods: 60788245670,54168574285
+      schedulerPushMiute: 5
+    # LBS公共服务的地址
+    lbsUrl:
+      pointServiceUrl: http://devmls-lbs.jshuii.com/lbs/point
+      convertServiceUrl: http://devmls-lbs.jshuii.com/lbs/convert/baidu2gcj02
+    omsOrder:
+      checkUrl: http://devmls-omsapiin.jshuii.com/v1/OrderService/getDeliveryNos
+      notifyUrl: http://devmls-omsapiin.jshuii.com/v1/order/repair-order-mq
+file:
+  oss:
+#  本地备份路径
+    localBackupPath: /data/files/images/milisong/
+#    oss上传路径
+    uploadUrl: http://devoss.jshuii.com/v1/uploadFileService/uploadByte
+#    查询路径
+    viewUrl: http://jshuii-dev.oss-cn-hangzhou.aliyuncs.com
+#the maximum size of single file (unit:MB)
+    maxSingleFileSize: 4MB
+#file format
+    format: txt,word,excel,jpg,png,gif,pdf
+    bizType: 6
+  export:
+    path: /data/milisong/export/
+# 调用集单查询接口
+oss:
+  searchOrderSet: http://devml-oss.jshuii.com/orderset/page
+  searchCustomerOrder: http://devml-oss.jshuii.com/orderset/get-customer-order-by-set-no?setNo=
+  searchOrder: http://devml-oss.jshuii.com/order/page
+  seartchReserveGroupInfo: http://devml-oss.jshuii.com/order/page-reserve-group-list
+  orderSetInfo: http://devml-oss.jshuii.com/orderset/get-orderset-info?setNo=
+  orderCheck: http://devml-oss.jshuii.com/order/check
+  bforderSetInfo: http://devml-oss.jshuii.com/orderset/get-bf-orderset-info?setNo=
+  goodsCount: http://devml-oss.jshuii.com/order/goods-count

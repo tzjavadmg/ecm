@@ -1,0 +1,82 @@
+spring:
+  rabbitmq:
+    addresses: amqp://mqdev.jshuii.com:5672
+    username: milisong-omsuser
+    password: V1pRj0KV24vk1SDx8z
+  cloud:
+    stream:
+      # 设置默认的binder
+      default-binder: oms
+      binders:
+        oms:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                # 连接到ecm的host和exchange
+                virtual-host: milisong-oms
+        pms:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-pms
+      bindings:
+        # 订单消费
+        order_status_input:
+          binder: oms
+          destination: OMS_ORDER_STATUS
+          group: oms_group
+        order_payment_input:
+          binder: oms
+          destination: OMS_PAYMENT
+          group: oms_group
+        cancel_groupbuy_input:
+          binder: pms
+          destination: PMS_GROUPBUY_CANCEL
+          group: oms_group
+          # 订单生产
+        order_output:
+          binder: oms
+          destination: OMS_ORDER
+        payment_output:
+          binder: oms
+          destination: OMS_PAYMENT
+        cancel_output:
+          binder: oms
+          destination: OMS_CANCEL
+        refund_output:
+          binder: oms
+          destination: OMS_REFUND
+      rabbit:
+        bindings:
+          # 订单消费的个性化配置
+          order_status_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_ORDER_ORDER_SET_DLX
+          order_payment_input:
+            consumer:
+              exchangeType: topic
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_ORDER_PAYMENT_DLX
+          cancel_groupbuy_input:
+            consumer:
+              exchangeType: fanout
+          order_output:
+            producer:
+              exchangeType: fanout
+          payment_output:
+            producer:
+              exchangeType: topic
+              routingKeyExpression: headers.businessLine
+          cancel_output:
+            producer:
+              exchangeType: fanout
+          refund_output:
+            producer:
+              exchangeType: fanout
+

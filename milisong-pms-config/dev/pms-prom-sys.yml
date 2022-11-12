@@ -1,0 +1,29 @@
+server:
+  port: 20110
+management:
+  health:
+    defaults:
+      enabled: false
+
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeout: 1000
+
+ecm:
+  lunch-domain: http://devmls-api.jshuii.com
+  breakfast-domain: http://devmls-bapi.jshuii.com
+  send-advertise-sms: ${ecm.lunch-domain}/v1/notify/sendAdvertiseSms
+  send-breakfast-sms: ${ecm.breakfast-domain}/v1/notify/sendAdvertiseSms
+
+delay:
+  base-url: http://devmls-dqsapi.jshuii.com
+  cancel-groupbuy-callback-url: http://devmls-pmsin.jshuii.com/v1/GroupBuyService/refundSigleGroupBuy
+  notify-groupbuy-callback-url: http://devmls-pmsin.jshuii.com/v1/GroupBuyService/leftTimeNotifyGroupBuy
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+
+user-point-switch: false

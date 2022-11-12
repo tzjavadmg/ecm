@@ -1,0 +1,70 @@
+server:
+  port: 30020
+#management:
+## spring admin检测 默认开启
+#  health:
+#    defaults:
+#      enabled: false
+  
+spring:
+# json format
+  jackson:  
+    date-format:  yyyy-MM-dd HH:mm:ss
+    time-zone:  GMT+8
+    default-property-inclusion: NON_NULL
+  flyway:
+    # 配置sql脚本路径
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+    enabled: false
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+# 获取每日预生产数 
+scm:
+  init:
+    preProductionUrl: http://devmls-scmapi.jshuii.com/stock/get-goods-pre-production
+    dayPreproductionUrl: http://devmls-scmapi.jshuii.com/stock/get-day-goods-pre-production?shopId=
+    dayBuildingUrl: http://devmls-scmapi.jshuii.com/building/get-building-by-id?id=
+    query-company-url: http://devmls-bscmapiin.jshuii.com/company/inside-query-by-id?id=
+     
+file:
+  oss:
+#  本地备份路径
+    localBackupPath: /data/files/images/milisong/
+#    oss上传路径
+    uploadUrl: http://testoss.jshuii.com/v1/uploadFileService/uploadByte
+#    查询路径
+    viewUrl: http://jshuii-test.oss-cn-hangzhou.aliyuncs.com
+#the maximum size of single file (unit:MB)
+    maxSingleFileSize: 4MB
+#file format
+    format: txt,word,excel,jpg,png,gif,pdf
+# sf顺丰测试标识
+sf:
+  test-flag: true
+  
+#健康检查 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    redis:
+      enabled: true
+    rabbit:
+      enabled: true
+    diskspace:
+      enabled: true

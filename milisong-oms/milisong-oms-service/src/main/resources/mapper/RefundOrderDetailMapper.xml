@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.oms.mapper.RefundOrderDetailMapper">
+    <insert id="batchSave">
+        INSERT INTO refund_order_detail(id, refund_id, order_id, order_no, delivery_id, delivery_no, delivery_date,
+        delivery_amount, package_amount, goods_amount, total_refund_amount, goods_count, order_type) VALUES
+        <foreach collection="collection" item="v" separator=",">
+            (#{v.id}, #{v.refundId}, #{v.orderId}, #{v.orderNo}, #{v.deliveryId}, #{v.deliveryNo}, #{v.deliveryDate},
+            #{v.deliveryAmount}, #{v.packageAmount}, #{v.goodsAmount}, #{v.totalRefundAmount}, #{v.goodsCount},
+            #{v.orderType})
+        </foreach>
+    </insert>
+
+
+    <select id="getRefundOrderDetail" resultType="com.milisong.oms.dto.RefundOrderDetailDto">
+        SELECT DATE_FORMAT(ro.`apply_time`, '%Y-%m-%d %H:%i:%s')  AS apply_time,
+               DATE_FORMAT(ro.`refund_time`, '%Y-%m-%d %H:%i:%s') AS refund_time,
+               rod.total_refund_amount,
+               UNIX_TIMESTAMP(rod.delivery_date) * 1000           AS delivery_date,
+               ro.order_no,
+               DATE_FORMAT(ro.`order_date`, '%Y-%m-%d %H:%i:%s')  AS order_date
+        FROM (SELECT * FROM `refund_order_detail` WHERE delivery_id = #{deliveryId}) rod
+                 LEFT JOIN `refund_order` ro ON rod.refund_id = ro.`id`
+    </select>
+
+    <select id="getListByRefundId" resultType="com.milisong.oms.domain.RefundOrderDetail">
+        select *
+        from refund_order_detail
+        where refund_id = #{refundId}
+    </select>
+</mapper>

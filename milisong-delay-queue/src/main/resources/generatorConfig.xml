@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <classPathEntry location="F:/scm/mysql-connector-java-5.1.7-bin.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="autoDelimitKeywords" value="false"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="com.milisong.common.plugin.IngoreSetterAndGetterPlugin"/>
+        <!--<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.CachePlugin"/>-->
+
+        <commentGenerator type="com.milisong.common.plugin.MyCommentGenerator"/>
+
+        <jdbcConnection userId="milisong_dqs" password="Ox68OzDWEiqJOw8n9w10" driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://dbtest.jshuii.com:3306/milisong_dqs"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.milisong.delay.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper/base" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.milisong.delay.mapper.base" type="XMLMAPPER" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <table schema=" milisong_dqs" tableName="delay_production_event" domainObjectName="DelayProductionEvent" mapperName="BaseDelayProductionEventMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+        
+       <table schema=" milisong_dqs" tableName="delay_consume_event" domainObjectName="DelayConsumeEvent" mapperName="BaseDelayConsumeEventMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

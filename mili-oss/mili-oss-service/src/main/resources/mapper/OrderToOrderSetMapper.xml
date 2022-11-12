@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mili.oss.mapper.OrderToOrderSetMapper">
+    <insert id="batchSave">
+        INSERT INTO mtm_order_orderset(id, order_set_detail_id, order_id) VALUES
+        <foreach collection="collection" item="v" separator=",">
+            (#{v.id}, #{v.orderSetDetailId}, #{v.orderId})
+        </foreach>
+    </insert>
+</mapper>

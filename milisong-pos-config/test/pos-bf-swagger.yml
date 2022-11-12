@@ -1,0 +1,10 @@
+swagger:
+  conf:
+    desc: api地址：http://${swagger.conf.host}/
+    service-url: http://${swagger.conf.host}/
+    title: 米立早餐${swagger.conf.group-name}接口
+    host: testmls-bposapi.jshuii.com
+    #host: localhost:31000
+    group-name: pos-web
+    base-package: com.milisong.breakfast.pos.web
+    version: 1.0

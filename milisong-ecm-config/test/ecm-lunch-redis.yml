@@ -1,0 +1,16 @@
+spring:
+  redis:
+    host: testredis.jshuii.com
+    port: 6385
+    password: ReyH2WMVtn0KalCA0v6385
+    database: 1
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 1
+
+redisson:
+  address:  redis://testredis.jshuii.com:6385
+  password: ReyH2WMVtn0KalCA0v6385
+  database: 15

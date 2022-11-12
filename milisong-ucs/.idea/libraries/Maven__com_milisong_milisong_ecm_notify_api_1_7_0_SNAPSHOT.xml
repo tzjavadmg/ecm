@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.milisong:milisong-ecm-notify-api:1.7.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-ecm-notify-api/1.7.0-SNAPSHOT/milisong-ecm-notify-api-1.7.0-20181218.111220-78.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-ecm-notify-api/1.7.0-SNAPSHOT/milisong-ecm-notify-api-1.7.0-20181218.111220-78-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-ecm-notify-api/1.7.0-SNAPSHOT/milisong-ecm-notify-api-1.7.0-20181218.111220-78-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

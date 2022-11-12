@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.milisong.breakfast.scm.order.mapper.OrderExtMapper">
+		
+	<select id="selectOrderGoodsCountCompany"
+		parameterType="com.milisong.breakfast.scm.order.param.OrderCompanySqlParam"
+		resultType="java.lang.Integer">
+	SELECT sum(b.a) from (
+		select IFNULL(sum(d.goods_count),0) a from 
+		`order` t left JOIN  order_detail d on t.id=d.order_id where
+		t.shop_id = #{shopId}
+		and
+		d.goods_code = #{goodsCode}
+		and
+		t.delivery_start_date&gt;=#{beginDeliveryDate}
+		<if test="endDeliveryDate != null">
+		and t.delivery_start_date&lt;#{endDeliveryDate}
+		</if>
+		and t.order_status != 4
+		and t.order_status != 3
+	UNION ALL
+		select IFNULL(sum(c.goods_count),0) a from 
+		`order` t  
+		LEFT JOIN order_detail_combo c on t.id =c.order_id	
+		where
+		t.shop_id = #{shopId}
+		and
+		c.goods_code = #{goodsCode}
+		and
+		t.delivery_start_date&gt;=#{beginDeliveryDate}
+		<if test="endDeliveryDate != null">
+		and t.delivery_start_date&lt;#{endDeliveryDate}
+		</if>
+		and t.order_status != 4
+		and t.order_status != 3
+		) b
+	</select>
+
+	<select id="selectOrderByPage" parameterType="com.milisong.breakfast.scm.order.dto.param.OrderSearchParam"
+			resultType="com.milisong.breakfast.scm.order.dto.result.OrderSearchResult">
+		select o.order_no,d.id,d.detail_set_no_description as description,if(d.distribution_status = 4,date_format(o.complete_time,'%m-%d %H:%i'),null) as arriveTime,
+		date_format(o.delivery_end_date, '%m-%d %H:%i') as expectArriveTime,date_format(o.create_time, '%m-%d %H:%i') as orderDate,g.couplet_no,
+		concat(o.real_name,'_',o.mobile_no) as userInfo, o.delivery_address,o.actual_pay_amount,o.shop_id,o.delivery_status as deliveryStatus,o.delivery_room as mealAddress
+		from `order` o
+		LEFT JOIN order_set_detail_goods g on o.order_no = g.order_no
+		LEFT JOIN order_set_detail d on g.detail_set_no = d.detail_set_no
+		where o.order_status not in(3,4)
+		<if test="null != shopId and shopId != ''">
+			and o.shop_id = #{shopId}
+		</if>
+		<if test="null != deliveryStartDate and deliveryStartDate != ''" >
+			and date(o.delivery_start_date) &gt;= #{deliveryStartDate}
+		</if>
+		<if test="null != deliveryEndDate and deliveryEndDate != ''">
+			and date(o.delivery_end_date) &lt;= #{deliveryEndDate}
+		</if>
+		<if test="null != userParam and userParam != ''" >
+			and (o.real_name like concat('%',#{userParam},'%') or o.mobile_no like concat('%',#{userParam},'%'))
+		</if>
+		<if test="null != deliveryStatus">
+			and o.delivery_status = #{deliveryStatus}
+		</if>
+		<if test="null != orderStartDate and orderStartDate != ''">
+			and date(o.create_time) &gt;= #{orderStartDate}
+		</if>
+		<if test="null != orderEndDate and orderEndDate != ''">
+			and date(o.create_time) &lt;= #{orderEndDate}
+		</if>
+		group by o.order_no,d.detail_set_no
+		order by o.delivery_end_date,d.detail_set_no_description
+		<if test="startRow != null and pageSize != null">
+			limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="countOrderByPage" parameterType="com.milisong.breakfast.scm.order.dto.param.OrderSearchParam" resultType="java.lang.Long">
+		select count(*) from
+		(
+			select count(o.order_no)
+			from `order` o
+			LEFT JOIN order_set_detail_goods g on o.order_no = g.order_no
+			LEFT JOIN order_set_detail d on g.detail_set_no = d.detail_set_no
+			where o.order_status not in(3,4)
+			<if test="null != shopId and shopId != ''">
+				and o.shop_id = #{shopId}
+			</if>
+			<if test="null != deliveryStartDate and deliveryStartDate != ''" >
+				and date(o.delivery_start_date) &gt;= #{deliveryStartDate}
+			</if>
+			<if test="null != deliveryEndDate and deliveryEndDate != ''">
+				and date(o.delivery_end_date) &lt;= #{deliveryEndDate}
+			</if>
+			<if test="null != userParam and userParam != ''" >
+				and (o.real_name like concat('%',#{userParam},'%') or o.mobile_no like concat('%',#{userParam},'%'))
+			</if>
+			<if test="null != deliveryStatus">
+				and o.delivery_status = #{deliveryStatus}
+			</if>
+			<if test="null != orderStartDate and orderStartDate != ''">
+				and date(o.create_time) &gt;= #{orderStartDate}
+			</if>
+			<if test="null != orderEndDate and orderEndDate != ''">
+				and date(o.create_time) &lt;= #{orderEndDate}
+			</if>
+			group by o.order_no,d.detail_set_no
+		) a
+	</select>
+	
+	<select id="selectMealAddressByCompany" parameterType="java.lang.Long" resultType="java.lang.String">
+		select delivery_room from `order` where delivery_company_id=#{companyId} and DATE_FORMAT(delivery_start_date,'%Y-%m-%d')=curdate() group by delivery_room
+	</select>
+</mapper>

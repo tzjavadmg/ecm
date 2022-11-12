@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.Activity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="descript" property="descript" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="user_limit" property="userLimit" jdbcType="INTEGER" />
+    <result column="activity_limit" property="activityLimit" jdbcType="INTEGER" />
+    <result column="day_of_week" property="dayOfWeek" jdbcType="CHAR" />
+    <result column="is_all_goods" property="isAllGoods" jdbcType="TINYINT" />
+    <result column="goods_catalog_ids" property="goodsCatalogIds" jdbcType="VARCHAR" />
+    <result column="goods_ids" property="goodsIds" jdbcType="VARCHAR" />
+    <result column="city_ids" property="cityIds" jdbcType="VARCHAR" />
+    <result column="building_ids" property="buildingIds" jdbcType="VARCHAR" />
+    <result column="company_ids" property="companyIds" jdbcType="VARCHAR" />
+    <result column="min_amount" property="minAmount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="business_line" property="businessLine" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_share" property="isShare" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, descript, start_date, end_date, `type`, user_limit, activity_limit, day_of_week,
+    is_all_goods, goods_catalog_ids, goods_ids, city_ids, building_ids, company_ids,
+    min_amount, status, is_delete, business_line, create_time, update_time, is_share
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from activity
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.Activity" >
+    insert into activity (id, name, descript,
+      start_date, end_date, `type`,
+      user_limit, activity_limit, day_of_week,
+      is_all_goods, goods_catalog_ids, goods_ids,
+      city_ids, building_ids, company_ids,
+      min_amount, status, is_delete, business_line,
+      create_time, update_time, is_share
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR},
+      #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{type,jdbcType=TINYINT},
+      #{userLimit,jdbcType=INTEGER}, #{activityLimit,jdbcType=INTEGER}, #{dayOfWeek,jdbcType=CHAR},
+      #{isAllGoods,jdbcType=TINYINT}, #{goodsCatalogIds,jdbcType=VARCHAR}, #{goodsIds,jdbcType=VARCHAR},
+      #{cityIds,jdbcType=VARCHAR}, #{buildingIds,jdbcType=VARCHAR}, #{companyIds,jdbcType=VARCHAR},
+      #{minAmount,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}, #{businessLine,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isShare,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.Activity" >
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="descript != null" >
+        descript,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="userLimit != null" >
+        user_limit,
+      </if>
+      <if test="activityLimit != null" >
+        activity_limit,
+      </if>
+      <if test="dayOfWeek != null" >
+        day_of_week,
+      </if>
+      <if test="isAllGoods != null" >
+        is_all_goods,
+      </if>
+      <if test="goodsCatalogIds != null" >
+        goods_catalog_ids,
+      </if>
+      <if test="goodsIds != null" >
+        goods_ids,
+      </if>
+      <if test="cityIds != null" >
+        city_ids,
+      </if>
+      <if test="buildingIds != null" >
+        building_ids,
+      </if>
+      <if test="companyIds != null" >
+        company_ids,
+      </if>
+      <if test="minAmount != null" >
+        min_amount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="businessLine != null" >
+        business_line,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isShare != null" >
+        is_share,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="userLimit != null" >
+        #{userLimit,jdbcType=INTEGER},
+      </if>
+      <if test="activityLimit != null" >
+        #{activityLimit,jdbcType=INTEGER},
+      </if>
+      <if test="dayOfWeek != null" >
+        #{dayOfWeek,jdbcType=CHAR},
+      </if>
+      <if test="isAllGoods != null" >
+        #{isAllGoods,jdbcType=TINYINT},
+      </if>
+      <if test="goodsCatalogIds != null" >
+        #{goodsCatalogIds,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsIds != null" >
+        #{goodsIds,jdbcType=VARCHAR},
+      </if>
+      <if test="cityIds != null" >
+        #{cityIds,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingIds != null" >
+        #{buildingIds,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIds != null" >
+        #{companyIds,jdbcType=VARCHAR},
+      </if>
+      <if test="minAmount != null" >
+        #{minAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="businessLine != null" >
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isShare != null" >
+        #{isShare,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.Activity" >
+    update activity
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="userLimit != null" >
+        user_limit = #{userLimit,jdbcType=INTEGER},
+      </if>
+      <if test="activityLimit != null" >
+        activity_limit = #{activityLimit,jdbcType=INTEGER},
+      </if>
+      <if test="dayOfWeek != null" >
+        day_of_week = #{dayOfWeek,jdbcType=CHAR},
+      </if>
+      <if test="isAllGoods != null" >
+        is_all_goods = #{isAllGoods,jdbcType=TINYINT},
+      </if>
+      <if test="goodsCatalogIds != null" >
+        goods_catalog_ids = #{goodsCatalogIds,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsIds != null" >
+        goods_ids = #{goodsIds,jdbcType=VARCHAR},
+      </if>
+      <if test="cityIds != null" >
+        city_ids = #{cityIds,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingIds != null" >
+        building_ids = #{buildingIds,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIds != null" >
+        company_ids = #{companyIds,jdbcType=VARCHAR},
+      </if>
+      <if test="minAmount != null" >
+        min_amount = #{minAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="businessLine != null" >
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isShare != null" >
+        is_share = #{isShare,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.Activity" >
+    update activity
+    set name = #{name,jdbcType=VARCHAR},
+      descript = #{descript,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      `type` = #{type,jdbcType=TINYINT},
+      user_limit = #{userLimit,jdbcType=INTEGER},
+      activity_limit = #{activityLimit,jdbcType=INTEGER},
+      day_of_week = #{dayOfWeek,jdbcType=CHAR},
+      is_all_goods = #{isAllGoods,jdbcType=TINYINT},
+      goods_catalog_ids = #{goodsCatalogIds,jdbcType=VARCHAR},
+      goods_ids = #{goodsIds,jdbcType=VARCHAR},
+      city_ids = #{cityIds,jdbcType=VARCHAR},
+      building_ids = #{buildingIds,jdbcType=VARCHAR},
+      company_ids = #{companyIds,jdbcType=VARCHAR},
+      min_amount = #{minAmount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=TINYINT},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      business_line = #{businessLine,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_share = #{isShare,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="dto_Column_List" >
+    id, name, descript, start_date, end_date, `type`, user_limit, activity_limit, day_of_week,
+    is_all_goods, goods_catalog_ids, goods_ids, city_ids, building_ids, company_ids,
+    min_amount, status, is_delete, is_share
+  </sql>
+
+  <select id="queryActivityByStatus" resultType="com.milisong.pms.prom.dto.ActivityDto">
+    select
+    <include refid="dto_Column_List" />
+    from activity
+    where status in
+      ( <foreach collection="activityStatus" item="status" separator="," open="(" close=")">
+        #{status}
+      </foreach> )
+    AND is_delete = 0
+  </select>
+
+  <update id="offlineRedPacketActivity" parameterType="java.util.Date">
+    <![CDATA[
+    update activity
+    set status = 3,
+      update_time = #{currentDate,jdbcType=TIMESTAMP}
+      where #{currentDate,jdbcType=TIMESTAMP} >= end_date
+      and `type` = 1 and status = 2 and is_delete = 0
+     ]]>
+  </update>
+
+  <update id="onlineRedPacketActivity" parameterType="java.util.Date">
+    <![CDATA[
+    update activity
+    set status = 2,
+      update_time = #{currentDate,jdbcType=TIMESTAMP}
+      where start_date <= #{currentDate,jdbcType=TIMESTAMP} and #{currentDate,jdbcType=TIMESTAMP} < end_date
+      and `type` = 1 and status = 1 and is_delete = 0
+     ]]>
+  </update>
+
+  <select id="currentActivityRedPacket" resultType="com.milisong.pms.prom.dto.ActivityRedPacketDto">
+    <![CDATA[
+    select arp.id, arp.activity_id as activityId, a.name, a.start_date as startDate, a.end_date as endDate, arp.type, a.user_limit as userLimit, a.activity_limit as activityLimit,
+      a.is_all_goods as isAllGoods, a.goods_catalog_ids as goodsCatalogIds, a.goods_ids as goodsIds, a.city_ids as cityIds, a.building_ids as buildingIds,
+      a.company_ids as companyIds, a.min_amount as minAmount, a.is_share as isShare, a.status, arp.amount, arp.players, arp.valid, arp.click_limit as clickLimit
+      from activity a left join activity_red_packet arp on a.id = arp.activity_id
+    where (a.`status` = 2 and arp.type = #{redPacketType} or (a.start_date <= #{currentDate,jdbcType=TIMESTAMP}
+     and #{currentDate,jdbcType=TIMESTAMP} < a.end_date)) and a.is_delete = 0 and arp.is_delete = 0 limit 1
+     ]]>
+  </select>
+
+  <select id="conflictActivityRedPacket" resultType="int" parameterType="java.util.Date">
+    select count(*)
+    from activity a
+    where
+    <if test="activityId != null" >
+      a.id != #{activityId,jdbcType=BIGINT} and
+    </if>
+    <![CDATA[
+      a.start_date <= #{startDate,jdbcType=TIMESTAMP} and #{startDate,jdbcType=TIMESTAMP} < a.end_date and a.`type` = 1 and a.is_delete = 0
+    ]]>
+  </select>
+
+  <select id="countActivityRedPacket" resultType="int">
+    select count(*)
+    from activity a
+    where a.`type` = 1 and a.is_delete = 0
+    <if test="buzLine != null">
+      and a.business_line = #{buzLine}
+    </if>
+  </select>
+
+  <select id="queryActivityRedPacketList" resultType="com.milisong.pms.prom.dto.ActivityRedPacketDto">
+    select a.id, a.name, a.start_date as startDate, a.end_date as endDate, a.type, a.user_limit as userLimit, a.activity_limit as activityLimit,
+    a.is_all_goods as isAllGoods, a.goods_catalog_ids as goodsCatalogIds, a.goods_ids as goodsIds, a.city_ids as cityIds, a.building_ids as buildingIds,
+    a.company_ids as companyIds, a.min_amount as minAmount, a.is_share as isShare, a.status, arp.amount, arp.players, arp.valid, arp.click_limit as clickLimit
+    from activity a right join activity_red_packet arp on a.id = arp.activity_id
+    where  a.is_delete = 0 and arp.is_delete = 0
+    <if test="buzLine != null">
+      and a.business_line = #{buzLine}
+    </if>
+    order by arp.create_time desc
+    limit  #{startRow}, #{pageSize}
+  </select>
+</mapper>

@@ -1,0 +1,47 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+         # 集单消费
+        dms_order_set_input:
+          binder: scm
+          destination: SCM_ORDER_SET
+          group: dms_sf_lunch_group
+        dms_bf_order_set_input:
+          binder: dms
+          destination: SCM_SF_ORDER_SET
+          group: dms_sf_bf_group
+        shop_info_input:
+          binder: scm
+          destination: SCM_SHOP_INFO
+          group: dms_shop_info
+        #-----------消息生产-----------
+        # 顺丰配送单状态变更
+        sf_status_change_output:
+          binder: scm
+          destination: SCM_SF_STATUS_CHANGE
+      rabbit:
+        bindings:
+          # 消费者配置
+          dms_bf_order_set_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_SF_BREAK_CREATE_DLX
+          dms_order_set_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SF_ORDER_SET_INPUT_DLX
+          shop_info_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_SHOP_INFO_DLX
+          # 生产者配置
+          sf_status_change_output:
+            producer:
+              exchangeType: fanout

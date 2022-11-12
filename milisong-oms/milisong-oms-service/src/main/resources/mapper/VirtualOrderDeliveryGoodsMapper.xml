@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.oms.mapper.VirtualOrderDeliveryGoodsMapper">
+    <insert id="batchSave">
+        INSERT INTO virtual_order_delivery_goods(id, delivery_id, combo_goods_code, goods_code, goods_name,
+        goods_img_url, goods_count, goods_original_price, goods_actual_price, package_original_price,
+        package_actual_price, total_amount, is_combo, type) VALUES
+        <foreach collection="collection" item="v" separator=",">
+            (#{v.id}, #{v.deliveryId}, #{v.comboGoodsCode}, #{v.goodsCode}, #{v.goodsName}, #{v.goodsImgUrl},
+            #{v.goodsCount}, #{v.goodsOriginalPrice}, #{v.goodsActualPrice}, #{v.packageOriginalPrice},
+            #{v.packageActualPrice}, #{v.totalAmount}, #{v.isCombo}, #{v.type})
+        </foreach>
+    </insert>
+
+
+    <select id="batchFindByDeliveryIds" resultType="com.milisong.oms.domain.VirtualOrderDeliveryGoods">
+        SELECT * FROM virtual_order_delivery_goods WHERE delivery_id IN
+        <foreach collection="collection" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mili.oss.mapper.OrderSetGoodsMapper">
+	<insert id="batchSave">
+		INSERT INTO order_set_goods(id, detail_set_no, order_no, couplet_no, user_id, user_name, user_phone, goods_code,
+		goods_name, goods_number, actual_pay_amount, is_combo,type, combo_goods_code, combo_goods_name, combo_goods_count,
+		is_deleted, create_by, update_by) VALUES
+		<foreach collection="collection" item="v" separator=",">
+			(#{v.id}, #{v.detailSetNo}, #{v.orderNo}, #{v.coupletNo}, #{v.userId}, #{v.userName}, #{v.userPhone},
+			#{v.goodsCode}, #{v.goodsName}, #{v.goodsNumber}, #{v.actualPayAmount}, #{v.isCombo},#{v.type}, #{v.comboGoodsCode},
+			#{v.comboGoodsName}, #{v.comboGoodsCount}, #{v.isDeleted}, #{v.createBy}, #{v.updateBy})
+		</foreach>
+	</insert>
+	<select id="selectCountCustomerOrderBySetNo" parameterType="java.util.List" resultType="java.util.Map">
+    select detail_set_no,count(DISTINCT couplet_no) coupletNo FROM order_set_goods
+    where detail_set_no in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+    GROUP BY detail_set_no
+  </select>
+  
+  	<select id="listAllStatusByOrderNo"
+		resultType="com.mili.oss.dto.result.OrderSetDetailStatusDto" parameterType="java.lang.String">
+		select d.status,d.distribution_status from order_set d left JOIN order_set_goods g on d.detail_set_no=g.detail_set_no
+		where d.is_deleted=0 and g.is_deleted=0 and g.order_no=#{orderNo} group by d.status,d.distribution_status order by  d.status,d.distribution_status
+	</select>
+  <select id="getCustomerOrderByOrderSetNo" parameterType="java.lang.String" resultType="com.mili.oss.dto.DistributionOrdersetInfoResult">
+	select a.detail_set_no,a.detail_set_no_description,b.couplet_no,b.goods_name,b.goods_number
+	from order_set a
+	LEFT JOIN order_set_goods b on a.detail_set_no = b.detail_set_no
+	where a.detail_set_no = #{detailSetNo}
+	order by detail_set_no asc
+	</select>
+</mapper>

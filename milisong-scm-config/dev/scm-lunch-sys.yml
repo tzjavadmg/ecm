@@ -1,0 +1,123 @@
+server:
+  port: 30000
+#management:
+## spring admin检测 默认开启
+#  health:
+#    defaults:
+#      enabled: false
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+  flyway:
+    enabled: false
+  cloud:
+    config:
+      override-none: true
+ecm:
+  shoponsale:
+    goods-url:  http://devmls-api.jshuii.com/v1/goods/set-onsale-goods
+    goodsStock-url: http://devmls-api.jshuii.com/v1/goods/set-onsale-stock
+    goodsStockList-url: http://devmls-api.jshuii.com/v1/goods/set-onsale-stock-list
+    buildingList-url: http://devmls-api.jshuii.com/v1/goods/building-list
+    orderList-url: http://devmls-api.jshuii.com/v1/order/get-order-details
+    goods-default-count:  100
+file:
+  oss:
+#  本地备份路径
+    localBackupPath: /data/files/images/milisong/
+#    oss上传路径
+    uploadUrl: http://devoss.jshuii.com/v1/uploadFileService/uploadByte
+#    查询路径
+    viewUrl: http://jshuii-dev.oss-cn-hangzhou.aliyuncs.com
+#the maximum size of single file (unit:MB)
+    maxSingleFileSize: 4MB
+#file format
+    format: txt,word,excel,jpg,png,gif,pdf
+    bizType: 5
+#导出路径
+  export:
+    path: /data/milisong/export/
+
+# LBS公共服务的地址
+lbs:
+  pointServiceUrl: http://devmls-lbs.jshuii.com/lbs/point
+# 顺丰配置
+#sf:
+#  dev-id: 1519574124
+#  key: 6af86257030181daea950bed8bd1fed1
+#  version: 17
+#  base-url: https://commit-openic.sf-express.com/open/api/external
+#  create-order-url: ${sf.base-url}/createorder?sign=
+#  rider-h5-view: ${sf.base-url}/riderh5view?sign=
+#  notify-miboles: 15921557120,17150313389,18116246668
+
+sf:
+  dev-id: 1519574124
+  key: 6af86257030181daea950bed8bd1fed1
+  version: 17
+  base-url: https://commit-openic.sf-express.com/open/api/external
+  create-order-url: ${sf.base-url}/createorder?sign=
+  rider-h5-view: ${sf.base-url}/riderh5view?sign=
+  notify-miboles: 15921557120,17150313389,18116246668
+
+# 压缩url
+url:
+  compress-url: http://api.weibo.com/2/short_url/shorten.json?source=2849184197&url_long={url}
+
+# sms通知
+#sms:
+#  send-url: http://testsms.jshuii.com/api/v1/MobileSendService/sendSms
+# sms通知
+sms:
+  sendUrl: http://testsms.jshuii.com/api/v1/MobileSendService/sendSms
+  
+# oms订单检查
+oms:
+  checkUrl: http://devmls-omsapiin.jshuii.com/v1/OrderService/getDeliveryNos
+  notifyUrl: http://devmls-omsapiin.jshuii.com/v1/order/repair-order-mq
+
+# 调用集单查询接口
+oss:
+  searchOrderSet: http://devml-oss.jshuii.com/orderset/page
+  searchCustomerOrder: http://devml-oss.jshuii.com/orderset/get-customer-order-by-set-no?setNo=
+  searchOrder: http://devml-oss.jshuii.com/order/page
+  seartchReserveGroupInfo: http://devml-oss.jshuii.com/order/page-reserve-group-list
+  orderSetInfo: http://devml-oss.jshuii.com/orderset/get-orderset-info?setNo=
+  orderCheck: http://devml-oss.jshuii.com/order/check
+  goodsCount: http://devml-oss.jshuii.com/order/goods-count
+#健康检查
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    redis:
+      enabled: true
+    rabbit:
+      enabled: true
+    diskspace:
+      enabled: true

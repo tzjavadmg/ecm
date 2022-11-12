@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <classPathEntry location="D:/maven-repo/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="autoDelimitKeywords" value="false"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="com.milisong.common.plugin.IngoreSetterAndGetterPlugin"/>
+        <!--<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>-->
+        <!--<plugin type="org.mybatis.generator.plugins.CachePlugin"/>-->
+
+        <commentGenerator type="com.milisong.common.plugin.MyCommentGenerator"/>
+
+        <jdbcConnection userId="milisong_oms" password="V93Qkh0IpRDx9Yx7aQd3" driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://dbtest.jshuii.com:3306/milisong_oms"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.milisong.oms.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper/base" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.milisong.oms.mapper.base" type="XMLMAPPER" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table schema="milisong_oms" tableName="order" domainObjectName="Order" mapperName="BaseOrderMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="order_delivery" domainObjectName="OrderDelivery" mapperName="BaseOrderDeliveryMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="order_delivery_goods" domainObjectName="OrderDeliveryGoods" mapperName="BaseOrderDeliveryGoodsMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="virtual_order" domainObjectName="VirtualOrder" mapperName="BaseVirtualOrderMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="virtual_order_delivery" domainObjectName="VirtualOrderDelivery" mapperName="BaseVirtualOrderDeliveryMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="virtual_order_delivery_goods" domainObjectName="VirtualOrderDeliveryGoods" mapperName="BaseVirtualOrderDeliveryGoodsMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="refund_order" domainObjectName="RefundOrder" mapperName="BaseRefundOrderMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="refund_order_detail" domainObjectName="RefundOrderDetail" mapperName="BaseRefundOrderDetailMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="order_payment_water" domainObjectName="OrderPaymentWater" mapperName="BaseOrderPaymentWaterMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="pay_time"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="refund_water" domainObjectName="RefundWater" mapperName="BaseRefundWaterMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="refund_time"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="goods_stock_water" domainObjectName="GoodsStockWater" mapperName="BaseGoodsStockWaterMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="timezone_capacity_water" domainObjectName="TimezoneCapacityWater" mapperName="BaseTimezoneCapacityWater" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="group_buy_order" domainObjectName="GroupBuyOrder" mapperName="BaseGroupBuyOrderMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="group_buy_order_delivery" domainObjectName="GroupBuyOrderDelivery" mapperName="BaseGroupBuyOrderDeliveryMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+
+        <table schema="milisong_oms" tableName="group_buy_order_delivery_goods" domainObjectName="GroupBuyOrderDeliveryGoods" mapperName="BaseGroupBuyOrderDeliveryGoodsMapper" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByPrimaryKey="true"
+               enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" delimitIdentifiers="true" delimitAllColumns="true">
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
+    </context>
+</generatorConfiguration>

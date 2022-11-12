@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/milisong-ucs.iml" filepath="$PROJECT_DIR$/.idea/milisong-ucs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/milisong-ucs-api/milisong-ucs-api.iml" filepath="$PROJECT_DIR$/milisong-ucs-api/milisong-ucs-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/milisong-ucs-sdk/milisong-ucs-sdk.iml" filepath="$PROJECT_DIR$/milisong-ucs-sdk/milisong-ucs-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/milisong-ucs-service/milisong-ucs-service.iml" filepath="$PROJECT_DIR$/milisong-ucs-service/milisong-ucs-service.iml" />
+    </modules>
+  </component>
+</project>

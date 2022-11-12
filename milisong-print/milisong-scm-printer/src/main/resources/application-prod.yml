@@ -1,0 +1,81 @@
+qrcode: 
+    message-url: http://mls-api.jshuii.com/v2/delivery/notice/
+
+shopservice:
+    shopId: ${shopId}
+    logUrl: https://mls-alog.jshuii.com/v1/alarm/consumLog
+
+printrule:
+  bf:
+    # 单品最大值
+    singleMax: 5
+    # 套餐最大值
+    packageMax: 1
+        
+spring:
+    rabbitmq:
+      addresses: mqssl.jshuii.com:5671
+      username: milisong-printeruser
+      password: 35OtG5XG9qkl1Po9XmfF
+      ssl:
+        enabled: true
+        key-store: file:/print-prod/client/printer01.keycert.p12
+        key-store-password:  Z9q7hp57O4yD0aBW
+        trust-store: file:/print-prod/rabbitstore
+        trust-store-password: MnKHB651RQr1jr1m
+    cloud:
+        stream:
+          # 设置默认的binder
+          default-binder: pos
+          binders:
+            pos:
+              type: rabbit
+              environment:
+                spring:
+                  rabbitmq:
+                    # 连接到scm的host和exchange
+                    virtual-host: milisong-pos
+            #早餐        
+            pos-breakfast:
+              type: rabbit
+              environment:
+                spring:
+                  rabbitmq:
+                    # 连接到scm的host和exchange
+                    virtual-host: milisong-pos-breakfast
+          bindings:
+            # ---------消息消费------------
+            # 订单消费 
+            pos_print_input:
+              binder: pos
+              destination: POS_ORDER_SET_STRAT_PRODUCE
+              group: ORDER_SET_PRINT_${shopId}
+             # 订单消费 早餐
+            pos_print_breakfast_input:
+              binder: pos-breakfast
+              destination: POS_ORDER_SET_STRAT_PRODUCE
+              group: ORDER_SET_PRINT_${shopId}
+          rabbit:
+              bindings:
+                # 消费者配置
+                pos_print_input:
+                  consumer:
+                    bindingRoutingKey: ${shopId}
+                    exchangeType: topic
+                    autoBindDlq: true
+                    republishToDlq: true
+                    deadLetterExchange: POS_ORDER_SET_STRAT_PRODUCE_PRINT_DLX
+                    deadLetterQueueName: POS_ORDER_SET_STRAT_PRODUCE_PRINT_DLX${shopId}
+                    deadLetterRoutingKey: ${shopId}
+                # 消费者配置 早餐
+                pos_print_breakfast_input:
+                  consumer:
+                    bindingRoutingKey: ${shopId}
+                    exchangeType: topic
+                    autoBindDlq: true
+                    republishToDlq: true
+                    deadLetterExchange: POS_ORDER_SET_STRAT_PRODUCE_PRINT_DLX
+                    deadLetterQueueName: POS_ORDER_SET_STRAT_PRODUCE_PRINT_DLX${shopId}
+                    deadLetterRoutingKey: ${shopId}
+        
+ 

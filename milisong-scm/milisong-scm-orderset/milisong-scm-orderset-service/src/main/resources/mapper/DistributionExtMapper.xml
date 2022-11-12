@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.orderset.mapper.DistributionExtMapper">
+   		<select id="selectByPage" parameterType="java.util.Map" resultType="com.milisong.scm.orderset.domain.Distribution">
+   		select
+   		DISTINCT a.delivery_date deliveryDate,a.distribution_no distributionNo,
+		a.distribution_description distributionDescription,
+		b.building_id buildingId,b.building_abbreviation buildingAbbreviation,
+		a.is_print_pick_list,a.is_print_distribution,a.orderset_sum from t_distribution a
+		LEFT JOIN t_distribution_orderset b on a.distribution_no = b.distribution_no
+		LEFT JOIN t_building c on c.id = b.building_id
+   		WHERE 
+   		a.is_deleted = 0
+   		<if test="shopId != null">
+   		and a.shop_id = #{shopId}
+   		</if>
+   		<if test="isPrintPickList != null">
+   		and a.is_print_pick_list = #{isPrintPickList}
+   		</if>
+   		<if test="isPrintDistribution != null">
+   		and a.is_print_distribution = #{isPrintDistribution}
+   		</if>
+   		<if test="deliveryDateStart != null and deliveryDateEnd != null">
+   		 and a.delivery_date &gt;= #{deliveryDateStart} and a.delivery_date &lt;= #{deliveryDateEnd}
+   		</if>
+   		order by -c.weight desc
+   		<if test="startRow != null and pageSize != null">
+ 		limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+		</if>
+   		</select>
+   		
+   		<select id="selectByCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+   		select count(1) from t_distribution a
+		LEFT JOIN t_distribution_orderset b on a.distribution_no = b.distribution_no
+		LEFT JOIN t_building c on c.id = b.building_id
+   		WHERE 
+   		a.is_deleted = 0
+   		<if test="shopId != null">
+   		and a.shop_id = #{shopId}
+   		</if>
+   		<if test="deliveryDateStart != null and deliveryDateEnd != null">
+   		 and a.delivery_date &gt;= #{deliveryDateStart} and a.delivery_date &lt;= #{deliveryDateEnd}
+   		</if>
+   		<if test="isPrintPickList != null">
+   		and a.is_print_pick_list = #{isPrintPickList}
+   		</if>
+   		<if test="isPrintDistribution">
+   		and a.is_print_distribution = #{isPrintDistribution}
+   		</if>
+   		</select>
+</mapper>

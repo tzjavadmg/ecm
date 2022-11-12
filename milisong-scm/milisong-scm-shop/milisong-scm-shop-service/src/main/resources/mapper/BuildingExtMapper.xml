@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.shop.mapper.BuildingExtMapper">
+
+	<!-- 统计楼宇数量 -->
+	<select id="getBuildingListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select
+			count(1)
+		from
+			t_building t
+		<include refid="QUERY_WHERE_SQL" />
+	</select>
+	
+	<!-- 查询楼宇信息 -->
+	<select id="getBuildingList" parameterType="java.util.Map" resultType="com.milisong.scm.shop.dto.building.BuildingDto">
+		select
+			<include refid="com.milisong.scm.shop.mapper.BuildingMapper.Base_Column_List" />
+		from
+			t_building t
+		<include refid="QUERY_WHERE_SQL" />
+		<if test="startRow != null">
+      		limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+    	</if>
+	</select>
+
+	<select id="selectPageByBuildingName" resultType="com.milisong.scm.shop.dto.building.BuildingDto" parameterType="com.milisong.scm.shop.param.BuildingParam">
+		select
+			<include refid="com.milisong.scm.shop.mapper.BuildingMapper.Base_Column_List" />
+		from
+			t_building
+		<where>
+			<if test="null != buildingName and buildingName != ''">
+				and (`name` like concat('%',#{buildingName},'%')
+				or abbreviation like concat('%',#{buildingName},'%'))
+			</if>
+			<if test="shopId != null">
+				and shop_id = #{shopId}
+			</if>
+			<if test="buildingId != null">
+				and id = #{buildingId}
+			</if>
+		</where>
+		<if test="startRow != null">
+			limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+		</if>
+	</select>
+	<select id="selectCountByBuildingName" parameterType="com.milisong.scm.shop.param.BuildingParam" resultType="java.lang.Long">
+		select count(id)
+		from t_building
+		<where>
+			<if test="null != buildingName and buildingName != ''">
+				and (`name` like concat('%',#{buildingName},'%')
+				or abbreviation like concat('%',#{buildingName},'%'))
+			</if>
+			<if test="shopId != null">
+				and shop_id = #{shopId}
+			</if>
+			<if test="buildingId != null">
+				and id = #{buildingId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectCountByWeight" parameterType="com.milisong.scm.shop.param.BuildingParam" resultType="java.lang.Long">
+		select count(id)
+		from t_building
+		<where>
+				and status = 9
+			<if test="shopId != null">
+				and shop_id = #{shopId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectPageByWeight" resultType="com.milisong.scm.shop.dto.building.BuildingDto" parameterType="com.milisong.scm.shop.param.BuildingParam">
+		select
+			<include refid="com.milisong.scm.shop.mapper.BuildingMapper.Base_Column_List" />
+		from
+			t_building
+		<where>
+				and status = 9
+			<if test="shopId != null">
+				and shop_id = #{shopId}
+			</if>
+		</where>
+		order by weight asc
+		<if test="startRow != null">
+			limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+		</if>
+	</select>
+	
+	<sql id="QUERY_WHERE_SQL">
+		<where>
+			<trim prefixOverrides=" and ">
+				<if test="buildingId != null">
+					and t.id = #{buildingId}
+				</if>
+				<if test="buildingIds != null">
+					and t.id in <foreach collection="buildingIds" item="buildingId" open="(" close=")" separator=",">
+						#{buildingId}
+					</foreach>
+				</if>
+				<if test="lat != null and lat != ''">
+					and t.lat = #{lat}
+				</if>
+				<if test="lon != null and lon != ''">
+					and t.lon = #{lon}
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<update id="updateBuildingById" parameterType="java.util.List">
+		update t_building 
+		set weight =
+		case id 
+		<foreach collection="list" item= "item">
+		when #{item.id} then #{item.weight}
+		</foreach>
+		else weight
+		end 
+		where id in 
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+				#{item.id}
+		</foreach>
+	</update>
+</mapper>

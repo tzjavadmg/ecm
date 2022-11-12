@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.milisong:milisong-ecm-wechat-api:1.7.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-ecm-wechat-api/1.7.0-SNAPSHOT/milisong-ecm-wechat-api-1.7.0-20181221.060527-83.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-ecm-wechat-api/1.7.0-SNAPSHOT/milisong-ecm-wechat-api-1.7.0-20181221.060527-83-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-ecm-wechat-api/1.7.0-SNAPSHOT/milisong-ecm-wechat-api-1.7.0-20181221.060527-83-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.stock.mapper.ShopOnsaleGoodsStockExtMapper">
+    <!-- 条件查询总数量 -->
+  <select id="getCountByCondition" parameterType="java.util.Map" resultType="java.lang.Integer">
+  select count(1) FROM t_shop_onsale_goods a
+  LEFT JOIN t_shop_onsale_goods_stock b on a.id = b.relation_id
+  <include refid="ONSALE_GOODS_STOCK_SQL"/>
+  </select>
+  
+   <select id="getNowListByCondition" parameterType="java.util.Map" resultType="com.milisong.scm.stock.dto.OnsaleGoodsStockDto" >
+	  SELECT
+		b.id,
+		b.sale_date as saleDate,
+		a.goods_code as goodsCode,
+		a.goods_name as goodsName,
+		a.shop_id as shopId
+	FROM
+		t_shop_onsale_goods a
+	LEFT JOIN t_shop_onsale_goods_stock b ON a.id = b.relation_id
+  <include refid="ONSALE_GOODS_STOCK_SQL"/>
+  </select>    
+  
+  <!-- 分页条件查询列表 -->
+  <select id="getListByCondition" parameterType="java.util.Map" resultType="com.milisong.scm.stock.dto.ShopOnsaleGoodsStockDto" >
+	  SELECT
+		b.id,
+		b.sale_date as saleDate,
+		a.goods_code as goodsCode,
+		a.goods_name as goodsName,
+		b.available_volume availableVolume
+	FROM
+		t_shop_onsale_goods a
+	LEFT JOIN t_shop_onsale_goods_stock b ON a.id = b.relation_id
+  <include refid="ONSALE_GOODS_STOCK_SQL"/>
+  <if test="startRow != null and pageSize != null">
+ 		limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</if>
+  </select>     
+  <sql id="ONSALE_GOODS_STOCK_SQL">
+	  <trim prefix=" where " prefixOverrides="and">
+	  a.is_deleted = 0 and b.is_deleted = 0 and a.status = 1
+	  <if test="startTime != null and startTime != ''">
+		    AND date_format(b.sale_date,'%Y-%m-%d') &gt;= str_to_date(#{startTime},'%Y-%m-%d')
+	  </if>
+	  <if test="endTime != null and endTime != ''">
+	       	AND date_format(b.sale_date,'%Y-%m-%d') &lt;= str_to_date(#{endTime},'%Y-%m-%d')
+	  </if>
+	  <if test="shopId != null">
+	  		AND a.shop_id =  #{shopId}	
+	  </if>
+	  </trim>
+  </sql> 
+  <!-- 批量新增 -->        
+    <insert id="insertList" parameterType="java.util.ArrayList">
+    insert into t_shop_onsale_goods_stock (id, relation_id, sale_date, 
+      available_volume, create_time, update_time
+      )
+    values 
+     <foreach collection="list" item="item"  separator=",">
+     (#{item.id,jdbcType=BIGINT}, #{item.relationId,jdbcType=BIGINT}, #{item.saleDate,jdbcType=DATE}, 
+      #{item.availableVolume,jdbcType=INTEGER},  now(), now()
+      )
+      </foreach>
+  </insert>
+  
+  <select id="getListRelationIdByNow" resultType="java.lang.Long" parameterType="java.util.Date">
+  	select relation_id from t_shop_onsale_goods_stock
+  	where sale_date = date_format(#{saleDate},'%Y-%m-%d')
+  </select>
+</mapper>

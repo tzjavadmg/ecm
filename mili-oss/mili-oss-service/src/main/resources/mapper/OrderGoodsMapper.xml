@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mili.oss.mapper.OrderGoodsMapper">
+    <select id="getOrderGoodsByOrderId" resultType="com.mili.oss.algorithm.model.GoodsModel">
+  	select id AS goodsId,order_id AS orderId,actual_pay_amount AS totalAmount,goods_count AS goodsCount from order_goods
+	where order_id = #{orderId}
+  	</select>
+
+    <select id="getGoodsModelsByMealAddrIdAndDeliveryTime" resultType="com.mili.oss.algorithm.model.GoodsModel">
+  	SELECT
+	t1.user_id as userId,t2.order_id as orderId,t2.id as goodsId,t2.actual_pay_amount as totalAmount,t2.goods_count as goodsCount
+FROM
+	`order` t1
+	LEFT JOIN order_goods t2 ON t1.id = t2.order_id
+
+	where  t1.delivery_start_date = #{deliveryBeginDate}
+		and t1.take_meals_addr_id = #{mealAddressId}
+		and t1.order_type= #{orderType}
+		and t1.orderset_process_status = 0
+		and t1.order_status = 2
+  	</select>
+
+	<select id="getReserveOrderGroupCount" parameterType="com.mili.oss.dto.param.OrderReserveSearchParamDto" resultType="java.lang.Long">
+		select count(1) from (
+		select
+		1
+		<include refid="getReserveOrderGroupSQL" />
+		) a
+	</select>
+
+	<select id="getReserveOrderGroupList" resultType="com.mili.oss.dto.OrderReserveSearchResultDto" parameterType="com.mili.oss.dto.param.OrderReserveSearchParamDto">
+		select
+		t.shop_id,
+		d.goods_code,
+		d.goods_name,
+		DATE_FORMAT(t.create_time,'%Y-%m-%d') as  reserveDate,
+		DATE_FORMAT(t.delivery_end_date,'%Y-%m-%d %H:%i:%s') as deliveryDate,
+		sum(d.goods_count) as number
+		<include refid="getReserveOrderGroupSQL" />
+		order by t.delivery_end_date asc
+		<if test="startRow != null">
+			limit #{startRow}, #{pageSize}
+		</if>
+	</select>
+
+	<select id="batchSearchByOrderNo" parameterType="java.util.List" resultType="com.mili.oss.domain.OrderGoods">
+		select
+		case g.is_combo
+		when 0 then g.order_no
+		when 1 then c.order_no
+		ELSE NULL END as orderNo,
+		case g.is_combo
+		when 0 then g.goods_count
+		when 1 then c.goods_count
+		ELSE NULL END as goodsCount,
+		case g.is_combo
+		when 0 then g.goods_name
+		when 1 then c.goods_name
+		ELSE NULL END as goodsName
+		from order_goods g
+		left join order_goods_combo c on g.order_id = c.order_id and g.is_combo = 1 and g.goods_code = c.combo_goods_code
+		where g.order_no in 
+		<foreach collection="list" index="index" separator="," item="item" open="(" close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<sql id="getReserveOrderGroupSQL">
+		from `order` t,order_goods d where t.id=d.order_id
+		<if test="reserveDate != null and reserveDate != ''">
+			and t.create_time &gt;= #{reserveDate}
+			and t.create_time &lt; DATE_ADD(#{reserveDate},INTERVAL 1 day)
+		</if>
+		<if test="deliveryDate != null and deliveryDate != ''">
+			and t.delivery_start_date &gt;= #{deliveryDate}
+			and t.delivery_start_date &lt; DATE_ADD(#{deliveryDate},INTERVAL 1 day)
+		</if>
+		<if test="shopId != null">
+			and t.shop_id=#{shopId}
+		</if>
+		and t.order_status not in(3,4)
+		group by t.shop_id,
+		d.goods_code,
+		d.goods_name,
+		DATE_FORMAT(t.create_time,'%Y-%m-%d'),
+		DATE_FORMAT(t.delivery_end_date,'%Y-%m-%d %H:%i:%s')
+	</sql>
+</mapper>

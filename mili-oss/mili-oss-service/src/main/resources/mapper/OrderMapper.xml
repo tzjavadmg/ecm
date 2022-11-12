@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mili.oss.mapper.OrderMapper">
+	<select id="getShopGoodsCount" resultType="com.mili.oss.dto.result.ShopGoodsCount">
+		SELECT
+		DATE_FORMAT( t1.delivery_start_date, '%Y-%m-%d' ) AS deliveryDate,
+	(case when t2.is_combo = 0 then t2.goods_code  else t3.goods_code end) as goodsCode,
+	sum(case when t2.is_combo = 0 then t2.goods_count  else t3.goods_count end) as goodsCount
+		FROM
+			`order` t1
+			INNER JOIN `order_goods` t2 ON t1.id = t2.order_id LEFT JOIN order_goods_combo t3 on t2.goods_code=t3.combo_goods_code and t3.order_id = t1.id
+		WHERE
+			t1.shop_code = #{shopCode}
+			AND t1.delivery_company_id = #{companyId}
+			AND DATE_FORMAT( t1.delivery_start_date, '%Y-%m-%d' ) > DATE_SUB( curdate( ), INTERVAL 0 DAY )
+			AND t1.order_status = 2
+		GROUP BY
+			DATE_FORMAT( t1.delivery_start_date, '%Y-%m-%d' ),
+			goodsCode
+
+	</select>
+	<select id="selectOrderGoodsCountCompany"
+			parameterType="com.mili.oss.dto.param.OrderGoodsCompanySqlParam"
+			resultType="java.lang.Integer">
+		SELECT sum(b.a) from (
+			select IFNULL(sum(d.goods_count),0) a from 
+			`order` t left JOIN  order_goods d on t.id=d.order_id where
+			1 =1 and
+			d.goods_code = #{goodsCode}
+			and
+			t.delivery_start_date&gt;=#{beginDeliveryDate}
+			<if test="endDeliveryDate != null">
+			and t.delivery_start_date&lt;#{endDeliveryDate}
+			</if>
+			<if test="companyId != null">
+			and delivery_company_id in
+			  <foreach close=")" collection="companyId" item="item" open="(" separator=",">
+			  #{item}
+			  </foreach>
+			</if>
+			<if test="orderType != null">
+			and t.order_type = #{orderType}
+			</if>
+		<if test="orderType != null">
+			and t.shop_id = #{shopId}
+		</if>
+			and t.order_status != 4
+			and t.order_status != 3
+		UNION ALL
+			select IFNULL(sum(c.goods_count),0) a from 
+			`order` t  
+			LEFT JOIN order_goods_combo c on t.id =c.order_id	
+			where
+			1 = 1
+			and
+			c.goods_code = #{goodsCode}
+			and
+			t.delivery_start_date&gt;=#{beginDeliveryDate}
+			<if test="endDeliveryDate != null">
+			and t.delivery_start_date&lt;#{endDeliveryDate}
+			</if>
+			<if test="companyId != null">
+			and delivery_company_id in 
+			  <foreach close=")" collection="companyId" item="item" open="(" separator=",">
+			  #{item}
+			  </foreach>
+			</if>
+			<if test="orderType != null">
+			and t.order_type = #{orderType}
+			</if>
+			<if test="shopId != null">
+			and t.shop_id = #{shopId}
+			</if>
+			and t.order_status != 4
+			and t.order_status != 3
+			) b
+		</select>
+
+
+ 	<select id="groupByUserId" resultType="com.mili.oss.dto.begin.UserAmount" >
+ 		select user_id AS userId,SUM(actual_pay_amount) AS totalAmount from `order`
+		where shop_id = #{shopId}
+		and take_meals_addr_id = #{mealAddressId}
+		and delivery_start_date = #{deliveryBeginDate}
+		and orderset_process_status = 0
+		and order_status = 2
+		GROUP BY user_id
+ 	</select>
+ 	
+ 	<select id="getOrderByUserIdAndTime" resultType="com.mili.oss.algorithm.model.OrderModel">
+ 	select user_id AS userId,id AS orderId,actual_pay_amount AS totalAmount from `order`
+		where shop_id = #{shopId}
+		and take_meals_addr_id = #{mealAddressId}
+		and delivery_start_date = #{deliveryBeginDate}
+		and orderset_process_status = 0
+		and user_id = #{userId}
+		and order_status = 2
+ 	</select>
+
+	<select id="selectOrderPage" resultType="com.mili.oss.dto.OrderSearchResult" parameterType="com.mili.oss.dto.param.OrderSearchParam">
+		select o.order_no,d.id,d.detail_set_no_description as description,date_format(o.complete_time,'%m-%d %H:%i') as arriveTime,o.shop_id,
+		date_format(o.delivery_end_date, '%m-%d %H:%i') as expectArriveTime,date_format(o.create_time, '%m-%d %H:%i') as orderDate,g.couplet_no,
+		concat(o.real_name,'_',o.mobile_no) as userInfo, o.delivery_address,o.actual_pay_amount,o.delivery_company_id as companyId,o.delivery_status as deliveryStatus,o.take_meals_addr_name as mealAddress
+		from `order` o
+		left join mtm_order_orderset m on o.id = m.order_id
+		LEFT JOIN order_set d on m.order_set_detail_id = d.id
+		LEFT JOIN order_set_goods g on d.detail_set_no = g.detail_set_no and o.order_no = g.order_no
+		where o.order_status not in(3,4)
+		<if test="null != orderType" >
+			and o.order_type=#{orderType}
+		</if>
+		<if test="null != shopId and shopId != ''">
+			and o.shop_id in (${shopId})
+		</if>
+		<if test="null != deliveryStartDate and deliveryStartDate != ''" >
+			and date(o.delivery_start_date) &gt;= #{deliveryStartDate}
+		</if>
+		<if test="null != deliveryEndDate and deliveryEndDate != ''">
+			and date(o.delivery_end_date) &lt;= #{deliveryEndDate}
+		</if>
+		<if test="null != userParam and userParam != ''" >
+			and (o.real_name like concat('%',#{userParam},'%') or o.mobile_no like concat('%',#{userParam},'%'))
+		</if>
+		<if test="null != deliveryStatus">
+			and o.delivery_status = #{deliveryStatus}
+		</if>
+		<if test="null != orderStartDate and orderStartDate != ''">
+			and date(o.create_time) &gt;= #{orderStartDate}
+		</if>
+		<if test="null != orderEndDate and orderEndDate != ''">
+			and date(o.create_time) &lt;= #{orderEndDate}
+		</if>
+		group by o.order_no,d.detail_set_no
+		order by o.delivery_end_date,d.detail_set_no_description,o.create_time
+		<if test="startRow != null and pageSize != null">
+			limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="selectOrderCount" parameterType="com.mili.oss.dto.param.OrderSearchParam" resultType="java.lang.Long">
+		select count(*) from
+		(
+			select count(o.order_no)
+			from `order` o
+			left join mtm_order_orderset m on o.id = m.order_id
+			LEFT JOIN order_set d on m.order_set_detail_id = d.id
+			LEFT JOIN order_set_goods g on d.detail_set_no = g.detail_set_no and o.order_no = g.order_no
+			where o.order_status not in(3,4)
+			and o.order_type=#{orderType}
+			<if test="null != shopId and shopId != ''">
+				and o.shop_id in (${shopId})
+			</if>
+			<if test="null != deliveryStartDate and deliveryStartDate != ''" >
+				and date(o.delivery_start_date) &gt;= #{deliveryStartDate}
+			</if>
+			<if test="null != deliveryEndDate and deliveryEndDate != ''">
+				and date(o.delivery_end_date) &lt;= #{deliveryEndDate}
+			</if>
+			<if test="null != userParam and userParam != ''" >
+				and (o.real_name like concat('%',#{userParam},'%') or o.mobile_no like concat('%',#{userParam},'%'))
+			</if>
+			<if test="null != deliveryStatus">
+				and o.delivery_status = #{deliveryStatus}
+			</if>
+			<if test="null != orderStartDate and orderStartDate != ''">
+				and date(o.create_time) &gt;= #{orderStartDate}
+			</if>
+			<if test="null != orderEndDate and orderEndDate != ''">
+				and date(o.create_time) &lt;= #{orderEndDate}
+			</if>
+			group by o.order_no,d.detail_set_no
+		) a
+	</select>
+	
+	<select id="selectOrderPagePos" parameterType="com.mili.oss.dto.param.OrderSearchParamPos" resultType="com.mili.oss.dto.OrderSearchResultPos">
+        select o.order_no,d.id,d.detail_set_no_description as description,date_format(o.complete_time,'%m-%d %H:%i') as arriveTime,
+		date_format(o.delivery_end_date, '%m-%d %H:%i') as expectArriveTime,date(o.delivery_start_date) as deliveryDate,g.couplet_no,
+		concat(o.real_name,'_',o.mobile_no) as userInfo, o.delivery_company as company,o.delivery_status as deliveryStatus,o.take_meals_addr_name as mealAddress,
+		o.stock_status as stockStatus,o.order_type as orderType,o.shop_code as shopCode
+		from `order` o
+        left join order_goods og on og.order_id = o.id
+        left join  order_goods_combo oc on oc.order_id = o.id
+		left join mtm_order_orderset m on o.id = m.order_id
+		LEFT JOIN order_set d on m.order_set_detail_id = d.id
+		LEFT JOIN order_set_goods g on d.detail_set_no = g.detail_set_no and o.order_no = g.order_no
+		<include refid="orderSearchPos" />
+		order by o.delivery_end_date,d.detail_set_no_description,o.create_time
+		<if test="startRow != null and pageSize != null">
+			limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="selectOrderCountPos" parameterType="com.mili.oss.dto.param.OrderSearchParamPos" resultType="java.lang.Long">
+		select count(*) from
+		(
+		select count(o.order_no)
+		from `order` o
+        left join order_goods og on og.order_id = o.id
+        left join  order_goods_combo oc on oc.order_id = o.id
+		left join mtm_order_orderset m on o.id = m.order_id
+		LEFT JOIN order_set d on m.order_set_detail_id = d.id
+		LEFT JOIN order_set_goods g on d.detail_set_no = g.detail_set_no and o.order_no = g.order_no
+		<include refid="orderSearchPos" />
+		) a
+	</select>
+	
+	<update id="batchUpdateStockStatus" parameterType="java.lang.String">
+		update `order` set stock_status = 1
+		where order_no in
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<sql id="orderSearchPos">
+		where o.order_status not in(3,4)
+		<if test="null != stockStatus" >
+			and o.stock_status = #{stockStatus}
+		</if>
+		<if test="null != orderType" >
+			and o.order_type=#{orderType}
+		</if>
+		<if test="null != shopId and shopId != ''">
+			and o.shop_id in (${shopId})
+		</if>
+		<if test="null != deliveryDate and deliveryDate != ''" >
+			and date(o.delivery_start_date) = #{deliveryDate}
+		</if>
+		<if test="null != user and user != ''" >
+			and (o.real_name like concat('%',#{user},'%') or o.mobile_no like concat('%',#{user}))
+		</if>
+		<if test="null != deliveryStatus">
+			and o.delivery_status = #{deliveryStatus}
+		</if>
+		<if test="null != coupletNo and coupletNo.size >0">
+			and g.couplet_no in
+            <foreach collection="coupletNo" item="item" open="(" close=")" separator="," index="index">
+              #{item}
+            </foreach>
+		</if>
+		<if test="null != description and description != ''">
+			and d.detail_set_no_description = #{description}
+		</if>
+		<if test="null != descriptionList and descriptionList.size > 0">
+			and d.detail_set_no_description in
+			<foreach collection="descriptionList" item="item" open="(" close=")" separator="," index="index">
+				#{item}
+			</foreach>
+		</if>
+		<if test="null != goods and goods != ''" >
+			and (og.goods_name = #{goods} or oc.goods_name = #{goods})
+		</if>
+		group by o.order_no,d.detail_set_no
+	</sql>
+	
+	<update id="updateOrderShop" >
+		update `order` set shop_id = #{shopId},shop_code = #{shopCode}
+		where delivery_company_id = #{companyId}
+		and delivery_start_date &gt;= DATE_ADD(date(now()),INTERVAL 1 day)
+	</update>
+</mapper>

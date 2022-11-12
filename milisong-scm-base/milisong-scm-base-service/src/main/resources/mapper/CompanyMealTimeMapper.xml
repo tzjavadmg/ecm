@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.base.mapper.CompanyMealTimeMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.scm.base.domain.CompanyMealTime">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="delivery_time_begin" jdbcType="TIME" property="deliveryTimeBegin" />
+    <result column="delivery_time_end" jdbcType="TIME" property="deliveryTimeEnd" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="business_line" jdbcType="TINYINT" property="businessLine" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `id`, `code`, `company_id`, `delivery_time_begin`, `delivery_time_end`, `is_deleted`, 
+    `create_by`, `create_time`, `update_by`, `update_time`, `business_line`
+  </sql>
+  <select id="selectByExample" parameterType="com.milisong.scm.base.domain.CompanyMealTimeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from `company_meal_time`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `company_meal_time`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `company_meal_time`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.milisong.scm.base.domain.CompanyMealTimeExample">
+    delete from `company_meal_time`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.milisong.scm.base.domain.CompanyMealTime">
+    insert into `company_meal_time` (`id`, `code`, `company_id`, 
+      `delivery_time_begin`, `delivery_time_end`, `is_deleted`, 
+      `create_by`, `create_time`, `update_by`, 
+      `update_time`, `business_line`)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=INTEGER}, #{companyId,jdbcType=BIGINT}, 
+      #{deliveryTimeBegin,jdbcType=TIME}, #{deliveryTimeEnd,jdbcType=TIME}, #{isDeleted,jdbcType=BIT}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{businessLine,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.scm.base.domain.CompanyMealTime">
+    insert into `company_meal_time`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="code != null">
+        `code`,
+      </if>
+      <if test="companyId != null">
+        `company_id`,
+      </if>
+      <if test="deliveryTimeBegin != null">
+        `delivery_time_begin`,
+      </if>
+      <if test="deliveryTimeEnd != null">
+        `delivery_time_end`,
+      </if>
+      <if test="isDeleted != null">
+        `is_deleted`,
+      </if>
+      <if test="createBy != null">
+        `create_by`,
+      </if>
+      <if test="createTime != null">
+        `create_time`,
+      </if>
+      <if test="updateBy != null">
+        `update_by`,
+      </if>
+      <if test="updateTime != null">
+        `update_time`,
+      </if>
+      <if test="businessLine != null">
+        `business_line`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryTimeBegin != null">
+        #{deliveryTimeBegin,jdbcType=TIME},
+      </if>
+      <if test="deliveryTimeEnd != null">
+        #{deliveryTimeEnd,jdbcType=TIME},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessLine != null">
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `company_meal_time` (`id`, `code`, `company_id`, 
+      `delivery_time_begin`, `delivery_time_end`, 
+      `is_deleted`, `create_by`, `create_time`, 
+      `update_by`, `update_time`, `business_line`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.code,jdbcType=INTEGER}, #{item.companyId,jdbcType=BIGINT}, 
+        #{item.deliveryTimeBegin,jdbcType=TIME}, #{item.deliveryTimeEnd,jdbcType=TIME}, 
+        #{item.isDeleted,jdbcType=BIT}, #{item.createBy,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.updateBy,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP}, #{item.businessLine,jdbcType=TINYINT}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `company_meal_time`
+    (`id`, `code`, `company_id`, `delivery_time_begin`, `delivery_time_end`, `is_deleted`, 
+      `create_by`, `create_time`, `update_by`, `update_time`, `business_line`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.code != null">
+          #{item.code,jdbcType=INTEGER},
+        </if>
+        <if test="item.code == null">
+          NULL,
+        </if>
+        <if test="item.companyId != null">
+          #{item.companyId,jdbcType=BIGINT},
+        </if>
+        <if test="item.companyId == null">
+          NULL,
+        </if>
+        <if test="item.deliveryTimeBegin != null">
+          #{item.deliveryTimeBegin,jdbcType=TIME},
+        </if>
+        <if test="item.deliveryTimeBegin == null">
+          NULL,
+        </if>
+        <if test="item.deliveryTimeEnd != null">
+          #{item.deliveryTimeEnd,jdbcType=TIME},
+        </if>
+        <if test="item.deliveryTimeEnd == null">
+          NULL,
+        </if>
+        <if test="item.isDeleted != null">
+          #{item.isDeleted,jdbcType=BIT},
+        </if>
+        <if test="item.isDeleted == null">
+          NULL,
+        </if>
+        <if test="item.createBy != null">
+          #{item.createBy,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createBy == null">
+          NULL,
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.createTime == null">
+          NULL,
+        </if>
+        <if test="item.updateBy != null">
+          #{item.updateBy,jdbcType=VARCHAR},
+        </if>
+        <if test="item.updateBy == null">
+          NULL,
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime == null">
+          NULL,
+        </if>
+        <if test="item.businessLine != null">
+          #{item.businessLine,jdbcType=TINYINT},
+        </if>
+        <if test="item.businessLine == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <select id="countByExample" parameterType="com.milisong.scm.base.domain.CompanyMealTimeExample" resultType="java.lang.Long">
+    select count(*) from `company_meal_time`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `company_meal_time`
+    <set>
+      <if test="record.id != null">
+        `id` = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null">
+        `code` = #{record.code,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyId != null">
+        `company_id` = #{record.companyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.deliveryTimeBegin != null">
+        `delivery_time_begin` = #{record.deliveryTimeBegin,jdbcType=TIME},
+      </if>
+      <if test="record.deliveryTimeEnd != null">
+        `delivery_time_end` = #{record.deliveryTimeEnd,jdbcType=TIME},
+      </if>
+      <if test="record.isDeleted != null">
+        `is_deleted` = #{record.isDeleted,jdbcType=BIT},
+      </if>
+      <if test="record.createBy != null">
+        `create_by` = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        `create_time` = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        `update_by` = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        `update_time` = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessLine != null">
+        `business_line` = #{record.businessLine,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `company_meal_time`
+    set `id` = #{record.id,jdbcType=BIGINT},
+      `code` = #{record.code,jdbcType=INTEGER},
+      `company_id` = #{record.companyId,jdbcType=BIGINT},
+      `delivery_time_begin` = #{record.deliveryTimeBegin,jdbcType=TIME},
+      `delivery_time_end` = #{record.deliveryTimeEnd,jdbcType=TIME},
+      `is_deleted` = #{record.isDeleted,jdbcType=BIT},
+      `create_by` = #{record.createBy,jdbcType=VARCHAR},
+      `create_time` = #{record.createTime,jdbcType=TIMESTAMP},
+      `update_by` = #{record.updateBy,jdbcType=VARCHAR},
+      `update_time` = #{record.updateTime,jdbcType=TIMESTAMP},
+      `business_line` = #{record.businessLine,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.scm.base.domain.CompanyMealTime">
+    update `company_meal_time`
+    <set>
+      <if test="code != null">
+        `code` = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        `company_id` = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryTimeBegin != null">
+        `delivery_time_begin` = #{deliveryTimeBegin,jdbcType=TIME},
+      </if>
+      <if test="deliveryTimeEnd != null">
+        `delivery_time_end` = #{deliveryTimeEnd,jdbcType=TIME},
+      </if>
+      <if test="isDeleted != null">
+        `is_deleted` = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        `create_by` = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        `update_by` = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessLine != null">
+        `business_line` = #{businessLine,jdbcType=TINYINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.scm.base.domain.CompanyMealTime">
+    update `company_meal_time`
+    set `code` = #{code,jdbcType=INTEGER},
+      `company_id` = #{companyId,jdbcType=BIGINT},
+      `delivery_time_begin` = #{deliveryTimeBegin,jdbcType=TIME},
+      `delivery_time_end` = #{deliveryTimeEnd,jdbcType=TIME},
+      `is_deleted` = #{isDeleted,jdbcType=BIT},
+      `create_by` = #{createBy,jdbcType=VARCHAR},
+      `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      `update_by` = #{updateBy,jdbcType=VARCHAR},
+      `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      `business_line` = #{businessLine,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `company_meal_time`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.code}
+        </foreach>
+      </trim>
+      <trim prefix="companyId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.companyId}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimeBegin =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryTimeBegin}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimeEnd =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryTimeEnd}
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.isDeleted}
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createBy}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateBy}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+      <trim prefix="businessLine =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.businessLine}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `company_meal_time`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.code != null ">
+            when  #{item.id} then #{item.code}
+          </if>
+          <if test="item.code == null ">
+            when  #{item.id} then `company_meal_time`.`code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="companyId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.companyId != null ">
+            when  #{item.id} then #{item.companyId}
+          </if>
+          <if test="item.companyId == null ">
+            when  #{item.id} then `company_meal_time`.`company_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimeBegin =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryTimeBegin != null ">
+            when  #{item.id} then #{item.deliveryTimeBegin}
+          </if>
+          <if test="item.deliveryTimeBegin == null ">
+            when  #{item.id} then `company_meal_time`.`delivery_time_begin`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimeEnd =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryTimeEnd != null ">
+            when  #{item.id} then #{item.deliveryTimeEnd}
+          </if>
+          <if test="item.deliveryTimeEnd == null ">
+            when  #{item.id} then `company_meal_time`.`delivery_time_end`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.isDeleted != null ">
+            when  #{item.id} then #{item.isDeleted}
+          </if>
+          <if test="item.isDeleted == null ">
+            when  #{item.id} then `company_meal_time`.`is_deleted`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.createBy != null ">
+            when  #{item.id} then #{item.createBy}
+          </if>
+          <if test="item.createBy == null ">
+            when  #{item.id} then `company_meal_time`.`create_by`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then `company_meal_time`.`create_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.updateBy != null ">
+            when  #{item.id} then #{item.updateBy}
+          </if>
+          <if test="item.updateBy == null ">
+            when  #{item.id} then `company_meal_time`.`update_by`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then `company_meal_time`.`update_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="businessLine =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.businessLine != null ">
+            when  #{item.id} then #{item.businessLine}
+          </if>
+          <if test="item.businessLine == null ">
+            when  #{item.id} then `company_meal_time`.`business_line`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByExample" parameterType="map">
+    update `company_meal_time`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.code}
+        </foreach>
+      </trim>
+      <trim prefix="companyId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.companyId}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimeBegin =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryTimeBegin}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimeEnd =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryTimeEnd}
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.isDeleted}
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createBy}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateBy}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+      <trim prefix="businessLine =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.businessLine}
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBatchByExampleSelective" parameterType="map">
+    update `company_meal_time`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.code != null ">
+            when  #{item.id} then #{item.code}
+          </if>
+          <if test="item.code == null ">
+            when  #{item.id} then `company_meal_time`.`code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="companyId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.companyId != null ">
+            when  #{item.id} then #{item.companyId}
+          </if>
+          <if test="item.companyId == null ">
+            when  #{item.id} then `company_meal_time`.`company_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimeBegin =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.deliveryTimeBegin != null ">
+            when  #{item.id} then #{item.deliveryTimeBegin}
+          </if>
+          <if test="item.deliveryTimeBegin == null ">
+            when  #{item.id} then `company_meal_time`.`delivery_time_begin`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimeEnd =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.deliveryTimeEnd != null ">
+            when  #{item.id} then #{item.deliveryTimeEnd}
+          </if>
+          <if test="item.deliveryTimeEnd == null ">
+            when  #{item.id} then `company_meal_time`.`delivery_time_end`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.isDeleted != null ">
+            when  #{item.id} then #{item.isDeleted}
+          </if>
+          <if test="item.isDeleted == null ">
+            when  #{item.id} then `company_meal_time`.`is_deleted`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.createBy != null ">
+            when  #{item.id} then #{item.createBy}
+          </if>
+          <if test="item.createBy == null ">
+            when  #{item.id} then `company_meal_time`.`create_by`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then `company_meal_time`.`create_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.updateBy != null ">
+            when  #{item.id} then #{item.updateBy}
+          </if>
+          <if test="item.updateBy == null ">
+            when  #{item.id} then `company_meal_time`.`update_by`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then `company_meal_time`.`update_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="businessLine =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.businessLine != null ">
+            when  #{item.id} then #{item.businessLine}
+          </if>
+          <if test="item.businessLine == null ">
+            when  #{item.id} then `company_meal_time`.`business_line`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

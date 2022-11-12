@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mili.oss.mapper.base.BaseOrderToOrderSetMapper">
+  <resultMap id="BaseResultMap" type="com.mili.oss.domain.OrderToOrderSet">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_set_detail_id" jdbcType="BIGINT" property="orderSetDetailId" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `id`, `order_set_detail_id`, `order_id`
+  </sql>
+  <select id="selectByExample" parameterType="com.mili.oss.domain.OrderToOrderSetExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from `mtm_order_orderset`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `mtm_order_orderset`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByExample" parameterType="com.mili.oss.domain.OrderToOrderSetExample">
+    delete from `mtm_order_orderset`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mili.oss.domain.OrderToOrderSet">
+    insert into `mtm_order_orderset` (`id`, `order_set_detail_id`, `order_id`
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderSetDetailId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mili.oss.domain.OrderToOrderSet">
+    insert into `mtm_order_orderset`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderSetDetailId != null">
+        `order_set_detail_id`,
+      </if>
+      <if test="orderId != null">
+        `order_id`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderSetDetailId != null">
+        #{orderSetDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `mtm_order_orderset` (`id`, `order_set_detail_id`, `order_id`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderSetDetailId,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `mtm_order_orderset`
+    (`id`, `order_set_detail_id`, `order_id`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderSetDetailId != null">
+          #{item.orderSetDetailId,jdbcType=BIGINT},
+        </if>
+        <if test="item.orderSetDetailId == null">
+          NULL,
+        </if>
+        <if test="item.orderId != null">
+          #{item.orderId,jdbcType=BIGINT},
+        </if>
+        <if test="item.orderId == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <select id="countByExample" parameterType="com.mili.oss.domain.OrderToOrderSetExample" resultType="java.lang.Long">
+    select count(*) from `mtm_order_orderset`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `mtm_order_orderset`
+    <set>
+      <if test="record.id != null">
+        `id` = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderSetDetailId != null">
+        `order_set_detail_id` = #{record.orderSetDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null">
+        `order_id` = #{record.orderId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `mtm_order_orderset`
+    set `id` = #{record.id,jdbcType=BIGINT},
+      `order_set_detail_id` = #{record.orderSetDetailId,jdbcType=BIGINT},
+      `order_id` = #{record.orderId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mili.oss.domain.OrderToOrderSet">
+    update `mtm_order_orderset`
+    <set>
+      <if test="orderSetDetailId != null">
+        `order_set_detail_id` = #{orderSetDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        `order_id` = #{orderId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mili.oss.domain.OrderToOrderSet">
+    update `mtm_order_orderset`
+    set `order_set_detail_id` = #{orderSetDetailId,jdbcType=BIGINT},
+      `order_id` = #{orderId,jdbcType=BIGINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `mtm_order_orderset`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderSetDetailId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderSetDetailId}
+        </foreach>
+      </trim>
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderId}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `mtm_order_orderset`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderSetDetailId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderSetDetailId != null ">
+            when  #{item.id} then #{item.orderSetDetailId}
+          </if>
+          <if test="item.orderSetDetailId == null ">
+            when  #{item.id} then `mtm_order_orderset`.`order_set_detail_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderId != null ">
+            when  #{item.id} then #{item.orderId}
+          </if>
+          <if test="item.orderId == null ">
+            when  #{item.id} then `mtm_order_orderset`.`order_id`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByExample" parameterType="map">
+    update `mtm_order_orderset`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderSetDetailId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderSetDetailId}
+        </foreach>
+      </trim>
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderId}
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBatchByExampleSelective" parameterType="map">
+    update `mtm_order_orderset`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderSetDetailId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.orderSetDetailId != null ">
+            when  #{item.id} then #{item.orderSetDetailId}
+          </if>
+          <if test="item.orderSetDetailId == null ">
+            when  #{item.id} then `mtm_order_orderset`.`order_set_detail_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.orderId != null ">
+            when  #{item.id} then #{item.orderId}
+          </if>
+          <if test="item.orderId == null ">
+            when  #{item.id} then `mtm_order_orderset`.`order_id`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,6 @@
+dq: 
+  delayUrl: http://testmls-dqsapi.jshuii.com/v1/mq/send-delay-message
+  expireTimeUrl: http://testmls-dqsapi.jshuii.com/v1/mq/get-expire-time
+  pauseUrl: http://testmls-dqsapi.jshuii.com/v1/mq/pause-delay-message
+  cancelUrl:  http://testmls-dqsapi.jshuii.com/v1/mq/cancel-message
+  callbackUrl: http://testmls-posapiin.jshuii.com/callback/dq

@@ -1,0 +1,17 @@
+spring:
+  datasource:
+
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-bp1n8wbp09b4n7w2v.mysql.rds.aliyuncs.com:3306/milisong_ecm?characterEncoding=utf-8&amp;useOldAliasMetadataBehavior=true&amp;autoReconnectForPools=true;useSSL=false;
+    username: milisong_ecm_user
+    password: PgDQZKAG031RizlE3Rb/XCyJ4C2PeKKVO7LvWTHs68I=
+    type: com.farmland.core.db.SecureDruidDataSource
+
+#数据库主键生产策略
+idworker:
+  workerId: 0
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml,mapper/base/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!-- <classPathEntry location="C:\File_work\other\mysql-connector-java-5.1.7-bin.jar" /> -->
+    <classPathEntry location="C:/mysql-connector-java-5.1.7-bin.jar" />
+    <context id="milisong-scm-goods" targetRuntime="MyBatis3">
+<!--     <context id="default" targetRuntime="MyBatis3Simple"> -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="autoDelimitKeywords" value="false"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+    
+        <plugin type="com.milisong.ecm.common.plugin.IngoreSetterAndGetterPlugin"/>
+        <commentGenerator type="com.milisong.ecm.common.plugin.MyCommentGenerator"/>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://dbtest.jshuii.com:3306/milisong_scm"
+                        userId="milisong_scm" password="JZ0eujf8Tn5k7ryWS54x">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.milisong.scm.goods.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.milisong.scm.goods.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        
+            <table tableName="t_goods" domainObjectName="Goods" mapperName = "BaseGoodsMapper" enableCountByExample="true" enableUpdateByExample="true" 
+       			enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" delimitIdentifiers="true" delimitAllColumns="true"></table>
+       			
+   <!--    	<table tableName="goods_lunch" domainObjectName="GoodsLunch" mapperName = "GoodsLunchMapper" enableCountByExample="true" enableUpdateByExample="true" 
+       			enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true" delimitIdentifiers="true" delimitAllColumns="true"></table>
+       
+
+      <table tableName="t_goods_catalog" domainObjectName="GoodsCatalog" mapperName = "BaseGoodsCatalogMapper" enableCountByExample="true" enableUpdateByExample="true" 
+       			enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+      	<table tableName="goods_schedule_lunch" domainObjectName="GoodsScheduleLunch" mapperName = "GoodsScheduleLunchMapper" enableCountByExample="true" enableUpdateByExample="true" 
+       			enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+   
+      
+      	<table tableName="goods_schedule_detail_lunch" domainObjectName="GoodsScheduleDetailLunch" mapperName = "GoodsScheduleDetailLunchMapper" enableCountByExample="true" enableUpdateByExample="true" 
+       			enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+      
+     -->
+      
+      
+      
+ <!--      	<table tableName="goods_salable_quantity_lunch" domainObjectName="GoodsSalableQuantityLunch" mapperName = "GoodsSalableQuantityLunchMapper" enableCountByExample="true" enableUpdateByExample="true" 
+       			enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+    
+     -->
+    
+    
+    </context>
+</generatorConfiguration>

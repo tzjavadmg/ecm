@@ -1,0 +1,183 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        # ---------消息消费------------
+        # 订单消费
+        order_input:
+          binder: oms
+          destination: OMS_ORDER
+          group: scm_breakfast_order_set
+        # 操作日志消费
+        operation_log_input:
+          binder: scm
+          destination: SCM_OPERATION_LOG
+          group: scm_group
+        # 订单退款
+        order_refund_input:
+          binder: oms
+          destination: OMS_REFUND
+          group: scm_breakfast_group
+        # 顺丰订单状态变更
+#        sf_status_change_input:
+#          binder: scm
+#          destination: SCM_SF_STATUS_CHANGE
+#          group: orderset_group
+#        sf_order_create_input:
+#          binder: scm
+#          destination: SCM_SF_ORDER_CREATE
+#          group: orderset_group
+        config_input:
+          binder: scm
+          destination: SCM_CONFIG_PROPERTY
+          group: scm_group
+        config_intercept_input:
+          binder: scm
+          destination: SCM_CONFIG_INTERCEPT
+          group: scm_group
+        # 消费配置新增门店的MQ信息
+        shop_create_input:
+          binder: scm_lunch
+          destination: SCM_SHOP_CREATE
+          group: scm_breakfast_group
+
+        #-----------消息生产-----------
+        # 集单中订单状态变更
+        order_set_order_status_change_output:
+          binder: oms
+          destination: OMS_ORDER_STATUS
+        # 操作日志
+        operation_log_output:
+          binder: scm
+          destination: SCM_OPERATION_LOG
+        # 公司信息
+        company_output:
+          binder: scm
+          destination: SCM_COMPANY
+        # 配置信息
+        config_output:
+          binder: scm
+          destination: SCM_CONFIG_PROPERTY
+        # 截单配置信息
+        config_intercept_output:
+          binder: scm
+          destination: SCM_CONFIG_INTERCEPT
+        # Banner图配置信息
+        config_banner_output:
+          binder: scm
+          destination: SCM_CONFIG_BANNER
+        # 集单生产
+        order_set_output:
+          binder: scm
+          destination: SCM_ORDER_SET
+        # 集单生产
+        sf_order_set_output:
+          binder: scm
+          destination: SCM_SF_ORDER_SET
+         # 门店可售商品
+        goods_salable_output:
+          binder: scm
+          destination: SCM_BREAKFAST_GOODS_SALABLE
+         # 档期
+        goods_schedule_output:
+          binder: scm
+          destination: SCM_BREAKFAST_GOODS_SCHEDULE
+        # 类目
+        goods_category_output:
+          binder: scm
+          destination: SCM_GOODS_CATEGORY
+        # 商品
+        goods_basic_output:
+          binder: scm
+          destination: SCM_BREAKFAST_GOODS_BASIC
+      rabbit:
+        bindings:
+          # 消费者配置
+          order_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_ORDER_BREAKFAST_ORDER_SET_DLX
+          operation_log_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_OPERATION_LOG_DLX
+          order_refund_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_REFUND_BREAKFAST_SCM_DLX
+#          sf_status_change_input:
+#            consumer:
+#              exchangeType: topic
+#              binding-routing-key: '0'
+#              autoBindDlq: true
+#              republishToDlq: true
+#              deadLetterExchange: SCM_SF_STATUS_CHANGE_ORDERSET_DLX
+#          sf_order_create_input:
+#            consumer:
+#              exchangeType: fanout
+#              autoBindDlq: true
+#              republishToDlq: true
+#              deadLetterExchange: SCM_SF_ORDER_CREATE_DLX
+          config_input:
+            consumer:
+              exchangeType: topic
+              binding-routing-key: '#.scm.#'
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_CONFIG_PROPERTY_DLX
+          config_intercept_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_CONFIG_INTERCEPT_DLX
+          shop_create_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_SHOP_CREATE_DLX
+          # 生产者配置
+          order_set_order_status_change_output:
+            producer:
+              exchangeType: fanout
+          operation_log_output:
+            producer:
+              exchangeType: fanout
+          company_output:
+            producer:
+              exchangeType: fanout
+          config_output:
+            producer:
+               exchangeType: topic
+               routing-key-expression: headers.key
+          config_intercept_output:
+            producer:
+              exchangeType: fanout
+          config_banner_output:
+            producer:
+              exchangeType: fanout
+          order_set_output:
+            producer:
+               exchangeType: fanout
+          sf_order_set_output:
+            producer:
+               exchangeType: fanout
+          goods_salable_output:
+            producer:
+              exchangeType: fanout
+          goods_schedule_output:
+            producer:
+              exchangeType: fanout
+          goods_category_output:
+            producer:
+              exchangeType: fanout
+          goods_basic_output:
+            producer:
+              exchangeType: fanout

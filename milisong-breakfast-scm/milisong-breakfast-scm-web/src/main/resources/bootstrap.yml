@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: milisong-breakfast-scm-web
+  jackson:
+    date-format:  yyyy-MM-dd HH:mm:ss
+    time-zone:  GMT+8
+    default-property-inclusion: NON_NULL
+  flyway:
+    # 配置sql脚本路径
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+  cloud:
+    config:
+      discovery:
+        #允许通过服务名称来访问服务配置中心
+        enabled: true
+        service-id: sunflow-cloud-config
+      label:  dev_bf_print
+      name:  scm-bf-db,scm-bf-mq-base,scm-bf-mq,scm-bf-upms,scm-bf-redis,scm-bf-sys,scm-bf-swagger
+      #不覆盖系统参数（可带参数启动服务，如端口--server.port=8000）
+      override-system-properties: false
+      #如果服务无法连接配置服务器，则启动失败
+      fail-fast: true
+eureka:
+  instance:
+    #使用客户端的IP地址而不是hostname来注册
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+    
+#健康检查 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    redis:
+      enabled: true
+    rabbit:
+      enabled: true
+    diskspace:
+      enabled: true

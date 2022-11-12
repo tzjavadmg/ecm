@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.base.BaseTimezoneCapacityWater">
+  <resultMap id="BaseResultMap" type="com.milisong.oms.domain.TimezoneCapacityWater">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="delivery_id" jdbcType="BIGINT" property="deliveryId" />
+    <result column="shop_code" jdbcType="VARCHAR" property="shopCode" />
+    <result column="source" jdbcType="TINYINT" property="source" />
+    <result column="goods_count" jdbcType="INTEGER" property="goodsCount" />
+    <result column="old_stock_count" jdbcType="INTEGER" property="oldStockCount" />
+    <result column="new_old_count" jdbcType="INTEGER" property="newOldCount" />
+    <result column="delivery_date" jdbcType="TIMESTAMP" property="deliveryDate" />
+    <result column="delivery_timezone_cutoff_time" jdbcType="TIMESTAMP" property="deliveryTimezoneCutoffTime" />
+    <result column="delivery_timezone_from" jdbcType="TIMESTAMP" property="deliveryTimezoneFrom" />
+    <result column="delivery_timezone_to" jdbcType="TIMESTAMP" property="deliveryTimezoneTo" />
+  </resultMap>
+  <insert id="insert" parameterType="com.milisong.oms.domain.TimezoneCapacityWater">
+    insert into `timezone_capacity_water` (`id`, `order_id`, `delivery_id`, 
+      `shop_code`, `source`, `goods_count`, 
+      `old_stock_count`, `new_old_count`, `delivery_date`, 
+      `delivery_timezone_cutoff_time`, `delivery_timezone_from`, 
+      `delivery_timezone_to`)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{deliveryId,jdbcType=BIGINT}, 
+      #{shopCode,jdbcType=VARCHAR}, #{source,jdbcType=TINYINT}, #{goodsCount,jdbcType=INTEGER}, 
+      #{oldStockCount,jdbcType=INTEGER}, #{newOldCount,jdbcType=INTEGER}, #{deliveryDate,jdbcType=TIMESTAMP}, 
+      #{deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP}, #{deliveryTimezoneFrom,jdbcType=TIMESTAMP}, 
+      #{deliveryTimezoneTo,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.oms.domain.TimezoneCapacityWater">
+    insert into `timezone_capacity_water`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderId != null">
+        `order_id`,
+      </if>
+      <if test="deliveryId != null">
+        `delivery_id`,
+      </if>
+      <if test="shopCode != null">
+        `shop_code`,
+      </if>
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="goodsCount != null">
+        `goods_count`,
+      </if>
+      <if test="oldStockCount != null">
+        `old_stock_count`,
+      </if>
+      <if test="newOldCount != null">
+        `new_old_count`,
+      </if>
+      <if test="deliveryDate != null">
+        `delivery_date`,
+      </if>
+      <if test="deliveryTimezoneCutoffTime != null">
+        `delivery_timezone_cutoff_time`,
+      </if>
+      <if test="deliveryTimezoneFrom != null">
+        `delivery_timezone_from`,
+      </if>
+      <if test="deliveryTimezoneTo != null">
+        `delivery_timezone_to`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryId != null">
+        #{deliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=TINYINT},
+      </if>
+      <if test="goodsCount != null">
+        #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="oldStockCount != null">
+        #{oldStockCount,jdbcType=INTEGER},
+      </if>
+      <if test="newOldCount != null">
+        #{newOldCount,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTimezoneCutoffTime != null">
+        #{deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTimezoneFrom != null">
+        #{deliveryTimezoneFrom,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTimezoneTo != null">
+        #{deliveryTimezoneTo,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `timezone_capacity_water` (`id`, `order_id`, `delivery_id`, 
+      `shop_code`, `source`, `goods_count`, 
+      `old_stock_count`, `new_old_count`, `delivery_date`, 
+      `delivery_timezone_cutoff_time`, `delivery_timezone_from`, 
+      `delivery_timezone_to`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}, #{item.deliveryId,jdbcType=BIGINT}, 
+        #{item.shopCode,jdbcType=VARCHAR}, #{item.source,jdbcType=TINYINT}, #{item.goodsCount,jdbcType=INTEGER}, 
+        #{item.oldStockCount,jdbcType=INTEGER}, #{item.newOldCount,jdbcType=INTEGER}, #{item.deliveryDate,jdbcType=TIMESTAMP}, 
+        #{item.deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP}, #{item.deliveryTimezoneFrom,jdbcType=TIMESTAMP}, 
+        #{item.deliveryTimezoneTo,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `timezone_capacity_water`
+    (`id`, `order_id`, `delivery_id`, `shop_code`, `source`, `goods_count`, `old_stock_count`, 
+      `new_old_count`, `delivery_date`, `delivery_timezone_cutoff_time`, `delivery_timezone_from`, 
+      `delivery_timezone_to`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderId != null">
+          #{item.orderId,jdbcType=BIGINT},
+        </if>
+        <if test="item.orderId == null">
+          NULL,
+        </if>
+        <if test="item.deliveryId != null">
+          #{item.deliveryId,jdbcType=BIGINT},
+        </if>
+        <if test="item.deliveryId == null">
+          NULL,
+        </if>
+        <if test="item.shopCode != null">
+          #{item.shopCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.shopCode == null">
+          NULL,
+        </if>
+        <if test="item.source != null">
+          #{item.source,jdbcType=TINYINT},
+        </if>
+        <if test="item.source == null">
+          NULL,
+        </if>
+        <if test="item.goodsCount != null">
+          #{item.goodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.goodsCount == null">
+          NULL,
+        </if>
+        <if test="item.oldStockCount != null">
+          #{item.oldStockCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.oldStockCount == null">
+          NULL,
+        </if>
+        <if test="item.newOldCount != null">
+          #{item.newOldCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.newOldCount == null">
+          NULL,
+        </if>
+        <if test="item.deliveryDate != null">
+          #{item.deliveryDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryDate == null">
+          NULL,
+        </if>
+        <if test="item.deliveryTimezoneCutoffTime != null">
+          #{item.deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryTimezoneCutoffTime == null">
+          NULL,
+        </if>
+        <if test="item.deliveryTimezoneFrom != null">
+          #{item.deliveryTimezoneFrom,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryTimezoneFrom == null">
+          NULL,
+        </if>
+        <if test="item.deliveryTimezoneTo != null">
+          #{item.deliveryTimezoneTo,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryTimezoneTo == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+</mapper>

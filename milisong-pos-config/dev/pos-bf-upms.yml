@@ -1,0 +1,13 @@
+upms:
+  config:
+    url: http://devmls-upmsapi.jshuii.com
+    app-name: MLB_DEV
+    upmsUserInfoUrl: ${upms.config.url}/auth/userinfo
+    upmsTokenUrl: ${upms.config.url}/auth/token
+    upmsCheckLoginUrl: ${upms.config.url}/auth/check-login
+    upmsCheckPermissionUrl: ${upms.config.url}/auth/check-permission
+    upmsGetMenuListUrl: ${upms.config.url}/auth/menu
+    upmsGetDataPermissionUrl: ${upms.config.url}/auth/data-permission
+  filter-url:
+    notHeadTokenUrls: /upload/oss
+    whitelistUrls: /preproduction/task,/callback/dq

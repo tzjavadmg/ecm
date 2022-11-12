@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.pos.production.mapper.OrderSetDetailMapper">
+   
+   <select id = "getListByShopIdAndStatus" resultType="com.milisong.pos.production.dto.result.OrderSetInfoResult" parameterType="java.util.Map">
+   select a.detail_set_no,a.detail_set_no_description,a.shop_id,b.couplet_no,b.goods_name,b.goods_code,b.goods_number FROM order_set_detail a
+	LEFT JOIN order_set_detail_goods b on a.detail_set_no = b.detail_set_no
+	where a.shop_id = #{shopId} and a.`status` = #{status} and a.detail_delivery_date = date_format(now(),'%Y-%m-%d')
+	<if test = "status != null and status == 3">
+	order by a.detail_set_no desc ,b.couplet_no asc
+	</if>
+	<if test = "status != null and status == 1">
+	order by a.detail_set_no asc ,b.couplet_no asc
+	</if>
+	<if test="startRow != null and pageSize != null">
+ 		limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</if>
+   </select>
+   
+    <select id = "getCountByShopIdAndStatus" resultType="java.lang.Integer" parameterType="java.util.Map">
+   select count(1) FROM order_set_detail a
+	LEFT JOIN order_set_detail_goods b on a.detail_set_no = b.detail_set_no
+	where a.shop_id = #{shopId} and a.`status` = #{status} and a.detail_delivery_date = date_format(now(),'%Y-%m-%d')
+   </select>
+</mapper>

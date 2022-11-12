@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.UserCouponMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.UserCoupon" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="user_activity_id" property="userActivityId" jdbcType="BIGINT" />
+    <result column="user_activity_type" property="userActivityType" jdbcType="TINYINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="days" property="days" jdbcType="INTEGER" />
+    <result column="goods_code" property="goodsCode" jdbcType="VARCHAR" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP" />
+    <result column="is_share" property="isShare" jdbcType="TINYINT" />
+    <result column="is_valid" property="isValid" jdbcType="TINYINT" />
+    <result column="is_used" property="isUsed" jdbcType="TINYINT" />
+    <result column="rule" property="rule" jdbcType="VARCHAR" />
+    <result column="business_line" property="businessLine" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, activity_id, user_activity_id, user_activity_type, name, type, user_id, order_id, days, goods_code, discount, expire_time, is_share,
+    is_valid, is_used, rule, business_line, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_coupon
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.UserCoupon" >
+    insert into user_coupon (id, activity_id, user_activity_id, user_activity_type, name,
+      type, user_id, order_id, days, goods_code,
+      discount, expire_time,
+      is_share, is_valid, is_used, rule,
+      business_line, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, #{userActivityId,jdbcType=BIGINT},#{userActivityType,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR},
+      #{type,jdbcType=TINYINT}, #{userId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT},
+      #{days,jdbcType=INTEGER}, #{goodsCode,jdbcType=VARCHAR},
+      #{discount,jdbcType=DECIMAL}, #{expireTime,jdbcType=TIMESTAMP},
+      #{isShare,jdbcType=TINYINT}, #{isValid,jdbcType=TINYINT}, #{isUsed,jdbcType=TINYINT}, #{rule,jdbcType=VARCHAR},
+      #{businessLine,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.UserCoupon" >
+    insert into user_coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="userActivityId != null" >
+        user_activity_id,
+      </if>
+      <if test="userActivityType != null" >
+        user_activity_type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="days != null" >
+        days,
+      </if>
+      <if test="goodsCode != null" >
+        goods_code,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="expireTime != null" >
+        expire_time,
+      </if>
+      <if test="isShare != null" >
+        is_share,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="isUsed != null" >
+        is_used,
+      </if>
+      <if test="rule != null" >
+        rule,
+      </if>
+      <if test="businessLine != null" >
+        business_line,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="userActivityId != null" >
+        #{userActivityId,jdbcType=BIGINT},
+      </if>
+      <if test="userActivityType != null" >
+        #{userActivityType,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="days != null" >
+        #{days,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCode != null" >
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isShare != null" >
+        #{isShare,jdbcType=TINYINT},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="isUsed != null" >
+        #{isUsed,jdbcType=TINYINT},
+      </if>
+      <if test="rule != null" >
+        #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.UserCoupon" >
+    update user_coupon
+    <set >
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="userActivityId != null" >
+        user_activity_id = #{userActivityId,jdbcType=BIGINT},
+      </if>
+      <if test="userActivityType != null" >
+        user_activity_type = #{userActivityType,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="days != null" >
+        days = #{days,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCode != null" >
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="expireTime != null" >
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isShare != null" >
+        is_share = #{isShare,jdbcType=TINYINT},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="isUsed != null" >
+        is_used = #{isUsed,jdbcType=TINYINT},
+      </if>
+      <if test="rule != null" >
+        rule = #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.UserCoupon" >
+    update user_coupon
+    set activity_id = #{activityId,jdbcType=BIGINT},
+      user_activity_id = #{userActivityId,jdbcType=BIGINT},
+      user_activity_type = #{userActivityType,jdbcType=TINYINT},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      order_id = #{orderId,jdbcType=BIGINT},
+      days = #{days,jdbcType=INTEGER},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=DECIMAL},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      is_share = #{isShare,jdbcType=TINYINT},
+      is_valid = #{isValid,jdbcType=TINYINT},
+      is_used = #{isUsed,jdbcType=TINYINT},
+      rule = #{rule,jdbcType=VARCHAR},
+      business_line = #{businessLine,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into user_coupon (id, activity_id, user_activity_id, user_activity_type, name,
+    type, user_id, days, goods_code,
+    discount, expire_time,
+    is_share, is_valid, is_used, rule,
+    business_line, create_time, update_time)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (
+      #{item.id,jdbcType=BIGINT}, #{item.activityId,jdbcType=BIGINT}, #{item.userActivityId,jdbcType=BIGINT},#{item.userActivityType,jdbcType=TINYINT}, #{item.name,jdbcType=VARCHAR},
+      #{item.type,jdbcType=TINYINT}, #{item.userId,jdbcType=BIGINT}, #{item.days,jdbcType=INTEGER}, #{item.goodsCode,jdbcType=VARCHAR},
+      #{item.discount,jdbcType=DECIMAL}, #{item.expireTime,jdbcType=TIMESTAMP},
+      #{item.isShare,jdbcType=TINYINT}, #{item.isValid,jdbcType=TINYINT}, #{item.isUsed,jdbcType=TINYINT}, #{item.rule,jdbcType=VARCHAR},
+      #{item.businessLine,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+  <select id="queryUserCoupon" parameterType="com.milisong.pms.prom.dto.UserCouponQueryParam" resultType="com.milisong.pms.prom.dto.UserCouponDto">
+    select id, activity_id, user_activity_id, name, type, user_id, days, goods_code, discount, expire_time, is_share,
+    is_valid, is_used, rule, business_line
+    from user_coupon
+    where user_id = #{queryParam.userId,jdbcType=BIGINT}
+    <choose>
+      <when test="queryParam.usable != null and queryParam.usable == true">
+        and is_valid = 1 and is_used = 0
+        order by `type` asc, discount asc, expire_time asc, days asc
+      </when>
+      <otherwise>
+        and (is_valid = 0 or is_used = 1)
+        order by create_time desc
+      </otherwise>
+    </choose>
+    <if test="queryParam.startRow != null">
+      limit #{queryParam.startRow} , #{queryParam.pageSize}
+    </if>
+  </select>
+
+  <select id="hasReceivedCoupon" resultType="java.lang.Integer">
+    select count(*) from user_coupon
+    where user_id = #{userId,jdbcType=BIGINT} and `type` = #{couponType} and business_line = #{buzline}
+  </select>
+
+  <select id="countUserCoupon" resultType="java.lang.Integer">
+    select count(*) from user_coupon
+    where user_id = #{queryParam.userId,jdbcType=BIGINT}
+    <choose>
+      <when test="queryParam.usable != null and queryParam.usable == true">
+        and is_valid = 1 and is_used = 0
+      </when>
+      <otherwise>
+        and (is_valid = 0 or is_used = 1)
+      </otherwise>
+    </choose>
+  </select>
+
+  <update id="scanBreakfastCoupon">
+      <![CDATA[
+      update user_coupon
+      set is_valid = 0,
+        update_time = #{currentDate,jdbcType=TIMESTAMP}
+        where #{currentDate,jdbcType=TIMESTAMP} >= expire_time
+        and is_valid = 1 and is_used = 0
+       ]]>
+  </update>
+
+  <select id="queryUsefulCouponUnlimit" resultType="com.milisong.pms.prom.dto.UserCouponDto">
+      select id, activity_id, user_activity_id, name, type, user_id, days, goods_code, discount, expire_time, is_share,
+      is_valid, is_used, rule, business_line
+      from user_coupon
+      where user_id = #{queryParam.userId,jdbcType=BIGINT} and is_valid = 1 and is_used = 0
+      order by `type` asc, discount asc, expire_time asc, days asc
+  </select>
+
+  <select id="usableCouponsCount"  parameterType="com.milisong.pms.prom.dto.UserCouponQueryParam" resultType="java.lang.Long">
+    select id from user_coupon
+    where user_id = #{queryParam.userId,jdbcType=BIGINT} and is_valid = 1 and is_used = 0
+  </select>
+
+  <select id="queryUserOptimalCouponByUserIdActivityId" resultType="com.milisong.pms.prom.dto.UserCouponDto">
+    select id, activity_id as acitivtyId, user_activity_id as userActivityId, name, `type`, user_id as userId, order_id as orderId, discount,
+    days, expire_time as expireTime, is_share as isShare, is_valid as isValid, is_used as isUsed
+    from user_coupon
+    where user_id = #{userId,jdbcType=BIGINT} and user_activity_id = #{userActivityId,jdbcType=BIGINT}
+    <if test="type != null">
+      and `type` = #{type,jdbcType=TINYINT}
+    </if>
+    order by discount asc , expire_time asc limit 1
+  </select>
+  <select id="queryUserCouponByActivity" resultType="com.milisong.pms.prom.dto.UserCouponDto">
+    select id, activity_id as acitivtyId, user_activity_id as userActivityId, name, `type`, user_id as userId, order_id as orderId, discount,
+    days, expire_time as expireTime, is_share as isShare, is_valid as isValid, is_used as isUsed
+    from user_coupon
+    where user_id = #{userId,jdbcType=BIGINT} and user_activity_id = #{userActivityId,jdbcType=BIGINT}
+    <if test="userActivityType != null">
+      and `user_activity_type` = #{userActivityType,jdbcType=TINYINT}
+    </if>
+    <if test="couponType != null">
+      and `type` = #{couponType,jdbcType=TINYINT}
+    </if>
+    order by discount asc , days asc , expire_time asc
+  </select>
+
+  <select id="countUserCouponByActivity" resultType="int">
+    select count(1)
+    from user_coupon
+    where user_id = #{userId,jdbcType=BIGINT} and user_activity_id = #{userActivityId,jdbcType=BIGINT}
+    <if test="userActivityType != null">
+      and `user_activity_type` = #{userActivityType,jdbcType=TINYINT}
+    </if>
+    <if test="couponType != null">
+      and `type` = #{couponType,jdbcType=TINYINT}
+    </if>
+  </select>
+</mapper>

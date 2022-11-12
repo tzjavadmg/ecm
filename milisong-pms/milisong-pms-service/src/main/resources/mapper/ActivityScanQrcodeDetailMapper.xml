@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.ActivityScanQrcodeDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.ActivityScanQrcodeDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="act_scan_qrcode_id" property="actScanQrcodeId" jdbcType="BIGINT" />
+    <result column="qrcode" property="qrcode" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, act_scan_qrcode_id, qrcode, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bf_activity_scan_qrcode_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.ActivityScanQrcodeDetail" >
+    insert into bf_activity_scan_qrcode_detail (id, act_scan_qrcode_id, qrcode, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{actScanQrcodeId,jdbcType=BIGINT}, #{qrcode,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.ActivityScanQrcodeDetail" >
+    insert into bf_activity_scan_qrcode_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="actScanQrcodeId != null" >
+        act_scan_qrcode_id,
+      </if>
+      <if test="qrcode != null" >
+        qrcode,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="actScanQrcodeId != null" >
+        #{actScanQrcodeId,jdbcType=BIGINT},
+      </if>
+      <if test="qrcode != null" >
+        #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.ActivityScanQrcodeDetail" >
+    update bf_activity_scan_qrcode_detail
+    <set >
+      <if test="actScanQrcodeId != null" >
+        act_scan_qrcode_id = #{actScanQrcodeId,jdbcType=BIGINT},
+      </if>
+      <if test="qrcode != null" >
+        qrcode = #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.ActivityScanQrcodeDetail" >
+    update bf_activity_scan_qrcode_detail
+    set act_scan_qrcode_id = #{actScanQrcodeId,jdbcType=BIGINT},
+      qrcode = #{qrcode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

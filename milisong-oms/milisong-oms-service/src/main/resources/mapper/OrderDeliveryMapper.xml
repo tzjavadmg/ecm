@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.oms.mapper.OrderDeliveryMapper">
+    <insert id="batchSave">
+        INSERT INTO order_delivery(id, order_id, delivery_no, delivery_company_working_time, delivery_timezone_id,
+        delivery_timezone_cutoff_time, delivery_timezone_from, delivery_timezone_to, delivery_date, delivery_start_time,
+        delivery_end_time, delivery_original_price, delivery_actual_price, package_time, total_package_original_amount,
+        total_package_actual_amount, total_goods_count, total_goods_original_amount, total_goods_actual_amount,
+        total_amount, share_order_pay_amount, share_order_deduction_points, order_type, status, sf_status, cancel_time,
+        refund_time) VALUES
+        <foreach collection="collection" item="v" separator=",">
+            (#{v.id}, #{v.orderId}, #{v.deliveryNo}, #{v.deliveryCompanyWorkingTime}, #{v.deliveryTimezoneId},
+            #{v.deliveryTimezoneCutoffTime}, #{v.deliveryTimezoneFrom}, #{v.deliveryTimezoneTo}, #{v.deliveryDate},
+            #{v.deliveryStartTime}, #{v.deliveryEndTime}, #{v.deliveryOriginalPrice}, #{v.deliveryActualPrice},
+            #{v.packageTime}, #{v.totalPackageOriginalAmount}, #{v.totalPackageActualAmount}, #{v.totalGoodsCount},
+            #{v.totalGoodsOriginalAmount}, #{v.totalGoodsActualAmount}, #{v.totalAmount}, #{v.shareOrderPayAmount},
+            #{v.shareOrderDeductionPoints}, #{v.orderType}, #{v.status}, #{v.sfStatus}, #{v.cancelTime},
+            #{v.refundTime})
+        </foreach>
+    </insert>
+
+
+    <select id="batchFind" resultType="com.milisong.oms.domain.OrderDelivery">
+        SELECT * FROM order_delivery WHERE id IN
+        <foreach collection="collection" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findDeliveryDateListByOrderId" resultType="com.milisong.oms.domain.OrderDelivery">
+        SELECT id,
+               order_id,
+               delivery_no,
+               delivery_date,
+               delivery_timezone_from,
+               delivery_timezone_to,
+               total_goods_count,
+               status
+        FROM order_delivery
+        WHERE order_id = #{orderId,jdbcType=BIGINT}
+        ORDER BY delivery_date
+    </select>
+
+    <select id="findListByOrderId" resultType="com.milisong.oms.domain.OrderDelivery">
+        SELECT *
+        FROM order_delivery
+        WHERE order_id = #{orderId,jdbcType=BIGINT}
+        ORDER BY delivery_date
+    </select>
+
+    <select id="findFinishOrder" resultType="com.milisong.oms.domain.OrderDelivery">
+        SELECT order_id FROM `order_delivery` WHERE order_id = (
+        SELECT order_id FROM `order_delivery` WHERE delivery_no = #{deliveryNo,jdbcType=VARCHAR})
+        AND STATUS IN
+        <foreach collection="statusList" item="status" open="(" separator="," close=")">
+            #{status,jdbcType=TINYINT}
+        </foreach>
+    </select>
+
+    <select id="getOrderListByDeliveryDate" resultType="com.milisong.oms.dto.OrderDeliveryDto">
+        select od.*, o.mobile_no
+        from order_delivery od
+        left join `order` o on od.order_id = o.id
+        where od.delivery_date = #{deliveryDate}
+        and o.order_type= #{businessLine}
+        <if test="null != shopCode and shopCode != ''">
+            and o.shop_code = #{shopCode}
+        </if>
+    </select>
+
+    <select id="getDeliveryListByDeliveryDateAndStatus" resultType="com.milisong.oms.dto.OrderDeliveryDto">
+        select od.*, o.mobile_no
+        from order_delivery od
+                 left join `order` o on od.order_id = o.id
+        where od.delivery_date = #{deliveryDate}
+          and od.status = #{status}
+          and o.order_type = #{orderType}
+    </select>
+
+    <select id="findUncompletedDeliveriesByOrderId" resultType="com.milisong.oms.domain.OrderDelivery">
+        select od.*
+        from order_delivery od
+                 inner join `order` o on od.order_id = o.id
+        where o.id = #{orderId}
+          and od.status not in (4, 9)
+          and o.status = 2
+    </select>
+    
+    <select id="getDeliveryNos" resultType="java.lang.String">
+    	SELECT od.delivery_no FROM (
+		SELECT * FROM `order` WHERE order_type = #{businessLine} AND STATUS IN (2,9)
+		) asi INNER JOIN `order_delivery` od ON asi.id = od.`order_id`
+		AND od.`status` NOT IN (3,4) AND od.delivery_date = #{deliveryDate}
+    </select>
+    
+    <select id="findDeliveryByNo" resultType="com.milisong.oms.domain.OrderDelivery">
+    	select order_id from `order_delivery` where delivery_no = #{deliveryNo}
+    </select>
+
+    <update id="updateDeliveryByOrderNo" parameterType="com.milisong.oms.dto.OrderDeliveryMqDto">
+        update `order_delivery`
+        <set>
+            <if test="packageTime != null">
+                `package_time` = #{packageTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryStartTime != null">
+                `delivery_start_time` = #{deliveryStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryEndTime != null">
+                `delivery_end_time` = #{deliveryEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="sfStatus != null">
+                `sf_status` = #{sfStatus,jdbcType=TINYINT},
+            </if>
+        </set>
+        where delivery_no = #{deliveryNo}
+    </update>
+    
+    <update id="updateOrderDeliveryStatus" parameterType="java.lang.Integer">
+    UPDATE `order_delivery` od inner JOIN `order`  o ON od.`order_id` = o.id 
+	 and o.status = 2 and od.status = 2 and od.delivery_date &lt;= now()
+	 and date_add(od.delivery_timezone_to, interval #{nodeHour} hour) &lt;= now()
+	set od.status = 9,od.delivery_end_time = od.delivery_timezone_to
+    </update>
+    
+    <select id="checkOrderDeliveryStatusCount" parameterType="java.util.List" resultType="java.lang.Long">
+    select order_id from order_delivery
+	where (`status`  != 9 AND `status` != 4)
+	and order_id in
+	 <foreach collection="orderId" item="id" open="(" separator="," close=")">
+            #{id}
+      </foreach>
+    </select>
+    <select id="getDeliveryTimezoneByNo" resultType="com.milisong.oms.domain.OrderDelivery">
+        select id,delivery_timezone_from,delivery_timezone_to from `order_delivery` where delivery_no = #{deliveryNo}
+    </select>
+</mapper>

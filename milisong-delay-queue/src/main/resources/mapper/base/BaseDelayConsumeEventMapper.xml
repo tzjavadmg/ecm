@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.delay.mapper.base.BaseDelayConsumeEventMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.delay.domain.DelayConsumeEvent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="biz_id" jdbcType="BIGINT" property="bizId" />
+    <result column="message_id" jdbcType="VARCHAR" property="messageId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="system" jdbcType="VARCHAR" property="system" />
+    <result column="module" jdbcType="VARCHAR" property="module" />
+    <result column="callback_url" jdbcType="VARCHAR" property="callbackUrl" />
+    <result column="ttl" jdbcType="BIGINT" property="ttl" />
+    <result column="send_number" jdbcType="INTEGER" property="sendNumber" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.milisong.delay.domain.DelayConsumeEvent">
+    <result column="message_body" jdbcType="LONGVARCHAR" property="messageBody" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `biz_id`, `message_id`, `status`, `system`, `module`, `callback_url`, `ttl`, 
+    `send_number`
+  </sql>
+  <sql id="Blob_Column_List">
+    `message_body`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `delay_consume_event`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.delay.domain.DelayConsumeEvent">
+    insert into `delay_consume_event` (`id`, `biz_id`, `message_id`, 
+      `status`, `system`, `module`, 
+      `callback_url`, `ttl`, `send_number`, 
+      `message_body`)
+    values (#{id,jdbcType=BIGINT}, #{bizId,jdbcType=BIGINT}, #{messageId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{system,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, 
+      #{callbackUrl,jdbcType=VARCHAR}, #{ttl,jdbcType=BIGINT}, #{sendNumber,jdbcType=INTEGER}, 
+      #{messageBody,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.delay.domain.DelayConsumeEvent">
+    insert into `delay_consume_event`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="bizId != null">
+        `biz_id`,
+      </if>
+      <if test="messageId != null">
+        `message_id`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="system != null">
+        `system`,
+      </if>
+      <if test="module != null">
+        `module`,
+      </if>
+      <if test="callbackUrl != null">
+        `callback_url`,
+      </if>
+      <if test="ttl != null">
+        `ttl`,
+      </if>
+      <if test="sendNumber != null">
+        `send_number`,
+      </if>
+      <if test="messageBody != null">
+        `message_body`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bizId != null">
+        #{bizId,jdbcType=BIGINT},
+      </if>
+      <if test="messageId != null">
+        #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="system != null">
+        #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackUrl != null">
+        #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ttl != null">
+        #{ttl,jdbcType=BIGINT},
+      </if>
+      <if test="sendNumber != null">
+        #{sendNumber,jdbcType=INTEGER},
+      </if>
+      <if test="messageBody != null">
+        #{messageBody,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `delay_consume_event` (`id`, `biz_id`, `message_id`, 
+      `status`, `system`, `module`, 
+      `callback_url`, `ttl`, `send_number`, 
+      `message_body`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.bizId,jdbcType=BIGINT}, #{item.messageId,jdbcType=VARCHAR}, 
+        #{item.status,jdbcType=TINYINT}, #{item.system,jdbcType=VARCHAR}, #{item.module,jdbcType=VARCHAR}, 
+        #{item.callbackUrl,jdbcType=VARCHAR}, #{item.ttl,jdbcType=BIGINT}, #{item.sendNumber,jdbcType=INTEGER}, 
+        #{item.messageBody,jdbcType=LONGVARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `delay_consume_event`
+    (`id`, `biz_id`, `message_id`, `status`, `system`, `module`, `callback_url`, `ttl`, 
+      `send_number`, `message_body`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.bizId != null">
+          #{item.bizId,jdbcType=BIGINT},
+        </if>
+        <if test="item.bizId == null">
+          NULL,
+        </if>
+        <if test="item.messageId != null">
+          #{item.messageId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.messageId == null">
+          NULL,
+        </if>
+        <if test="item.status != null">
+          #{item.status,jdbcType=TINYINT},
+        </if>
+        <if test="item.status == null">
+          NULL,
+        </if>
+        <if test="item.system != null">
+          #{item.system,jdbcType=VARCHAR},
+        </if>
+        <if test="item.system == null">
+          NULL,
+        </if>
+        <if test="item.module != null">
+          #{item.module,jdbcType=VARCHAR},
+        </if>
+        <if test="item.module == null">
+          NULL,
+        </if>
+        <if test="item.callbackUrl != null">
+          #{item.callbackUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="item.callbackUrl == null">
+          NULL,
+        </if>
+        <if test="item.ttl != null">
+          #{item.ttl,jdbcType=BIGINT},
+        </if>
+        <if test="item.ttl == null">
+          NULL,
+        </if>
+        <if test="item.sendNumber != null">
+          #{item.sendNumber,jdbcType=INTEGER},
+        </if>
+        <if test="item.sendNumber == null">
+          NULL,
+        </if>
+        <if test="item.messageBody != null">
+          #{item.messageBody,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="item.messageBody == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.delay.domain.DelayConsumeEvent">
+    update `delay_consume_event`
+    <set>
+      <if test="bizId != null">
+        `biz_id` = #{bizId,jdbcType=BIGINT},
+      </if>
+      <if test="messageId != null">
+        `message_id` = #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="system != null">
+        `system` = #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        `module` = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackUrl != null">
+        `callback_url` = #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ttl != null">
+        `ttl` = #{ttl,jdbcType=BIGINT},
+      </if>
+      <if test="sendNumber != null">
+        `send_number` = #{sendNumber,jdbcType=INTEGER},
+      </if>
+      <if test="messageBody != null">
+        `message_body` = #{messageBody,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.milisong.delay.domain.DelayConsumeEvent">
+    update `delay_consume_event`
+    set `biz_id` = #{bizId,jdbcType=BIGINT},
+      `message_id` = #{messageId,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      `system` = #{system,jdbcType=VARCHAR},
+      `module` = #{module,jdbcType=VARCHAR},
+      `callback_url` = #{callbackUrl,jdbcType=VARCHAR},
+      `ttl` = #{ttl,jdbcType=BIGINT},
+      `send_number` = #{sendNumber,jdbcType=INTEGER},
+      `message_body` = #{messageBody,jdbcType=LONGVARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.delay.domain.DelayConsumeEvent">
+    update `delay_consume_event`
+    set `biz_id` = #{bizId,jdbcType=BIGINT},
+      `message_id` = #{messageId,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      `system` = #{system,jdbcType=VARCHAR},
+      `module` = #{module,jdbcType=VARCHAR},
+      `callback_url` = #{callbackUrl,jdbcType=VARCHAR},
+      `ttl` = #{ttl,jdbcType=BIGINT},
+      `send_number` = #{sendNumber,jdbcType=INTEGER}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `delay_consume_event`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="bizId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.bizId}
+        </foreach>
+      </trim>
+      <trim prefix="messageId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.messageId}
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.status}
+        </foreach>
+      </trim>
+      <trim prefix="system =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.system}
+        </foreach>
+      </trim>
+      <trim prefix="module =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.module}
+        </foreach>
+      </trim>
+      <trim prefix="callbackUrl =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.callbackUrl}
+        </foreach>
+      </trim>
+      <trim prefix="ttl =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.ttl}
+        </foreach>
+      </trim>
+      <trim prefix="sendNumber =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.sendNumber}
+        </foreach>
+      </trim>
+      <trim prefix="messageBody =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.messageBody}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `delay_consume_event`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="bizId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.bizId != null ">
+            when  #{item.id} then #{item.bizId}
+          </if>
+          <if test="item.bizId == null ">
+            when  #{item.id} then `delay_consume_event`.`biz_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="messageId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.messageId != null ">
+            when  #{item.id} then #{item.messageId}
+          </if>
+          <if test="item.messageId == null ">
+            when  #{item.id} then `delay_consume_event`.`message_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.id} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.id} then `delay_consume_event`.`status`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="system =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.system != null ">
+            when  #{item.id} then #{item.system}
+          </if>
+          <if test="item.system == null ">
+            when  #{item.id} then `delay_consume_event`.`system`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="module =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.module != null ">
+            when  #{item.id} then #{item.module}
+          </if>
+          <if test="item.module == null ">
+            when  #{item.id} then `delay_consume_event`.`module`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="callbackUrl =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.callbackUrl != null ">
+            when  #{item.id} then #{item.callbackUrl}
+          </if>
+          <if test="item.callbackUrl == null ">
+            when  #{item.id} then `delay_consume_event`.`callback_url`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ttl =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.ttl != null ">
+            when  #{item.id} then #{item.ttl}
+          </if>
+          <if test="item.ttl == null ">
+            when  #{item.id} then `delay_consume_event`.`ttl`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sendNumber =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.sendNumber != null ">
+            when  #{item.id} then #{item.sendNumber}
+          </if>
+          <if test="item.sendNumber == null ">
+            when  #{item.id} then `delay_consume_event`.`send_number`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="messageBody =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.messageBody != null ">
+            when  #{item.id} then #{item.messageBody}
+          </if>
+          <if test="item.messageBody == null ">
+            when  #{item.id} then `delay_consume_event`.`message_body`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+</mapper>

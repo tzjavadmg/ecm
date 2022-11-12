@@ -1,0 +1,17 @@
+miniapp:
+  base-url: https://testmls-api.jshuii.com
+  miniAppid: wx4ad83b8ee4246b21
+  miniSecret: 2c6896c5e0fdd4292df84bb0543da2e6
+  planId: 122131
+  mchid: 1507800561
+  receiveTemplateId: XIqGSQYKGJf9AMUg22c9okzcseYYulnU3oYAu9snCS4
+  payFailTemplateId: Ou2FvnAqftmWM8mg_S7A4gHfu4KVSWm0_V18blHZG9Y
+  takeFoodTemplateId: ZI3htHFF6uJN6Y4fVcdZogrlX2Deq4ocUbJeiSpPMpU
+  receiveCouponTemplateId: g3u-gCgw0kbz51KiNKbf-qQcp5d49Lm8sOqTRDjOxEg
+  couponExpireTemplateId: EG9ir1bbnbWuTebekJbB1RBTML6U-A2gM9c7wbKfR4Y
+  apikey: tomatotomatotomatotomatotomatoto
+  signtype: MD5
+  pappayapplyCallbackUrl: ${miniapp.base-url}/v1/order/pappayapply-callback
+  contractCallbackUrl: ${miniapp.base-url}/v1/miniapp/contract-callback
+  unifiedOrderCallbackUrl: ${miniapp.base-url}/v2/order/unifiedorder-callback
+  refundCallbackUrl: ${miniapp.base-url}/v2/order/refund-callback

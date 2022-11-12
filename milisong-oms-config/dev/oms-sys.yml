@@ -1,0 +1,42 @@
+server:
+  port: 20000
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+  cloud:
+    config:
+      override-none: true
+#  zipkin:
+#    base-url: http://localhost:60050
+  sleuth:
+    sampler:
+      probability: 1
+
+
+ribbon:
+  ReadTimeout:  10000
+  SocketTimeout:  10000
+
+oms:
+  sys:
+    scmBaseUrl: http://devmls-dmsapi.jshuii.com
+    delayQueue:
+      orderCallbackUrl: http://devmls-omsapi.jshuii.com/v1/order/expired-order-cancel
+      virtualOrderCallbackUrl: http://devmls-omsapi.jshuii.com/v1/order/expired-virtual-order-cancel
+      groupBuyOrderCallbackUrl: http://devmls-omsapi.jshuii.com/v1/order/expired-group-buy-order
+      baseUrl: http://devmls-dqsapi.jshuii.com
+    localCache:
+      expireTime: 1
+    wechatPay:
+      defaultPayCallbackUrl: http://devmls-omsapi.jshuii.com/v2/order/unifiedorder-callback
+      groupBuyPayCallbackUrl: http://devmls-omsapi.jshuii.com/v2/order/groupbuyorder-callback
+      defaultRefundCallbackUrl: http://devmls-omsapi.jshuii.com/v2/order/refund-callback
+      groupBuyRefundCallbackUrl: http://devmls-omsapi.jshuii.com/v2/order/groupbuy-refund-callback
+      groupBuyExpiredTime: 30
+    nodeHour: 2

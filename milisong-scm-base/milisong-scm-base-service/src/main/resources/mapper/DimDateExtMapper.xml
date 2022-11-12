@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.base.mapper.DimDateExtMapper">
+   <select id="getWorkDateByNow" resultType="java.lang.String" parameterType="java.lang.Integer">
+   	select date from t_dim_date
+	where status = 0
+	and date &gt;=  date_format(NOW(),'%Y-%m-%d')
+	LIMIT 0,#{size}
+   </select>
+   
+   <select id="getWorkDateByBeforeNow" resultType="java.util.Date" parameterType="java.lang.Integer">
+   	select date from t_dim_date
+	where status = 0
+	and date &lt;  date_format(NOW(),'%Y-%m-%d')
+	ORDER BY date desc
+	LIMIT 0,#{size}
+   </select>
+   
+</mapper>

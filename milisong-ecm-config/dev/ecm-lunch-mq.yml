@@ -1,0 +1,170 @@
+spring:
+  rabbitmq:
+    addresses: amqp://mqdev.jshuii.com:5672
+    username: milisong-ecmuser
+    password: ZqqA610ql0VK
+  cloud:
+    stream:
+      # 设置默认的binder
+      default-binder: ecm
+      binders:
+        ecm:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                # 连接到ecm的host和exchange
+                virtual-host: milisong-ecm
+        scm:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                # 连接到scm的host和exchange
+                virtual-host: milisong-scm
+        scm_bf:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                # 连接到scm-bf的host和exchange
+                virtual-host: milisong-scm-breakfast
+        oms:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                # 连接到oms的host和exchange
+                virtual-host: milisong-oms
+      bindings:
+        # 全局配置和门店属性配置
+        config_input:
+          binder: scm
+          destination: SCM_CONFIG_PROPERTY
+          group: ecm_lunch_group
+        # 截单配置
+        config_intercept_input:
+          binder: scm
+          destination: SCM_CONFIG_INTERCEPT
+          group: ecm_lunch_group
+        # banner配置
+        config_banner_input:
+          binder: scm
+          destination: SCM_CONFIG_BANNER
+          group: ecm_lunch_group
+        # 用户支付后通知
+        notify_payment_input:
+          binder: oms
+          destination: OMS_PAYMENT
+          group: ecm_lunch_notify_group
+        # 用户支付后通知
+        user_payment_input:
+          binder: oms
+          destination: OMS_PAYMENT
+          group: ecm_lunch_user_group
+        # 送餐送达后ivr电话回调结果
+        ivr_input:
+          binder: scm
+          destination: SCM_IVR
+          group: ecm_lunch_group
+        # scm公司信息
+        company_input:
+          binder: scm_bf
+          destination: SCM_COMPANY
+          group: ecm_lunch_group
+        # 顺风送达后微信、短信通知
+        notify_arrive_input:
+          binder: scm
+          destination: SCM_SF_STATUS_CHANGE
+          group: ecm_lunch_group
+        # 档期数据
+        schedule_input:
+          binder: scm
+          destination: SCM_LUNCH_GOODS_SCHEDULE
+          group: ecm_lunch_group
+        # 可售商品数据
+        salable_goods_input:
+          binder: scm
+          destination: SCM_LUNCH_GOODS_SALABLE
+          group: ecm_lunch_group
+        # 商品基础数据
+        goods_basic_input:
+          binder: scm
+          destination: SCM_LUNCH_GOODS_BASIC
+          group: ecm_lunch_group
+
+      rabbit:
+        bindings:
+          config_input:
+            consumer:
+              exchangeType: topic
+              binding-routing-key: '#.ecm.#'
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: ECM_CONFIG_DLX
+          config_intercept_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: ECM_CONFIG_INTERCEPT_DLX
+          config_banner_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: ECM_CONFIG_BANNER_DLX
+          notify_payment_input:
+            consumer:
+              bindingRoutingKey: '1'
+              exchangeType: topic
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_NOTIFY_PAYMENT_DLX
+              deadLetterQueueName: OMS_NOTIFY_PAYMENT_DLX_LC
+              deadLetterRoutingKey: '1'
+          user_payment_input:
+            consumer:
+              bindingRoutingKey: '1'
+              exchangeType: topic
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_USER_PAYMENT_DLX
+              deadLetterQueueName: OMS_USER_PAYMENT_DLX_LC
+              deadLetterRoutingKey: '1'
+          ivr_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_IVR_DLX
+          company_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_COMPANY_DLX
+          notify_arrive_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_SF_STATUS_CHANGE_DLX
+          schedule_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_SCHEDULE_DLX
+          salable_goods_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_SALABLE_DLX
+          goods_basic_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_GOODSBASIC_DLX

@@ -1,0 +1,160 @@
+server:
+  port: 30030
+
+spring:
+  # json配置
+  jackson:
+    date-format:  yyyy-MM-dd HH:mm:ss
+    time-zone:  GMT+8
+    default-property-inclusion: NON_NULL
+  # springboot admin配置
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+  # 数据库
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://dbtest.jshuii.com:3307/milisong_scm?characterEncoding=utf-8&amp;useOldAliasMetadataBehavior=true&amp;autoReconnectForPools=true;useSSL=true
+    username: milisong_scm
+    password: HWEMorWbTEZ+DGBqLRskFZeul06gZ5pWRAiaSHNk9gg=
+    type: com.farmland.core.db.SecureDruidDataSource
+  # redis
+  redis:
+    host: testredis.jshuii.com
+    password: ReyH2WMVtrf0vwerwf6386
+    port: 6386
+    timeout: 1000
+    database: 13
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 1
+  # rabbitmq
+  rabbitmq:
+    addresses: amqp://mqtest.jshuii.com:5672
+    username: milisong-scmuser
+    password: vO7kZK63W8cv
+  cloud:
+    stream:
+      # 设置默认的binder
+      default-binder: scm
+      binders:
+        scm:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-scm
+        scm-bf:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-scm-breakfast
+      bindings:
+        # ---------消息消费------------
+        # 操作日志消费
+        operation_log_input:
+          binder: scm
+          destination: SCM_OPERATION_LOG
+          group: scm_group
+        #-----------消息生产-----------
+        # 操作日志
+        operation_log_output:
+          binder: scm
+          destination: SCM_OPERATION_LOG
+        # 门店信息
+        shop_info_output:
+          binder: scm
+          destination: SCM_SHOP_INFO
+        # 门店创建
+        shop_create_output:
+          binder: scm
+          destination: SCM_SHOP_CREATE
+         # 公司信息
+        company_output:
+          binder: scm-bf
+          destination: SCM_COMPANY
+      rabbit:
+        bindings:
+          # 消费者配置
+          operation_log_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_OPERATION_LOG_DLX
+          # 生产者配置
+          operation_log_output:
+            producer:
+              exchangeType: fanout
+          shop_info_output:
+            producer:
+              exchangeType: fanout
+          shop_create_output:
+            producer:
+              exchangeType: fanout
+          company_output:
+            producer:
+              exchangeType: fanout
+
+#数据库主键生产策略
+idworker:
+  workerId: 0
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml,mapper/base/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+    
+redisson:
+  address: redis://${spring.redis.host}:${spring.redis.port}
+  password: ${spring.redis.password}
+  database: ${spring.redis.database}
+  
+#健康检查 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    redis:
+      enabled: true
+    rabbit:
+      enabled: true
+    diskspace:
+      enabled: true
+bfscm:
+  sys:
+    fileOss:
+      viewUrl: http://jshuii-test.oss-cn-hangzhou.aliyuncs.com
+      exportPath: /data/milisong/export/
+    ecmUrl:
+      goodsDefaultCount: 200
+      goodsStockUrl: http://testmls-bapi.jshuii.com/v1/goods/set-onsale-stock
+      goodsStockListUrl: http://testmls-bapi.jshuii.com/v1/goods/set-onsale-stock-list
+      orderListUrl: http://testmls-api.jshuii.com/v1/order/get-order-details
+      buildingListUrl: http://testmls-api.jshuii.com/v1/goods/building-list
+    # LBS公共服务的地址
+    lbsUrl:
+      pointServiceUrl: http://testmls-lbs.jshuii.com/lbs/point
+      convertServiceUrl: http://testmls-lbs.jshuii.com/lbs/convert/baidu2gcj02
+    omsOrder:
+      checkUrl: http://testmls-omsapiin.jshuii.com/v1/OrderService/getDeliveryNos
+      notifyUrl: http://testmls-omsapiin.jshuii.com/v1/order/repair-order-mq
+
+oss:
+  get-shop-goods-countUrl: http://testml-oss.jshuii.com/order/shop-goods-count?shopCode={shopCode}&companyId={companyId}

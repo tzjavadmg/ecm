@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.shop.mapper.GlobalConfigMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.scm.shop.domain.GlobalConfig">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="service_line" jdbcType="VARCHAR" property="serviceLine" />
+    <result column="config_key" jdbcType="VARCHAR" property="configKey" />
+    <result column="config_describe" jdbcType="VARCHAR" property="configDescribe" />
+    <result column="config_value" jdbcType="VARCHAR" property="configValue" />
+    <result column="config_value_type" jdbcType="TINYINT" property="configValueType" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, service_line, config_key, config_describe, config_value, config_value_type, is_deleted, 
+    create_by, create_time, update_by, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_global_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_global_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.milisong.scm.shop.domain.GlobalConfig">
+    insert into t_global_config (id, service_line, config_key, 
+      config_describe, config_value, config_value_type, 
+      is_deleted, create_by, create_time, 
+      update_by, update_time)
+    values (#{id,jdbcType=BIGINT}, #{serviceLine,jdbcType=VARCHAR}, #{configKey,jdbcType=VARCHAR}, 
+      #{configDescribe,jdbcType=VARCHAR}, #{configValue,jdbcType=VARCHAR}, #{configValueType,jdbcType=TINYINT}, 
+      #{isDeleted,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.scm.shop.domain.GlobalConfig">
+    insert into t_global_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serviceLine != null">
+        service_line,
+      </if>
+      <if test="configKey != null">
+        config_key,
+      </if>
+      <if test="configDescribe != null">
+        config_describe,
+      </if>
+      <if test="configValue != null">
+        config_value,
+      </if>
+      <if test="configValueType != null">
+        config_value_type,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serviceLine != null">
+        #{serviceLine,jdbcType=VARCHAR},
+      </if>
+      <if test="configKey != null">
+        #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configDescribe != null">
+        #{configDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="configValue != null">
+        #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="configValueType != null">
+        #{configValueType,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.scm.shop.domain.GlobalConfig">
+    update t_global_config
+    <set>
+      <if test="serviceLine != null">
+        service_line = #{serviceLine,jdbcType=VARCHAR},
+      </if>
+      <if test="configKey != null">
+        config_key = #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configDescribe != null">
+        config_describe = #{configDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="configValue != null">
+        config_value = #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="configValueType != null">
+        config_value_type = #{configValueType,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.scm.shop.domain.GlobalConfig">
+    update t_global_config
+    set service_line = #{serviceLine,jdbcType=VARCHAR},
+      config_key = #{configKey,jdbcType=VARCHAR},
+      config_describe = #{configDescribe,jdbcType=VARCHAR},
+      config_value = #{configValue,jdbcType=VARCHAR},
+      config_value_type = #{configValueType,jdbcType=TINYINT},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

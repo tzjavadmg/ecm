@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!--<classPathEntry location="D:/tools/RepMaven/mysql/mysql-connector-java/5.1.43/mysql-connector-java-5.1.43.jar" />-->
+   <!--  <classPathEntry location="d:/maven_repository/mysql/mysql-connector-java/5.1.43/mysql-connector-java-5.1.43.jar"/> -->
+    <!-- <classPathEntry location="C:\File_work\other\mysql-connector-java-5.1.7-bin.jar" /> -->
+      <classPathEntry location="C:/mysql-connector-java-5.1.7-bin.jar" />
+    <context id="milisong-scm-shop" targetRuntime="MyBatis3">
+<!--     <context id="default" targetRuntime="MyBatis3Simple"> -->
+  		  <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="autoDelimitKeywords" value="false"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="com.milisong.common.plugin.IngoreSetterAndGetterPlugin"/>
+        <commentGenerator type="com.milisong.common.plugin.MyCommentGenerator"/>
+        
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://dbtest.jshuii.com:3306/milisong_scm"
+                        userId="milisong_scm" password="JZ0eujf8Tn5k7ryWS54x">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.milisong.scm.shop.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+          <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.milisong.scm.shop.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+  <table tableName="t_dim_date" domainObjectName="DimDate" mapperName="DimDateMapper" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <!--<table tableName="t_area" domainObjectName="Area" enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+    <!--     <table tableName="t_building_apply" domainObjectName="BuildingApply" enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" /> -->
+<!--         <table tableName="t_building" domainObjectName="Building" enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" /> -->
+        <!-- <table tableName="t_company" domainObjectName="Company" enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" /> -->
+    </context>
+</generatorConfiguration>

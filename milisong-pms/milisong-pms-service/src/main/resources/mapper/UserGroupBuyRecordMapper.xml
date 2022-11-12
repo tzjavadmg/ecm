@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.UserGroupBuyRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.UserGroupBuyRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_group_buy_id" property="userGroupBuyId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_portrait_url" property="headPortraitUrl" jdbcType="VARCHAR" />
+    <result column="join_time" property="joinTime" jdbcType="TIMESTAMP" />
+    <result column="lock_time" property="lockTime" jdbcType="TIMESTAMP" />
+    <result column="release_time" property="releaseTime" jdbcType="TIMESTAMP" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="lock_status" property="lockStatus" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_group_buy_id, user_id, open_id, nick_name, head_portrait_url, join_time,
+    lock_time, release_time, order_id, status, lock_status, remark, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from bf_user_group_buy_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.UserGroupBuyRecord" >
+    insert into bf_user_group_buy_record (id, user_group_buy_id, user_id,
+      open_id, nick_name, head_portrait_url,
+      join_time, lock_time, release_time,
+      order_id, status, lock_status,
+      remark, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userGroupBuyId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT},
+      #{openId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{headPortraitUrl,jdbcType=VARCHAR},
+      #{joinTime,jdbcType=TIMESTAMP}, #{lockTime,jdbcType=TIMESTAMP}, #{releaseTime,jdbcType=TIMESTAMP},
+      #{orderId,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{lockStatus,jdbcType=TINYINT},
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.UserGroupBuyRecord" >
+    insert into bf_user_group_buy_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userGroupBuyId != null" >
+        user_group_buy_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="headPortraitUrl != null" >
+        head_portrait_url,
+      </if>
+      <if test="joinTime != null" >
+        join_time,
+      </if>
+      <if test="lockTime != null" >
+        lock_time,
+      </if>
+      <if test="releaseTime != null" >
+        release_time,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="lockStatus != null" >
+        lock_status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userGroupBuyId != null" >
+        #{userGroupBuyId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null" >
+        #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="joinTime != null" >
+        #{joinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockTime != null" >
+        #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseTime != null" >
+        #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="lockStatus != null" >
+        #{lockStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.UserGroupBuyRecord" >
+    update bf_user_group_buy_record
+    <set >
+      <if test="userGroupBuyId != null" >
+        user_group_buy_id = #{userGroupBuyId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null" >
+        head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="joinTime != null" >
+        join_time = #{joinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockTime != null" >
+        lock_time = #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseTime != null" >
+        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="lockStatus != null" >
+        lock_status = #{lockStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.UserGroupBuyRecord" >
+    update bf_user_group_buy_record
+    set user_group_buy_id = #{userGroupBuyId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      open_id = #{openId,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+      join_time = #{joinTime,jdbcType=TIMESTAMP},
+      lock_time = #{lockTime,jdbcType=TIMESTAMP},
+      release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      order_id = #{orderId,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      lock_status = #{lockStatus,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryJoinedGroupBuy" resultType="com.milisong.pms.prom.dto.groupbuy.UserGroupBuyDto">
+    <![CDATA[
+    select ugb.id, ugb.activity_group_buy_id, agb.name, agb.goods_code, agb.buy_price, agb.min_join_num, ugb.start_date, ugb.end_date, ugb.company_id,
+    ugb.valid_period, agb.delivery_date, ugb.status, ugbr.order_id, agb.bg_img, agb.rule_img, agb.share_title, agb.share_img
+    from bf_user_group_buy ugb left join bf_user_group_buy_record ugbr
+    on ugb.id = ugbr.user_group_buy_id left join bf_activity_group_buy agb on ugb.activity_group_buy_id = agb.id
+    where ugb.activity_group_buy_id = #{groupBuyId} and ugbr.user_id = #{userId}
+    and ( ( ugb.status = 1 and #{curDate} <= ugb.end_date ) or ugb.status = 2)
+    and ugbr.status = 1
+    order by ugb.id
+    limit 1
+    ]]>
+  </select>
+
+  <select id="fetchGroupBuyJoinedUsers" resultType="com.milisong.pms.prom.dto.groupbuy.JoinUser">
+    select user_id, open_id, nick_name, head_portrait_url, order_id
+    from bf_user_group_buy_record
+    where user_group_buy_id = #{userGroupBuyId} and status = 1
+    order by join_time asc
+  </select>
+
+  <select id="countJoinedTimesExcludeCurrentUser" resultType="int">
+    select count(1) from bf_user_group_buy_record
+    where user_group_buy_id = #{userGroupBuyId}
+    <if test="userId != null">
+      and user_id != #{userId}
+    </if>
+    and status = 1
+  </select>
+
+  <update id="updateStatusAfterCreateGroupBuy">
+    update bf_user_group_buy_record ugbr left join bf_user_group_buy ugb on ugbr.user_group_buy_id = ugb.id
+    set
+      ugbr.status = 1,
+      ugbr.lock_status = 1,
+      ugb.status = 1,
+      ugb.remark = '拼团中',
+      ugbr.remark = '支付成功',
+      ugb.update_time = now(),
+      ugbr.update_time = now()
+    where ugbr.id = #{recordId} and ugb.status = 0
+  </update>
+
+  <select id="queryJoinedGroupBuyByIdUid" resultType="com.milisong.pms.prom.dto.groupbuy.UserGroupBuyDto">
+    select ugb.id, ugb.activity_group_buy_id, agb.name, agb.goods_code, agb.buy_price, agb.min_join_num, ugb.start_date, ugb.end_date, ugb.company_id,
+    ugb.valid_period, agb.delivery_date, ugb.status, agb.bg_img, agb.rule_img, agb.share_title, agb.share_img
+    from bf_user_group_buy ugb left join bf_user_group_buy_record ugbr
+    on ugb.id = ugbr.user_group_buy_id left join bf_activity_group_buy agb on ugb.activity_group_buy_id = agb.id
+    where ugb.id = #{id} and ugbr.user_id = #{userId} and (ugb.status = 1 or ugb.status = 2)
+    and ugbr.status = 1
+    order by ugb.id
+    limit 1
+  </select>
+
+  <update id="completeGroupBuy" >
+    update bf_user_group_buy_record ugbr left join bf_user_group_buy ugb on ugbr.user_group_buy_id = ugb.id
+    set
+      ugbr.status = 1,
+      ugbr.lock_status = 1,
+      ugb.status = 2,
+      ugb.success_time = now(),
+      ugb.remark = '已成团',
+      ugbr.remark = '支付成功',
+      ugb.update_time = now(),
+      ugbr.update_time = now()
+    where ugbr.id = #{recordId}
+  </update>
+
+  <select id="hasJoinedThisGroup" resultMap="BaseResultMap">
+    select id, user_group_buy_id, user_id, open_id, nick_name, head_portrait_url, join_time,
+    lock_time, release_time, order_id, status, lock_status, remark
+    from bf_user_group_buy_record
+    where user_group_buy_id = #{userGroupBuyId} and user_id = #{userId} and ( status = 1 or status = 2)
+    limit 1
+  </select>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bf_user_group_buy_record
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </select>
+
+  <update id="releaseGroupBuyLock">
+    update bf_user_group_buy_record
+    set lock_status = 2,
+    release_time = now(),
+    remark = '支付失败释放',
+    update_time = now()
+    where order_id = #{orderId} and lock_status = 1
+  </update>
+
+  <select id="queryJoinedGroupBuyList" resultType="com.milisong.pms.prom.dto.groupbuy.UserGroupBuyRecordDto">
+    select ugbr.id, ugbr.user_group_buy_id, ugbr.user_id, ugbr.open_id, ugbr.order_id, ugbr.status
+    from bf_user_group_buy_record ugbr left join bf_user_group_buy ugb
+    on ugbr.user_group_buy_id = ugb.id
+    where #{curDate} >= ugb.end_date and ugb.status = 1 and ( ugbr.status = 1 or ugbr.lock_status = 1 )
+  </select>
+
+  <update id="batchRefundGroupBuy">
+    update bf_user_group_buy_record ugbr left join bf_user_group_buy ugb on ugbr.user_group_buy_id = ugb.id
+    set
+    ugbr.status = 2,
+    ugbr.lock_status = 3,
+    ugbr.release_time = now(),
+    ugb.status = 4,
+    ugb.remark = '已退款',
+    ugbr.remark = '已退款',
+    ugb.update_time = now(),
+    ugbr.update_time = now()
+    where ugbr.id in
+    <foreach collection="records" index="index" item="item" separator="," open="(" close=")">
+      #{item.id}
+    </foreach> and ugbr.status = 1 and ugb.status = 1
+  </update>
+
+   <update id="refundGroupBuy">
+    update bf_user_group_buy_record ugbr left join bf_user_group_buy ugb on ugbr.user_group_buy_id = ugb.id
+    set
+    ugbr.status = 2,
+    ugbr.lock_status = 3,
+    ugbr.release_time = now(),
+    ugb.status = 4,
+    ugb.remark = '已退款',
+    ugbr.remark = '已退款',
+    ugb.update_time = now(),
+    ugbr.update_time = now()
+    where ugb.id = #{userGroupBuyId} and ugb.status = 1 and ugbr.status = 1 and ugbr.lock_status = 1
+   </update>
+
+  <select id="countLockedNumExcludeMeIfPresent" resultType="int">
+    select count(1) from bf_user_group_buy_record
+    where user_group_buy_id = #{userGroupBuyId}
+    <if test="userId != null">
+      and user_id != #{userId}
+    </if>
+    and lock_status = 1
+  </select>
+
+  <select id="queryReentrentUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bf_user_group_buy_record
+    where user_group_buy_id = #{userGroupBuyId} and user_id = #{userId} and status = 0 and lock_status = 1 limit 1
+  </select>
+</mapper>

@@ -1,0 +1,34 @@
+spring:
+  rabbitmq:
+    addresses: amqp://mq.jshuii.com:5672
+    username: milisong-bscmuser
+    password: zU0qOHksBYj26O5m11
+  cloud:
+    stream:
+      # 设置默认的binder
+      default-binder: scm
+      binders:
+        oms:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-oms
+        ecm:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-ecm-breakfast
+        scm:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-scm-breakfast
+        scm_lunch:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-scm

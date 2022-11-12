@@ -1,0 +1,22 @@
+server:
+  port: 20010
+management:
+  health:
+    defaults:
+      enabled: false
+
+ribbon:
+  ReadTimeout:  10000
+  SocketTimeout:  1000
+
+logging:
+  level:
+    com.milisong.ucs.mapper: DEBUG
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://172.16.14.60:60100
+        instance:
+          prefer-ip: true

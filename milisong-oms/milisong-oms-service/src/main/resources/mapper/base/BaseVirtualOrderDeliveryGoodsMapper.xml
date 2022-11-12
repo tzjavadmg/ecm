@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.base.BaseVirtualOrderDeliveryGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.oms.domain.VirtualOrderDeliveryGoods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="delivery_id" jdbcType="BIGINT" property="deliveryId" />
+    <result column="combo_goods_code" jdbcType="VARCHAR" property="comboGoodsCode" />
+    <result column="goods_code" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_img_url" jdbcType="VARCHAR" property="goodsImgUrl" />
+    <result column="goods_count" jdbcType="INTEGER" property="goodsCount" />
+    <result column="goods_original_price" jdbcType="DECIMAL" property="goodsOriginalPrice" />
+    <result column="goods_actual_price" jdbcType="DECIMAL" property="goodsActualPrice" />
+    <result column="package_original_price" jdbcType="DECIMAL" property="packageOriginalPrice" />
+    <result column="package_actual_price" jdbcType="DECIMAL" property="packageActualPrice" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="is_combo" jdbcType="BIT" property="isCombo" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `delivery_id`, `combo_goods_code`, `goods_code`, `goods_name`, `goods_img_url`, 
+    `goods_count`, `goods_original_price`, `goods_actual_price`, `package_original_price`, 
+    `package_actual_price`, `total_amount`, `is_combo`, `type`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `virtual_order_delivery_goods`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.oms.domain.VirtualOrderDeliveryGoods">
+    insert into `virtual_order_delivery_goods` (`id`, `delivery_id`, `combo_goods_code`, 
+      `goods_code`, `goods_name`, `goods_img_url`, 
+      `goods_count`, `goods_original_price`, `goods_actual_price`, 
+      `package_original_price`, `package_actual_price`, 
+      `total_amount`, `is_combo`, `type`
+      )
+    values (#{id,jdbcType=BIGINT}, #{deliveryId,jdbcType=BIGINT}, #{comboGoodsCode,jdbcType=VARCHAR}, 
+      #{goodsCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{goodsImgUrl,jdbcType=VARCHAR}, 
+      #{goodsCount,jdbcType=INTEGER}, #{goodsOriginalPrice,jdbcType=DECIMAL}, #{goodsActualPrice,jdbcType=DECIMAL}, 
+      #{packageOriginalPrice,jdbcType=DECIMAL}, #{packageActualPrice,jdbcType=DECIMAL}, 
+      #{totalAmount,jdbcType=DECIMAL}, #{isCombo,jdbcType=BIT}, #{type,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.oms.domain.VirtualOrderDeliveryGoods">
+    insert into `virtual_order_delivery_goods`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="deliveryId != null">
+        `delivery_id`,
+      </if>
+      <if test="comboGoodsCode != null">
+        `combo_goods_code`,
+      </if>
+      <if test="goodsCode != null">
+        `goods_code`,
+      </if>
+      <if test="goodsName != null">
+        `goods_name`,
+      </if>
+      <if test="goodsImgUrl != null">
+        `goods_img_url`,
+      </if>
+      <if test="goodsCount != null">
+        `goods_count`,
+      </if>
+      <if test="goodsOriginalPrice != null">
+        `goods_original_price`,
+      </if>
+      <if test="goodsActualPrice != null">
+        `goods_actual_price`,
+      </if>
+      <if test="packageOriginalPrice != null">
+        `package_original_price`,
+      </if>
+      <if test="packageActualPrice != null">
+        `package_actual_price`,
+      </if>
+      <if test="totalAmount != null">
+        `total_amount`,
+      </if>
+      <if test="isCombo != null">
+        `is_combo`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryId != null">
+        #{deliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="comboGoodsCode != null">
+        #{comboGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImgUrl != null">
+        #{goodsImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCount != null">
+        #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsOriginalPrice != null">
+        #{goodsOriginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsActualPrice != null">
+        #{goodsActualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="packageOriginalPrice != null">
+        #{packageOriginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="packageActualPrice != null">
+        #{packageActualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isCombo != null">
+        #{isCombo,jdbcType=BIT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `virtual_order_delivery_goods` (`id`, `delivery_id`, `combo_goods_code`, 
+      `goods_code`, `goods_name`, `goods_img_url`, 
+      `goods_count`, `goods_original_price`, 
+      `goods_actual_price`, `package_original_price`, 
+      `package_actual_price`, `total_amount`, 
+      `is_combo`, `type`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.deliveryId,jdbcType=BIGINT}, #{item.comboGoodsCode,jdbcType=VARCHAR}, 
+        #{item.goodsCode,jdbcType=VARCHAR}, #{item.goodsName,jdbcType=VARCHAR}, #{item.goodsImgUrl,jdbcType=VARCHAR}, 
+        #{item.goodsCount,jdbcType=INTEGER}, #{item.goodsOriginalPrice,jdbcType=DECIMAL}, 
+        #{item.goodsActualPrice,jdbcType=DECIMAL}, #{item.packageOriginalPrice,jdbcType=DECIMAL}, 
+        #{item.packageActualPrice,jdbcType=DECIMAL}, #{item.totalAmount,jdbcType=DECIMAL}, 
+        #{item.isCombo,jdbcType=BIT}, #{item.type,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `virtual_order_delivery_goods`
+    (`id`, `delivery_id`, `combo_goods_code`, `goods_code`, `goods_name`, `goods_img_url`, 
+      `goods_count`, `goods_original_price`, `goods_actual_price`, `package_original_price`, 
+      `package_actual_price`, `total_amount`, `is_combo`, `type`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.deliveryId != null">
+          #{item.deliveryId,jdbcType=BIGINT},
+        </if>
+        <if test="item.deliveryId == null">
+          NULL,
+        </if>
+        <if test="item.comboGoodsCode != null">
+          #{item.comboGoodsCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.comboGoodsCode == null">
+          NULL,
+        </if>
+        <if test="item.goodsCode != null">
+          #{item.goodsCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.goodsCode == null">
+          NULL,
+        </if>
+        <if test="item.goodsName != null">
+          #{item.goodsName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.goodsName == null">
+          NULL,
+        </if>
+        <if test="item.goodsImgUrl != null">
+          #{item.goodsImgUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="item.goodsImgUrl == null">
+          NULL,
+        </if>
+        <if test="item.goodsCount != null">
+          #{item.goodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.goodsCount == null">
+          NULL,
+        </if>
+        <if test="item.goodsOriginalPrice != null">
+          #{item.goodsOriginalPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.goodsOriginalPrice == null">
+          NULL,
+        </if>
+        <if test="item.goodsActualPrice != null">
+          #{item.goodsActualPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.goodsActualPrice == null">
+          NULL,
+        </if>
+        <if test="item.packageOriginalPrice != null">
+          #{item.packageOriginalPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.packageOriginalPrice == null">
+          NULL,
+        </if>
+        <if test="item.packageActualPrice != null">
+          #{item.packageActualPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.packageActualPrice == null">
+          NULL,
+        </if>
+        <if test="item.totalAmount != null">
+          #{item.totalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalAmount == null">
+          NULL,
+        </if>
+        <if test="item.isCombo != null">
+          #{item.isCombo,jdbcType=BIT},
+        </if>
+        <if test="item.isCombo == null">
+          NULL,
+        </if>
+        <if test="item.type != null">
+          #{item.type,jdbcType=TINYINT},
+        </if>
+        <if test="item.type == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.oms.domain.VirtualOrderDeliveryGoods">
+    update `virtual_order_delivery_goods`
+    <set>
+      <if test="deliveryId != null">
+        `delivery_id` = #{deliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="comboGoodsCode != null">
+        `combo_goods_code` = #{comboGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        `goods_code` = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        `goods_name` = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImgUrl != null">
+        `goods_img_url` = #{goodsImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCount != null">
+        `goods_count` = #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsOriginalPrice != null">
+        `goods_original_price` = #{goodsOriginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsActualPrice != null">
+        `goods_actual_price` = #{goodsActualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="packageOriginalPrice != null">
+        `package_original_price` = #{packageOriginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="packageActualPrice != null">
+        `package_actual_price` = #{packageActualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        `total_amount` = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isCombo != null">
+        `is_combo` = #{isCombo,jdbcType=BIT},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.oms.domain.VirtualOrderDeliveryGoods">
+    update `virtual_order_delivery_goods`
+    set `delivery_id` = #{deliveryId,jdbcType=BIGINT},
+      `combo_goods_code` = #{comboGoodsCode,jdbcType=VARCHAR},
+      `goods_code` = #{goodsCode,jdbcType=VARCHAR},
+      `goods_name` = #{goodsName,jdbcType=VARCHAR},
+      `goods_img_url` = #{goodsImgUrl,jdbcType=VARCHAR},
+      `goods_count` = #{goodsCount,jdbcType=INTEGER},
+      `goods_original_price` = #{goodsOriginalPrice,jdbcType=DECIMAL},
+      `goods_actual_price` = #{goodsActualPrice,jdbcType=DECIMAL},
+      `package_original_price` = #{packageOriginalPrice,jdbcType=DECIMAL},
+      `package_actual_price` = #{packageActualPrice,jdbcType=DECIMAL},
+      `total_amount` = #{totalAmount,jdbcType=DECIMAL},
+      `is_combo` = #{isCombo,jdbcType=BIT},
+      `type` = #{type,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `virtual_order_delivery_goods`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="deliveryId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryId}
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.comboGoodsCode}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsCode}
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsName}
+        </foreach>
+      </trim>
+      <trim prefix="goodsImgUrl =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsImgUrl}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="goodsOriginalPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsOriginalPrice}
+        </foreach>
+      </trim>
+      <trim prefix="goodsActualPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsActualPrice}
+        </foreach>
+      </trim>
+      <trim prefix="packageOriginalPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.packageOriginalPrice}
+        </foreach>
+      </trim>
+      <trim prefix="packageActualPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.packageActualPrice}
+        </foreach>
+      </trim>
+      <trim prefix="totalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="isCombo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.isCombo}
+        </foreach>
+      </trim>
+      <trim prefix="type =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.type}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `virtual_order_delivery_goods`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="deliveryId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryId != null ">
+            when  #{item.id} then #{item.deliveryId}
+          </if>
+          <if test="item.deliveryId == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`delivery_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.comboGoodsCode != null ">
+            when  #{item.id} then #{item.comboGoodsCode}
+          </if>
+          <if test="item.comboGoodsCode == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`combo_goods_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsCode != null ">
+            when  #{item.id} then #{item.goodsCode}
+          </if>
+          <if test="item.goodsCode == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`goods_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsName != null ">
+            when  #{item.id} then #{item.goodsName}
+          </if>
+          <if test="item.goodsName == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`goods_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsImgUrl =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsImgUrl != null ">
+            when  #{item.id} then #{item.goodsImgUrl}
+          </if>
+          <if test="item.goodsImgUrl == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`goods_img_url`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsCount != null ">
+            when  #{item.id} then #{item.goodsCount}
+          </if>
+          <if test="item.goodsCount == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsOriginalPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsOriginalPrice != null ">
+            when  #{item.id} then #{item.goodsOriginalPrice}
+          </if>
+          <if test="item.goodsOriginalPrice == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`goods_original_price`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsActualPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsActualPrice != null ">
+            when  #{item.id} then #{item.goodsActualPrice}
+          </if>
+          <if test="item.goodsActualPrice == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`goods_actual_price`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="packageOriginalPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.packageOriginalPrice != null ">
+            when  #{item.id} then #{item.packageOriginalPrice}
+          </if>
+          <if test="item.packageOriginalPrice == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`package_original_price`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="packageActualPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.packageActualPrice != null ">
+            when  #{item.id} then #{item.packageActualPrice}
+          </if>
+          <if test="item.packageActualPrice == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`package_actual_price`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalAmount != null ">
+            when  #{item.id} then #{item.totalAmount}
+          </if>
+          <if test="item.totalAmount == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`total_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="isCombo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.isCombo != null ">
+            when  #{item.id} then #{item.isCombo}
+          </if>
+          <if test="item.isCombo == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`is_combo`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="type =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.type != null ">
+            when  #{item.id} then #{item.type}
+          </if>
+          <if test="item.type == null ">
+            when  #{item.id} then `virtual_order_delivery_goods`.`type`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+</mapper>

@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.base.BaseOrderPaymentWaterMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.oms.domain.OrderPaymentWater">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="shop_code" jdbcType="VARCHAR" property="shopCode" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="error_code" jdbcType="VARCHAR" property="errorCode" />
+    <result column="error_description" jdbcType="VARCHAR" property="errorDescription" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
+    <result column="order_mode" jdbcType="TINYINT" property="orderMode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `order_id`, `user_id`, `open_id`, `shop_code`, `real_name`, `sex`, `mobile_no`, 
+    `amount`, `error_code`, `error_description`, `order_type`, `order_mode`, `status`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `order_payment_water`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.oms.domain.OrderPaymentWater">
+    insert into `order_payment_water` (`id`, `order_id`, `user_id`, 
+      `open_id`, `shop_code`, `real_name`, 
+      `sex`, `mobile_no`, `amount`, 
+      `error_code`, `error_description`, `order_type`, 
+      `order_mode`, `status`)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{openId,jdbcType=VARCHAR}, #{shopCode,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=TINYINT}, #{mobileNo,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{errorCode,jdbcType=VARCHAR}, #{errorDescription,jdbcType=VARCHAR}, #{orderType,jdbcType=TINYINT}, 
+      #{orderMode,jdbcType=TINYINT}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.oms.domain.OrderPaymentWater">
+    insert into `order_payment_water`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderId != null">
+        `order_id`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="openId != null">
+        `open_id`,
+      </if>
+      <if test="shopCode != null">
+        `shop_code`,
+      </if>
+      <if test="realName != null">
+        `real_name`,
+      </if>
+      <if test="sex != null">
+        `sex`,
+      </if>
+      <if test="mobileNo != null">
+        `mobile_no`,
+      </if>
+      <if test="amount != null">
+        `amount`,
+      </if>
+      <if test="errorCode != null">
+        `error_code`,
+      </if>
+      <if test="errorDescription != null">
+        `error_description`,
+      </if>
+      <if test="orderType != null">
+        `order_type`,
+      </if>
+      <if test="orderMode != null">
+        `order_mode`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="mobileNo != null">
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="errorCode != null">
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDescription != null">
+        #{errorDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="orderMode != null">
+        #{orderMode,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `order_payment_water` (`id`, `order_id`, `user_id`, 
+      `open_id`, `shop_code`, `real_name`, 
+      `sex`, `mobile_no`, `amount`, 
+      `error_code`, `error_description`, 
+      `order_type`, `order_mode`, `status`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}, #{item.userId,jdbcType=BIGINT}, 
+        #{item.openId,jdbcType=VARCHAR}, #{item.shopCode,jdbcType=VARCHAR}, #{item.realName,jdbcType=VARCHAR}, 
+        #{item.sex,jdbcType=TINYINT}, #{item.mobileNo,jdbcType=VARCHAR}, #{item.amount,jdbcType=DECIMAL}, 
+        #{item.errorCode,jdbcType=VARCHAR}, #{item.errorDescription,jdbcType=VARCHAR}, 
+        #{item.orderType,jdbcType=TINYINT}, #{item.orderMode,jdbcType=TINYINT}, #{item.status,jdbcType=TINYINT}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `order_payment_water`
+    (`id`, `order_id`, `user_id`, `open_id`, `shop_code`, `real_name`, `sex`, `mobile_no`, 
+      `amount`, `error_code`, `error_description`, `order_type`, `order_mode`, `status`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderId != null">
+          #{item.orderId,jdbcType=BIGINT},
+        </if>
+        <if test="item.orderId == null">
+          NULL,
+        </if>
+        <if test="item.userId != null">
+          #{item.userId,jdbcType=BIGINT},
+        </if>
+        <if test="item.userId == null">
+          NULL,
+        </if>
+        <if test="item.openId != null">
+          #{item.openId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.openId == null">
+          NULL,
+        </if>
+        <if test="item.shopCode != null">
+          #{item.shopCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.shopCode == null">
+          NULL,
+        </if>
+        <if test="item.realName != null">
+          #{item.realName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.realName == null">
+          NULL,
+        </if>
+        <if test="item.sex != null">
+          #{item.sex,jdbcType=TINYINT},
+        </if>
+        <if test="item.sex == null">
+          NULL,
+        </if>
+        <if test="item.mobileNo != null">
+          #{item.mobileNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.mobileNo == null">
+          NULL,
+        </if>
+        <if test="item.amount != null">
+          #{item.amount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.amount == null">
+          NULL,
+        </if>
+        <if test="item.errorCode != null">
+          #{item.errorCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.errorCode == null">
+          NULL,
+        </if>
+        <if test="item.errorDescription != null">
+          #{item.errorDescription,jdbcType=VARCHAR},
+        </if>
+        <if test="item.errorDescription == null">
+          NULL,
+        </if>
+        <if test="item.orderType != null">
+          #{item.orderType,jdbcType=TINYINT},
+        </if>
+        <if test="item.orderType == null">
+          NULL,
+        </if>
+        <if test="item.orderMode != null">
+          #{item.orderMode,jdbcType=TINYINT},
+        </if>
+        <if test="item.orderMode == null">
+          NULL,
+        </if>
+        <if test="item.status != null">
+          #{item.status,jdbcType=TINYINT},
+        </if>
+        <if test="item.status == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.oms.domain.OrderPaymentWater">
+    update `order_payment_water`
+    <set>
+      <if test="orderId != null">
+        `order_id` = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null">
+        `open_id` = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCode != null">
+        `shop_code` = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        `real_name` = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        `sex` = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="mobileNo != null">
+        `mobile_no` = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        `amount` = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="errorCode != null">
+        `error_code` = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDescription != null">
+        `error_description` = #{errorDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        `order_type` = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="orderMode != null">
+        `order_mode` = #{orderMode,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.oms.domain.OrderPaymentWater">
+    update `order_payment_water`
+    set `order_id` = #{orderId,jdbcType=BIGINT},
+      `user_id` = #{userId,jdbcType=BIGINT},
+      `open_id` = #{openId,jdbcType=VARCHAR},
+      `shop_code` = #{shopCode,jdbcType=VARCHAR},
+      `real_name` = #{realName,jdbcType=VARCHAR},
+      `sex` = #{sex,jdbcType=TINYINT},
+      `mobile_no` = #{mobileNo,jdbcType=VARCHAR},
+      `amount` = #{amount,jdbcType=DECIMAL},
+      `error_code` = #{errorCode,jdbcType=VARCHAR},
+      `error_description` = #{errorDescription,jdbcType=VARCHAR},
+      `order_type` = #{orderType,jdbcType=TINYINT},
+      `order_mode` = #{orderMode,jdbcType=TINYINT},
+      `status` = #{status,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `order_payment_water`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderId}
+        </foreach>
+      </trim>
+      <trim prefix="userId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.userId}
+        </foreach>
+      </trim>
+      <trim prefix="openId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.openId}
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopCode}
+        </foreach>
+      </trim>
+      <trim prefix="realName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.realName}
+        </foreach>
+      </trim>
+      <trim prefix="sex =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.sex}
+        </foreach>
+      </trim>
+      <trim prefix="mobileNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.mobileNo}
+        </foreach>
+      </trim>
+      <trim prefix="amount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.amount}
+        </foreach>
+      </trim>
+      <trim prefix="errorCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.errorCode}
+        </foreach>
+      </trim>
+      <trim prefix="errorDescription =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.errorDescription}
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderType}
+        </foreach>
+      </trim>
+      <trim prefix="orderMode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderMode}
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.status}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `order_payment_water`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderId != null ">
+            when  #{item.id} then #{item.orderId}
+          </if>
+          <if test="item.orderId == null ">
+            when  #{item.id} then `order_payment_water`.`order_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="userId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.userId != null ">
+            when  #{item.id} then #{item.userId}
+          </if>
+          <if test="item.userId == null ">
+            when  #{item.id} then `order_payment_water`.`user_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="openId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.openId != null ">
+            when  #{item.id} then #{item.openId}
+          </if>
+          <if test="item.openId == null ">
+            when  #{item.id} then `order_payment_water`.`open_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shopCode != null ">
+            when  #{item.id} then #{item.shopCode}
+          </if>
+          <if test="item.shopCode == null ">
+            when  #{item.id} then `order_payment_water`.`shop_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="realName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.realName != null ">
+            when  #{item.id} then #{item.realName}
+          </if>
+          <if test="item.realName == null ">
+            when  #{item.id} then `order_payment_water`.`real_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sex =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.sex != null ">
+            when  #{item.id} then #{item.sex}
+          </if>
+          <if test="item.sex == null ">
+            when  #{item.id} then `order_payment_water`.`sex`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mobileNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.mobileNo != null ">
+            when  #{item.id} then #{item.mobileNo}
+          </if>
+          <if test="item.mobileNo == null ">
+            when  #{item.id} then `order_payment_water`.`mobile_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="amount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.amount != null ">
+            when  #{item.id} then #{item.amount}
+          </if>
+          <if test="item.amount == null ">
+            when  #{item.id} then `order_payment_water`.`amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="errorCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.errorCode != null ">
+            when  #{item.id} then #{item.errorCode}
+          </if>
+          <if test="item.errorCode == null ">
+            when  #{item.id} then `order_payment_water`.`error_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="errorDescription =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.errorDescription != null ">
+            when  #{item.id} then #{item.errorDescription}
+          </if>
+          <if test="item.errorDescription == null ">
+            when  #{item.id} then `order_payment_water`.`error_description`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderType != null ">
+            when  #{item.id} then #{item.orderType}
+          </if>
+          <if test="item.orderType == null ">
+            when  #{item.id} then `order_payment_water`.`order_type`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderMode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderMode != null ">
+            when  #{item.id} then #{item.orderMode}
+          </if>
+          <if test="item.orderMode == null ">
+            when  #{item.id} then `order_payment_water`.`order_mode`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.id} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.id} then `order_payment_water`.`status`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+</mapper>

@@ -1,0 +1,7 @@
+server:
+  port: 8081
+spring:
+  profiles:
+    active: prod
+  application:
+    name: milisong-scm-print${shopId}

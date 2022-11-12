@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.base.mapper.OperationLogMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.scm.base.domain.OperationLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="modular" jdbcType="VARCHAR" property="modular" />
+    <result column="bussiness_id" jdbcType="VARCHAR" property="bussinessId" />
+    <result column="operation_type" jdbcType="VARCHAR" property="operationType" />
+    <result column="operation_user" jdbcType="VARCHAR" property="operationUser" />
+    <result column="operation_time" jdbcType="TIMESTAMP" property="operationTime" />
+    <result column="operation_resume" jdbcType="VARCHAR" property="operationResume" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.milisong.scm.base.domain.OperationLog">
+    <result column="diff_data" jdbcType="LONGVARCHAR" property="diffData" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `id`, `modular`, `bussiness_id`, `operation_type`, `operation_user`, `operation_time`, 
+    `operation_resume`, `create_time`, `update_time`
+  </sql>
+  <sql id="Blob_Column_List">
+    `diff_data`
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.milisong.scm.base.domain.OperationLogExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `t_operation_log`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.milisong.scm.base.domain.OperationLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from `t_operation_log`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `t_operation_log`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `t_operation_log`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.milisong.scm.base.domain.OperationLogExample">
+    delete from `t_operation_log`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.milisong.scm.base.domain.OperationLog">
+    insert into `t_operation_log` (`id`, `modular`, `bussiness_id`, 
+      `operation_type`, `operation_user`, `operation_time`, 
+      `operation_resume`, `create_time`, `update_time`, 
+      `diff_data`)
+    values (#{id,jdbcType=BIGINT}, #{modular,jdbcType=VARCHAR}, #{bussinessId,jdbcType=VARCHAR}, 
+      #{operationType,jdbcType=VARCHAR}, #{operationUser,jdbcType=VARCHAR}, #{operationTime,jdbcType=TIMESTAMP}, 
+      #{operationResume,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{diffData,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.scm.base.domain.OperationLog">
+    insert into `t_operation_log`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="modular != null">
+        `modular`,
+      </if>
+      <if test="bussinessId != null">
+        `bussiness_id`,
+      </if>
+      <if test="operationType != null">
+        `operation_type`,
+      </if>
+      <if test="operationUser != null">
+        `operation_user`,
+      </if>
+      <if test="operationTime != null">
+        `operation_time`,
+      </if>
+      <if test="operationResume != null">
+        `operation_resume`,
+      </if>
+      <if test="createTime != null">
+        `create_time`,
+      </if>
+      <if test="updateTime != null">
+        `update_time`,
+      </if>
+      <if test="diffData != null">
+        `diff_data`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="modular != null">
+        #{modular,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessId != null">
+        #{bussinessId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="operationUser != null">
+        #{operationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null">
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationResume != null">
+        #{operationResume,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="diffData != null">
+        #{diffData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `t_operation_log` (`id`, `modular`, `bussiness_id`, 
+      `operation_type`, `operation_user`, 
+      `operation_time`, `operation_resume`, 
+      `create_time`, `update_time`, `diff_data`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.modular,jdbcType=VARCHAR}, #{item.bussinessId,jdbcType=VARCHAR}, 
+        #{item.operationType,jdbcType=VARCHAR}, #{item.operationUser,jdbcType=VARCHAR}, 
+        #{item.operationTime,jdbcType=TIMESTAMP}, #{item.operationResume,jdbcType=VARCHAR}, 
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, #{item.diffData,jdbcType=LONGVARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `t_operation_log`
+    (`id`, `modular`, `bussiness_id`, `operation_type`, `operation_user`, `operation_time`, 
+      `operation_resume`, `create_time`, `update_time`, `diff_data`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.modular != null">
+          #{item.modular,jdbcType=VARCHAR},
+        </if>
+        <if test="item.modular == null">
+          NULL,
+        </if>
+        <if test="item.bussinessId != null">
+          #{item.bussinessId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.bussinessId == null">
+          NULL,
+        </if>
+        <if test="item.operationType != null">
+          #{item.operationType,jdbcType=VARCHAR},
+        </if>
+        <if test="item.operationType == null">
+          NULL,
+        </if>
+        <if test="item.operationUser != null">
+          #{item.operationUser,jdbcType=VARCHAR},
+        </if>
+        <if test="item.operationUser == null">
+          NULL,
+        </if>
+        <if test="item.operationTime != null">
+          #{item.operationTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.operationTime == null">
+          NULL,
+        </if>
+        <if test="item.operationResume != null">
+          #{item.operationResume,jdbcType=VARCHAR},
+        </if>
+        <if test="item.operationResume == null">
+          NULL,
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.createTime == null">
+          NULL,
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime == null">
+          NULL,
+        </if>
+        <if test="item.diffData != null">
+          #{item.diffData,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="item.diffData == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <select id="countByExample" parameterType="com.milisong.scm.base.domain.OperationLogExample" resultType="java.lang.Long">
+    select count(*) from `t_operation_log`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `t_operation_log`
+    <set>
+      <if test="record.id != null">
+        `id` = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.modular != null">
+        `modular` = #{record.modular,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bussinessId != null">
+        `bussiness_id` = #{record.bussinessId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operationType != null">
+        `operation_type` = #{record.operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operationUser != null">
+        `operation_user` = #{record.operationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operationTime != null">
+        `operation_time` = #{record.operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operationResume != null">
+        `operation_resume` = #{record.operationResume,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        `create_time` = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        `update_time` = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.diffData != null">
+        `diff_data` = #{record.diffData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update `t_operation_log`
+    set `id` = #{record.id,jdbcType=BIGINT},
+      `modular` = #{record.modular,jdbcType=VARCHAR},
+      `bussiness_id` = #{record.bussinessId,jdbcType=VARCHAR},
+      `operation_type` = #{record.operationType,jdbcType=VARCHAR},
+      `operation_user` = #{record.operationUser,jdbcType=VARCHAR},
+      `operation_time` = #{record.operationTime,jdbcType=TIMESTAMP},
+      `operation_resume` = #{record.operationResume,jdbcType=VARCHAR},
+      `create_time` = #{record.createTime,jdbcType=TIMESTAMP},
+      `update_time` = #{record.updateTime,jdbcType=TIMESTAMP},
+      `diff_data` = #{record.diffData,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `t_operation_log`
+    set `id` = #{record.id,jdbcType=BIGINT},
+      `modular` = #{record.modular,jdbcType=VARCHAR},
+      `bussiness_id` = #{record.bussinessId,jdbcType=VARCHAR},
+      `operation_type` = #{record.operationType,jdbcType=VARCHAR},
+      `operation_user` = #{record.operationUser,jdbcType=VARCHAR},
+      `operation_time` = #{record.operationTime,jdbcType=TIMESTAMP},
+      `operation_resume` = #{record.operationResume,jdbcType=VARCHAR},
+      `create_time` = #{record.createTime,jdbcType=TIMESTAMP},
+      `update_time` = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.scm.base.domain.OperationLog">
+    update `t_operation_log`
+    <set>
+      <if test="modular != null">
+        `modular` = #{modular,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessId != null">
+        `bussiness_id` = #{bussinessId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        `operation_type` = #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="operationUser != null">
+        `operation_user` = #{operationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null">
+        `operation_time` = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationResume != null">
+        `operation_resume` = #{operationResume,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="diffData != null">
+        `diff_data` = #{diffData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.milisong.scm.base.domain.OperationLog">
+    update `t_operation_log`
+    set `modular` = #{modular,jdbcType=VARCHAR},
+      `bussiness_id` = #{bussinessId,jdbcType=VARCHAR},
+      `operation_type` = #{operationType,jdbcType=VARCHAR},
+      `operation_user` = #{operationUser,jdbcType=VARCHAR},
+      `operation_time` = #{operationTime,jdbcType=TIMESTAMP},
+      `operation_resume` = #{operationResume,jdbcType=VARCHAR},
+      `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      `diff_data` = #{diffData,jdbcType=LONGVARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.scm.base.domain.OperationLog">
+    update `t_operation_log`
+    set `modular` = #{modular,jdbcType=VARCHAR},
+      `bussiness_id` = #{bussinessId,jdbcType=VARCHAR},
+      `operation_type` = #{operationType,jdbcType=VARCHAR},
+      `operation_user` = #{operationUser,jdbcType=VARCHAR},
+      `operation_time` = #{operationTime,jdbcType=TIMESTAMP},
+      `operation_resume` = #{operationResume,jdbcType=VARCHAR},
+      `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `t_operation_log`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="modular =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.modular}
+        </foreach>
+      </trim>
+      <trim prefix="bussinessId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.bussinessId}
+        </foreach>
+      </trim>
+      <trim prefix="operationType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.operationType}
+        </foreach>
+      </trim>
+      <trim prefix="operationUser =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.operationUser}
+        </foreach>
+      </trim>
+      <trim prefix="operationTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.operationTime}
+        </foreach>
+      </trim>
+      <trim prefix="operationResume =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.operationResume}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+      <trim prefix="diffData =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.diffData}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `t_operation_log`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="modular =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.modular != null ">
+            when  #{item.id} then #{item.modular}
+          </if>
+          <if test="item.modular == null ">
+            when  #{item.id} then `t_operation_log`.`modular`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="bussinessId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.bussinessId != null ">
+            when  #{item.id} then #{item.bussinessId}
+          </if>
+          <if test="item.bussinessId == null ">
+            when  #{item.id} then `t_operation_log`.`bussiness_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operationType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.operationType != null ">
+            when  #{item.id} then #{item.operationType}
+          </if>
+          <if test="item.operationType == null ">
+            when  #{item.id} then `t_operation_log`.`operation_type`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operationUser =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.operationUser != null ">
+            when  #{item.id} then #{item.operationUser}
+          </if>
+          <if test="item.operationUser == null ">
+            when  #{item.id} then `t_operation_log`.`operation_user`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operationTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.operationTime != null ">
+            when  #{item.id} then #{item.operationTime}
+          </if>
+          <if test="item.operationTime == null ">
+            when  #{item.id} then `t_operation_log`.`operation_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operationResume =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.operationResume != null ">
+            when  #{item.id} then #{item.operationResume}
+          </if>
+          <if test="item.operationResume == null ">
+            when  #{item.id} then `t_operation_log`.`operation_resume`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then `t_operation_log`.`create_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then `t_operation_log`.`update_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="diffData =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.diffData != null ">
+            when  #{item.id} then #{item.diffData}
+          </if>
+          <if test="item.diffData == null ">
+            when  #{item.id} then `t_operation_log`.`diff_data`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByExample" parameterType="map">
+    update `t_operation_log`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="modular =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.modular}
+        </foreach>
+      </trim>
+      <trim prefix="bussinessId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.bussinessId}
+        </foreach>
+      </trim>
+      <trim prefix="operationType =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.operationType}
+        </foreach>
+      </trim>
+      <trim prefix="operationUser =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.operationUser}
+        </foreach>
+      </trim>
+      <trim prefix="operationTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.operationTime}
+        </foreach>
+      </trim>
+      <trim prefix="operationResume =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.operationResume}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+      <trim prefix="diffData =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.diffData}
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBatchByExampleSelective" parameterType="map">
+    update `t_operation_log`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="modular =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.modular != null ">
+            when  #{item.id} then #{item.modular}
+          </if>
+          <if test="item.modular == null ">
+            when  #{item.id} then `t_operation_log`.`modular`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="bussinessId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.bussinessId != null ">
+            when  #{item.id} then #{item.bussinessId}
+          </if>
+          <if test="item.bussinessId == null ">
+            when  #{item.id} then `t_operation_log`.`bussiness_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operationType =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.operationType != null ">
+            when  #{item.id} then #{item.operationType}
+          </if>
+          <if test="item.operationType == null ">
+            when  #{item.id} then `t_operation_log`.`operation_type`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operationUser =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.operationUser != null ">
+            when  #{item.id} then #{item.operationUser}
+          </if>
+          <if test="item.operationUser == null ">
+            when  #{item.id} then `t_operation_log`.`operation_user`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operationTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.operationTime != null ">
+            when  #{item.id} then #{item.operationTime}
+          </if>
+          <if test="item.operationTime == null ">
+            when  #{item.id} then `t_operation_log`.`operation_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operationResume =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.operationResume != null ">
+            when  #{item.id} then #{item.operationResume}
+          </if>
+          <if test="item.operationResume == null ">
+            when  #{item.id} then `t_operation_log`.`operation_resume`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then `t_operation_log`.`create_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then `t_operation_log`.`update_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="diffData =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.diffData != null ">
+            when  #{item.id} then #{item.diffData}
+          </if>
+          <if test="item.diffData == null ">
+            when  #{item.id} then `t_operation_log`.`diff_data`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

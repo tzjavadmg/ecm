@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.dms.mapper.ShunfengOrdersetMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.dms.domain.ShunfengOrderset">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="detail_set_id" jdbcType="BIGINT" property="detailSetId" />
+    <result column="shunfeng_order_id" jdbcType="VARCHAR" property="shunfengOrderId" />
+    <result column="credate_time" jdbcType="TIMESTAMP" property="credateTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, detail_set_id, shunfeng_order_id, credate_time, update_time, is_deleted
+  </sql>
+  <select id="selectByExample" parameterType="com.milisong.dms.domain.ShunfengOrdersetExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from shunfeng_orderset
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shunfeng_orderset
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from shunfeng_orderset
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.milisong.dms.domain.ShunfengOrdersetExample">
+    delete from shunfeng_orderset
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.milisong.dms.domain.ShunfengOrderset">
+    insert into shunfeng_orderset (id, detail_set_id, shunfeng_order_id, 
+      credate_time, update_time, is_deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{detailSetId,jdbcType=BIGINT}, #{shunfengOrderId,jdbcType=VARCHAR}, 
+      #{credateTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.dms.domain.ShunfengOrderset">
+    insert into shunfeng_orderset
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="detailSetId != null">
+        detail_set_id,
+      </if>
+      <if test="shunfengOrderId != null">
+        shunfeng_order_id,
+      </if>
+      <if test="credateTime != null">
+        credate_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="detailSetId != null">
+        #{detailSetId,jdbcType=BIGINT},
+      </if>
+      <if test="shunfengOrderId != null">
+        #{shunfengOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="credateTime != null">
+        #{credateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into shunfeng_orderset (id, detail_set_id, shunfeng_order_id, 
+      credate_time, update_time, 
+      is_deleted)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.detailSetId,jdbcType=BIGINT}, #{item.shunfengOrderId,jdbcType=VARCHAR}, 
+        #{item.credateTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, 
+        #{item.isDeleted,jdbcType=BIT})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into shunfeng_orderset
+    (id, detail_set_id, shunfeng_order_id, credate_time, update_time, is_deleted)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.detailSetId != null">
+          #{item.detailSetId,jdbcType=BIGINT},
+        </if>
+        <if test="item.detailSetId == null">
+          NULL,
+        </if>
+        <if test="item.shunfengOrderId != null">
+          #{item.shunfengOrderId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.shunfengOrderId == null">
+          NULL,
+        </if>
+        <if test="item.credateTime != null">
+          #{item.credateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.credateTime == null">
+          NULL,
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime == null">
+          NULL,
+        </if>
+        <if test="item.isDeleted != null">
+          #{item.isDeleted,jdbcType=BIT},
+        </if>
+        <if test="item.isDeleted == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <select id="countByExample" parameterType="com.milisong.dms.domain.ShunfengOrdersetExample" resultType="java.lang.Long">
+    select count(*) from shunfeng_orderset
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shunfeng_orderset
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.detailSetId != null">
+        detail_set_id = #{record.detailSetId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shunfengOrderId != null">
+        shunfeng_order_id = #{record.shunfengOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credateTime != null">
+        credate_time = #{record.credateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shunfeng_orderset
+    set id = #{record.id,jdbcType=BIGINT},
+      detail_set_id = #{record.detailSetId,jdbcType=BIGINT},
+      shunfeng_order_id = #{record.shunfengOrderId,jdbcType=VARCHAR},
+      credate_time = #{record.credateTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{record.isDeleted,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.dms.domain.ShunfengOrderset">
+    update shunfeng_orderset
+    <set>
+      <if test="detailSetId != null">
+        detail_set_id = #{detailSetId,jdbcType=BIGINT},
+      </if>
+      <if test="shunfengOrderId != null">
+        shunfeng_order_id = #{shunfengOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="credateTime != null">
+        credate_time = #{credateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.dms.domain.ShunfengOrderset">
+    update shunfeng_orderset
+    set detail_set_id = #{detailSetId,jdbcType=BIGINT},
+      shunfeng_order_id = #{shunfengOrderId,jdbcType=VARCHAR},
+      credate_time = #{credateTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update shunfeng_orderset
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="detailSetId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.detailSetId}
+        </foreach>
+      </trim>
+      <trim prefix="shunfengOrderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shunfengOrderId}
+        </foreach>
+      </trim>
+      <trim prefix="credateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.credateTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.isDeleted}
+        </foreach>
+      </trim>
+    </trim>
+    where id in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update shunfeng_orderset
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="detailSetId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.detailSetId != null ">
+            when  #{item.id} then #{item.detailSetId}
+          </if>
+          <if test="item.detailSetId == null ">
+            when  #{item.id} then shunfeng_orderset.detail_set_id
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shunfengOrderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shunfengOrderId != null ">
+            when  #{item.id} then #{item.shunfengOrderId}
+          </if>
+          <if test="item.shunfengOrderId == null ">
+            when  #{item.id} then shunfeng_orderset.shunfeng_order_id
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="credateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.credateTime != null ">
+            when  #{item.id} then #{item.credateTime}
+          </if>
+          <if test="item.credateTime == null ">
+            when  #{item.id} then shunfeng_orderset.credate_time
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then shunfeng_orderset.update_time
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.isDeleted != null ">
+            when  #{item.id} then #{item.isDeleted}
+          </if>
+          <if test="item.isDeleted == null ">
+            when  #{item.id} then shunfeng_orderset.is_deleted
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByExample" parameterType="map">
+    update shunfeng_orderset
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="detailSetId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.detailSetId}
+        </foreach>
+      </trim>
+      <trim prefix="shunfengOrderId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shunfengOrderId}
+        </foreach>
+      </trim>
+      <trim prefix="credateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.credateTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.isDeleted}
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBatchByExampleSelective" parameterType="map">
+    update shunfeng_orderset
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="detailSetId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.detailSetId != null ">
+            when  #{item.id} then #{item.detailSetId}
+          </if>
+          <if test="item.detailSetId == null ">
+            when  #{item.id} then shunfeng_orderset.detail_set_id
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shunfengOrderId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.shunfengOrderId != null ">
+            when  #{item.id} then #{item.shunfengOrderId}
+          </if>
+          <if test="item.shunfengOrderId == null ">
+            when  #{item.id} then shunfeng_orderset.shunfeng_order_id
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="credateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.credateTime != null ">
+            when  #{item.id} then #{item.credateTime}
+          </if>
+          <if test="item.credateTime == null ">
+            when  #{item.id} then shunfeng_orderset.credate_time
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then shunfeng_orderset.update_time
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="isDeleted =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.isDeleted != null ">
+            when  #{item.id} then #{item.isDeleted}
+          </if>
+          <if test="item.isDeleted == null ">
+            when  #{item.id} then shunfeng_orderset.is_deleted
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

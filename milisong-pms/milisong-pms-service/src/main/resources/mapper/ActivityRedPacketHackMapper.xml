@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.ActivityRedPacketActionMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.ActivityRedPacketAction" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_activity_id" property="userActivityId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_portrait_url" property="headPortraitUrl" jdbcType="VARCHAR" />
+    <result column="business_line" property="businessLine" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_activity_id, user_id, open_id, nick_name, head_portrait_url, business_line, create_time,
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from activity_red_packet_action
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.ActivityRedPacketAction" >
+    insert into activity_red_packet_action (id, user_activity_id, user_id,
+      open_id, nick_name, head_portrait_url, business_line,
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{userActivityId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT},
+      #{openId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{headPortraitUrl,jdbcType=VARCHAR}, #{businessLine,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.ActivityRedPacketAction" >
+    insert into activity_red_packet_action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userActivityId != null" >
+        user_activity_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="headPortraitUrl != null" >
+        head_portrait_url,
+      </if>
+      <if test="businessLine != null" >
+        business_line,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userActivityId != null" >
+        #{userActivityId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null" >
+        #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.ActivityRedPacketAction" >
+    update activity_red_packet_action
+    <set >
+      <if test="userActivityId != null" >
+        user_activity_id = #{userActivityId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null" >
+        head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.ActivityRedPacketAction" >
+    update activity_red_packet_action
+    set user_activity_id = #{userActivityId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      open_id = #{openId,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+      business_line = #{businessLine,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="hackRedPacketTimes" resultType="int">
+    select count(*)
+    from activity_red_packet_action
+    where user_id = #{userId,jdbcType=BIGINT} and to_days(create_time) = to_days(now())
+  </select>
+
+  <select id="hackActivityRedPacketTimes" resultType="java.lang.Integer">
+    select count(*)
+    from activity_red_packet_action
+    where user_id = #{userId,jdbcType=BIGINT} and user_activity_id = #{activityUserRedPacketId,jdbcType=BIGINT}
+  </select>
+
+  <select id="hackRedPacketRecord" resultType="com.milisong.pms.prom.dto.ActivityRedPacketActionDto">
+    select id, user_activity_id as userActivityId, user_id as userId, open_id as openId, nick_name as nickName,
+    head_portrait_url as headPortraitUrl
+    from activity_red_packet_action
+    where id = #{activityUserRedPacketId,jdbcType=BIGINT} order by create_time asc
+  </select>
+</mapper>

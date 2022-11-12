@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: milisong-upms-service
+  # json format
+  jackson:  
+    date-format:  yyyy-MM-dd HH:mm:ss
+    time-zone:  GMT+8
+    default-property-inclusion: NON_NULL
+#  profiles:
+#    active: dev
+server:
+  port: 50000
+  
+# 启用shutdown   host:port/shutdown
+management:
+  endpoints:
+    web:
+      # 设置前缀  默认为/actuator
+      #base-path: /
+      exposure:
+        include: '*'
+  endpoint:
+    shutdown:
+      enabled: true
+
+sso:
+  url:
+    loginUserInfo: ${sso.host}/v1/sso/getLoginUser
+    menuTree: ${sso.host}/v1/permission/getPermissionTreeByUserNoAndAppName
+    userDataPermission: ${sso.host}/v1/dataPermission/getList
+    userInfo: ${sso.host}/v1/sso/getUserInfoById
+    userPermission: ${sso.host}/v1/permission/getUserPermissionList
+    validateTicket: ${sso.host}/v1/sso/validateTicket

@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://dbtest.jshuii.com:3307/mili_oss?characterEncoding=utf-8&amp;useOldAliasMetadataBehavior=true&amp;autoReconnectForPools=true;useSSL=false;
+    username: mili_oss_user
+    password: Zfuq6kCsPkzKWNHAF1rDdajerguzmyUkyaCQK6UUxNs=
+    type: com.farmland.core.db.SecureDruidDataSource
+
+#数据库主键生产策略
+idworker:
+  workerId: 0
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml,mapper/base/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true

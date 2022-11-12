@@ -1,0 +1,24 @@
+miniapp:
+  base-url: https://devmls-omsapi.jshuii.com
+  #  base-url: http://10.18.20.192
+  miniAppid: wxdc3c4237ba4a4165
+  miniSecret: 3705e339bf5616508dd6a64321369c4e
+  planId: 122131
+  mchid: 1507800561
+  apikey: tomatotomatotomatotomatotomatoto
+  signtype: MD5
+  unifiedOrderCallbackUrl: ${miniapp.base-url}/v2/order/unifiedorder-callback
+  refundCallbackUrl: ${miniapp.base-url}/v2/order/refund-callback
+
+breakfast:
+  base-url: https://devmls-omsapi.jshuii.com
+  miniAppid: wxa94264fc1f05933b
+  miniSecret: fb4b7c067cbbecd08626f7c869759323
+  mchid: 1507800561
+  receiveTemplateId: jN3cyYDziq6WJxTZp6d9Y3Xh-ITLCiEbb7QbMWZDij4
+  payFailTemplateId: k0QatHbpMgRQ-KWXQ21R5KiWQCuZzuZAU983-KXsmpw
+  takeFoodTemplateId: p_E399luOyfDg1joT35uqZA86O2WeVhT6JmXIbNfric
+  apikey: tomatotomatotomatotomatotomatoto
+  signtype: MD5
+  unifiedOrderCallbackUrl: ${breakfast.base-url}/v2/order/unifiedorder-callback
+  refundCallbackUrl: ${breakfast.base-url}/v2/order/refund-callback

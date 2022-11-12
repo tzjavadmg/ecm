@@ -1,0 +1,971 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.base.BaseOrderDeliveryMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.oms.domain.OrderDelivery">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="delivery_no" jdbcType="VARCHAR" property="deliveryNo" />
+    <result column="delivery_company_working_time" jdbcType="TIMESTAMP" property="deliveryCompanyWorkingTime" />
+    <result column="delivery_timezone_id" jdbcType="BIGINT" property="deliveryTimezoneId" />
+    <result column="delivery_timezone_cutoff_time" jdbcType="TIMESTAMP" property="deliveryTimezoneCutoffTime" />
+    <result column="delivery_timezone_from" jdbcType="TIMESTAMP" property="deliveryTimezoneFrom" />
+    <result column="delivery_timezone_to" jdbcType="TIMESTAMP" property="deliveryTimezoneTo" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="delivery_start_time" jdbcType="TIMESTAMP" property="deliveryStartTime" />
+    <result column="delivery_end_time" jdbcType="TIMESTAMP" property="deliveryEndTime" />
+    <result column="delivery_original_price" jdbcType="DECIMAL" property="deliveryOriginalPrice" />
+    <result column="delivery_actual_price" jdbcType="DECIMAL" property="deliveryActualPrice" />
+    <result column="package_time" jdbcType="TIMESTAMP" property="packageTime" />
+    <result column="total_package_original_amount" jdbcType="DECIMAL" property="totalPackageOriginalAmount" />
+    <result column="total_package_actual_amount" jdbcType="DECIMAL" property="totalPackageActualAmount" />
+    <result column="total_goods_count" jdbcType="INTEGER" property="totalGoodsCount" />
+    <result column="total_goods_original_amount" jdbcType="DECIMAL" property="totalGoodsOriginalAmount" />
+    <result column="total_goods_actual_amount" jdbcType="DECIMAL" property="totalGoodsActualAmount" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="share_order_pay_amount" jdbcType="DECIMAL" property="shareOrderPayAmount" />
+    <result column="share_order_deduction_points" jdbcType="INTEGER" property="shareOrderDeductionPoints" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="sf_status" jdbcType="TINYINT" property="sfStatus" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <result column="refund_time" jdbcType="TIMESTAMP" property="refundTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `order_id`, `delivery_no`, `delivery_company_working_time`, `delivery_timezone_id`, 
+    `delivery_timezone_cutoff_time`, `delivery_timezone_from`, `delivery_timezone_to`, 
+    `delivery_date`, `delivery_start_time`, `delivery_end_time`, `delivery_original_price`, 
+    `delivery_actual_price`, `package_time`, `total_package_original_amount`, `total_package_actual_amount`, 
+    `total_goods_count`, `total_goods_original_amount`, `total_goods_actual_amount`, 
+    `total_amount`, `share_order_pay_amount`, `share_order_deduction_points`, `order_type`, 
+    `status`, `sf_status`, `cancel_time`, `refund_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `order_delivery`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.oms.domain.OrderDelivery">
+    insert into `order_delivery` (`id`, `order_id`, `delivery_no`, 
+      `delivery_company_working_time`, `delivery_timezone_id`, 
+      `delivery_timezone_cutoff_time`, `delivery_timezone_from`, 
+      `delivery_timezone_to`, `delivery_date`, `delivery_start_time`, 
+      `delivery_end_time`, `delivery_original_price`, 
+      `delivery_actual_price`, `package_time`, `total_package_original_amount`, 
+      `total_package_actual_amount`, `total_goods_count`, 
+      `total_goods_original_amount`, `total_goods_actual_amount`, 
+      `total_amount`, `share_order_pay_amount`, `share_order_deduction_points`, 
+      `order_type`, `status`, `sf_status`, 
+      `cancel_time`, `refund_time`)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{deliveryNo,jdbcType=VARCHAR}, 
+      #{deliveryCompanyWorkingTime,jdbcType=TIMESTAMP}, #{deliveryTimezoneId,jdbcType=BIGINT}, 
+      #{deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP}, #{deliveryTimezoneFrom,jdbcType=TIMESTAMP}, 
+      #{deliveryTimezoneTo,jdbcType=TIMESTAMP}, #{deliveryDate,jdbcType=DATE}, #{deliveryStartTime,jdbcType=TIMESTAMP}, 
+      #{deliveryEndTime,jdbcType=TIMESTAMP}, #{deliveryOriginalPrice,jdbcType=DECIMAL}, 
+      #{deliveryActualPrice,jdbcType=DECIMAL}, #{packageTime,jdbcType=TIMESTAMP}, #{totalPackageOriginalAmount,jdbcType=DECIMAL}, 
+      #{totalPackageActualAmount,jdbcType=DECIMAL}, #{totalGoodsCount,jdbcType=INTEGER}, 
+      #{totalGoodsOriginalAmount,jdbcType=DECIMAL}, #{totalGoodsActualAmount,jdbcType=DECIMAL}, 
+      #{totalAmount,jdbcType=DECIMAL}, #{shareOrderPayAmount,jdbcType=DECIMAL}, #{shareOrderDeductionPoints,jdbcType=INTEGER}, 
+      #{orderType,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{sfStatus,jdbcType=TINYINT}, 
+      #{cancelTime,jdbcType=TIMESTAMP}, #{refundTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.oms.domain.OrderDelivery">
+    insert into `order_delivery`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderId != null">
+        `order_id`,
+      </if>
+      <if test="deliveryNo != null">
+        `delivery_no`,
+      </if>
+      <if test="deliveryCompanyWorkingTime != null">
+        `delivery_company_working_time`,
+      </if>
+      <if test="deliveryTimezoneId != null">
+        `delivery_timezone_id`,
+      </if>
+      <if test="deliveryTimezoneCutoffTime != null">
+        `delivery_timezone_cutoff_time`,
+      </if>
+      <if test="deliveryTimezoneFrom != null">
+        `delivery_timezone_from`,
+      </if>
+      <if test="deliveryTimezoneTo != null">
+        `delivery_timezone_to`,
+      </if>
+      <if test="deliveryDate != null">
+        `delivery_date`,
+      </if>
+      <if test="deliveryStartTime != null">
+        `delivery_start_time`,
+      </if>
+      <if test="deliveryEndTime != null">
+        `delivery_end_time`,
+      </if>
+      <if test="deliveryOriginalPrice != null">
+        `delivery_original_price`,
+      </if>
+      <if test="deliveryActualPrice != null">
+        `delivery_actual_price`,
+      </if>
+      <if test="packageTime != null">
+        `package_time`,
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        `total_package_original_amount`,
+      </if>
+      <if test="totalPackageActualAmount != null">
+        `total_package_actual_amount`,
+      </if>
+      <if test="totalGoodsCount != null">
+        `total_goods_count`,
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        `total_goods_original_amount`,
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        `total_goods_actual_amount`,
+      </if>
+      <if test="totalAmount != null">
+        `total_amount`,
+      </if>
+      <if test="shareOrderPayAmount != null">
+        `share_order_pay_amount`,
+      </if>
+      <if test="shareOrderDeductionPoints != null">
+        `share_order_deduction_points`,
+      </if>
+      <if test="orderType != null">
+        `order_type`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="sfStatus != null">
+        `sf_status`,
+      </if>
+      <if test="cancelTime != null">
+        `cancel_time`,
+      </if>
+      <if test="refundTime != null">
+        `refund_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryNo != null">
+        #{deliveryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCompanyWorkingTime != null">
+        #{deliveryCompanyWorkingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTimezoneId != null">
+        #{deliveryTimezoneId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryTimezoneCutoffTime != null">
+        #{deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTimezoneFrom != null">
+        #{deliveryTimezoneFrom,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTimezoneTo != null">
+        #{deliveryTimezoneTo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryStartTime != null">
+        #{deliveryStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryEndTime != null">
+        #{deliveryEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryOriginalPrice != null">
+        #{deliveryOriginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryActualPrice != null">
+        #{deliveryActualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="packageTime != null">
+        #{packageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageActualAmount != null">
+        #{totalPackageActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsCount != null">
+        #{totalGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="shareOrderPayAmount != null">
+        #{shareOrderPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="shareOrderDeductionPoints != null">
+        #{shareOrderDeductionPoints,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="sfStatus != null">
+        #{sfStatus,jdbcType=TINYINT},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `order_delivery` (`id`, `order_id`, `delivery_no`, 
+      `delivery_company_working_time`, `delivery_timezone_id`, 
+      `delivery_timezone_cutoff_time`, `delivery_timezone_from`, 
+      `delivery_timezone_to`, `delivery_date`, 
+      `delivery_start_time`, `delivery_end_time`, 
+      `delivery_original_price`, `delivery_actual_price`, 
+      `package_time`, `total_package_original_amount`, 
+      `total_package_actual_amount`, `total_goods_count`, 
+      `total_goods_original_amount`, `total_goods_actual_amount`, 
+      `total_amount`, `share_order_pay_amount`, 
+      `share_order_deduction_points`, `order_type`, 
+      `status`, `sf_status`, `cancel_time`, 
+      `refund_time`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}, #{item.deliveryNo,jdbcType=VARCHAR}, 
+        #{item.deliveryCompanyWorkingTime,jdbcType=TIMESTAMP}, #{item.deliveryTimezoneId,jdbcType=BIGINT}, 
+        #{item.deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP}, #{item.deliveryTimezoneFrom,jdbcType=TIMESTAMP}, 
+        #{item.deliveryTimezoneTo,jdbcType=TIMESTAMP}, #{item.deliveryDate,jdbcType=DATE}, 
+        #{item.deliveryStartTime,jdbcType=TIMESTAMP}, #{item.deliveryEndTime,jdbcType=TIMESTAMP}, 
+        #{item.deliveryOriginalPrice,jdbcType=DECIMAL}, #{item.deliveryActualPrice,jdbcType=DECIMAL}, 
+        #{item.packageTime,jdbcType=TIMESTAMP}, #{item.totalPackageOriginalAmount,jdbcType=DECIMAL}, 
+        #{item.totalPackageActualAmount,jdbcType=DECIMAL}, #{item.totalGoodsCount,jdbcType=INTEGER}, 
+        #{item.totalGoodsOriginalAmount,jdbcType=DECIMAL}, #{item.totalGoodsActualAmount,jdbcType=DECIMAL}, 
+        #{item.totalAmount,jdbcType=DECIMAL}, #{item.shareOrderPayAmount,jdbcType=DECIMAL}, 
+        #{item.shareOrderDeductionPoints,jdbcType=INTEGER}, #{item.orderType,jdbcType=TINYINT}, 
+        #{item.status,jdbcType=TINYINT}, #{item.sfStatus,jdbcType=TINYINT}, #{item.cancelTime,jdbcType=TIMESTAMP}, 
+        #{item.refundTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `order_delivery`
+    (`id`, `order_id`, `delivery_no`, `delivery_company_working_time`, `delivery_timezone_id`, 
+      `delivery_timezone_cutoff_time`, `delivery_timezone_from`, `delivery_timezone_to`, 
+      `delivery_date`, `delivery_start_time`, `delivery_end_time`, `delivery_original_price`, 
+      `delivery_actual_price`, `package_time`, `total_package_original_amount`, `total_package_actual_amount`, 
+      `total_goods_count`, `total_goods_original_amount`, `total_goods_actual_amount`, 
+      `total_amount`, `share_order_pay_amount`, `share_order_deduction_points`, `order_type`, 
+      `status`, `sf_status`, `cancel_time`, `refund_time`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderId != null">
+          #{item.orderId,jdbcType=BIGINT},
+        </if>
+        <if test="item.orderId == null">
+          NULL,
+        </if>
+        <if test="item.deliveryNo != null">
+          #{item.deliveryNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.deliveryNo == null">
+          NULL,
+        </if>
+        <if test="item.deliveryCompanyWorkingTime != null">
+          #{item.deliveryCompanyWorkingTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryCompanyWorkingTime == null">
+          NULL,
+        </if>
+        <if test="item.deliveryTimezoneId != null">
+          #{item.deliveryTimezoneId,jdbcType=BIGINT},
+        </if>
+        <if test="item.deliveryTimezoneId == null">
+          NULL,
+        </if>
+        <if test="item.deliveryTimezoneCutoffTime != null">
+          #{item.deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryTimezoneCutoffTime == null">
+          NULL,
+        </if>
+        <if test="item.deliveryTimezoneFrom != null">
+          #{item.deliveryTimezoneFrom,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryTimezoneFrom == null">
+          NULL,
+        </if>
+        <if test="item.deliveryTimezoneTo != null">
+          #{item.deliveryTimezoneTo,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryTimezoneTo == null">
+          NULL,
+        </if>
+        <if test="item.deliveryDate != null">
+          #{item.deliveryDate,jdbcType=DATE},
+        </if>
+        <if test="item.deliveryDate == null">
+          NULL,
+        </if>
+        <if test="item.deliveryStartTime != null">
+          #{item.deliveryStartTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryStartTime == null">
+          NULL,
+        </if>
+        <if test="item.deliveryEndTime != null">
+          #{item.deliveryEndTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryEndTime == null">
+          NULL,
+        </if>
+        <if test="item.deliveryOriginalPrice != null">
+          #{item.deliveryOriginalPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.deliveryOriginalPrice == null">
+          NULL,
+        </if>
+        <if test="item.deliveryActualPrice != null">
+          #{item.deliveryActualPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.deliveryActualPrice == null">
+          NULL,
+        </if>
+        <if test="item.packageTime != null">
+          #{item.packageTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.packageTime == null">
+          NULL,
+        </if>
+        <if test="item.totalPackageOriginalAmount != null">
+          #{item.totalPackageOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPackageOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalPackageActualAmount != null">
+          #{item.totalPackageActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPackageActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsCount != null">
+          #{item.totalGoodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.totalGoodsCount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsOriginalAmount != null">
+          #{item.totalGoodsOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalGoodsOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsActualAmount != null">
+          #{item.totalGoodsActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalGoodsActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalAmount != null">
+          #{item.totalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalAmount == null">
+          NULL,
+        </if>
+        <if test="item.shareOrderPayAmount != null">
+          #{item.shareOrderPayAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.shareOrderPayAmount == null">
+          NULL,
+        </if>
+        <if test="item.shareOrderDeductionPoints != null">
+          #{item.shareOrderDeductionPoints,jdbcType=INTEGER},
+        </if>
+        <if test="item.shareOrderDeductionPoints == null">
+          NULL,
+        </if>
+        <if test="item.orderType != null">
+          #{item.orderType,jdbcType=TINYINT},
+        </if>
+        <if test="item.orderType == null">
+          NULL,
+        </if>
+        <if test="item.status != null">
+          #{item.status,jdbcType=TINYINT},
+        </if>
+        <if test="item.status == null">
+          NULL,
+        </if>
+        <if test="item.sfStatus != null">
+          #{item.sfStatus,jdbcType=TINYINT},
+        </if>
+        <if test="item.sfStatus == null">
+          NULL,
+        </if>
+        <if test="item.cancelTime != null">
+          #{item.cancelTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.cancelTime == null">
+          NULL,
+        </if>
+        <if test="item.refundTime != null">
+          #{item.refundTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.refundTime == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.oms.domain.OrderDelivery">
+    update `order_delivery`
+    <set>
+      <if test="orderId != null">
+        `order_id` = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryNo != null">
+        `delivery_no` = #{deliveryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCompanyWorkingTime != null">
+        `delivery_company_working_time` = #{deliveryCompanyWorkingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTimezoneId != null">
+        `delivery_timezone_id` = #{deliveryTimezoneId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryTimezoneCutoffTime != null">
+        `delivery_timezone_cutoff_time` = #{deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTimezoneFrom != null">
+        `delivery_timezone_from` = #{deliveryTimezoneFrom,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTimezoneTo != null">
+        `delivery_timezone_to` = #{deliveryTimezoneTo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryDate != null">
+        `delivery_date` = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryStartTime != null">
+        `delivery_start_time` = #{deliveryStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryEndTime != null">
+        `delivery_end_time` = #{deliveryEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryOriginalPrice != null">
+        `delivery_original_price` = #{deliveryOriginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryActualPrice != null">
+        `delivery_actual_price` = #{deliveryActualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="packageTime != null">
+        `package_time` = #{packageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        `total_package_original_amount` = #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageActualAmount != null">
+        `total_package_actual_amount` = #{totalPackageActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsCount != null">
+        `total_goods_count` = #{totalGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        `total_goods_original_amount` = #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        `total_goods_actual_amount` = #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        `total_amount` = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="shareOrderPayAmount != null">
+        `share_order_pay_amount` = #{shareOrderPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="shareOrderDeductionPoints != null">
+        `share_order_deduction_points` = #{shareOrderDeductionPoints,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null">
+        `order_type` = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="sfStatus != null">
+        `sf_status` = #{sfStatus,jdbcType=TINYINT},
+      </if>
+      <if test="cancelTime != null">
+        `cancel_time` = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundTime != null">
+        `refund_time` = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.oms.domain.OrderDelivery">
+    update `order_delivery`
+    set `order_id` = #{orderId,jdbcType=BIGINT},
+      `delivery_no` = #{deliveryNo,jdbcType=VARCHAR},
+      `delivery_company_working_time` = #{deliveryCompanyWorkingTime,jdbcType=TIMESTAMP},
+      `delivery_timezone_id` = #{deliveryTimezoneId,jdbcType=BIGINT},
+      `delivery_timezone_cutoff_time` = #{deliveryTimezoneCutoffTime,jdbcType=TIMESTAMP},
+      `delivery_timezone_from` = #{deliveryTimezoneFrom,jdbcType=TIMESTAMP},
+      `delivery_timezone_to` = #{deliveryTimezoneTo,jdbcType=TIMESTAMP},
+      `delivery_date` = #{deliveryDate,jdbcType=DATE},
+      `delivery_start_time` = #{deliveryStartTime,jdbcType=TIMESTAMP},
+      `delivery_end_time` = #{deliveryEndTime,jdbcType=TIMESTAMP},
+      `delivery_original_price` = #{deliveryOriginalPrice,jdbcType=DECIMAL},
+      `delivery_actual_price` = #{deliveryActualPrice,jdbcType=DECIMAL},
+      `package_time` = #{packageTime,jdbcType=TIMESTAMP},
+      `total_package_original_amount` = #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      `total_package_actual_amount` = #{totalPackageActualAmount,jdbcType=DECIMAL},
+      `total_goods_count` = #{totalGoodsCount,jdbcType=INTEGER},
+      `total_goods_original_amount` = #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      `total_goods_actual_amount` = #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      `total_amount` = #{totalAmount,jdbcType=DECIMAL},
+      `share_order_pay_amount` = #{shareOrderPayAmount,jdbcType=DECIMAL},
+      `share_order_deduction_points` = #{shareOrderDeductionPoints,jdbcType=INTEGER},
+      `order_type` = #{orderType,jdbcType=TINYINT},
+      `status` = #{status,jdbcType=TINYINT},
+      `sf_status` = #{sfStatus,jdbcType=TINYINT},
+      `cancel_time` = #{cancelTime,jdbcType=TIMESTAMP},
+      `refund_time` = #{refundTime,jdbcType=TIMESTAMP}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `order_delivery`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderId}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryNo}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryCompanyWorkingTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryCompanyWorkingTime}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimezoneId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryTimezoneId}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimezoneCutoffTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryTimezoneCutoffTime}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimezoneFrom =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryTimezoneFrom}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimezoneTo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryTimezoneTo}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryDate}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryStartTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryStartTime}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryEndTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryEndTime}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryOriginalPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryOriginalPrice}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryActualPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryActualPrice}
+        </foreach>
+      </trim>
+      <trim prefix="packageTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.packageTime}
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPackageOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPackageActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="shareOrderPayAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shareOrderPayAmount}
+        </foreach>
+      </trim>
+      <trim prefix="shareOrderDeductionPoints =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shareOrderDeductionPoints}
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderType}
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.status}
+        </foreach>
+      </trim>
+      <trim prefix="sfStatus =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.sfStatus}
+        </foreach>
+      </trim>
+      <trim prefix="cancelTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.cancelTime}
+        </foreach>
+      </trim>
+      <trim prefix="refundTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.refundTime}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `order_delivery`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderId != null ">
+            when  #{item.id} then #{item.orderId}
+          </if>
+          <if test="item.orderId == null ">
+            when  #{item.id} then `order_delivery`.`order_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryNo != null ">
+            when  #{item.id} then #{item.deliveryNo}
+          </if>
+          <if test="item.deliveryNo == null ">
+            when  #{item.id} then `order_delivery`.`delivery_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryCompanyWorkingTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryCompanyWorkingTime != null ">
+            when  #{item.id} then #{item.deliveryCompanyWorkingTime}
+          </if>
+          <if test="item.deliveryCompanyWorkingTime == null ">
+            when  #{item.id} then `order_delivery`.`delivery_company_working_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimezoneId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryTimezoneId != null ">
+            when  #{item.id} then #{item.deliveryTimezoneId}
+          </if>
+          <if test="item.deliveryTimezoneId == null ">
+            when  #{item.id} then `order_delivery`.`delivery_timezone_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimezoneCutoffTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryTimezoneCutoffTime != null ">
+            when  #{item.id} then #{item.deliveryTimezoneCutoffTime}
+          </if>
+          <if test="item.deliveryTimezoneCutoffTime == null ">
+            when  #{item.id} then `order_delivery`.`delivery_timezone_cutoff_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimezoneFrom =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryTimezoneFrom != null ">
+            when  #{item.id} then #{item.deliveryTimezoneFrom}
+          </if>
+          <if test="item.deliveryTimezoneFrom == null ">
+            when  #{item.id} then `order_delivery`.`delivery_timezone_from`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryTimezoneTo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryTimezoneTo != null ">
+            when  #{item.id} then #{item.deliveryTimezoneTo}
+          </if>
+          <if test="item.deliveryTimezoneTo == null ">
+            when  #{item.id} then `order_delivery`.`delivery_timezone_to`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryDate != null ">
+            when  #{item.id} then #{item.deliveryDate}
+          </if>
+          <if test="item.deliveryDate == null ">
+            when  #{item.id} then `order_delivery`.`delivery_date`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryStartTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryStartTime != null ">
+            when  #{item.id} then #{item.deliveryStartTime}
+          </if>
+          <if test="item.deliveryStartTime == null ">
+            when  #{item.id} then `order_delivery`.`delivery_start_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryEndTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryEndTime != null ">
+            when  #{item.id} then #{item.deliveryEndTime}
+          </if>
+          <if test="item.deliveryEndTime == null ">
+            when  #{item.id} then `order_delivery`.`delivery_end_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryOriginalPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryOriginalPrice != null ">
+            when  #{item.id} then #{item.deliveryOriginalPrice}
+          </if>
+          <if test="item.deliveryOriginalPrice == null ">
+            when  #{item.id} then `order_delivery`.`delivery_original_price`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryActualPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryActualPrice != null ">
+            when  #{item.id} then #{item.deliveryActualPrice}
+          </if>
+          <if test="item.deliveryActualPrice == null ">
+            when  #{item.id} then `order_delivery`.`delivery_actual_price`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="packageTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.packageTime != null ">
+            when  #{item.id} then #{item.packageTime}
+          </if>
+          <if test="item.packageTime == null ">
+            when  #{item.id} then `order_delivery`.`package_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPackageOriginalAmount != null ">
+            when  #{item.id} then #{item.totalPackageOriginalAmount}
+          </if>
+          <if test="item.totalPackageOriginalAmount == null ">
+            when  #{item.id} then `order_delivery`.`total_package_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPackageActualAmount != null ">
+            when  #{item.id} then #{item.totalPackageActualAmount}
+          </if>
+          <if test="item.totalPackageActualAmount == null ">
+            when  #{item.id} then `order_delivery`.`total_package_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsCount != null ">
+            when  #{item.id} then #{item.totalGoodsCount}
+          </if>
+          <if test="item.totalGoodsCount == null ">
+            when  #{item.id} then `order_delivery`.`total_goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsOriginalAmount != null ">
+            when  #{item.id} then #{item.totalGoodsOriginalAmount}
+          </if>
+          <if test="item.totalGoodsOriginalAmount == null ">
+            when  #{item.id} then `order_delivery`.`total_goods_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsActualAmount != null ">
+            when  #{item.id} then #{item.totalGoodsActualAmount}
+          </if>
+          <if test="item.totalGoodsActualAmount == null ">
+            when  #{item.id} then `order_delivery`.`total_goods_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalAmount != null ">
+            when  #{item.id} then #{item.totalAmount}
+          </if>
+          <if test="item.totalAmount == null ">
+            when  #{item.id} then `order_delivery`.`total_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shareOrderPayAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shareOrderPayAmount != null ">
+            when  #{item.id} then #{item.shareOrderPayAmount}
+          </if>
+          <if test="item.shareOrderPayAmount == null ">
+            when  #{item.id} then `order_delivery`.`share_order_pay_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shareOrderDeductionPoints =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shareOrderDeductionPoints != null ">
+            when  #{item.id} then #{item.shareOrderDeductionPoints}
+          </if>
+          <if test="item.shareOrderDeductionPoints == null ">
+            when  #{item.id} then `order_delivery`.`share_order_deduction_points`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderType != null ">
+            when  #{item.id} then #{item.orderType}
+          </if>
+          <if test="item.orderType == null ">
+            when  #{item.id} then `order_delivery`.`order_type`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.id} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.id} then `order_delivery`.`status`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sfStatus =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.sfStatus != null ">
+            when  #{item.id} then #{item.sfStatus}
+          </if>
+          <if test="item.sfStatus == null ">
+            when  #{item.id} then `order_delivery`.`sf_status`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cancelTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.cancelTime != null ">
+            when  #{item.id} then #{item.cancelTime}
+          </if>
+          <if test="item.cancelTime == null ">
+            when  #{item.id} then `order_delivery`.`cancel_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="refundTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.refundTime != null ">
+            when  #{item.id} then #{item.refundTime}
+          </if>
+          <if test="item.refundTime == null ">
+            when  #{item.id} then `order_delivery`.`refund_time`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+</mapper>

@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.base.BaseRefundOrderMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.oms.domain.RefundOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="shop_code" jdbcType="VARCHAR" property="shopCode" />
+    <result column="package_amount" jdbcType="DECIMAL" property="packageAmount" />
+    <result column="delivery_amount" jdbcType="DECIMAL" property="deliveryAmount" />
+    <result column="red_packet_amount" jdbcType="DECIMAL" property="redPacketAmount" />
+    <result column="goods_amount" jdbcType="DECIMAL" property="goodsAmount" />
+    <result column="total_refund_amount" jdbcType="DECIMAL" property="totalRefundAmount" />
+    <result column="total_refund_points" jdbcType="INTEGER" property="totalRefundPoints" />
+    <result column="goods_count" jdbcType="INTEGER" property="goodsCount" />
+    <result column="delivery_count" jdbcType="INTEGER" property="deliveryCount" />
+    <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
+    <result column="order_mode" jdbcType="TINYINT" property="orderMode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+    <result column="refund_time" jdbcType="TIMESTAMP" property="refundTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `order_id`, `order_no`, `order_date`, `user_id`, `real_name`, `sex`, `mobile_no`, 
+    `shop_code`, `package_amount`, `delivery_amount`, `red_packet_amount`, `goods_amount`, 
+    `total_refund_amount`, `total_refund_points`, `goods_count`, `delivery_count`, `cancel_reason`, 
+    `order_type`, `order_mode`, `status`, `apply_time`, `refund_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `refund_order`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.oms.domain.RefundOrder">
+    insert into `refund_order` (`id`, `order_id`, `order_no`, 
+      `order_date`, `user_id`, `real_name`, 
+      `sex`, `mobile_no`, `shop_code`, 
+      `package_amount`, `delivery_amount`, `red_packet_amount`, 
+      `goods_amount`, `total_refund_amount`, `total_refund_points`, 
+      `goods_count`, `delivery_count`, `cancel_reason`, 
+      `order_type`, `order_mode`, `status`, 
+      `apply_time`, `refund_time`)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{orderDate,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=TINYINT}, #{mobileNo,jdbcType=VARCHAR}, #{shopCode,jdbcType=VARCHAR}, 
+      #{packageAmount,jdbcType=DECIMAL}, #{deliveryAmount,jdbcType=DECIMAL}, #{redPacketAmount,jdbcType=DECIMAL}, 
+      #{goodsAmount,jdbcType=DECIMAL}, #{totalRefundAmount,jdbcType=DECIMAL}, #{totalRefundPoints,jdbcType=INTEGER}, 
+      #{goodsCount,jdbcType=INTEGER}, #{deliveryCount,jdbcType=INTEGER}, #{cancelReason,jdbcType=VARCHAR}, 
+      #{orderType,jdbcType=TINYINT}, #{orderMode,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{refundTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.oms.domain.RefundOrder">
+    insert into `refund_order`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderId != null">
+        `order_id`,
+      </if>
+      <if test="orderNo != null">
+        `order_no`,
+      </if>
+      <if test="orderDate != null">
+        `order_date`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="realName != null">
+        `real_name`,
+      </if>
+      <if test="sex != null">
+        `sex`,
+      </if>
+      <if test="mobileNo != null">
+        `mobile_no`,
+      </if>
+      <if test="shopCode != null">
+        `shop_code`,
+      </if>
+      <if test="packageAmount != null">
+        `package_amount`,
+      </if>
+      <if test="deliveryAmount != null">
+        `delivery_amount`,
+      </if>
+      <if test="redPacketAmount != null">
+        `red_packet_amount`,
+      </if>
+      <if test="goodsAmount != null">
+        `goods_amount`,
+      </if>
+      <if test="totalRefundAmount != null">
+        `total_refund_amount`,
+      </if>
+      <if test="totalRefundPoints != null">
+        `total_refund_points`,
+      </if>
+      <if test="goodsCount != null">
+        `goods_count`,
+      </if>
+      <if test="deliveryCount != null">
+        `delivery_count`,
+      </if>
+      <if test="cancelReason != null">
+        `cancel_reason`,
+      </if>
+      <if test="orderType != null">
+        `order_type`,
+      </if>
+      <if test="orderMode != null">
+        `order_mode`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="applyTime != null">
+        `apply_time`,
+      </if>
+      <if test="refundTime != null">
+        `refund_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="mobileNo != null">
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="packageAmount != null">
+        #{packageAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryAmount != null">
+        #{deliveryAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="redPacketAmount != null">
+        #{redPacketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsAmount != null">
+        #{goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRefundAmount != null">
+        #{totalRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRefundPoints != null">
+        #{totalRefundPoints,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCount != null">
+        #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryCount != null">
+        #{deliveryCount,jdbcType=INTEGER},
+      </if>
+      <if test="cancelReason != null">
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="orderMode != null">
+        #{orderMode,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="applyTime != null">
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `refund_order` (`id`, `order_id`, `order_no`, 
+      `order_date`, `user_id`, `real_name`, 
+      `sex`, `mobile_no`, `shop_code`, 
+      `package_amount`, `delivery_amount`, 
+      `red_packet_amount`, `goods_amount`, 
+      `total_refund_amount`, `total_refund_points`, 
+      `goods_count`, `delivery_count`, `cancel_reason`, 
+      `order_type`, `order_mode`, `status`, 
+      `apply_time`, `refund_time`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}, #{item.orderNo,jdbcType=VARCHAR}, 
+        #{item.orderDate,jdbcType=TIMESTAMP}, #{item.userId,jdbcType=BIGINT}, #{item.realName,jdbcType=VARCHAR}, 
+        #{item.sex,jdbcType=TINYINT}, #{item.mobileNo,jdbcType=VARCHAR}, #{item.shopCode,jdbcType=VARCHAR}, 
+        #{item.packageAmount,jdbcType=DECIMAL}, #{item.deliveryAmount,jdbcType=DECIMAL}, 
+        #{item.redPacketAmount,jdbcType=DECIMAL}, #{item.goodsAmount,jdbcType=DECIMAL}, 
+        #{item.totalRefundAmount,jdbcType=DECIMAL}, #{item.totalRefundPoints,jdbcType=INTEGER}, 
+        #{item.goodsCount,jdbcType=INTEGER}, #{item.deliveryCount,jdbcType=INTEGER}, #{item.cancelReason,jdbcType=VARCHAR}, 
+        #{item.orderType,jdbcType=TINYINT}, #{item.orderMode,jdbcType=TINYINT}, #{item.status,jdbcType=TINYINT}, 
+        #{item.applyTime,jdbcType=TIMESTAMP}, #{item.refundTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `refund_order`
+    (`id`, `order_id`, `order_no`, `order_date`, `user_id`, `real_name`, `sex`, `mobile_no`, 
+      `shop_code`, `package_amount`, `delivery_amount`, `red_packet_amount`, `goods_amount`, 
+      `total_refund_amount`, `total_refund_points`, `goods_count`, `delivery_count`, 
+      `cancel_reason`, `order_type`, `order_mode`, `status`, `apply_time`, `refund_time`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderId != null">
+          #{item.orderId,jdbcType=BIGINT},
+        </if>
+        <if test="item.orderId == null">
+          NULL,
+        </if>
+        <if test="item.orderNo != null">
+          #{item.orderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.orderNo == null">
+          NULL,
+        </if>
+        <if test="item.orderDate != null">
+          #{item.orderDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.orderDate == null">
+          NULL,
+        </if>
+        <if test="item.userId != null">
+          #{item.userId,jdbcType=BIGINT},
+        </if>
+        <if test="item.userId == null">
+          NULL,
+        </if>
+        <if test="item.realName != null">
+          #{item.realName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.realName == null">
+          NULL,
+        </if>
+        <if test="item.sex != null">
+          #{item.sex,jdbcType=TINYINT},
+        </if>
+        <if test="item.sex == null">
+          NULL,
+        </if>
+        <if test="item.mobileNo != null">
+          #{item.mobileNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.mobileNo == null">
+          NULL,
+        </if>
+        <if test="item.shopCode != null">
+          #{item.shopCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.shopCode == null">
+          NULL,
+        </if>
+        <if test="item.packageAmount != null">
+          #{item.packageAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.packageAmount == null">
+          NULL,
+        </if>
+        <if test="item.deliveryAmount != null">
+          #{item.deliveryAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.deliveryAmount == null">
+          NULL,
+        </if>
+        <if test="item.redPacketAmount != null">
+          #{item.redPacketAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.redPacketAmount == null">
+          NULL,
+        </if>
+        <if test="item.goodsAmount != null">
+          #{item.goodsAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.goodsAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalRefundAmount != null">
+          #{item.totalRefundAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalRefundAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalRefundPoints != null">
+          #{item.totalRefundPoints,jdbcType=INTEGER},
+        </if>
+        <if test="item.totalRefundPoints == null">
+          NULL,
+        </if>
+        <if test="item.goodsCount != null">
+          #{item.goodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.goodsCount == null">
+          NULL,
+        </if>
+        <if test="item.deliveryCount != null">
+          #{item.deliveryCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.deliveryCount == null">
+          NULL,
+        </if>
+        <if test="item.cancelReason != null">
+          #{item.cancelReason,jdbcType=VARCHAR},
+        </if>
+        <if test="item.cancelReason == null">
+          NULL,
+        </if>
+        <if test="item.orderType != null">
+          #{item.orderType,jdbcType=TINYINT},
+        </if>
+        <if test="item.orderType == null">
+          NULL,
+        </if>
+        <if test="item.orderMode != null">
+          #{item.orderMode,jdbcType=TINYINT},
+        </if>
+        <if test="item.orderMode == null">
+          NULL,
+        </if>
+        <if test="item.status != null">
+          #{item.status,jdbcType=TINYINT},
+        </if>
+        <if test="item.status == null">
+          NULL,
+        </if>
+        <if test="item.applyTime != null">
+          #{item.applyTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.applyTime == null">
+          NULL,
+        </if>
+        <if test="item.refundTime != null">
+          #{item.refundTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.refundTime == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.oms.domain.RefundOrder">
+    update `refund_order`
+    <set>
+      <if test="orderId != null">
+        `order_id` = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        `order_no` = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        `order_date` = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null">
+        `real_name` = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        `sex` = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="mobileNo != null">
+        `mobile_no` = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCode != null">
+        `shop_code` = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="packageAmount != null">
+        `package_amount` = #{packageAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryAmount != null">
+        `delivery_amount` = #{deliveryAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="redPacketAmount != null">
+        `red_packet_amount` = #{redPacketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsAmount != null">
+        `goods_amount` = #{goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRefundAmount != null">
+        `total_refund_amount` = #{totalRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRefundPoints != null">
+        `total_refund_points` = #{totalRefundPoints,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCount != null">
+        `goods_count` = #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryCount != null">
+        `delivery_count` = #{deliveryCount,jdbcType=INTEGER},
+      </if>
+      <if test="cancelReason != null">
+        `cancel_reason` = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        `order_type` = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="orderMode != null">
+        `order_mode` = #{orderMode,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="applyTime != null">
+        `apply_time` = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundTime != null">
+        `refund_time` = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.oms.domain.RefundOrder">
+    update `refund_order`
+    set `order_id` = #{orderId,jdbcType=BIGINT},
+      `order_no` = #{orderNo,jdbcType=VARCHAR},
+      `order_date` = #{orderDate,jdbcType=TIMESTAMP},
+      `user_id` = #{userId,jdbcType=BIGINT},
+      `real_name` = #{realName,jdbcType=VARCHAR},
+      `sex` = #{sex,jdbcType=TINYINT},
+      `mobile_no` = #{mobileNo,jdbcType=VARCHAR},
+      `shop_code` = #{shopCode,jdbcType=VARCHAR},
+      `package_amount` = #{packageAmount,jdbcType=DECIMAL},
+      `delivery_amount` = #{deliveryAmount,jdbcType=DECIMAL},
+      `red_packet_amount` = #{redPacketAmount,jdbcType=DECIMAL},
+      `goods_amount` = #{goodsAmount,jdbcType=DECIMAL},
+      `total_refund_amount` = #{totalRefundAmount,jdbcType=DECIMAL},
+      `total_refund_points` = #{totalRefundPoints,jdbcType=INTEGER},
+      `goods_count` = #{goodsCount,jdbcType=INTEGER},
+      `delivery_count` = #{deliveryCount,jdbcType=INTEGER},
+      `cancel_reason` = #{cancelReason,jdbcType=VARCHAR},
+      `order_type` = #{orderType,jdbcType=TINYINT},
+      `order_mode` = #{orderMode,jdbcType=TINYINT},
+      `status` = #{status,jdbcType=TINYINT},
+      `apply_time` = #{applyTime,jdbcType=TIMESTAMP},
+      `refund_time` = #{refundTime,jdbcType=TIMESTAMP}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `refund_order`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderId}
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderNo}
+        </foreach>
+      </trim>
+      <trim prefix="orderDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderDate}
+        </foreach>
+      </trim>
+      <trim prefix="userId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.userId}
+        </foreach>
+      </trim>
+      <trim prefix="realName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.realName}
+        </foreach>
+      </trim>
+      <trim prefix="sex =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.sex}
+        </foreach>
+      </trim>
+      <trim prefix="mobileNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.mobileNo}
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopCode}
+        </foreach>
+      </trim>
+      <trim prefix="packageAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.packageAmount}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryAmount}
+        </foreach>
+      </trim>
+      <trim prefix="redPacketAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.redPacketAmount}
+        </foreach>
+      </trim>
+      <trim prefix="goodsAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalRefundAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalRefundAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalRefundPoints =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalRefundPoints}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryCount}
+        </foreach>
+      </trim>
+      <trim prefix="cancelReason =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.cancelReason}
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderType}
+        </foreach>
+      </trim>
+      <trim prefix="orderMode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderMode}
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.status}
+        </foreach>
+      </trim>
+      <trim prefix="applyTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.applyTime}
+        </foreach>
+      </trim>
+      <trim prefix="refundTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.refundTime}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `refund_order`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderId != null ">
+            when  #{item.id} then #{item.orderId}
+          </if>
+          <if test="item.orderId == null ">
+            when  #{item.id} then `refund_order`.`order_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderNo != null ">
+            when  #{item.id} then #{item.orderNo}
+          </if>
+          <if test="item.orderNo == null ">
+            when  #{item.id} then `refund_order`.`order_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderDate != null ">
+            when  #{item.id} then #{item.orderDate}
+          </if>
+          <if test="item.orderDate == null ">
+            when  #{item.id} then `refund_order`.`order_date`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="userId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.userId != null ">
+            when  #{item.id} then #{item.userId}
+          </if>
+          <if test="item.userId == null ">
+            when  #{item.id} then `refund_order`.`user_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="realName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.realName != null ">
+            when  #{item.id} then #{item.realName}
+          </if>
+          <if test="item.realName == null ">
+            when  #{item.id} then `refund_order`.`real_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sex =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.sex != null ">
+            when  #{item.id} then #{item.sex}
+          </if>
+          <if test="item.sex == null ">
+            when  #{item.id} then `refund_order`.`sex`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mobileNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.mobileNo != null ">
+            when  #{item.id} then #{item.mobileNo}
+          </if>
+          <if test="item.mobileNo == null ">
+            when  #{item.id} then `refund_order`.`mobile_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shopCode != null ">
+            when  #{item.id} then #{item.shopCode}
+          </if>
+          <if test="item.shopCode == null ">
+            when  #{item.id} then `refund_order`.`shop_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="packageAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.packageAmount != null ">
+            when  #{item.id} then #{item.packageAmount}
+          </if>
+          <if test="item.packageAmount == null ">
+            when  #{item.id} then `refund_order`.`package_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryAmount != null ">
+            when  #{item.id} then #{item.deliveryAmount}
+          </if>
+          <if test="item.deliveryAmount == null ">
+            when  #{item.id} then `refund_order`.`delivery_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="redPacketAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.redPacketAmount != null ">
+            when  #{item.id} then #{item.redPacketAmount}
+          </if>
+          <if test="item.redPacketAmount == null ">
+            when  #{item.id} then `refund_order`.`red_packet_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsAmount != null ">
+            when  #{item.id} then #{item.goodsAmount}
+          </if>
+          <if test="item.goodsAmount == null ">
+            when  #{item.id} then `refund_order`.`goods_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalRefundAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalRefundAmount != null ">
+            when  #{item.id} then #{item.totalRefundAmount}
+          </if>
+          <if test="item.totalRefundAmount == null ">
+            when  #{item.id} then `refund_order`.`total_refund_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalRefundPoints =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalRefundPoints != null ">
+            when  #{item.id} then #{item.totalRefundPoints}
+          </if>
+          <if test="item.totalRefundPoints == null ">
+            when  #{item.id} then `refund_order`.`total_refund_points`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsCount != null ">
+            when  #{item.id} then #{item.goodsCount}
+          </if>
+          <if test="item.goodsCount == null ">
+            when  #{item.id} then `refund_order`.`goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryCount != null ">
+            when  #{item.id} then #{item.deliveryCount}
+          </if>
+          <if test="item.deliveryCount == null ">
+            when  #{item.id} then `refund_order`.`delivery_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cancelReason =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.cancelReason != null ">
+            when  #{item.id} then #{item.cancelReason}
+          </if>
+          <if test="item.cancelReason == null ">
+            when  #{item.id} then `refund_order`.`cancel_reason`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderType != null ">
+            when  #{item.id} then #{item.orderType}
+          </if>
+          <if test="item.orderType == null ">
+            when  #{item.id} then `refund_order`.`order_type`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderMode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderMode != null ">
+            when  #{item.id} then #{item.orderMode}
+          </if>
+          <if test="item.orderMode == null ">
+            when  #{item.id} then `refund_order`.`order_mode`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.id} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.id} then `refund_order`.`status`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="applyTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.applyTime != null ">
+            when  #{item.id} then #{item.applyTime}
+          </if>
+          <if test="item.applyTime == null ">
+            when  #{item.id} then `refund_order`.`apply_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="refundTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.refundTime != null ">
+            when  #{item.id} then #{item.refundTime}
+          </if>
+          <if test="item.refundTime == null ">
+            when  #{item.id} then `refund_order`.`refund_time`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+</mapper>

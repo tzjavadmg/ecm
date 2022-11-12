@@ -1,0 +1,35 @@
+redisson:
+  address: redis://redis01.jshuii.com:6387
+  password: eu2zH82kt5AL1QMM9t
+  database: 1
+
+spring:
+  redis:
+    host: redis01.jshuii.com
+    password: eu2zH82kt5AL1QMM9t
+    port: 6387
+    timeout: 1000
+    database: 1
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 1
+
+sso:
+  host: http://mlsopenboss.jshuii.com/api/open
+  config:
+    cacheTimeOutWithMinute: 10
+    app: 
+      MILISONG: 
+        app-name: MILISONG
+        app-key: 31a9dc01-d1ed-486a-a6e4-696fa32158d1
+        app-sercet: 6ae8550dc531e9fad8e04ab516f2b753651e615352ea9c2ec163c97580ccacde
+      MLB:
+        app-name: MLB
+        app-key: 9600387b-ba6e-4d09-9b36-7c43a1ca4505
+        app-sercet: 1BhTh7XiwOGMYJ02MqbxFYsv5DfPyXWJs45bZ68gAnabsOjSSilf3jVnKInt
+      POS:
+        app-name: POS
+        app-key: c3902fbf-8771-43e9-82be-c9e4edb909af
+        app-sercet: bUBgWJFeCEb2P3700zUkyig3HUvh6LIM5fWhsA8c0r3AYy57WEuJdyAwKgEB

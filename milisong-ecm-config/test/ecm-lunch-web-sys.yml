@@ -1,0 +1,34 @@
+server:
+  port: 39010
+management:
+  health:
+    defaults:
+      enabled: false
+
+ribbon:
+  ReadTimeout:  10000
+  SocketTimeout:  1000
+
+wechat:
+  query-lunch-accesstoken: http://testmls-api.jshuii.com/v1/miniapp/query-accesstoken
+
+upms:
+  config:
+    url: http://testmls-upmsapi.jshuii.com
+    app-name: MLB_TEST
+    upmsUserInfoUrl: ${upms.config.url}/auth/userinfo
+    upmsTokenUrl: ${upms.config.url}/auth/token
+    upmsCheckLoginUrl: ${upms.config.url}/auth/check-login
+    upmsCheckPermissionUrl: ${upms.config.url}/auth/check-permission
+    upmsGetMenuListUrl: ${upms.config.url}/auth/menu
+    upmsGetDataPermissionUrl: ${upms.config.url}/auth/data-permission
+  filter-url:
+    notHeadTokenUrls: /v1/qrcode/download-qrcode
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        instance:
+          prefer-ip: true

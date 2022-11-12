@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.orderset.mapper.OrderSetDetailExtMapper">
+  <select id="selectBuildingList" parameterType="com.milisong.scm.orderset.domain.OrderSetDetail" resultType="com.milisong.scm.orderset.param.OrderSetBuildingSqlResult">
+    select building_id,building_abbreviation from t_order_set_detail where shop_id=#{shopId} and detail_delivery_date=#{detailDeliveryDate} group by building_id,building_abbreviation
+  </select>
+  
+  <select id="selectCountCustomerOrderBySetNo" parameterType="java.util.List" resultType="java.util.Map">
+  select detail_set_no,count(DISTINCT couplet_no) coupletNo FROM t_order_set_detail_goods
+	where detail_set_no in
+	<foreach collection="list" item="item" open="(" separator="," close=")">
+		 #{item,jdbcType=VARCHAR}
+		</foreach>
+	GROUP BY detail_set_no
+  </select>
+  
+  <select id="selectListOrderSetByPage" parameterType="java.util.Map" resultType="com.milisong.scm.orderset.dto.result.OrderSetDetailDto">
+   		select a.detail_set_no detailSetNo,a.detail_set_no_description detailSetNoDescription,
+   		 a.detail_delivery_date detailDeliveryDate, a.delivery_end_time deliveryEndTime,
+		b.id buildingId,b.abbreviation buildingAbbreviation,a.goods_sum goodsSum  from t_order_set_detail a
+		LEFT JOIN t_building b on a.building_id = b.id
+   		WHERE 
+   		a.is_deleted = 0
+   		<include refid="SELECT_ORDERSET_SQL"/> 
+   		order by  a.detail_set_no_description asc
+   		<if test="startRow != null and pageSize != null">
+ 		limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+		</if>
+   </select>
+   		
+   <select id="selectCountOrderSetByPage" parameterType="java.util.Map" resultType="java.lang.Long">
+   		select count(1)  from t_order_set_detail a
+		LEFT JOIN t_building b on a.building_id = b.id
+   		WHERE 
+   		a.is_deleted = 0
+   		<include refid="SELECT_ORDERSET_SQL"/>
+    </select>
+    
+    <sql id="SELECT_ORDERSET_SQL">
+    	<if test="shopId != null">
+   		and a.shop_id = #{shopId}
+   		</if>
+   		<if test="deliveryDateStart != null and deliveryDateEnd != null">
+   		 and a.detail_delivery_date &gt;= #{deliveryDateStart} and a.detail_delivery_date &lt;= #{deliveryDateEnd}
+   		</if>
+   		<if test="building != null">
+   		and (b.id like #{building} or b.abbreviation like #{building})
+   		</if>
+    </sql>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.shop.mapper.ShopSaleFinishConfigExtMapper">
+
+	<!-- 根据门店id查询门店配置信息 -->
+	<select id="getShopSaleFinishByShopId" parameterType="java.util.Map" resultType="com.milisong.scm.shop.domain.ShopSaleFinishConfig">
+		select
+			t.id id,
+			t.shop_id shopId,
+			t.time time,
+			t.type type
+		from
+			t_shop_sale_finish_config t
+		where
+			t.is_deleted = 0
+		and t.shop_id = #{shopId}
+		<if test="type != null">
+			and t.type = #{type}
+		</if>
+		ORDER BY time desc
+		limit 0,1
+	</select>
+
+</mapper>

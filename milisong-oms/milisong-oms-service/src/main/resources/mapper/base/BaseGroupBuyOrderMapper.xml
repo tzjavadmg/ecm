@@ -1,0 +1,1475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.base.BaseGroupBuyOrderMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.oms.domain.GroupBuyOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="delivery_address_id" jdbcType="BIGINT" property="deliveryAddressId" />
+    <result column="notify_type" jdbcType="TINYINT" property="notifyType" />
+    <result column="shop_code" jdbcType="VARCHAR" property="shopCode" />
+    <result column="delivery_building_id" jdbcType="BIGINT" property="deliveryBuildingId" />
+    <result column="delivery_building_name" jdbcType="VARCHAR" property="deliveryBuildingName" />
+    <result column="delivery_company" jdbcType="VARCHAR" property="deliveryCompany" />
+    <result column="delivery_floor" jdbcType="VARCHAR" property="deliveryFloor" />
+    <result column="take_meals_addr_id" jdbcType="BIGINT" property="takeMealsAddrId" />
+    <result column="take_meals_addr_name" jdbcType="VARCHAR" property="takeMealsAddrName" />
+    <result column="pay_mode" jdbcType="TINYINT" property="payMode" />
+    <result column="order_source" jdbcType="TINYINT" property="orderSource" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="coupon_id" jdbcType="BIGINT" property="couponId" />
+    <result column="red_packet_id" jdbcType="BIGINT" property="redPacketId" />
+    <result column="group_buy_id" jdbcType="BIGINT" property="groupBuyId" />
+    <result column="red_packet_amount" jdbcType="DECIMAL" property="redPacketAmount" />
+    <result column="full_reduce_amount" jdbcType="DECIMAL" property="fullReduceAmount" />
+    <result column="coupon_amount" jdbcType="DECIMAL" property="couponAmount" />
+    <result column="deduction_points_amount" jdbcType="DECIMAL" property="deductionPointsAmount" />
+    <result column="deduction_points" jdbcType="INTEGER" property="deductionPoints" />
+    <result column="acquire_points" jdbcType="INTEGER" property="acquirePoints" />
+    <result column="total_goods_original_amount" jdbcType="DECIMAL" property="totalGoodsOriginalAmount" />
+    <result column="total_goods_actual_amount" jdbcType="DECIMAL" property="totalGoodsActualAmount" />
+    <result column="total_delivery_original_amount" jdbcType="DECIMAL" property="totalDeliveryOriginalAmount" />
+    <result column="total_delivery_actual_amount" jdbcType="DECIMAL" property="totalDeliveryActualAmount" />
+    <result column="total_package_original_amount" jdbcType="DECIMAL" property="totalPackageOriginalAmount" />
+    <result column="total_package_actual_amount" jdbcType="DECIMAL" property="totalPackageActualAmount" />
+    <result column="total_pay_amount" jdbcType="DECIMAL" property="totalPayAmount" />
+    <result column="total_goods_count" jdbcType="INTEGER" property="totalGoodsCount" />
+    <result column="total_order_days" jdbcType="INTEGER" property="totalOrderDays" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `order_no`, `user_id`, `order_date`, `real_name`, `sex`, `mobile_no`, `delivery_address_id`, 
+    `notify_type`, `shop_code`, `delivery_building_id`, `delivery_building_name`, `delivery_company`, 
+    `delivery_floor`, `take_meals_addr_id`, `take_meals_addr_name`, `pay_mode`, `order_source`, 
+    `open_id`, `coupon_id`, `red_packet_id`, `group_buy_id`, `red_packet_amount`, `full_reduce_amount`, 
+    `coupon_amount`, `deduction_points_amount`, `deduction_points`, `acquire_points`, 
+    `total_goods_original_amount`, `total_goods_actual_amount`, `total_delivery_original_amount`, 
+    `total_delivery_actual_amount`, `total_package_original_amount`, `total_package_actual_amount`, 
+    `total_pay_amount`, `total_goods_count`, `total_order_days`, `order_type`, `status`, 
+    `pay_time`, `cancel_time`, `cancel_reason`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `group_buy_order`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.oms.domain.GroupBuyOrder">
+    insert into `group_buy_order` (`id`, `order_no`, `user_id`, 
+      `order_date`, `real_name`, `sex`, 
+      `mobile_no`, `delivery_address_id`, `notify_type`, 
+      `shop_code`, `delivery_building_id`, `delivery_building_name`, 
+      `delivery_company`, `delivery_floor`, `take_meals_addr_id`, 
+      `take_meals_addr_name`, `pay_mode`, `order_source`, 
+      `open_id`, `coupon_id`, `red_packet_id`, 
+      `group_buy_id`, `red_packet_amount`, `full_reduce_amount`, 
+      `coupon_amount`, `deduction_points_amount`, `deduction_points`, 
+      `acquire_points`, `total_goods_original_amount`, 
+      `total_goods_actual_amount`, `total_delivery_original_amount`, 
+      `total_delivery_actual_amount`, `total_package_original_amount`, 
+      `total_package_actual_amount`, `total_pay_amount`, 
+      `total_goods_count`, `total_order_days`, `order_type`, 
+      `status`, `pay_time`, `cancel_time`, 
+      `cancel_reason`)
+    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{orderDate,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, 
+      #{mobileNo,jdbcType=VARCHAR}, #{deliveryAddressId,jdbcType=BIGINT}, #{notifyType,jdbcType=TINYINT}, 
+      #{shopCode,jdbcType=VARCHAR}, #{deliveryBuildingId,jdbcType=BIGINT}, #{deliveryBuildingName,jdbcType=VARCHAR}, 
+      #{deliveryCompany,jdbcType=VARCHAR}, #{deliveryFloor,jdbcType=VARCHAR}, #{takeMealsAddrId,jdbcType=BIGINT}, 
+      #{takeMealsAddrName,jdbcType=VARCHAR}, #{payMode,jdbcType=TINYINT}, #{orderSource,jdbcType=TINYINT}, 
+      #{openId,jdbcType=VARCHAR}, #{couponId,jdbcType=BIGINT}, #{redPacketId,jdbcType=BIGINT}, 
+      #{groupBuyId,jdbcType=BIGINT}, #{redPacketAmount,jdbcType=DECIMAL}, #{fullReduceAmount,jdbcType=DECIMAL}, 
+      #{couponAmount,jdbcType=DECIMAL}, #{deductionPointsAmount,jdbcType=DECIMAL}, #{deductionPoints,jdbcType=INTEGER}, 
+      #{acquirePoints,jdbcType=INTEGER}, #{totalGoodsOriginalAmount,jdbcType=DECIMAL}, 
+      #{totalGoodsActualAmount,jdbcType=DECIMAL}, #{totalDeliveryOriginalAmount,jdbcType=DECIMAL}, 
+      #{totalDeliveryActualAmount,jdbcType=DECIMAL}, #{totalPackageOriginalAmount,jdbcType=DECIMAL}, 
+      #{totalPackageActualAmount,jdbcType=DECIMAL}, #{totalPayAmount,jdbcType=DECIMAL}, 
+      #{totalGoodsCount,jdbcType=INTEGER}, #{totalOrderDays,jdbcType=INTEGER}, #{orderType,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{payTime,jdbcType=TIMESTAMP}, #{cancelTime,jdbcType=TIMESTAMP}, 
+      #{cancelReason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.oms.domain.GroupBuyOrder">
+    insert into `group_buy_order`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderNo != null">
+        `order_no`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="orderDate != null">
+        `order_date`,
+      </if>
+      <if test="realName != null">
+        `real_name`,
+      </if>
+      <if test="sex != null">
+        `sex`,
+      </if>
+      <if test="mobileNo != null">
+        `mobile_no`,
+      </if>
+      <if test="deliveryAddressId != null">
+        `delivery_address_id`,
+      </if>
+      <if test="notifyType != null">
+        `notify_type`,
+      </if>
+      <if test="shopCode != null">
+        `shop_code`,
+      </if>
+      <if test="deliveryBuildingId != null">
+        `delivery_building_id`,
+      </if>
+      <if test="deliveryBuildingName != null">
+        `delivery_building_name`,
+      </if>
+      <if test="deliveryCompany != null">
+        `delivery_company`,
+      </if>
+      <if test="deliveryFloor != null">
+        `delivery_floor`,
+      </if>
+      <if test="takeMealsAddrId != null">
+        `take_meals_addr_id`,
+      </if>
+      <if test="takeMealsAddrName != null">
+        `take_meals_addr_name`,
+      </if>
+      <if test="payMode != null">
+        `pay_mode`,
+      </if>
+      <if test="orderSource != null">
+        `order_source`,
+      </if>
+      <if test="openId != null">
+        `open_id`,
+      </if>
+      <if test="couponId != null">
+        `coupon_id`,
+      </if>
+      <if test="redPacketId != null">
+        `red_packet_id`,
+      </if>
+      <if test="groupBuyId != null">
+        `group_buy_id`,
+      </if>
+      <if test="redPacketAmount != null">
+        `red_packet_amount`,
+      </if>
+      <if test="fullReduceAmount != null">
+        `full_reduce_amount`,
+      </if>
+      <if test="couponAmount != null">
+        `coupon_amount`,
+      </if>
+      <if test="deductionPointsAmount != null">
+        `deduction_points_amount`,
+      </if>
+      <if test="deductionPoints != null">
+        `deduction_points`,
+      </if>
+      <if test="acquirePoints != null">
+        `acquire_points`,
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        `total_goods_original_amount`,
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        `total_goods_actual_amount`,
+      </if>
+      <if test="totalDeliveryOriginalAmount != null">
+        `total_delivery_original_amount`,
+      </if>
+      <if test="totalDeliveryActualAmount != null">
+        `total_delivery_actual_amount`,
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        `total_package_original_amount`,
+      </if>
+      <if test="totalPackageActualAmount != null">
+        `total_package_actual_amount`,
+      </if>
+      <if test="totalPayAmount != null">
+        `total_pay_amount`,
+      </if>
+      <if test="totalGoodsCount != null">
+        `total_goods_count`,
+      </if>
+      <if test="totalOrderDays != null">
+        `total_order_days`,
+      </if>
+      <if test="orderType != null">
+        `order_type`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="payTime != null">
+        `pay_time`,
+      </if>
+      <if test="cancelTime != null">
+        `cancel_time`,
+      </if>
+      <if test="cancelReason != null">
+        `cancel_reason`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="mobileNo != null">
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressId != null">
+        #{deliveryAddressId,jdbcType=BIGINT},
+      </if>
+      <if test="notifyType != null">
+        #{notifyType,jdbcType=TINYINT},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryBuildingId != null">
+        #{deliveryBuildingId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryBuildingName != null">
+        #{deliveryBuildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCompany != null">
+        #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryFloor != null">
+        #{deliveryFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="takeMealsAddrId != null">
+        #{takeMealsAddrId,jdbcType=BIGINT},
+      </if>
+      <if test="takeMealsAddrName != null">
+        #{takeMealsAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="payMode != null">
+        #{payMode,jdbcType=TINYINT},
+      </if>
+      <if test="orderSource != null">
+        #{orderSource,jdbcType=TINYINT},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="redPacketId != null">
+        #{redPacketId,jdbcType=BIGINT},
+      </if>
+      <if test="groupBuyId != null">
+        #{groupBuyId,jdbcType=BIGINT},
+      </if>
+      <if test="redPacketAmount != null">
+        #{redPacketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fullReduceAmount != null">
+        #{fullReduceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="couponAmount != null">
+        #{couponAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionPointsAmount != null">
+        #{deductionPointsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionPoints != null">
+        #{deductionPoints,jdbcType=INTEGER},
+      </if>
+      <if test="acquirePoints != null">
+        #{acquirePoints,jdbcType=INTEGER},
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDeliveryOriginalAmount != null">
+        #{totalDeliveryOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDeliveryActualAmount != null">
+        #{totalDeliveryActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageActualAmount != null">
+        #{totalPackageActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPayAmount != null">
+        #{totalPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsCount != null">
+        #{totalGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalOrderDays != null">
+        #{totalOrderDays,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelReason != null">
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `group_buy_order` (`id`, `order_no`, `user_id`, 
+      `order_date`, `real_name`, `sex`, 
+      `mobile_no`, `delivery_address_id`, `notify_type`, 
+      `shop_code`, `delivery_building_id`, 
+      `delivery_building_name`, `delivery_company`, 
+      `delivery_floor`, `take_meals_addr_id`, 
+      `take_meals_addr_name`, `pay_mode`, `order_source`, 
+      `open_id`, `coupon_id`, `red_packet_id`, 
+      `group_buy_id`, `red_packet_amount`, `full_reduce_amount`, 
+      `coupon_amount`, `deduction_points_amount`, 
+      `deduction_points`, `acquire_points`, 
+      `total_goods_original_amount`, `total_goods_actual_amount`, 
+      `total_delivery_original_amount`, `total_delivery_actual_amount`, 
+      `total_package_original_amount`, `total_package_actual_amount`, 
+      `total_pay_amount`, `total_goods_count`, 
+      `total_order_days`, `order_type`, `status`, 
+      `pay_time`, `cancel_time`, `cancel_reason`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderNo,jdbcType=VARCHAR}, #{item.userId,jdbcType=BIGINT}, 
+        #{item.orderDate,jdbcType=TIMESTAMP}, #{item.realName,jdbcType=VARCHAR}, #{item.sex,jdbcType=TINYINT}, 
+        #{item.mobileNo,jdbcType=VARCHAR}, #{item.deliveryAddressId,jdbcType=BIGINT}, #{item.notifyType,jdbcType=TINYINT}, 
+        #{item.shopCode,jdbcType=VARCHAR}, #{item.deliveryBuildingId,jdbcType=BIGINT}, 
+        #{item.deliveryBuildingName,jdbcType=VARCHAR}, #{item.deliveryCompany,jdbcType=VARCHAR}, 
+        #{item.deliveryFloor,jdbcType=VARCHAR}, #{item.takeMealsAddrId,jdbcType=BIGINT}, 
+        #{item.takeMealsAddrName,jdbcType=VARCHAR}, #{item.payMode,jdbcType=TINYINT}, #{item.orderSource,jdbcType=TINYINT}, 
+        #{item.openId,jdbcType=VARCHAR}, #{item.couponId,jdbcType=BIGINT}, #{item.redPacketId,jdbcType=BIGINT}, 
+        #{item.groupBuyId,jdbcType=BIGINT}, #{item.redPacketAmount,jdbcType=DECIMAL}, #{item.fullReduceAmount,jdbcType=DECIMAL}, 
+        #{item.couponAmount,jdbcType=DECIMAL}, #{item.deductionPointsAmount,jdbcType=DECIMAL}, 
+        #{item.deductionPoints,jdbcType=INTEGER}, #{item.acquirePoints,jdbcType=INTEGER}, 
+        #{item.totalGoodsOriginalAmount,jdbcType=DECIMAL}, #{item.totalGoodsActualAmount,jdbcType=DECIMAL}, 
+        #{item.totalDeliveryOriginalAmount,jdbcType=DECIMAL}, #{item.totalDeliveryActualAmount,jdbcType=DECIMAL}, 
+        #{item.totalPackageOriginalAmount,jdbcType=DECIMAL}, #{item.totalPackageActualAmount,jdbcType=DECIMAL}, 
+        #{item.totalPayAmount,jdbcType=DECIMAL}, #{item.totalGoodsCount,jdbcType=INTEGER}, 
+        #{item.totalOrderDays,jdbcType=INTEGER}, #{item.orderType,jdbcType=TINYINT}, #{item.status,jdbcType=TINYINT}, 
+        #{item.payTime,jdbcType=TIMESTAMP}, #{item.cancelTime,jdbcType=TIMESTAMP}, #{item.cancelReason,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `group_buy_order`
+    (`id`, `order_no`, `user_id`, `order_date`, `real_name`, `sex`, `mobile_no`, `delivery_address_id`, 
+      `notify_type`, `shop_code`, `delivery_building_id`, `delivery_building_name`, `delivery_company`, 
+      `delivery_floor`, `take_meals_addr_id`, `take_meals_addr_name`, `pay_mode`, `order_source`, 
+      `open_id`, `coupon_id`, `red_packet_id`, `group_buy_id`, `red_packet_amount`, `full_reduce_amount`, 
+      `coupon_amount`, `deduction_points_amount`, `deduction_points`, `acquire_points`, 
+      `total_goods_original_amount`, `total_goods_actual_amount`, `total_delivery_original_amount`, 
+      `total_delivery_actual_amount`, `total_package_original_amount`, `total_package_actual_amount`, 
+      `total_pay_amount`, `total_goods_count`, `total_order_days`, `order_type`, `status`, 
+      `pay_time`, `cancel_time`, `cancel_reason`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderNo != null">
+          #{item.orderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.orderNo == null">
+          NULL,
+        </if>
+        <if test="item.userId != null">
+          #{item.userId,jdbcType=BIGINT},
+        </if>
+        <if test="item.userId == null">
+          NULL,
+        </if>
+        <if test="item.orderDate != null">
+          #{item.orderDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.orderDate == null">
+          NULL,
+        </if>
+        <if test="item.realName != null">
+          #{item.realName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.realName == null">
+          NULL,
+        </if>
+        <if test="item.sex != null">
+          #{item.sex,jdbcType=TINYINT},
+        </if>
+        <if test="item.sex == null">
+          NULL,
+        </if>
+        <if test="item.mobileNo != null">
+          #{item.mobileNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.mobileNo == null">
+          NULL,
+        </if>
+        <if test="item.deliveryAddressId != null">
+          #{item.deliveryAddressId,jdbcType=BIGINT},
+        </if>
+        <if test="item.deliveryAddressId == null">
+          NULL,
+        </if>
+        <if test="item.notifyType != null">
+          #{item.notifyType,jdbcType=TINYINT},
+        </if>
+        <if test="item.notifyType == null">
+          NULL,
+        </if>
+        <if test="item.shopCode != null">
+          #{item.shopCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.shopCode == null">
+          NULL,
+        </if>
+        <if test="item.deliveryBuildingId != null">
+          #{item.deliveryBuildingId,jdbcType=BIGINT},
+        </if>
+        <if test="item.deliveryBuildingId == null">
+          NULL,
+        </if>
+        <if test="item.deliveryBuildingName != null">
+          #{item.deliveryBuildingName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.deliveryBuildingName == null">
+          NULL,
+        </if>
+        <if test="item.deliveryCompany != null">
+          #{item.deliveryCompany,jdbcType=VARCHAR},
+        </if>
+        <if test="item.deliveryCompany == null">
+          NULL,
+        </if>
+        <if test="item.deliveryFloor != null">
+          #{item.deliveryFloor,jdbcType=VARCHAR},
+        </if>
+        <if test="item.deliveryFloor == null">
+          NULL,
+        </if>
+        <if test="item.takeMealsAddrId != null">
+          #{item.takeMealsAddrId,jdbcType=BIGINT},
+        </if>
+        <if test="item.takeMealsAddrId == null">
+          NULL,
+        </if>
+        <if test="item.takeMealsAddrName != null">
+          #{item.takeMealsAddrName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.takeMealsAddrName == null">
+          NULL,
+        </if>
+        <if test="item.payMode != null">
+          #{item.payMode,jdbcType=TINYINT},
+        </if>
+        <if test="item.payMode == null">
+          NULL,
+        </if>
+        <if test="item.orderSource != null">
+          #{item.orderSource,jdbcType=TINYINT},
+        </if>
+        <if test="item.orderSource == null">
+          NULL,
+        </if>
+        <if test="item.openId != null">
+          #{item.openId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.openId == null">
+          NULL,
+        </if>
+        <if test="item.couponId != null">
+          #{item.couponId,jdbcType=BIGINT},
+        </if>
+        <if test="item.couponId == null">
+          NULL,
+        </if>
+        <if test="item.redPacketId != null">
+          #{item.redPacketId,jdbcType=BIGINT},
+        </if>
+        <if test="item.redPacketId == null">
+          NULL,
+        </if>
+        <if test="item.groupBuyId != null">
+          #{item.groupBuyId,jdbcType=BIGINT},
+        </if>
+        <if test="item.groupBuyId == null">
+          NULL,
+        </if>
+        <if test="item.redPacketAmount != null">
+          #{item.redPacketAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.redPacketAmount == null">
+          NULL,
+        </if>
+        <if test="item.fullReduceAmount != null">
+          #{item.fullReduceAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.fullReduceAmount == null">
+          NULL,
+        </if>
+        <if test="item.couponAmount != null">
+          #{item.couponAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.couponAmount == null">
+          NULL,
+        </if>
+        <if test="item.deductionPointsAmount != null">
+          #{item.deductionPointsAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.deductionPointsAmount == null">
+          NULL,
+        </if>
+        <if test="item.deductionPoints != null">
+          #{item.deductionPoints,jdbcType=INTEGER},
+        </if>
+        <if test="item.deductionPoints == null">
+          NULL,
+        </if>
+        <if test="item.acquirePoints != null">
+          #{item.acquirePoints,jdbcType=INTEGER},
+        </if>
+        <if test="item.acquirePoints == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsOriginalAmount != null">
+          #{item.totalGoodsOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalGoodsOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsActualAmount != null">
+          #{item.totalGoodsActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalGoodsActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalDeliveryOriginalAmount != null">
+          #{item.totalDeliveryOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalDeliveryOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalDeliveryActualAmount != null">
+          #{item.totalDeliveryActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalDeliveryActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalPackageOriginalAmount != null">
+          #{item.totalPackageOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPackageOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalPackageActualAmount != null">
+          #{item.totalPackageActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPackageActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalPayAmount != null">
+          #{item.totalPayAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPayAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsCount != null">
+          #{item.totalGoodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.totalGoodsCount == null">
+          NULL,
+        </if>
+        <if test="item.totalOrderDays != null">
+          #{item.totalOrderDays,jdbcType=INTEGER},
+        </if>
+        <if test="item.totalOrderDays == null">
+          NULL,
+        </if>
+        <if test="item.orderType != null">
+          #{item.orderType,jdbcType=TINYINT},
+        </if>
+        <if test="item.orderType == null">
+          NULL,
+        </if>
+        <if test="item.status != null">
+          #{item.status,jdbcType=TINYINT},
+        </if>
+        <if test="item.status == null">
+          NULL,
+        </if>
+        <if test="item.payTime != null">
+          #{item.payTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.payTime == null">
+          NULL,
+        </if>
+        <if test="item.cancelTime != null">
+          #{item.cancelTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.cancelTime == null">
+          NULL,
+        </if>
+        <if test="item.cancelReason != null">
+          #{item.cancelReason,jdbcType=VARCHAR},
+        </if>
+        <if test="item.cancelReason == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.oms.domain.GroupBuyOrder">
+    update `group_buy_order`
+    <set>
+      <if test="orderNo != null">
+        `order_no` = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderDate != null">
+        `order_date` = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realName != null">
+        `real_name` = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        `sex` = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="mobileNo != null">
+        `mobile_no` = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressId != null">
+        `delivery_address_id` = #{deliveryAddressId,jdbcType=BIGINT},
+      </if>
+      <if test="notifyType != null">
+        `notify_type` = #{notifyType,jdbcType=TINYINT},
+      </if>
+      <if test="shopCode != null">
+        `shop_code` = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryBuildingId != null">
+        `delivery_building_id` = #{deliveryBuildingId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryBuildingName != null">
+        `delivery_building_name` = #{deliveryBuildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCompany != null">
+        `delivery_company` = #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryFloor != null">
+        `delivery_floor` = #{deliveryFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="takeMealsAddrId != null">
+        `take_meals_addr_id` = #{takeMealsAddrId,jdbcType=BIGINT},
+      </if>
+      <if test="takeMealsAddrName != null">
+        `take_meals_addr_name` = #{takeMealsAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="payMode != null">
+        `pay_mode` = #{payMode,jdbcType=TINYINT},
+      </if>
+      <if test="orderSource != null">
+        `order_source` = #{orderSource,jdbcType=TINYINT},
+      </if>
+      <if test="openId != null">
+        `open_id` = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null">
+        `coupon_id` = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="redPacketId != null">
+        `red_packet_id` = #{redPacketId,jdbcType=BIGINT},
+      </if>
+      <if test="groupBuyId != null">
+        `group_buy_id` = #{groupBuyId,jdbcType=BIGINT},
+      </if>
+      <if test="redPacketAmount != null">
+        `red_packet_amount` = #{redPacketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fullReduceAmount != null">
+        `full_reduce_amount` = #{fullReduceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="couponAmount != null">
+        `coupon_amount` = #{couponAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionPointsAmount != null">
+        `deduction_points_amount` = #{deductionPointsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionPoints != null">
+        `deduction_points` = #{deductionPoints,jdbcType=INTEGER},
+      </if>
+      <if test="acquirePoints != null">
+        `acquire_points` = #{acquirePoints,jdbcType=INTEGER},
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        `total_goods_original_amount` = #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        `total_goods_actual_amount` = #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDeliveryOriginalAmount != null">
+        `total_delivery_original_amount` = #{totalDeliveryOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDeliveryActualAmount != null">
+        `total_delivery_actual_amount` = #{totalDeliveryActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        `total_package_original_amount` = #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageActualAmount != null">
+        `total_package_actual_amount` = #{totalPackageActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPayAmount != null">
+        `total_pay_amount` = #{totalPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsCount != null">
+        `total_goods_count` = #{totalGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalOrderDays != null">
+        `total_order_days` = #{totalOrderDays,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null">
+        `order_type` = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="payTime != null">
+        `pay_time` = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null">
+        `cancel_time` = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelReason != null">
+        `cancel_reason` = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.oms.domain.GroupBuyOrder">
+    update `group_buy_order`
+    set `order_no` = #{orderNo,jdbcType=VARCHAR},
+      `user_id` = #{userId,jdbcType=BIGINT},
+      `order_date` = #{orderDate,jdbcType=TIMESTAMP},
+      `real_name` = #{realName,jdbcType=VARCHAR},
+      `sex` = #{sex,jdbcType=TINYINT},
+      `mobile_no` = #{mobileNo,jdbcType=VARCHAR},
+      `delivery_address_id` = #{deliveryAddressId,jdbcType=BIGINT},
+      `notify_type` = #{notifyType,jdbcType=TINYINT},
+      `shop_code` = #{shopCode,jdbcType=VARCHAR},
+      `delivery_building_id` = #{deliveryBuildingId,jdbcType=BIGINT},
+      `delivery_building_name` = #{deliveryBuildingName,jdbcType=VARCHAR},
+      `delivery_company` = #{deliveryCompany,jdbcType=VARCHAR},
+      `delivery_floor` = #{deliveryFloor,jdbcType=VARCHAR},
+      `take_meals_addr_id` = #{takeMealsAddrId,jdbcType=BIGINT},
+      `take_meals_addr_name` = #{takeMealsAddrName,jdbcType=VARCHAR},
+      `pay_mode` = #{payMode,jdbcType=TINYINT},
+      `order_source` = #{orderSource,jdbcType=TINYINT},
+      `open_id` = #{openId,jdbcType=VARCHAR},
+      `coupon_id` = #{couponId,jdbcType=BIGINT},
+      `red_packet_id` = #{redPacketId,jdbcType=BIGINT},
+      `group_buy_id` = #{groupBuyId,jdbcType=BIGINT},
+      `red_packet_amount` = #{redPacketAmount,jdbcType=DECIMAL},
+      `full_reduce_amount` = #{fullReduceAmount,jdbcType=DECIMAL},
+      `coupon_amount` = #{couponAmount,jdbcType=DECIMAL},
+      `deduction_points_amount` = #{deductionPointsAmount,jdbcType=DECIMAL},
+      `deduction_points` = #{deductionPoints,jdbcType=INTEGER},
+      `acquire_points` = #{acquirePoints,jdbcType=INTEGER},
+      `total_goods_original_amount` = #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      `total_goods_actual_amount` = #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      `total_delivery_original_amount` = #{totalDeliveryOriginalAmount,jdbcType=DECIMAL},
+      `total_delivery_actual_amount` = #{totalDeliveryActualAmount,jdbcType=DECIMAL},
+      `total_package_original_amount` = #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      `total_package_actual_amount` = #{totalPackageActualAmount,jdbcType=DECIMAL},
+      `total_pay_amount` = #{totalPayAmount,jdbcType=DECIMAL},
+      `total_goods_count` = #{totalGoodsCount,jdbcType=INTEGER},
+      `total_order_days` = #{totalOrderDays,jdbcType=INTEGER},
+      `order_type` = #{orderType,jdbcType=TINYINT},
+      `status` = #{status,jdbcType=TINYINT},
+      `pay_time` = #{payTime,jdbcType=TIMESTAMP},
+      `cancel_time` = #{cancelTime,jdbcType=TIMESTAMP},
+      `cancel_reason` = #{cancelReason,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `group_buy_order`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderNo}
+        </foreach>
+      </trim>
+      <trim prefix="userId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.userId}
+        </foreach>
+      </trim>
+      <trim prefix="orderDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderDate}
+        </foreach>
+      </trim>
+      <trim prefix="realName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.realName}
+        </foreach>
+      </trim>
+      <trim prefix="sex =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.sex}
+        </foreach>
+      </trim>
+      <trim prefix="mobileNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.mobileNo}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryAddressId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryAddressId}
+        </foreach>
+      </trim>
+      <trim prefix="notifyType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.notifyType}
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopCode}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryBuildingId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryBuildingId}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryBuildingName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryBuildingName}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryCompany =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryCompany}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryFloor =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryFloor}
+        </foreach>
+      </trim>
+      <trim prefix="takeMealsAddrId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.takeMealsAddrId}
+        </foreach>
+      </trim>
+      <trim prefix="takeMealsAddrName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.takeMealsAddrName}
+        </foreach>
+      </trim>
+      <trim prefix="payMode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.payMode}
+        </foreach>
+      </trim>
+      <trim prefix="orderSource =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderSource}
+        </foreach>
+      </trim>
+      <trim prefix="openId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.openId}
+        </foreach>
+      </trim>
+      <trim prefix="couponId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.couponId}
+        </foreach>
+      </trim>
+      <trim prefix="redPacketId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.redPacketId}
+        </foreach>
+      </trim>
+      <trim prefix="groupBuyId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.groupBuyId}
+        </foreach>
+      </trim>
+      <trim prefix="redPacketAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.redPacketAmount}
+        </foreach>
+      </trim>
+      <trim prefix="fullReduceAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.fullReduceAmount}
+        </foreach>
+      </trim>
+      <trim prefix="couponAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.couponAmount}
+        </foreach>
+      </trim>
+      <trim prefix="deductionPointsAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deductionPointsAmount}
+        </foreach>
+      </trim>
+      <trim prefix="deductionPoints =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deductionPoints}
+        </foreach>
+      </trim>
+      <trim prefix="acquirePoints =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.acquirePoints}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalDeliveryOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalDeliveryOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalDeliveryActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalDeliveryActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPackageOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPackageActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalPayAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPayAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="totalOrderDays =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalOrderDays}
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderType}
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.status}
+        </foreach>
+      </trim>
+      <trim prefix="payTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.payTime}
+        </foreach>
+      </trim>
+      <trim prefix="cancelTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.cancelTime}
+        </foreach>
+      </trim>
+      <trim prefix="cancelReason =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.cancelReason}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `group_buy_order`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderNo != null ">
+            when  #{item.id} then #{item.orderNo}
+          </if>
+          <if test="item.orderNo == null ">
+            when  #{item.id} then `group_buy_order`.`order_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="userId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.userId != null ">
+            when  #{item.id} then #{item.userId}
+          </if>
+          <if test="item.userId == null ">
+            when  #{item.id} then `group_buy_order`.`user_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderDate != null ">
+            when  #{item.id} then #{item.orderDate}
+          </if>
+          <if test="item.orderDate == null ">
+            when  #{item.id} then `group_buy_order`.`order_date`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="realName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.realName != null ">
+            when  #{item.id} then #{item.realName}
+          </if>
+          <if test="item.realName == null ">
+            when  #{item.id} then `group_buy_order`.`real_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sex =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.sex != null ">
+            when  #{item.id} then #{item.sex}
+          </if>
+          <if test="item.sex == null ">
+            when  #{item.id} then `group_buy_order`.`sex`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mobileNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.mobileNo != null ">
+            when  #{item.id} then #{item.mobileNo}
+          </if>
+          <if test="item.mobileNo == null ">
+            when  #{item.id} then `group_buy_order`.`mobile_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryAddressId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryAddressId != null ">
+            when  #{item.id} then #{item.deliveryAddressId}
+          </if>
+          <if test="item.deliveryAddressId == null ">
+            when  #{item.id} then `group_buy_order`.`delivery_address_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="notifyType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.notifyType != null ">
+            when  #{item.id} then #{item.notifyType}
+          </if>
+          <if test="item.notifyType == null ">
+            when  #{item.id} then `group_buy_order`.`notify_type`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shopCode != null ">
+            when  #{item.id} then #{item.shopCode}
+          </if>
+          <if test="item.shopCode == null ">
+            when  #{item.id} then `group_buy_order`.`shop_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryBuildingId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryBuildingId != null ">
+            when  #{item.id} then #{item.deliveryBuildingId}
+          </if>
+          <if test="item.deliveryBuildingId == null ">
+            when  #{item.id} then `group_buy_order`.`delivery_building_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryBuildingName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryBuildingName != null ">
+            when  #{item.id} then #{item.deliveryBuildingName}
+          </if>
+          <if test="item.deliveryBuildingName == null ">
+            when  #{item.id} then `group_buy_order`.`delivery_building_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryCompany =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryCompany != null ">
+            when  #{item.id} then #{item.deliveryCompany}
+          </if>
+          <if test="item.deliveryCompany == null ">
+            when  #{item.id} then `group_buy_order`.`delivery_company`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryFloor =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryFloor != null ">
+            when  #{item.id} then #{item.deliveryFloor}
+          </if>
+          <if test="item.deliveryFloor == null ">
+            when  #{item.id} then `group_buy_order`.`delivery_floor`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="takeMealsAddrId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.takeMealsAddrId != null ">
+            when  #{item.id} then #{item.takeMealsAddrId}
+          </if>
+          <if test="item.takeMealsAddrId == null ">
+            when  #{item.id} then `group_buy_order`.`take_meals_addr_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="takeMealsAddrName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.takeMealsAddrName != null ">
+            when  #{item.id} then #{item.takeMealsAddrName}
+          </if>
+          <if test="item.takeMealsAddrName == null ">
+            when  #{item.id} then `group_buy_order`.`take_meals_addr_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="payMode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.payMode != null ">
+            when  #{item.id} then #{item.payMode}
+          </if>
+          <if test="item.payMode == null ">
+            when  #{item.id} then `group_buy_order`.`pay_mode`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderSource =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderSource != null ">
+            when  #{item.id} then #{item.orderSource}
+          </if>
+          <if test="item.orderSource == null ">
+            when  #{item.id} then `group_buy_order`.`order_source`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="openId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.openId != null ">
+            when  #{item.id} then #{item.openId}
+          </if>
+          <if test="item.openId == null ">
+            when  #{item.id} then `group_buy_order`.`open_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="couponId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.couponId != null ">
+            when  #{item.id} then #{item.couponId}
+          </if>
+          <if test="item.couponId == null ">
+            when  #{item.id} then `group_buy_order`.`coupon_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="redPacketId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.redPacketId != null ">
+            when  #{item.id} then #{item.redPacketId}
+          </if>
+          <if test="item.redPacketId == null ">
+            when  #{item.id} then `group_buy_order`.`red_packet_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="groupBuyId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.groupBuyId != null ">
+            when  #{item.id} then #{item.groupBuyId}
+          </if>
+          <if test="item.groupBuyId == null ">
+            when  #{item.id} then `group_buy_order`.`group_buy_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="redPacketAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.redPacketAmount != null ">
+            when  #{item.id} then #{item.redPacketAmount}
+          </if>
+          <if test="item.redPacketAmount == null ">
+            when  #{item.id} then `group_buy_order`.`red_packet_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fullReduceAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.fullReduceAmount != null ">
+            when  #{item.id} then #{item.fullReduceAmount}
+          </if>
+          <if test="item.fullReduceAmount == null ">
+            when  #{item.id} then `group_buy_order`.`full_reduce_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="couponAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.couponAmount != null ">
+            when  #{item.id} then #{item.couponAmount}
+          </if>
+          <if test="item.couponAmount == null ">
+            when  #{item.id} then `group_buy_order`.`coupon_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deductionPointsAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deductionPointsAmount != null ">
+            when  #{item.id} then #{item.deductionPointsAmount}
+          </if>
+          <if test="item.deductionPointsAmount == null ">
+            when  #{item.id} then `group_buy_order`.`deduction_points_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deductionPoints =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deductionPoints != null ">
+            when  #{item.id} then #{item.deductionPoints}
+          </if>
+          <if test="item.deductionPoints == null ">
+            when  #{item.id} then `group_buy_order`.`deduction_points`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="acquirePoints =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.acquirePoints != null ">
+            when  #{item.id} then #{item.acquirePoints}
+          </if>
+          <if test="item.acquirePoints == null ">
+            when  #{item.id} then `group_buy_order`.`acquire_points`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsOriginalAmount != null ">
+            when  #{item.id} then #{item.totalGoodsOriginalAmount}
+          </if>
+          <if test="item.totalGoodsOriginalAmount == null ">
+            when  #{item.id} then `group_buy_order`.`total_goods_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsActualAmount != null ">
+            when  #{item.id} then #{item.totalGoodsActualAmount}
+          </if>
+          <if test="item.totalGoodsActualAmount == null ">
+            when  #{item.id} then `group_buy_order`.`total_goods_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalDeliveryOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalDeliveryOriginalAmount != null ">
+            when  #{item.id} then #{item.totalDeliveryOriginalAmount}
+          </if>
+          <if test="item.totalDeliveryOriginalAmount == null ">
+            when  #{item.id} then `group_buy_order`.`total_delivery_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalDeliveryActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalDeliveryActualAmount != null ">
+            when  #{item.id} then #{item.totalDeliveryActualAmount}
+          </if>
+          <if test="item.totalDeliveryActualAmount == null ">
+            when  #{item.id} then `group_buy_order`.`total_delivery_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPackageOriginalAmount != null ">
+            when  #{item.id} then #{item.totalPackageOriginalAmount}
+          </if>
+          <if test="item.totalPackageOriginalAmount == null ">
+            when  #{item.id} then `group_buy_order`.`total_package_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPackageActualAmount != null ">
+            when  #{item.id} then #{item.totalPackageActualAmount}
+          </if>
+          <if test="item.totalPackageActualAmount == null ">
+            when  #{item.id} then `group_buy_order`.`total_package_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPayAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPayAmount != null ">
+            when  #{item.id} then #{item.totalPayAmount}
+          </if>
+          <if test="item.totalPayAmount == null ">
+            when  #{item.id} then `group_buy_order`.`total_pay_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsCount != null ">
+            when  #{item.id} then #{item.totalGoodsCount}
+          </if>
+          <if test="item.totalGoodsCount == null ">
+            when  #{item.id} then `group_buy_order`.`total_goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalOrderDays =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalOrderDays != null ">
+            when  #{item.id} then #{item.totalOrderDays}
+          </if>
+          <if test="item.totalOrderDays == null ">
+            when  #{item.id} then `group_buy_order`.`total_order_days`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderType != null ">
+            when  #{item.id} then #{item.orderType}
+          </if>
+          <if test="item.orderType == null ">
+            when  #{item.id} then `group_buy_order`.`order_type`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.id} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.id} then `group_buy_order`.`status`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="payTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.payTime != null ">
+            when  #{item.id} then #{item.payTime}
+          </if>
+          <if test="item.payTime == null ">
+            when  #{item.id} then `group_buy_order`.`pay_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cancelTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.cancelTime != null ">
+            when  #{item.id} then #{item.cancelTime}
+          </if>
+          <if test="item.cancelTime == null ">
+            when  #{item.id} then `group_buy_order`.`cancel_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cancelReason =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.cancelReason != null ">
+            when  #{item.id} then #{item.cancelReason}
+          </if>
+          <if test="item.cancelReason == null ">
+            when  #{item.id} then `group_buy_order`.`cancel_reason`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+</mapper>

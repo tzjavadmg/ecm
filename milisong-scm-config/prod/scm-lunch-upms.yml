@@ -1,0 +1,20 @@
+upms:
+  config:
+    url: http://mls-upmsapi.jshuii.com
+    app-name: MILISONG
+    upmsUserInfoUrl: ${upms.config.url}/auth/userinfo
+    upmsTokenUrl: ${upms.config.url}/auth/token
+    upmsCheckLoginUrl: ${upms.config.url}/auth/check-login
+    upmsCheckPermissionUrl: ${upms.config.url}/auth/check-permission
+    upmsGetMenuListUrl: ${upms.config.url}/auth/menu
+    upmsGetDataPermissionUrl: ${upms.config.url}/auth/data-permission
+  filter-url:
+    notHeadTokenUrls: /upload/oss,/order/export
+    whitelistUrls: /upms/token,/building/send-buildings,/env,/file/upload,/upms/menu,/order-set/update-status,/order-set/get-order-set-by-order-no,
+                              /order-set/query-detail-order-info,/order-set/query-detail-order-set-status,/shop/get-display-info-byCode,
+                              /shop/get-display-info-byBuildingId,/shop/get-all-shop-list,/shop/save-or-update,/shop/query-by-condition,
+                              /shop/query-by-id,/company/sync,/company/update-floor,/goods/do-task,/goods/task,/orderset/task,/orderset/destroy-pool,
+                              /orderset/compensate-send-mq,/config/**,/orderset/push,
+                              /stock/get-goods-pre-production,/stock/get-day-goods-pre-production,/building/get-building-by-id,/upms/data-permission-shop,
+                              /goods-schedule/goods-schedule-task,/order/check,/file/change
+

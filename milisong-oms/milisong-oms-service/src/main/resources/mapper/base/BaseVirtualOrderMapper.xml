@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.base.BaseVirtualOrderMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.oms.domain.VirtualOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="shop_code" jdbcType="VARCHAR" property="shopCode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="total_goods_original_amount" jdbcType="DECIMAL" property="totalGoodsOriginalAmount" />
+    <result column="total_goods_actual_amount" jdbcType="DECIMAL" property="totalGoodsActualAmount" />
+    <result column="total_delivery_original_amount" jdbcType="DECIMAL" property="totalDeliveryOriginalAmount" />
+    <result column="total_delivery_actual_amount" jdbcType="DECIMAL" property="totalDeliveryActualAmount" />
+    <result column="total_package_original_amount" jdbcType="DECIMAL" property="totalPackageOriginalAmount" />
+    <result column="total_package_actual_amount" jdbcType="DECIMAL" property="totalPackageActualAmount" />
+    <result column="full_reduce_amount" jdbcType="DECIMAL" property="fullReduceAmount" />
+    <result column="total_pay_amount" jdbcType="DECIMAL" property="totalPayAmount" />
+    <result column="total_goods_count" jdbcType="INTEGER" property="totalGoodsCount" />
+    <result column="total_order_days" jdbcType="INTEGER" property="totalOrderDays" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `order_date`, `user_id`, `shop_code`, `status`, `open_id`, `total_goods_original_amount`, 
+    `total_goods_actual_amount`, `total_delivery_original_amount`, `total_delivery_actual_amount`, 
+    `total_package_original_amount`, `total_package_actual_amount`, `full_reduce_amount`, 
+    `total_pay_amount`, `total_goods_count`, `total_order_days`, `order_type`, `cancel_time`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `virtual_order`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.oms.domain.VirtualOrder">
+    insert into `virtual_order` (`id`, `order_date`, `user_id`, 
+      `shop_code`, `status`, `open_id`, 
+      `total_goods_original_amount`, `total_goods_actual_amount`, 
+      `total_delivery_original_amount`, `total_delivery_actual_amount`, 
+      `total_package_original_amount`, `total_package_actual_amount`, 
+      `full_reduce_amount`, `total_pay_amount`, `total_goods_count`, 
+      `total_order_days`, `order_type`, `cancel_time`
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderDate,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, 
+      #{shopCode,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{openId,jdbcType=VARCHAR}, 
+      #{totalGoodsOriginalAmount,jdbcType=DECIMAL}, #{totalGoodsActualAmount,jdbcType=DECIMAL}, 
+      #{totalDeliveryOriginalAmount,jdbcType=DECIMAL}, #{totalDeliveryActualAmount,jdbcType=DECIMAL}, 
+      #{totalPackageOriginalAmount,jdbcType=DECIMAL}, #{totalPackageActualAmount,jdbcType=DECIMAL}, 
+      #{fullReduceAmount,jdbcType=DECIMAL}, #{totalPayAmount,jdbcType=DECIMAL}, #{totalGoodsCount,jdbcType=INTEGER}, 
+      #{totalOrderDays,jdbcType=INTEGER}, #{orderType,jdbcType=TINYINT}, #{cancelTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.oms.domain.VirtualOrder">
+    insert into `virtual_order`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderDate != null">
+        `order_date`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="shopCode != null">
+        `shop_code`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="openId != null">
+        `open_id`,
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        `total_goods_original_amount`,
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        `total_goods_actual_amount`,
+      </if>
+      <if test="totalDeliveryOriginalAmount != null">
+        `total_delivery_original_amount`,
+      </if>
+      <if test="totalDeliveryActualAmount != null">
+        `total_delivery_actual_amount`,
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        `total_package_original_amount`,
+      </if>
+      <if test="totalPackageActualAmount != null">
+        `total_package_actual_amount`,
+      </if>
+      <if test="fullReduceAmount != null">
+        `full_reduce_amount`,
+      </if>
+      <if test="totalPayAmount != null">
+        `total_pay_amount`,
+      </if>
+      <if test="totalGoodsCount != null">
+        `total_goods_count`,
+      </if>
+      <if test="totalOrderDays != null">
+        `total_order_days`,
+      </if>
+      <if test="orderType != null">
+        `order_type`,
+      </if>
+      <if test="cancelTime != null">
+        `cancel_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDeliveryOriginalAmount != null">
+        #{totalDeliveryOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDeliveryActualAmount != null">
+        #{totalDeliveryActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageActualAmount != null">
+        #{totalPackageActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fullReduceAmount != null">
+        #{fullReduceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPayAmount != null">
+        #{totalPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsCount != null">
+        #{totalGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalOrderDays != null">
+        #{totalOrderDays,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `virtual_order` (`id`, `order_date`, `user_id`, 
+      `shop_code`, `status`, `open_id`, 
+      `total_goods_original_amount`, `total_goods_actual_amount`, 
+      `total_delivery_original_amount`, `total_delivery_actual_amount`, 
+      `total_package_original_amount`, `total_package_actual_amount`, 
+      `full_reduce_amount`, `total_pay_amount`, 
+      `total_goods_count`, `total_order_days`, 
+      `order_type`, `cancel_time`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderDate,jdbcType=TIMESTAMP}, #{item.userId,jdbcType=BIGINT}, 
+        #{item.shopCode,jdbcType=VARCHAR}, #{item.status,jdbcType=TINYINT}, #{item.openId,jdbcType=VARCHAR}, 
+        #{item.totalGoodsOriginalAmount,jdbcType=DECIMAL}, #{item.totalGoodsActualAmount,jdbcType=DECIMAL}, 
+        #{item.totalDeliveryOriginalAmount,jdbcType=DECIMAL}, #{item.totalDeliveryActualAmount,jdbcType=DECIMAL}, 
+        #{item.totalPackageOriginalAmount,jdbcType=DECIMAL}, #{item.totalPackageActualAmount,jdbcType=DECIMAL}, 
+        #{item.fullReduceAmount,jdbcType=DECIMAL}, #{item.totalPayAmount,jdbcType=DECIMAL}, 
+        #{item.totalGoodsCount,jdbcType=INTEGER}, #{item.totalOrderDays,jdbcType=INTEGER}, 
+        #{item.orderType,jdbcType=TINYINT}, #{item.cancelTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `virtual_order`
+    (`id`, `order_date`, `user_id`, `shop_code`, `status`, `open_id`, `total_goods_original_amount`, 
+      `total_goods_actual_amount`, `total_delivery_original_amount`, `total_delivery_actual_amount`, 
+      `total_package_original_amount`, `total_package_actual_amount`, `full_reduce_amount`, 
+      `total_pay_amount`, `total_goods_count`, `total_order_days`, `order_type`, `cancel_time`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderDate != null">
+          #{item.orderDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.orderDate == null">
+          NULL,
+        </if>
+        <if test="item.userId != null">
+          #{item.userId,jdbcType=BIGINT},
+        </if>
+        <if test="item.userId == null">
+          NULL,
+        </if>
+        <if test="item.shopCode != null">
+          #{item.shopCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.shopCode == null">
+          NULL,
+        </if>
+        <if test="item.status != null">
+          #{item.status,jdbcType=TINYINT},
+        </if>
+        <if test="item.status == null">
+          NULL,
+        </if>
+        <if test="item.openId != null">
+          #{item.openId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.openId == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsOriginalAmount != null">
+          #{item.totalGoodsOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalGoodsOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsActualAmount != null">
+          #{item.totalGoodsActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalGoodsActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalDeliveryOriginalAmount != null">
+          #{item.totalDeliveryOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalDeliveryOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalDeliveryActualAmount != null">
+          #{item.totalDeliveryActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalDeliveryActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalPackageOriginalAmount != null">
+          #{item.totalPackageOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPackageOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalPackageActualAmount != null">
+          #{item.totalPackageActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPackageActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.fullReduceAmount != null">
+          #{item.fullReduceAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.fullReduceAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalPayAmount != null">
+          #{item.totalPayAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPayAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsCount != null">
+          #{item.totalGoodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.totalGoodsCount == null">
+          NULL,
+        </if>
+        <if test="item.totalOrderDays != null">
+          #{item.totalOrderDays,jdbcType=INTEGER},
+        </if>
+        <if test="item.totalOrderDays == null">
+          NULL,
+        </if>
+        <if test="item.orderType != null">
+          #{item.orderType,jdbcType=TINYINT},
+        </if>
+        <if test="item.orderType == null">
+          NULL,
+        </if>
+        <if test="item.cancelTime != null">
+          #{item.cancelTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.cancelTime == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.oms.domain.VirtualOrder">
+    update `virtual_order`
+    <set>
+      <if test="orderDate != null">
+        `order_date` = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null">
+        `shop_code` = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="openId != null">
+        `open_id` = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        `total_goods_original_amount` = #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        `total_goods_actual_amount` = #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDeliveryOriginalAmount != null">
+        `total_delivery_original_amount` = #{totalDeliveryOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDeliveryActualAmount != null">
+        `total_delivery_actual_amount` = #{totalDeliveryActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        `total_package_original_amount` = #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageActualAmount != null">
+        `total_package_actual_amount` = #{totalPackageActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fullReduceAmount != null">
+        `full_reduce_amount` = #{fullReduceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPayAmount != null">
+        `total_pay_amount` = #{totalPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsCount != null">
+        `total_goods_count` = #{totalGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalOrderDays != null">
+        `total_order_days` = #{totalOrderDays,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null">
+        `order_type` = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="cancelTime != null">
+        `cancel_time` = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.oms.domain.VirtualOrder">
+    update `virtual_order`
+    set `order_date` = #{orderDate,jdbcType=TIMESTAMP},
+      `user_id` = #{userId,jdbcType=BIGINT},
+      `shop_code` = #{shopCode,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      `open_id` = #{openId,jdbcType=VARCHAR},
+      `total_goods_original_amount` = #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      `total_goods_actual_amount` = #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      `total_delivery_original_amount` = #{totalDeliveryOriginalAmount,jdbcType=DECIMAL},
+      `total_delivery_actual_amount` = #{totalDeliveryActualAmount,jdbcType=DECIMAL},
+      `total_package_original_amount` = #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      `total_package_actual_amount` = #{totalPackageActualAmount,jdbcType=DECIMAL},
+      `full_reduce_amount` = #{fullReduceAmount,jdbcType=DECIMAL},
+      `total_pay_amount` = #{totalPayAmount,jdbcType=DECIMAL},
+      `total_goods_count` = #{totalGoodsCount,jdbcType=INTEGER},
+      `total_order_days` = #{totalOrderDays,jdbcType=INTEGER},
+      `order_type` = #{orderType,jdbcType=TINYINT},
+      `cancel_time` = #{cancelTime,jdbcType=TIMESTAMP}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `virtual_order`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderDate}
+        </foreach>
+      </trim>
+      <trim prefix="userId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.userId}
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.shopCode}
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.status}
+        </foreach>
+      </trim>
+      <trim prefix="openId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.openId}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalDeliveryOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalDeliveryOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalDeliveryActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalDeliveryActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPackageOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPackageActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="fullReduceAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.fullReduceAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalPayAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPayAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="totalOrderDays =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalOrderDays}
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderType}
+        </foreach>
+      </trim>
+      <trim prefix="cancelTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.cancelTime}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `virtual_order`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderDate != null ">
+            when  #{item.id} then #{item.orderDate}
+          </if>
+          <if test="item.orderDate == null ">
+            when  #{item.id} then `virtual_order`.`order_date`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="userId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.userId != null ">
+            when  #{item.id} then #{item.userId}
+          </if>
+          <if test="item.userId == null ">
+            when  #{item.id} then `virtual_order`.`user_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.shopCode != null ">
+            when  #{item.id} then #{item.shopCode}
+          </if>
+          <if test="item.shopCode == null ">
+            when  #{item.id} then `virtual_order`.`shop_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.id} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.id} then `virtual_order`.`status`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="openId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.openId != null ">
+            when  #{item.id} then #{item.openId}
+          </if>
+          <if test="item.openId == null ">
+            when  #{item.id} then `virtual_order`.`open_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsOriginalAmount != null ">
+            when  #{item.id} then #{item.totalGoodsOriginalAmount}
+          </if>
+          <if test="item.totalGoodsOriginalAmount == null ">
+            when  #{item.id} then `virtual_order`.`total_goods_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsActualAmount != null ">
+            when  #{item.id} then #{item.totalGoodsActualAmount}
+          </if>
+          <if test="item.totalGoodsActualAmount == null ">
+            when  #{item.id} then `virtual_order`.`total_goods_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalDeliveryOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalDeliveryOriginalAmount != null ">
+            when  #{item.id} then #{item.totalDeliveryOriginalAmount}
+          </if>
+          <if test="item.totalDeliveryOriginalAmount == null ">
+            when  #{item.id} then `virtual_order`.`total_delivery_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalDeliveryActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalDeliveryActualAmount != null ">
+            when  #{item.id} then #{item.totalDeliveryActualAmount}
+          </if>
+          <if test="item.totalDeliveryActualAmount == null ">
+            when  #{item.id} then `virtual_order`.`total_delivery_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPackageOriginalAmount != null ">
+            when  #{item.id} then #{item.totalPackageOriginalAmount}
+          </if>
+          <if test="item.totalPackageOriginalAmount == null ">
+            when  #{item.id} then `virtual_order`.`total_package_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPackageActualAmount != null ">
+            when  #{item.id} then #{item.totalPackageActualAmount}
+          </if>
+          <if test="item.totalPackageActualAmount == null ">
+            when  #{item.id} then `virtual_order`.`total_package_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fullReduceAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.fullReduceAmount != null ">
+            when  #{item.id} then #{item.fullReduceAmount}
+          </if>
+          <if test="item.fullReduceAmount == null ">
+            when  #{item.id} then `virtual_order`.`full_reduce_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPayAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPayAmount != null ">
+            when  #{item.id} then #{item.totalPayAmount}
+          </if>
+          <if test="item.totalPayAmount == null ">
+            when  #{item.id} then `virtual_order`.`total_pay_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsCount != null ">
+            when  #{item.id} then #{item.totalGoodsCount}
+          </if>
+          <if test="item.totalGoodsCount == null ">
+            when  #{item.id} then `virtual_order`.`total_goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalOrderDays =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalOrderDays != null ">
+            when  #{item.id} then #{item.totalOrderDays}
+          </if>
+          <if test="item.totalOrderDays == null ">
+            when  #{item.id} then `virtual_order`.`total_order_days`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderType != null ">
+            when  #{item.id} then #{item.orderType}
+          </if>
+          <if test="item.orderType == null ">
+            when  #{item.id} then `virtual_order`.`order_type`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cancelTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.cancelTime != null ">
+            when  #{item.id} then #{item.cancelTime}
+          </if>
+          <if test="item.cancelTime == null ">
+            when  #{item.id} then `virtual_order`.`cancel_time`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+</mapper>

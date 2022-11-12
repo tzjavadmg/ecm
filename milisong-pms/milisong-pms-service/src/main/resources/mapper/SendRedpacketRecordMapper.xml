@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.SendRedpacketRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.SendRedpacketRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="operator_name" property="operatorName" jdbcType="VARCHAR" />
+    <result column="filter_condition" property="filterCondition" jdbcType="VARCHAR" />
+    <result column="redpacketids" property="redpacketids" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="should_send_num" property="shouldSendNum" jdbcType="INTEGER" />
+    <result column="actual_send_num" property="actualSendNum" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="business_line" property="businessLine" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, operator_id, operator_name, filter_condition, redpacketids, content, send_time, 
+    should_send_num, actual_send_num, remark, status, business_line, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from send_redpacket_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.SendRedpacketRecord" >
+    insert into send_redpacket_record (id, operator_id, operator_name, 
+      filter_condition, redpacketids, content, 
+      send_time, should_send_num, actual_send_num, 
+      remark, status, business_line, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{operatorId,jdbcType=BIGINT}, #{operatorName,jdbcType=VARCHAR}, 
+      #{filterCondition,jdbcType=VARCHAR}, #{redpacketids,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{shouldSendNum,jdbcType=INTEGER}, #{actualSendNum,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{businessLine,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.SendRedpacketRecord" >
+    insert into send_redpacket_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="operatorName != null" >
+        operator_name,
+      </if>
+      <if test="filterCondition != null" >
+        filter_condition,
+      </if>
+      <if test="redpacketids != null" >
+        redpacketids,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="shouldSendNum != null" >
+        should_send_num,
+      </if>
+      <if test="actualSendNum != null" >
+        actual_send_num,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="businessLine != null" >
+        business_line,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorName != null" >
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="filterCondition != null" >
+        #{filterCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="redpacketids != null" >
+        #{redpacketids,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shouldSendNum != null" >
+        #{shouldSendNum,jdbcType=INTEGER},
+      </if>
+      <if test="actualSendNum != null" >
+        #{actualSendNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="businessLine != null" >
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.SendRedpacketRecord" >
+    update send_redpacket_record
+    <set >
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorName != null" >
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="filterCondition != null" >
+        filter_condition = #{filterCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="redpacketids != null" >
+        redpacketids = #{redpacketids,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shouldSendNum != null" >
+        should_send_num = #{shouldSendNum,jdbcType=INTEGER},
+      </if>
+      <if test="actualSendNum != null" >
+        actual_send_num = #{actualSendNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="businessLine != null" >
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.SendRedpacketRecord" >
+    update send_redpacket_record
+    set operator_id = #{operatorId,jdbcType=BIGINT},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      filter_condition = #{filterCondition,jdbcType=VARCHAR},
+      redpacketids = #{redpacketids,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      should_send_num = #{shouldSendNum,jdbcType=INTEGER},
+      actual_send_num = #{actualSendNum,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      business_line = #{businessLine,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="countSendRedpacketRecord" resultType="int">
+    select count(id) from send_redpacket_record
+    <where>
+      <if test="redpacketName != null and redpacketName != ''">
+        content like concat('%',#{redpacketName},'%')
+      </if>
+      <if test="sendTime != null">
+        and DATE_FORMAT(send_time,'%Y-%m-%d') = DATE_FORMAT(#{sendTime},'%Y-%m-%d')
+      </if>
+      and business_line = #{businessLine}
+    </where>
+  </select>
+
+  <select id="querySendRedpacketRecord" resultType="com.milisong.pms.prom.dto.SendRedpacketRecordDto">
+    select id, operator_name, content, send_time, should_send_num, actual_send_num, remark, status from send_redpacket_record
+    <where>
+      <if test="redpacketName != null and redpacketName != ''">
+        content like concat('%',#{redpacketName},'%')
+      </if>
+      <if test="sendTime != null">
+        and DATE_FORMAT(send_time,'%Y-%m-%d') = DATE_FORMAT(#{sendTime},'%Y-%m-%d')
+      </if>
+      and business_line = #{businessLine}
+      order by id desc
+      limit #{startRow}, #{pageSize}
+    </where>
+  </select>
+  <select id="querySendRedPacketRecordByStatus" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from send_redpacket_record
+    where status = #{status} and business_line = #{buzLine}
+  </select>
+</mapper>

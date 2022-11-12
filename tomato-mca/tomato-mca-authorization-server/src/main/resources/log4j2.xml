@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="warn">
+
+<properties>
+    <property name="SERVICE_NAME">tomato-mca-authorization-server</property>
+    <property name="LOG_PATH">/data/logs/ecm/</property>
+</properties>
+
+<Appenders>
+
+    <Console name="Console" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+    </Console>
+
+    <RollingFile name="RollingFile" fileName="${LOG_PATH}${SERVICE_NAME}.log"
+                 filePattern="${LOG_PATH}$${date:yyyy-MM}/${SERVICE_NAME}-%d{MM-dd-yyyy}-%i.log.gz">
+        <JsonLayout compact="true" eventEol="true" stacktraceAsString="true"><!--使用json格式输出-->
+            <KeyValuePair key="appName" value="${SERVICE_NAME}"/>
+            <KeyValuePair key="sysTime" value="$${date:yyyy-MM-dd HH:mm:ss,SSS}"/>
+        </JsonLayout>
+
+        <Policies>
+            <TimeBasedTriggeringPolicy/>
+            <SizeBasedTriggeringPolicy size="250 MB"/>
+        </Policies>
+    </RollingFile>
+    <CatAppender name="CatAppender">
+    </CatAppender>
+</Appenders>
+
+<Loggers>
+    <Root level="INFO">
+        <AppenderRef ref="Console"/>
+        <AppenderRef ref="RollingFile"/>
+        <AppenderRef ref="CatAppender"/>
+    </Root>
+</Loggers>
+
+
+</Configuration>

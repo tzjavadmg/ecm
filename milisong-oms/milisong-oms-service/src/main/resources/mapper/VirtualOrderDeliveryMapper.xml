@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.oms.mapper.VirtualOrderDeliveryMapper">
+    <insert id="batchSave">
+        INSERT INTO virtual_order_delivery(id, order_id, delivery_date, delivery_original_price, delivery_actual_price,
+        total_package_original_amount, total_package_actual_amount, total_goods_count, total_goods_original_amount,
+        total_goods_actual_amount, total_amount, order_type) VALUES
+        <foreach collection="collection" item="v" separator=",">
+            (#{v.id}, #{v.orderId}, #{v.deliveryDate}, #{v.deliveryOriginalPrice}, #{v.deliveryActualPrice},
+            #{v.totalPackageOriginalAmount}, #{v.totalPackageActualAmount}, #{v.totalGoodsCount},
+            #{v.totalGoodsOriginalAmount}, #{v.totalGoodsActualAmount}, #{v.totalAmount}, #{v.orderType})
+        </foreach>
+    </insert>
+
+    <select id="findDeliveryDateListByOrderId" parameterType="java.lang.Long"
+            resultType="com.milisong.oms.domain.VirtualOrderDelivery">
+        SELECT id, delivery_date
+        FROM virtual_order_delivery
+        WHERE order_id = #{orderId,jdbcType=BIGINT}
+        ORDER BY delivery_date
+    </select>
+
+    <select id="findListByOrderId" parameterType="java.lang.Long"
+            resultType="com.milisong.oms.domain.VirtualOrderDelivery">
+        SELECT *
+        FROM virtual_order_delivery
+        WHERE order_id = #{orderId,jdbcType=BIGINT}
+        ORDER BY delivery_date
+    </select>
+</mapper>

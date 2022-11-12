@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: milisong-pms-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://dbtest.jshuii.com:3306/milisong_pms?characterEncoding=utf-8&amp;useOldAliasMetadataBehavior=true&amp;autoReconnectForPools=true;useSSL=false;
+    username: milisong_pms
+    password: TVLfAZNx8TUajrgrcRpqdhcfPwFCW4kQHLzjMsp2ldc=
+    type: com.farmland.core.db.SecureDruidDataSource
+idworker:
+  workerId: 0
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+  redis:
+    host: devredis.jshuii.com
+    port: 6385
+    password: ReyH2WMVtn0KalCA0v6385
+    database: 7
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 1
+redisson:
+  address: redis://devredis.jshuii.com:6385
+  password: ReyH2WMVtn0KalCA0v6385
+  database: 15

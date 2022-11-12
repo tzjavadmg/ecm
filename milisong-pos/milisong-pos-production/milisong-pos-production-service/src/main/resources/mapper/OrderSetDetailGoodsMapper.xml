@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.milisong.pos.production.mapper.OrderSetDetailGoodsMapper">
+
+	<insert id="insertBatchSelective" parameterType="java.util.List">
+		insert into order_set_detail_goods
+		(id, detail_set_no, order_no, couplet_no, user_id, user_name, user_phone,
+		goods_code,
+		goods_name, goods_number, actual_pay_amount, order_time, is_deleted, create_by,
+		update_by)
+		values
+		<foreach collection="list" index="index" item="item"
+			separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="item.id != null">
+					#{item.id,jdbcType=BIGINT},
+				</if>
+				<if test="item.id == null">
+					NULL,
+				</if>
+				<if test="item.detailSetNo != null">
+					#{item.detailSetNo,jdbcType=VARCHAR},
+				</if>
+				<if test="item.detailSetNo == null">
+					NULL,
+				</if>
+				<if test="item.orderNo != null">
+					#{item.orderNo,jdbcType=VARCHAR},
+				</if>
+				<if test="item.orderNo == null">
+					NULL,
+				</if>
+				<if test="item.coupletNo != null">
+					#{item.coupletNo,jdbcType=VARCHAR},
+				</if>
+				<if test="item.coupletNo == null">
+					NULL,
+				</if>
+				<if test="item.userId != null">
+					#{item.userId,jdbcType=BIGINT},
+				</if>
+				<if test="item.userId == null">
+					NULL,
+				</if>
+				<if test="item.userName != null">
+					#{item.userName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.userName == null">
+					NULL,
+				</if>
+				<if test="item.userPhone != null">
+					#{item.userPhone,jdbcType=VARCHAR},
+				</if>
+				<if test="item.userPhone == null">
+					NULL,
+				</if>
+				<if test="item.goodsCode != null">
+					#{item.goodsCode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.goodsCode == null">
+					NULL,
+				</if>
+				<if test="item.goodsName != null">
+					#{item.goodsName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.goodsName == null">
+					NULL,
+				</if>
+				<if test="item.goodsNumber != null">
+					#{item.goodsNumber,jdbcType=INTEGER},
+				</if>
+				<if test="item.goodsNumber == null">
+					NULL,
+				</if>
+				<if test="item.actualPayAmount != null">
+					#{item.actualPayAmount,jdbcType=DECIMAL},
+				</if>
+				<if test="item.actualPayAmount == null">
+					NULL,
+				</if>
+				<if test="item.orderTime != null">
+					#{item.orderTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.orderTime == null">
+					NULL,
+				</if>
+				<if test="item.isDeleted != null">
+					#{item.isDeleted,jdbcType=BIT},
+				</if>
+				<if test="item.isDeleted == null">
+					NULL,
+				</if>
+				<if test="item.createBy != null">
+					#{item.createBy,jdbcType=VARCHAR},
+				</if>
+				<if test="item.createBy == null">
+					NULL,
+				</if>
+				<if test="item.updateBy != null">
+					#{item.updateBy,jdbcType=VARCHAR},
+				</if>
+				<if test="item.updateBy == null">
+					NULL,
+				</if>
+			</trim>
+		</foreach>
+	</insert>
+</mapper>

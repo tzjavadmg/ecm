@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.milisong:milisong-mybatis-generator:1.1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-mybatis-generator/1.1.0-SNAPSHOT/milisong-mybatis-generator-1.1.0-20181023.070204-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-mybatis-generator/1.1.0-SNAPSHOT/milisong-mybatis-generator-1.1.0-20181023.070204-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-mybatis-generator/1.1.0-SNAPSHOT/milisong-mybatis-generator-1.1.0-20181023.070204-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.breakfast.scm.order.mapper.OrderDetailComboMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.breakfast.scm.order.domain.OrderDetailCombo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="goods_code" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_count" jdbcType="INTEGER" property="goodsCount" />
+    <result column="combo_goods_code" jdbcType="VARCHAR" property="comboGoodsCode" />
+    <result column="combo_goods_name" jdbcType="VARCHAR" property="comboGoodsName" />
+    <result column="combo_goods_count" jdbcType="INTEGER" property="comboGoodsCount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `id`, `order_id`, `order_no`, `goods_code`, `goods_name`, `goods_count`, `combo_goods_code`, 
+    `combo_goods_name`, `combo_goods_count`, `create_time`, `update_time`
+  </sql>
+  <select id="selectByExample" parameterType="com.milisong.breakfast.scm.order.domain.OrderDetailComboExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from `order_detail_combo`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `order_detail_combo`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `order_detail_combo`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.milisong.breakfast.scm.order.domain.OrderDetailComboExample">
+    delete from `order_detail_combo`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.milisong.breakfast.scm.order.domain.OrderDetailCombo">
+    insert into `order_detail_combo` (`id`, `order_id`, `order_no`, 
+      `goods_code`, `goods_name`, `goods_count`, 
+      `combo_goods_code`, `combo_goods_name`, `combo_goods_count`, 
+      `create_time`, `update_time`)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{goodsCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{goodsCount,jdbcType=INTEGER}, 
+      #{comboGoodsCode,jdbcType=VARCHAR}, #{comboGoodsName,jdbcType=VARCHAR}, #{comboGoodsCount,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.breakfast.scm.order.domain.OrderDetailCombo">
+    insert into `order_detail_combo`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderId != null">
+        `order_id`,
+      </if>
+      <if test="orderNo != null">
+        `order_no`,
+      </if>
+      <if test="goodsCode != null">
+        `goods_code`,
+      </if>
+      <if test="goodsName != null">
+        `goods_name`,
+      </if>
+      <if test="goodsCount != null">
+        `goods_count`,
+      </if>
+      <if test="comboGoodsCode != null">
+        `combo_goods_code`,
+      </if>
+      <if test="comboGoodsName != null">
+        `combo_goods_name`,
+      </if>
+      <if test="comboGoodsCount != null">
+        `combo_goods_count`,
+      </if>
+      <if test="createTime != null">
+        `create_time`,
+      </if>
+      <if test="updateTime != null">
+        `update_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCount != null">
+        #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="comboGoodsCode != null">
+        #{comboGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="comboGoodsName != null">
+        #{comboGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="comboGoodsCount != null">
+        #{comboGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `order_detail_combo` (`id`, `order_id`, `order_no`, 
+      `goods_code`, `goods_name`, `goods_count`, 
+      `combo_goods_code`, `combo_goods_name`, 
+      `combo_goods_count`, `create_time`, 
+      `update_time`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}, #{item.orderNo,jdbcType=VARCHAR}, 
+        #{item.goodsCode,jdbcType=VARCHAR}, #{item.goodsName,jdbcType=VARCHAR}, #{item.goodsCount,jdbcType=INTEGER}, 
+        #{item.comboGoodsCode,jdbcType=VARCHAR}, #{item.comboGoodsName,jdbcType=VARCHAR}, 
+        #{item.comboGoodsCount,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `order_detail_combo`
+    (`id`, `order_id`, `order_no`, `goods_code`, `goods_name`, `goods_count`, `combo_goods_code`, 
+      `combo_goods_name`, `combo_goods_count`, `create_time`, `update_time`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderId != null">
+          #{item.orderId,jdbcType=BIGINT},
+        </if>
+        <if test="item.orderId == null">
+          NULL,
+        </if>
+        <if test="item.orderNo != null">
+          #{item.orderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.orderNo == null">
+          NULL,
+        </if>
+        <if test="item.goodsCode != null">
+          #{item.goodsCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.goodsCode == null">
+          NULL,
+        </if>
+        <if test="item.goodsName != null">
+          #{item.goodsName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.goodsName == null">
+          NULL,
+        </if>
+        <if test="item.goodsCount != null">
+          #{item.goodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.goodsCount == null">
+          NULL,
+        </if>
+        <if test="item.comboGoodsCode != null">
+          #{item.comboGoodsCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.comboGoodsCode == null">
+          NULL,
+        </if>
+        <if test="item.comboGoodsName != null">
+          #{item.comboGoodsName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.comboGoodsName == null">
+          NULL,
+        </if>
+        <if test="item.comboGoodsCount != null">
+          #{item.comboGoodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.comboGoodsCount == null">
+          NULL,
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.createTime == null">
+          NULL,
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <select id="countByExample" parameterType="com.milisong.breakfast.scm.order.domain.OrderDetailComboExample" resultType="java.lang.Long">
+    select count(*) from `order_detail_combo`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `order_detail_combo`
+    <set>
+      <if test="record.id != null">
+        `id` = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null">
+        `order_id` = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNo != null">
+        `order_no` = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCode != null">
+        `goods_code` = #{record.goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsName != null">
+        `goods_name` = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCount != null">
+        `goods_count` = #{record.goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.comboGoodsCode != null">
+        `combo_goods_code` = #{record.comboGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comboGoodsName != null">
+        `combo_goods_name` = #{record.comboGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comboGoodsCount != null">
+        `combo_goods_count` = #{record.comboGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        `create_time` = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        `update_time` = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `order_detail_combo`
+    set `id` = #{record.id,jdbcType=BIGINT},
+      `order_id` = #{record.orderId,jdbcType=BIGINT},
+      `order_no` = #{record.orderNo,jdbcType=VARCHAR},
+      `goods_code` = #{record.goodsCode,jdbcType=VARCHAR},
+      `goods_name` = #{record.goodsName,jdbcType=VARCHAR},
+      `goods_count` = #{record.goodsCount,jdbcType=INTEGER},
+      `combo_goods_code` = #{record.comboGoodsCode,jdbcType=VARCHAR},
+      `combo_goods_name` = #{record.comboGoodsName,jdbcType=VARCHAR},
+      `combo_goods_count` = #{record.comboGoodsCount,jdbcType=INTEGER},
+      `create_time` = #{record.createTime,jdbcType=TIMESTAMP},
+      `update_time` = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.breakfast.scm.order.domain.OrderDetailCombo">
+    update `order_detail_combo`
+    <set>
+      <if test="orderId != null">
+        `order_id` = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        `order_no` = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        `goods_code` = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        `goods_name` = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCount != null">
+        `goods_count` = #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="comboGoodsCode != null">
+        `combo_goods_code` = #{comboGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="comboGoodsName != null">
+        `combo_goods_name` = #{comboGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="comboGoodsCount != null">
+        `combo_goods_count` = #{comboGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.breakfast.scm.order.domain.OrderDetailCombo">
+    update `order_detail_combo`
+    set `order_id` = #{orderId,jdbcType=BIGINT},
+      `order_no` = #{orderNo,jdbcType=VARCHAR},
+      `goods_code` = #{goodsCode,jdbcType=VARCHAR},
+      `goods_name` = #{goodsName,jdbcType=VARCHAR},
+      `goods_count` = #{goodsCount,jdbcType=INTEGER},
+      `combo_goods_code` = #{comboGoodsCode,jdbcType=VARCHAR},
+      `combo_goods_name` = #{comboGoodsName,jdbcType=VARCHAR},
+      `combo_goods_count` = #{comboGoodsCount,jdbcType=INTEGER},
+      `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `order_detail_combo`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderId}
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderNo}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsCode}
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsName}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.comboGoodsCode}
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.comboGoodsName}
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.comboGoodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `order_detail_combo`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderId != null ">
+            when  #{item.id} then #{item.orderId}
+          </if>
+          <if test="item.orderId == null ">
+            when  #{item.id} then `order_detail_combo`.`order_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderNo != null ">
+            when  #{item.id} then #{item.orderNo}
+          </if>
+          <if test="item.orderNo == null ">
+            when  #{item.id} then `order_detail_combo`.`order_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsCode != null ">
+            when  #{item.id} then #{item.goodsCode}
+          </if>
+          <if test="item.goodsCode == null ">
+            when  #{item.id} then `order_detail_combo`.`goods_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsName != null ">
+            when  #{item.id} then #{item.goodsName}
+          </if>
+          <if test="item.goodsName == null ">
+            when  #{item.id} then `order_detail_combo`.`goods_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.goodsCount != null ">
+            when  #{item.id} then #{item.goodsCount}
+          </if>
+          <if test="item.goodsCount == null ">
+            when  #{item.id} then `order_detail_combo`.`goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.comboGoodsCode != null ">
+            when  #{item.id} then #{item.comboGoodsCode}
+          </if>
+          <if test="item.comboGoodsCode == null ">
+            when  #{item.id} then `order_detail_combo`.`combo_goods_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsName =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.comboGoodsName != null ">
+            when  #{item.id} then #{item.comboGoodsName}
+          </if>
+          <if test="item.comboGoodsName == null ">
+            when  #{item.id} then `order_detail_combo`.`combo_goods_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.comboGoodsCount != null ">
+            when  #{item.id} then #{item.comboGoodsCount}
+          </if>
+          <if test="item.comboGoodsCount == null ">
+            when  #{item.id} then `order_detail_combo`.`combo_goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then `order_detail_combo`.`create_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then `order_detail_combo`.`update_time`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByExample" parameterType="map">
+    update `order_detail_combo`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderId}
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderNo}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsCode}
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsName}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCount =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.goodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.comboGoodsCode}
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsName =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.comboGoodsName}
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCount =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.comboGoodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBatchByExampleSelective" parameterType="map">
+    update `order_detail_combo`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.orderId != null ">
+            when  #{item.id} then #{item.orderId}
+          </if>
+          <if test="item.orderId == null ">
+            when  #{item.id} then `order_detail_combo`.`order_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.orderNo != null ">
+            when  #{item.id} then #{item.orderNo}
+          </if>
+          <if test="item.orderNo == null ">
+            when  #{item.id} then `order_detail_combo`.`order_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.goodsCode != null ">
+            when  #{item.id} then #{item.goodsCode}
+          </if>
+          <if test="item.goodsCode == null ">
+            when  #{item.id} then `order_detail_combo`.`goods_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsName =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.goodsName != null ">
+            when  #{item.id} then #{item.goodsName}
+          </if>
+          <if test="item.goodsName == null ">
+            when  #{item.id} then `order_detail_combo`.`goods_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCount =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.goodsCount != null ">
+            when  #{item.id} then #{item.goodsCount}
+          </if>
+          <if test="item.goodsCount == null ">
+            when  #{item.id} then `order_detail_combo`.`goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.comboGoodsCode != null ">
+            when  #{item.id} then #{item.comboGoodsCode}
+          </if>
+          <if test="item.comboGoodsCode == null ">
+            when  #{item.id} then `order_detail_combo`.`combo_goods_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsName =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.comboGoodsName != null ">
+            when  #{item.id} then #{item.comboGoodsName}
+          </if>
+          <if test="item.comboGoodsName == null ">
+            when  #{item.id} then `order_detail_combo`.`combo_goods_name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="comboGoodsCount =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.comboGoodsCount != null ">
+            when  #{item.id} then #{item.comboGoodsCount}
+          </if>
+          <if test="item.comboGoodsCount == null ">
+            when  #{item.id} then `order_detail_combo`.`combo_goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then `order_detail_combo`.`create_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then `order_detail_combo`.`update_time`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,127 @@
+spring:
+  rabbitmq:
+    addresses: amqp://mqdev.jshuii.com:5672
+    username: milisong-pmsuser
+    password: q9SK8sOH6fBIcm411o
+  cloud:
+    stream:
+      # 设置默认的binder
+      default-binder: oms
+      binders:
+        oms:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-oms
+        scm:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-scm
+        scm_bf:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-scm-breakfast
+        pms:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                virtual-host: milisong-pms
+
+      bindings:
+        promotion_payment_input:
+          binder: oms
+          destination: OMS_PAYMENT
+          group: pms_payment_group
+        # 退款MQ信息消费
+        refund_input:
+          binder: oms
+          destination: OMS_REFUND
+          group: pms_refund_group
+        # 取消订单MQ信息消费
+        cancle_input:
+          binder: oms
+          destination: OMS_CANCEL
+          group: pms_cancle_group
+        # 订单完成状态的MQ消息
+        order_status_input:
+          binder: oms
+          destination: OMS_ORDER_STATUS
+          group: pms_order_group
+        # 全局配置和门店属性配置
+        config_input:
+          binder: scm
+          destination: SCM_CONFIG_PROPERTY
+          group: pms_lunch_group
+        # 全局配置和门店属性配置
+        config_bf_input:
+          binder: scm_bf
+          destination: SCM_CONFIG_PROPERTY
+          group: pms_breakfast_group
+        # 取消拼团配置
+        cancel_groupbuy_output:
+          binder: pms
+          destination: PMS_GROUPBUY_CANCEL
+        # 拼团微信消息配置
+        wechatmsg_groupbuy_output:
+          binder: pms
+          destination: PMS_GROUPBUY_WECHATMSG
+        # 拼团成团后修改用户状态
+        update_user_groupbuy_output:
+          binder: pms
+          destination: PMS_GROUPBUY_USERMSG
+
+      rabbit:
+        bindings:
+          promotion_payment_input:
+            consumer:
+              exchangeType: topic
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: ECM_PAYMENT_PMS_BF_DLX
+          refund_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: ECM_REFUND_DLX
+          cancle_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: ECM_CANCLE_DLX
+          order_status_input:
+            consumer:
+              exchangeType: fanout
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: OMS_ORDER_STATUS_DLX
+          cancel_groupbuy_output:
+            producer:
+              exchangeType: fanout
+          wechatmsg_groupbuy_output:
+            producer:
+              exchangeType: fanout
+          update_user_groupbuy_output:
+            producer:
+              exchangeType: fanout
+          config_input:
+            consumer:
+              exchangeType: topic
+              binding-routing-key: '#.pms.#'
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_CONFIG_PROPERTY_PMS_LU_DLX
+          config_bf_input:
+            consumer:
+              exchangeType: topic
+              binding-routing-key: '#.pms.#'
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: SCM_CONFIG_PROPERTY_PMS_BF_DLX

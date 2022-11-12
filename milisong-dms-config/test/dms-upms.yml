@@ -1,0 +1,16 @@
+upms:
+  config:
+    url: http://testmls-upmsapi.jshuii.com
+    app-name: MILISONG
+    upmsUserInfoUrl: ${upms.config.url}/auth/userinfo
+    upmsTokenUrl: ${upms.config.url}/auth/token
+    upmsCheckLoginUrl: ${upms.config.url}/auth/check-login
+    upmsCheckPermissionUrl: ${upms.config.url}/auth/check-permission
+    upmsGetMenuListUrl: ${upms.config.url}/auth/menu
+    upmsGetDataPermissionUrl: ${upms.config.url}/auth/data-permission
+  filter-url:
+    notHeadTokenUrls:
+    whitelistUrls: /upms/token,/env,/upms/menu,/order-set/query-detail-order-info,/order-set/query-detail-order-set-status,
+              /shunfeng/task/check-delivery-log,/shunfeng/back/order-status,/shunfeng/create,/shunfeng/query-rider-info,
+              /shunfeng/task/update-order-status,/upms/data-permission-shop,/dada/test-create-order,/shunfeng/task/check-unconfirmed-order,
+              /shunfeng/task/check-overtime-order,/shunfeng/task/bf-delay

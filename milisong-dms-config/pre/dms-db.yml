@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://dbtest.jshuii.com:3306/milisong_dms?characterEncoding=utf-8&amp;useOldAliasMetadataBehavior=true&amp;autoReconnectForPools=true;useSSL=true
+    username: milisong_dms
+    password: shBJFLm+D3UjmkfdMy16tUzPaBcbCv3Cf8QpeNibLx0=
+    type: com.farmland.core.db.SecureDruidDataSource
+
+idworker:
+  workerId: 0
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml,mapper/base/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true

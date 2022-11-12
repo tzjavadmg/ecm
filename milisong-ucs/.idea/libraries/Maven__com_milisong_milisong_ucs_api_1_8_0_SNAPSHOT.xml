@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.milisong:milisong-ucs-api:1.8.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-ucs-api/1.8.0-SNAPSHOT/milisong-ucs-api-1.8.0-20190109.065830-14.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-ucs-api/1.8.0-SNAPSHOT/milisong-ucs-api-1.8.0-20190109.065830-14-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/milisong/milisong-ucs-api/1.8.0-SNAPSHOT/milisong-ucs-api-1.8.0-20190109.065830-14-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

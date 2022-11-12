@@ -1,0 +1,28 @@
+server:
+  port: 30010
+
+spring:
+  boot:
+      admin:
+        client:
+          url: http://localhost:60100
+  application:
+    name: milisong-dms-web
+  cloud:
+    config:
+      discovery:
+        #\u5141\u8BB8\u901A\u8FC7\u670D\u52A1\u540D\u79F0\u6765\u8BBF\u95EE\u670D\u52A1\u914D\u7F6E\u4E2D\u5FC3
+        enabled: true
+        service-id: sunflow-cloud-config
+      label: v1.5
+      name:  dms-db,dms-mq-base,dms-mq,dms-upms,dms-redis,dms-sys
+      #\u4E0D\u8986\u76D6\u7CFB\u7EDF\u53C2\u6570\uFF08\u53EF\u5E26\u53C2\u6570\u542F\u52A8\u670D\u52A1\uFF0C\u5982\u7AEF\u53E3--server.port=8000\uFF09
+      override-system-properties: false
+      override-none: true
+      #\u5982\u679C\u670D\u52A1\u65E0\u6CD5\u8FDE\u63A5\u914D\u7F6E\u670D\u52A1\u5668\uFF0C\u5219\u542F\u52A8\u5931\u8D25
+      fail-fast: true
+eureka:
+  instance:
+    #\u4F7F\u7528\u5BA2\u6237\u7AEF\u7684IP\u5730\u5740\u800C\u4E0D\u662Fhostname\u6765\u6CE8\u518C
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}

@@ -1,0 +1,87 @@
+server:
+  port: 10010
+spring:
+  boot:
+    admin:
+      client:
+        url: http://172.16.14.60:60100
+        instance:
+          prefer-ip: true
+  cloud:
+    config:
+      override-none: true
+
+ribbon:
+  ReadTimeout:  5000
+  SocketTimeout:  1000
+
+file:
+  oss:
+    #  本地备份路径
+    localBackupPath: /data/nfs_share/images/
+    #    oss上传路径
+    uploadUrl: http://oss.jshuii.com/v1/uploadFileService/uploadByte
+    #    查询路径
+    viewUrl: http://images.jshuii.com
+    #the maximum size of single file (unit:MB)
+    maxSingleFileSize: 2MB
+    #file format
+    format: txt,word,excel,jpg,png,gif,pdf
+#短信发送服务URL
+sms:
+  sendUrl: http://sms.jshuii.com/api/v1/MobileSendService/sendSms
+  contactPhone: 400-042-9199
+  signNo: 2
+#用户评价和反馈
+user:
+  feedback:
+    mobiles: 17150313389,13162729849,18116246668
+  evaluation:
+    show-h5-url: http://mls-h5.jshuii.com/activity/evaluation-page/index.html?orderId=
+    short-url: http://api.weibo.com/2/short_url/shorten.json?source=2849184197&url_long=
+#IVR电话接口
+ivr:
+  send-url: http://mls-ivrin.jshuii.com/addIVRCallNumber
+  template: A001
+# 调用SCM获取门店信息
+scm:
+  base-url: http://mls-scmapi01.jshuii.com
+  shop:
+    info-url: ${scm.base-url}/shop/get-display-info-byBuildingId?buildingId={buildingId}
+    info-byShopCode-url: ${scm.base-url}/shop/get-display-info-byCode?code={code}
+  order:
+    union-order-url: http://ml-oss.jshuii.com/orderset/query-detail-order-info?detailSetId={detailSetId}
+
+logging:
+  level:
+    com.milisong.ecm.user.mapper: DEBUG
+
+delay:
+  base-url: http://mls-dqsapi.jshuii.com
+  ecm-url: http://mls-apiin.jshuii.com
+promotion:
+  base-url: http://mls-emmapiin.jshuii.com
+
+building:
+  default-id: 1
+shop:
+  default-code: 31010001
+  default-categoryCode: H001
+redisexpire:
+  topic: __keyevent@${spring.redis.database}__:expired
+share:
+  pictureUrl: http://images.jshuii.com/0/eb4b49e57caf4087ba5575b12f289ea1.jpg
+  title: 【新人立减20元】你有一份午饭待查收～
+
+# LBS搜索的距离
+lbs:
+  distance: 1
+  address-service-url: http://mls-lbs.jshuii.com/lbs/address
+  convert-service-url: http://mls-lbs.jshuii.com/lbs/convert
+  search-company-service-url: http://mls-lbs.jshuii.com/lbs/search-company
+
+local-cache:
+  expired-time: 1
+
+#标识服务的业务线
+business-line: 1

@@ -1,0 +1,61 @@
+server:
+  port: 30002
+spring:
+  boot:
+    admin:
+      client:
+        url: http://172.16.14.60:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+  flyway:
+    enabled: false
+  cloud:
+    config:
+      override-none: true
+bfscm:
+  sys:
+    fileOss:
+      viewUrl: http://images.jshuii.com
+      exportPath: /data/milisong/export/
+    ecmUrl:
+      goodsDefaultCount: 200
+      goodsStockUrl: http://mls-bapi.jshuii.com/v1/goods/set-onsale-stock
+      goodsStockListUrl: http://mls-bapi.jshuii.com/v1/goods/set-onsale-stock-list
+      orderListUrl: http://mls-api.jshuii.com/v1/order/get-order-details
+      buildingListUrl: http://mls-api.jshuii.com/v1/goods/building-list
+      specialGoods: 33663721124,54168574285
+      schedulerPushMiute: 5
+    # LBS公共服务的地址
+    lbsUrl:
+      pointServiceUrl: http://mls-lbs.jshuii.com/lbs/point
+      convertServiceUrl: http://mls-lbs.jshuii.com/lbs/convert/baidu2gcj02
+    omsOrder:
+      checkUrl: http://mls-omsapiin.jshuii.com/v1/OrderService/getDeliveryNos
+      notifyUrl: http://mls-omsapiin.jshuii.com/v1/order/repair-order-mq
+ 
+file:
+  oss:
+#  本地备份路径
+    localBackupPath: /data/files/images/milisong/
+#    oss上传路径
+    uploadUrl: http://oss.jshuii.com/v1/uploadFileService/uploadByte
+#    查询路径
+    viewUrl: http://images.jshuii.com
+#the maximum size of single file (unit:MB)
+    maxSingleFileSize: 20MB
+#file format
+    format: txt,word,excel,jpg,png,gif,pdf
+    bizType: 6
+  export:
+    path: /data/milisong/export/
+# 调用集单查询接口
+oss:
+  searchOrderSet: http://ml-oss.jshuii.com/orderset/page
+  searchCustomerOrder: http://ml-oss.jshuii.com/orderset/get-customer-order-by-set-no?setNo=
+  searchOrder: http://ml-oss.jshuii.com/order/page
+  seartchReserveGroupInfo: http://ml-oss.jshuii.com/order/page-reserve-group-list
+  orderSetInfo: http://ml-oss.jshuii.com/orderset/get-orderset-info?setNo=
+  orderCheck: http://ml-oss.jshuii.com/order/check
+  bforderSetInfo: http://ml-oss.jshuii.com/orderset/get-bf-orderset-info?setNo=
+  goodsCount: http://ml-oss.jshuii.com/order/goods-count

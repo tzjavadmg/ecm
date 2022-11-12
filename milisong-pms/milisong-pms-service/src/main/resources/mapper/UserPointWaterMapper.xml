@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.UserPointWaterMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.UserPointWater" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="action" property="action" jdbcType="TINYINT" />
+    <result column="income_type" property="incomeType" jdbcType="TINYINT" />
+    <result column="ref_type" property="refType" jdbcType="TINYINT" />
+    <result column="ref_id" property="refId" jdbcType="BIGINT" />
+    <result column="point" property="point" jdbcType="INTEGER" />
+    <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="business_line" property="businessLine" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, action, income_type, ref_type, ref_id, point, expire_time, remark, business_line, 
+    create_time, update_time
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_point_water
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="queryPointWaterCount" parameterType="com.milisong.pms.prom.dto.UserPointWaterQueryDto" resultType="java.lang.Integer">
+    select
+    count(1)
+    from user_point_water
+    where user_id = #{userId}
+    and business_line = #{businessLine}
+  </select>
+  <select id="queryPointWater" parameterType="com.milisong.pms.prom.dto.UserPointWaterQueryDto" resultType="com.milisong.pms.prom.domain.UserPointWater">
+    select
+    income_type, point, expire_time, remark, create_time
+    from user_point_water
+    where user_id = #{userId}
+    and business_line = #{businessLine}
+    order by create_time desc
+    <if test="startRow != null and pageSize != null">
+      limit #{startRow}, #{pageSize}
+    </if>
+  </select>
+    <select id="queryForPowerHashBeforeSave" parameterType="com.milisong.pms.prom.domain.UserPointWater" resultType="com.milisong.pms.prom.domain.UserPointWater">
+      select
+      <include refid="Base_Column_List" />
+      from user_point_water
+      where action = #{action}
+      and income_type = #{incomeType}
+      and ref_type = #{refType}
+      and ref_id = #{refId}
+      and business_line = #{businessLine}
+    </select>
+    <insert id="insert" parameterType="com.milisong.pms.prom.domain.UserPointWater" >
+    insert into user_point_water (id, user_id, action, 
+      income_type, ref_type, ref_id, 
+      point, expire_time, remark, 
+      business_line, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{action,jdbcType=TINYINT}, 
+      #{incomeType,jdbcType=TINYINT}, #{refType,jdbcType=TINYINT}, #{refId,jdbcType=BIGINT}, 
+      #{point,jdbcType=INTEGER}, #{expireTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{businessLine,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.UserPointWater" >
+    insert into user_point_water
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="incomeType != null" >
+        income_type,
+      </if>
+      <if test="refType != null" >
+        ref_type,
+      </if>
+      <if test="refId != null" >
+        ref_id,
+      </if>
+      <if test="point != null" >
+        point,
+      </if>
+      <if test="expireTime != null" >
+        expire_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="businessLine != null" >
+        business_line,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=TINYINT},
+      </if>
+      <if test="incomeType != null" >
+        #{incomeType,jdbcType=TINYINT},
+      </if>
+      <if test="refType != null" >
+        #{refType,jdbcType=TINYINT},
+      </if>
+      <if test="refId != null" >
+        #{refId,jdbcType=BIGINT},
+      </if>
+      <if test="point != null" >
+        #{point,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.UserPointWater" >
+    update user_point_water
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=TINYINT},
+      </if>
+      <if test="incomeType != null" >
+        income_type = #{incomeType,jdbcType=TINYINT},
+      </if>
+      <if test="refType != null" >
+        ref_type = #{refType,jdbcType=TINYINT},
+      </if>
+      <if test="refId != null" >
+        ref_id = #{refId,jdbcType=BIGINT},
+      </if>
+      <if test="point != null" >
+        point = #{point,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        business_line = #{businessLine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.UserPointWater" >
+    update user_point_water
+    set user_id = #{userId,jdbcType=BIGINT},
+      action = #{action,jdbcType=TINYINT},
+      income_type = #{incomeType,jdbcType=TINYINT},
+      ref_type = #{refType,jdbcType=TINYINT},
+      ref_id = #{refId,jdbcType=BIGINT},
+      point = #{point,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      business_line = #{businessLine,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

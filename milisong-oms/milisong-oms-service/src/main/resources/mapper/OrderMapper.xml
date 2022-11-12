@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.OrderMapper">
+    <resultMap type="com.milisong.oms.dto.MyOrderDto" id="MyOrderResultMap">
+        <id column="id" property="id"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="shop_code" jdbcType="VARCHAR" property="shopCode"/>
+        <result column="order_date" jdbcType="TIMESTAMP" property="orderDate"/>
+        <result column="total_pay_amount" jdbcType="DECIMAL" property="totalPayAmount"/>
+        <result column="total_order_days" jdbcType="INTEGER" property="totalOrderDays"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="order_mode" jdbcType="TINYINT" property="orderMode"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="take_meals_addr_name" jdbcType="TINYINT" property="takeMealsAddr"/>
+        <collection property="orderDlivery"
+                    ofType="com.milisong.oms.dto.MyOrderDeliveryDto" column="id">
+            <id column="order_delivery_id" property="id"/>
+            <result column="delivery_date" jdbcType="TIMESTAMP" property="deliveryDate"/>
+            <result column="delivery_date_str" jdbcType="VARCHAR" property="deliveryDateStr"/>
+            <result column="delivery_status" jdbcType="TINYINT" property="status"/>
+            <result column="total_goods_count" jdbcType="INTEGER"
+                    property="totalGoodsCount"/>
+            <collection property="orderDeliveryGoods"
+                        ofType="com.milisong.oms.dto.MyOrderDeliveryGoodsDto" column="id">
+                <id column="order_delivery_goods_id" property="id"/>
+                <result column="type" jdbcType="VARCHAR" property="type"/>
+                <result column="goods_count" jdbcType="INTEGER" property="goodsCount"/>
+                <result column="goods_code" jdbcType="TINYINT" property="goodsCode"/>
+                <result column="goods_img_url" jdbcType="VARCHAR" property="picture"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+
+    <resultMap type="com.milisong.oms.dto.MyOrderDto" id="MyOrderDetailResultMap">
+        <id column="id" property="id"/>
+        <result column="shop_code" jdbcType="VARCHAR" property="shopCode"/>
+        <result column="total_delivery_original_amount" jdbcType="DECIMAL"
+                property="totalDeliveryOriginalAmount"/>
+        <result column="total_delivery_actual_amount" jdbcType="DECIMAL"
+                property="totalDeliveryActualAmount"/>
+        <result column="total_package_original_amount" jdbcType="DECIMAL"
+                property="totalPackageOriginalAmount"/>
+        <result column="total_package_actual_amount" jdbcType="DECIMAL"
+                property="totalPackageActualAmount"/>
+        <result column="total_goods_original_amount" jdbcType="DECIMAL"
+                property="totalGoodsOriginalAmount"/>
+        <result column="total_goods_actual_amount" jdbcType="DECIMAL"
+                property="totalGoodsActualAmount"/>
+        <result column="total_pay_amount" jdbcType="DECIMAL" property="totalPayAmount"/>
+        <result column="delivery_building_id" jdbcType="BIGINT"
+                property="deliveryBuildingId"/>
+        <result column="delivery_company" jdbcType="VARCHAR" property="deliveryCompany"/>
+        <result column="delivery_floor" jdbcType="VARCHAR" property="deliveryFloor"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="red_packet_id" jdbcType="BIGINT" property="redPacketId"/>
+        <result column="red_packet_amount" jdbcType="DECIMAL" property="redPacketAmount"/>
+        <result column="coupon_id" jdbcType="BIGINT" property="couponId"/>
+        <result column="coupon_amount" jdbcType="DECIMAL" property="couponAmount"/>
+        <result column="order_date" jdbcType="VARCHAR" property="orderDateStr"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="order_mode" jdbcType="TINYINT" property="orderMode"/>
+        <result column="delivery_building_name" jdbcType="VARCHAR"
+                property="buildName"/>
+        <result column="full_reduce_amount" jdbcType="DECIMAL"
+                property="fullReduceAmount"/>
+        <result column="deduction_points" jdbcType="BIGINT" property="deductionPoints"/>
+        <result column="acquire_points" jdbcType="BIGINT" property="acquirePoints"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="take_meals_addr_name" jdbcType="TINYINT" property="takeMealsAddr"/>
+        <collection property="orderDlivery"
+                    ofType="com.milisong.oms.dto.MyOrderDeliveryDto" column="id">
+            <id column="order_delivery_id" property="id"/>
+            <result column="delivery_date" jdbcType="TIMESTAMP" property="deliveryDate"/>
+            <result column="delivery_date_str" jdbcType="VARCHAR" property="deliveryDateStr"/>
+            <result column="delivery_status" jdbcType="TINYINT" property="status"/>
+            <result column="total_goods_count" jdbcType="INTEGER"
+                    property="totalGoodsCount"/>
+            <result column="delivery_timezone_from" jdbcType="VARCHAR"
+                    property="deliveryTimezoneFrom"/>
+            <result column="delivery_timezone_to" jdbcType="VARCHAR"
+                    property="deliveryTimezoneTo"/>
+            <result column="delivery_no" jdbcType="VARCHAR" property="deliverNo"/>
+            <result column="delivery_end_time" jdbcType="TIMESTAMP"
+                    property="deliveryEndTime"/>
+            <collection property="orderDeliveryGoods"
+                        ofType="com.milisong.oms.dto.MyOrderDeliveryGoodsDto" column="id">
+                <id column="order_delivery_goods_id" property="id"/>
+                <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+                <result column="type" jdbcType="TINYINT" property="type"/>
+                <result column="goods_original_price" jdbcType="DECIMAL"
+                        property="goodsOriginalPrice"/>
+                <result column="goods_count" jdbcType="INTEGER" property="goodsCount"/>
+                <result column="goods_actual_price" jdbcType="DECIMAL"
+                        property="goodsActualPrice"/>
+                <result column="goods_code" jdbcType="VARCHAR" property="goodsCode"/>
+                <result column="goods_img_url" jdbcType="VARCHAR" property="picture"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+
+    <resultMap type="com.milisong.oms.dto.OrderPlanDeliveryDto"
+               id="OrderPlanResultMap">
+        <id column="id" property="id"/>
+        <result column="order_id" jdbcType="BIGINT" property="orderId"/>
+        <result column="delivery_no" jdbcType="VARCHAR" property="deliveryNo"/>
+        <result column="delivery_date" jdbcType="TIMESTAMP" property="deliveryDate"/>
+        <result column="delivery_status" jdbcType="TINYINT" property="status"/>
+        <result column="order_mode" jdbcType="TINYINT" property="orderMode"/>
+        <result column="total_goods_count" jdbcType="INTEGER" property="totalGoodsCount"/>
+        <result column="delivery_end_time" jdbcType="TIMESTAMP"
+                property="deliveryEndTime"/>
+        <result column="delivery_timezone_to" jdbcType="VARCHAR"
+                property="deliveryTimezoneToStr"/>
+        <collection property="orderPlanGoods"
+                    ofType="com.milisong.oms.dto.OrderPlanDeliveryGoodsDto" column="id">
+            <id column="order_delivery_goods_id" property="id"/>
+            <result column="goods_code" jdbcType="VARCHAR" property="goodsCode"/>
+            <result column="goods_img_url" jdbcType="VARCHAR" property="picture"/>
+        </collection>
+    </resultMap>
+
+    <resultMap type="com.milisong.oms.dto.OrderDto" id="OrderPoints">
+        <id column="id" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="order_mode" jdbcType="TINYINT" property="orderMode"/>
+        <result column="total_delivery_actual_amount" jdbcType="DECIMAL"
+                property="totalDeliveryActualAmount"/>
+        <result column="total_package_actual_amount" jdbcType="DECIMAL"
+                property="totalPackageActualAmount"/>
+        <result column="total_pay_amount" jdbcType="DECIMAL" property="totalPayAmount"/>
+        <result column="order_type" jdbcType="TINYINT" property="orderType"/>
+        <result column="total_goods_original_amount" jdbcType="DECIMAL"
+                property="totalGoodsOriginalAmount"/>
+        <result column="total_goods_actual_amount" jdbcType="DECIMAL"
+                property="totalGoodsActualAmount"/>
+        <collection property="deliveries"
+                    ofType="com.milisong.oms.dto.OrderDeliveryDto" column="id">
+            <id column="order_delivery_id" property="id"/>
+            <result column="delivery_no" jdbcType="VARCHAR" property="deliveryNo"/>
+            <result column="share_order_pay_amount" jdbcType="DECIMAL"
+                    property="shareOrderPayAmount"/>
+            <result column="status" jdbcType="TINYINT" property="status"/>
+            <result column="delivery_actual_price" jdbcType="DECIMAL" property="deliveryActualPrice"/>
+            <result column="total_package_actual_amount_d" jdbcType="DECIMAL" property="totalPackageActualAmount"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectOrderForCount"
+            resultType="java.lang.Integer">
+		select count(*)
+		from `order`
+		where user_id = #{userId} AND order_type = #{orderType}
+	</select>
+
+    <select id="selectOrderDetail" resultMap="MyOrderResultMap">
+		SELECT o.id,
+		o.order_no,
+		o.shop_code,
+		o.order_date,
+		o.total_pay_amount,
+		o.total_order_days,
+	    o.order_mode,
+	    o.sex,
+		o.take_meals_addr_name,
+		o.status,
+		od.id AS order_delivery_id,
+		od.delivery_date,
+        date_format(od.delivery_date, '%Y-%m-%d') as delivery_date_str,
+		od.status as delivery_status,
+		od.total_goods_count,
+		odg.id AS order_delivery_goods_id,
+		odg.type,
+		odg.goods_count,
+		odg.goods_code,
+		odg.goods_img_url
+		FROM (SELECT * FROM
+		`order` WHERE user_id = #{userId} AND order_type = #{orderType} order by
+		order_date
+		desc LIMIT
+		#{startRow},#{pageSize}) o
+		LEFT JOIN
+		`order_delivery` od ON o.id =
+		od.order_id
+		LEFT JOIN
+		`order_delivery_goods` odg ON od.id =
+		odg.delivery_id AND
+		odg.combo_goods_code IS NULL
+		ORDER BY o.order_date DESC,
+		od.delivery_date ASC
+	</select>
+
+    <select id="selectOrderDetailById" resultMap="MyOrderDetailResultMap">
+		SELECT o.id,
+		o.shop_code,
+		o.total_delivery_original_amount,
+		o.total_delivery_actual_amount,
+		o.total_package_original_amount,
+		o.total_package_actual_amount,
+		o.total_goods_original_amount,
+		o.total_goods_actual_amount,
+		o.total_pay_amount,
+		o.delivery_building_id,
+		o.delivery_company,
+		o.delivery_floor,
+		o.real_name,
+		o.mobile_no,
+		o.order_no,
+		o.red_packet_id,
+		o.red_packet_amount,
+		DATE_FORMAT(o.order_date, '%Y-%m-%d %H:%i:%s') AS
+		order_date,
+		o.status,
+		o.delivery_building_name,
+		o.full_reduce_amount,
+		o.coupon_amount,
+		o.deduction_points,
+		o.acquire_points,
+		o.order_mode,
+        o.sex,
+        o.take_meals_addr_name,
+		od.id AS
+		order_delivery_id,
+		od.delivery_date,
+        date_format(od.delivery_date, '%Y-%m-%d') delivery_date_str,
+		od.status as delivery_status,
+		od.total_goods_count,
+		DATE_FORMAT(od.`delivery_timezone_from`, '%H:%i')
+		AS
+		delivery_timezone_from,
+		DATE_FORMAT(od.`delivery_timezone_to`,
+		'%H:%i')
+		AS
+		delivery_timezone_to,
+		od.`delivery_no`,
+		od.`delivery_end_time`,
+		odg.id AS order_delivery_goods_id,
+		odg.type,
+		odg.goods_count,
+		odg.goods_name,
+		odg.goods_original_price,
+		odg.goods_actual_price,
+		odg.goods_code,
+		odg.goods_img_url
+		FROM (SELECT *
+		FROM `order`
+		WHERE
+		id = #{orderId}
+		and user_id = #{userId}) o
+		LEFT JOIN
+		`order_delivery` od
+		ON o.id = od.order_id
+		LEFT JOIN
+		`order_delivery_goods` odg ON od.id =
+		odg.delivery_id AND
+		odg.combo_goods_code IS NULL
+		ORDER BY od.status ASC, od.delivery_date
+		ASC
+	</select>
+
+    <select id="selectByOrderNo" resultType="com.milisong.oms.domain.Order">
+		select *
+		from `order`
+		where order_no = #{orderNo}
+	</select>
+
+
+    <select id="selectByOrderNoList" resultType="com.milisong.oms.domain.Order">
+        select *
+        from `order`
+        where order_no in
+        <foreach collection="orderNoList" item="orderNo" open="("
+                 separator="," close=")">
+            #{orderNo,jdbcType=TINYINT}
+        </foreach>
+    </select>
+
+    <select id="selectOrderByStatus" resultType="com.milisong.oms.domain.Order">
+        select *
+        from `order` where status = #{status}
+        <if test="unPayExpiredTime>0">
+            AND
+            ROUND((UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(order_date)))>=#{unPayExpiredTime}
+        </if>
+    </select>
+
+    <select id="selectOrderPlan" resultMap="OrderPlanResultMap">
+        SELECT
+        od.id,
+        od.order_id,
+        od.delivery_no,
+        od.delivery_date,
+        od.status AS
+        delivery_status,
+        o.order_mode,
+        od.total_goods_count,
+        od.delivery_end_time,
+        DATE_FORMAT( od.delivery_timezone_to, '%H:%i') AS
+        delivery_timezone_to,
+        odg.id AS order_delivery_goods_id,
+        odg.goods_code,
+        odg.goods_img_url
+        FROM (SELECT * FROM `order` WHERE
+        user_id = #{userId}
+        AND STATUS IN
+        <foreach collection="orderStatusList" item="orderStatus" open="("
+                 separator="," close=")">
+            #{orderStatus,jdbcType=TINYINT}
+        </foreach>
+        ) o
+        INNER JOIN `order_delivery` od
+        ON o.id = od.order_id
+        AND od.`status`
+        IN
+        <foreach collection="deliveryStatusList" item="deliveryStatus"
+                 open="(" separator="," close=")">
+            #{deliveryStatus,jdbcType=TINYINT}
+        </foreach>
+        LEFT JOIN `order_delivery_goods` odg ON od.id = odg.delivery_id
+        AND
+        odg.combo_goods_code IS NULL
+        ORDER
+        BY od.`delivery_timezone_from`
+        ASC,o.order_date DESC
+    </select>
+
+
+    <select id="selectOrderPlan2" resultMap="OrderPlanResultMap">
+        SELECT
+        od.id,
+        od.order_id,
+        od.delivery_no,
+        od.delivery_date,
+        od.status AS
+        delivery_status,
+        o.order_mode,
+        od.total_goods_count,
+        od.delivery_end_time,
+        DATE_FORMAT( od.delivery_timezone_to, '%H:%i') AS
+        delivery_timezone_to,
+        odg.id AS order_delivery_goods_id,
+        odg.goods_code,
+        odg.goods_img_url
+        FROM (SELECT * FROM `order` WHERE
+        user_id = #{userId}
+        AND STATUS IN
+        <foreach collection="orderStatusList" item="orderStatus" open="("
+                 separator="," close=")">
+            #{orderStatus,jdbcType=TINYINT}
+        </foreach>
+        AND
+        order_type = #{orderType}
+        ) o
+        INNER JOIN `order_delivery` od
+        ON o.id = od.order_id
+        AND od.`status`
+        IN
+        <foreach collection="deliveryStatusList" item="deliveryStatus"
+                 open="(" separator="," close=")">
+            #{deliveryStatus,jdbcType=TINYINT}
+        </foreach>
+        LEFT JOIN `order_delivery_goods` odg ON od.id = odg.delivery_id
+        AND
+        odg.combo_goods_code IS NULL
+        ORDER
+        BY od.`delivery_timezone_from`
+        ASC,o.order_date DESC
+    </select>
+
+    <select id="selectOrderPoints" resultMap="OrderPoints">
+		SELECT
+		o.id,o.order_mode ,o.`user_id`,o.`total_delivery_actual_amount`,o.`total_package_actual_amount`,o.`total_pay_amount`,o.`order_type`,
+		o.`total_goods_original_amount`,o.`total_goods_actual_amount`,
+		od.`id` AS
+		order_delivery_id,od.delivery_no,od.share_order_pay_amount,od.status,
+		od.delivery_actual_price,od.total_package_actual_amount as total_package_actual_amount_d
+		FROM `order` o INNER JOIN `order_delivery` od ON o.id = od.`order_id`
+		WHERE o.id = #{orderId}
+	</select>
+
+    <select id="selectOrderByStatusAndOrderType" resultType="com.milisong.oms.domain.Order">
+	select *
+		from `order` where status = #{status}
+	</select>
+
+    <update id="updateOrderStatusByOrderId" parameterType="java.util.List">
+        update `order` set status = 9
+        where
+        <if test="orderId != null">
+            `status` = 2 and
+            id in
+            <foreach collection="orderId" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        <if test="orderId == null">
+            `status` = 9
+        </if>
+    </update>
+</mapper>

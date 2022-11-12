@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.goods.mapper.GoodsCatalogExtMapper">
+
+	<select id="getGoodsCatalog" resultType="com.milisong.scm.goods.domain.GoodsCatalog">
+		select t.`code`, t.`name` from t_goods_catalog t limit 1
+	</select>
+	
+</mapper>

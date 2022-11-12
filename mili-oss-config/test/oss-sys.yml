@@ -1,0 +1,43 @@
+server:
+  port: 30040
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+  cloud:
+    config:
+      override-none: true
+
+ribbon:
+  ReadTimeout:  10000
+  SocketTimeout:  10000
+
+oms:
+  sys:
+    scmBaseUrl: http://testmls-dmsapiin.jshuii.com
+    delayQueue:
+      orderCallbackUrl: http://testmls-omsapiin.jshuii.com/v1/order/expired-order-cancel
+      virtualOrderCallbackUrl: http://testmls-omsapiin.jshuii.com/v1/order/expired-virtual-order-cancel
+      baseUrl: http://testmls-dqsapi.jshuii.com
+    localCache:
+      expireTime: 1
+
+scm:
+  sys:
+    scmBfRedisUrl: http://testmls-bscmapiin.jshuii.com/redis/get
+    scmBfRedisUrlincr: http://testmls-bscmapiin.jshuii.com/redis/incr
+    scmBfRedisUrlset: http://testmls-bscmapiin.jshuii.com/redis/set
+# sms通知
+sms:
+  send-url: http://testsms.jshuii.com/api/v1/MobileSendService/sendSms
+  out-of-stock-msg: 亲，很抱歉今天部分商品缺货，暂时用其他商品给您替代。我们将在24小时内为您退款，感谢您的谅解！
+  send-time: "07:30"
+
+shopservice:
+  shopIdOne: 1
+  shopIdTwo: 1797400023859200

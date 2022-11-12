@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.shop.mapper.ShopOnsaleGoodsExtMapper">
+
+   <select id="getOnsaleGoodsByStatus" parameterType="java.lang.Integer" resultType="com.milisong.scm.shop.dto.shop.ShopOnsaleGoodsDto">
+   	SELECT a.id,a.default_available_volume defaultAvailableVolume,
+   	a.shop_id shopId,a.shop_code shopCode,a.goods_code goodsCode,
+   	a.goods_name goodsName,a.status,a.shop_code shopCode,b.end_date endDate,b.begin_date beginDate from t_shop_onsale_goods a
+   	LEFT JOIN t_goods b on a.goods_code = b.`code`
+	where a.is_deleted = 0 and a.status = #{status}
+   </select>
+   
+   	<!-- 批量新增可售商品信息 -->
+	<insert id="insertOnsalGoodsByBatch" parameterType="java.util.List">
+   		insert into t_shop_onsale_goods (
+   			id, shop_id, shop_code, goods_code, 
+      		goods_name, status, default_available_volume)
+    	values 
+    	<foreach collection="list" item="item" separator=",">
+    		(#{item.id,jdbcType=BIGINT}, #{item.shopId,jdbcType=BIGINT}, #{item.shopCode,jdbcType=VARCHAR}, #{item.goodsCode,jdbcType=VARCHAR}, 
+      		#{item.goodsName,jdbcType=VARCHAR}, #{item.status,jdbcType=TINYINT}, #{item.defaultAvailableVolume,jdbcType=INTEGER})
+    	</foreach>
+   	</insert>
+   	
+   	<update id="updateOnsaleGoodsByBatch" parameterType="java.util.Map">
+   		update 
+   			t_shop_onsale_goods
+   		set status = #{status}
+   		where
+   			goods_code in 
+   			<foreach collection="goodsCodes" item="goodsCode" separator="," open="(" close=")">
+	    		#{goodsCode,jdbcType=VARCHAR}
+    		</foreach>
+   	</update>
+   
+</mapper>

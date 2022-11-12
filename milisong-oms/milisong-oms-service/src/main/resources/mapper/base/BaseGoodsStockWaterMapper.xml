@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.base.BaseGoodsStockWaterMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.oms.domain.GoodsStockWater">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="delivery_id" jdbcType="BIGINT" property="deliveryId" />
+    <result column="shop_code" jdbcType="VARCHAR" property="shopCode" />
+    <result column="source" jdbcType="TINYINT" property="source" />
+    <result column="goods_code" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="goods_count" jdbcType="INTEGER" property="goodsCount" />
+    <result column="old_stock_count" jdbcType="INTEGER" property="oldStockCount" />
+    <result column="new_stock_count" jdbcType="INTEGER" property="newStockCount" />
+    <result column="delivery_date" jdbcType="TIMESTAMP" property="deliveryDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.milisong.oms.domain.GoodsStockWater">
+    insert into `goods_stock_water` (`id`, `order_id`, `delivery_id`, 
+      `shop_code`, `source`, `goods_code`, 
+      `goods_count`, `old_stock_count`, `new_stock_count`, 
+      `delivery_date`)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{deliveryId,jdbcType=BIGINT}, 
+      #{shopCode,jdbcType=VARCHAR}, #{source,jdbcType=TINYINT}, #{goodsCode,jdbcType=VARCHAR}, 
+      #{goodsCount,jdbcType=INTEGER}, #{oldStockCount,jdbcType=INTEGER}, #{newStockCount,jdbcType=INTEGER}, 
+      #{deliveryDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.oms.domain.GoodsStockWater">
+    insert into `goods_stock_water`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderId != null">
+        `order_id`,
+      </if>
+      <if test="deliveryId != null">
+        `delivery_id`,
+      </if>
+      <if test="shopCode != null">
+        `shop_code`,
+      </if>
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="goodsCode != null">
+        `goods_code`,
+      </if>
+      <if test="goodsCount != null">
+        `goods_count`,
+      </if>
+      <if test="oldStockCount != null">
+        `old_stock_count`,
+      </if>
+      <if test="newStockCount != null">
+        `new_stock_count`,
+      </if>
+      <if test="deliveryDate != null">
+        `delivery_date`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryId != null">
+        #{deliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=TINYINT},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCount != null">
+        #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="oldStockCount != null">
+        #{oldStockCount,jdbcType=INTEGER},
+      </if>
+      <if test="newStockCount != null">
+        #{newStockCount,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `goods_stock_water` (`id`, `order_id`, `delivery_id`, 
+      `shop_code`, `source`, `goods_code`, 
+      `goods_count`, `old_stock_count`, `new_stock_count`, 
+      `delivery_date`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}, #{item.deliveryId,jdbcType=BIGINT}, 
+        #{item.shopCode,jdbcType=VARCHAR}, #{item.source,jdbcType=TINYINT}, #{item.goodsCode,jdbcType=VARCHAR}, 
+        #{item.goodsCount,jdbcType=INTEGER}, #{item.oldStockCount,jdbcType=INTEGER}, #{item.newStockCount,jdbcType=INTEGER}, 
+        #{item.deliveryDate,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `goods_stock_water`
+    (`id`, `order_id`, `delivery_id`, `shop_code`, `source`, `goods_code`, `goods_count`, 
+      `old_stock_count`, `new_stock_count`, `delivery_date`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderId != null">
+          #{item.orderId,jdbcType=BIGINT},
+        </if>
+        <if test="item.orderId == null">
+          NULL,
+        </if>
+        <if test="item.deliveryId != null">
+          #{item.deliveryId,jdbcType=BIGINT},
+        </if>
+        <if test="item.deliveryId == null">
+          NULL,
+        </if>
+        <if test="item.shopCode != null">
+          #{item.shopCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.shopCode == null">
+          NULL,
+        </if>
+        <if test="item.source != null">
+          #{item.source,jdbcType=TINYINT},
+        </if>
+        <if test="item.source == null">
+          NULL,
+        </if>
+        <if test="item.goodsCode != null">
+          #{item.goodsCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.goodsCode == null">
+          NULL,
+        </if>
+        <if test="item.goodsCount != null">
+          #{item.goodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.goodsCount == null">
+          NULL,
+        </if>
+        <if test="item.oldStockCount != null">
+          #{item.oldStockCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.oldStockCount == null">
+          NULL,
+        </if>
+        <if test="item.newStockCount != null">
+          #{item.newStockCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.newStockCount == null">
+          NULL,
+        </if>
+        <if test="item.deliveryDate != null">
+          #{item.deliveryDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.deliveryDate == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+</mapper>

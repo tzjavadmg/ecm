@@ -1,0 +1,4 @@
+redisson:
+  address:  redis://redis01.jshuii.com:6385
+  password: A5Y@x&j1vrz!YK%f
+  database: 15

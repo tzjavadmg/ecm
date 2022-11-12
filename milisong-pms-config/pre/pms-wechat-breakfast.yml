@@ -1,0 +1,14 @@
+breakfast:
+  base-url: https://mls-bapi.jshuii.com
+  miniAppid: wxb269c1b2c531af4b
+  miniSecret: bd53c6412affe34603053dde1c2bce96
+  mchid: 1518031911
+  receiveTemplateId: jN3cyYDziq6WJxTZp6d9Y3Xh-ITLCiEbb7QbMWZDij4
+  payFailTemplateId: k0QatHbpMgRQ-KWXQ21R5KiWQCuZzuZAU983-KXsmpw
+  takeFoodTemplateId: p_E399luOyfDg1joT35uqZA86O2WeVhT6JmXIbNfric
+  apikey: tomatotomatotomatotomatotomatoto
+  signtype: MD5
+  pappayapplyCallbackUrl: ${miniapp.base-url}/v1/order/pappayapply-callback
+  contractCallbackUrl: ${miniapp.base-url}/v1/miniapp/contract-callback
+  unifiedOrderCallbackUrl: ${miniapp.base-url}/v2/order/unifiedorder-callback
+  refundCallbackUrl: ${miniapp.base-url}/v2/order/refund-callback

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.milisong.scm.orderset.mapper.OrderExtMapper">
+
+	<select id="selectOrderCompany"
+		parameterType="com.milisong.scm.orderset.param.OrderCompanySqlParam"
+		resultType="com.milisong.scm.orderset.result.OrderCompanySqlResult">
+		select
+		delivery_office_building_id,delivery_company,shop_id,delivery_floor from
+		t_order
+		where delivery_office_building_id=#{deliveryOfficeBuildingId}
+		and delivery_start_date=#{beginDeliveryDate}
+		and order_status=2
+		and orderset_process_status=0
+		group by
+		delivery_office_building_id,delivery_company,shop_id,delivery_floor
+		order by delivery_floor desc
+		limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="selectLastDeliveryAddressByCompanyInfo"
+		parameterType="com.milisong.scm.orderset.param.OrderCompanySqlParam"
+		resultType="java.lang.String">
+		select delivery_address from
+		t_order
+		where delivery_office_building_id=#{deliveryOfficeBuildingId}
+		and delivery_start_date&gt;=#{beginDeliveryDate}
+		<if test="endDeliveryDate != null">
+		and delivery_start_date&lt;#{endDeliveryDate}
+		</if>
+		<if test="deliveryFloor != null">
+		and delivery_floor=#{deliveryFloor}
+		</if>
+		and delivery_company=#{deliveryCompany}
+		order by create_time desc
+		limit 1
+	</select>
+	
+	<select id="selectOrderGoodsCountCompany"
+		parameterType="com.milisong.scm.orderset.param.OrderCompanySqlParam"
+		resultType="java.lang.Integer">
+		select IFNULL(sum(d.goods_count),0) from 
+		t_order t left JOIN  t_order_detail d on t.id=d.order_id where
+		t.shop_id = #{shopId}
+		and
+		d.goods_code = #{goodsCode}
+		and
+		t.delivery_start_date&gt;=#{beginDeliveryDate}
+		<if test="endDeliveryDate != null">
+		and t.delivery_start_date&lt;#{endDeliveryDate}
+		</if>
+		and t.order_status != 4
+		and t.order_status != 3
+	</select>
+
+	<select id="countCompany"
+		parameterType="com.milisong.scm.orderset.param.OrderCompanySqlParam"
+		resultType="java.lang.Long">
+		select count(DISTINCT delivery_company) from t_order where
+		delivery_office_building_id=#{deliveryOfficeBuildingId}
+		and
+		delivery_start_date =#{beginDeliveryDate}
+		and order_status=2
+		and orderset_process_status=0
+	</select>
+
+	<select id="selectOrderByPage" parameterType="com.milisong.scm.orderset.dto.param.OrderSearchParam"
+			resultType="com.milisong.scm.orderset.dto.result.OrderSearchResult">
+		select o.order_no,d.id,d.detail_set_no_description as description,if(d.distribution_status = 4,date_format(o.update_time,'%m-%d %H:%i'),null) as arriveTime,
+		date_format(o.delivery_end_date, '%m-%d %H:%i') as expectArriveTime,date_format(o.create_time, '%m-%d %H:%i') as orderDate,g.couplet_no,
+		concat(o.real_name,'_',o.mobile_no) as userInfo, o.delivery_address,o.actual_pay_amount,o.shop_id,o.delivery_status as deliveryStatus
+		from t_order o
+		LEFT JOIN t_order_set_detail_goods g on o.order_no = g.order_no
+		LEFT JOIN t_order_set_detail d on g.detail_set_no = d.detail_set_no
+		where o.order_status not in(3,4)
+		<if test="null != shopId and shopId != ''">
+			and o.shop_id in (${shopId})
+		</if>
+		<if test="null != deliveryStartDate and deliveryStartDate != ''" >
+			and date(o.delivery_start_date) &gt;= #{deliveryStartDate}
+		</if>
+		<if test="null != deliveryEndDate and deliveryEndDate != ''">
+			and date(o.delivery_end_date) &lt;= #{deliveryEndDate}
+		</if>
+		<if test="null != userParam and userParam != ''" >
+			and (o.real_name like concat('%',#{userParam},'%') or o.mobile_no like concat('%',#{userParam},'%'))
+		</if>
+		<if test="null != deliveryStatus">
+			and o.delivery_status = #{deliveryStatus}
+		</if>
+		<if test="null != orderStartDate and orderStartDate != ''">
+			and date(o.create_time) &gt;= #{orderStartDate}
+		</if>
+		<if test="null != orderEndDate and orderEndDate != ''">
+			and date(o.create_time) &lt;= #{orderEndDate}
+		</if>
+		group by o.order_no
+		order by o.delivery_end_date,d.detail_set_no_description
+		<if test="startRow != null and pageSize != null">
+			limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="countOrderByPage" parameterType="com.milisong.scm.orderset.dto.param.OrderSearchParam" resultType="java.lang.Long">
+		select count(DISTINCT o.order_no)
+		from t_order o
+		LEFT JOIN t_order_set_detail_goods g on o.order_no = g.order_no
+		LEFT JOIN t_order_set_detail d on g.detail_set_no = d.detail_set_no
+		where o.order_status not in(3,4)
+		<if test="null != shopId and shopId != ''">
+			and o.shop_id in (${shopId})
+		</if>
+		<if test="null != deliveryStartDate and deliveryStartDate != ''" >
+			and date(o.delivery_start_date) &gt;= #{deliveryStartDate}
+		</if>
+		<if test="null != deliveryEndDate and deliveryEndDate != ''">
+			and date(o.delivery_end_date) &lt;= #{deliveryEndDate}
+		</if>
+		<if test="null != userParam and userParam != ''" >
+			and (o.real_name like concat('%',#{userParam},'%') or o.mobile_no like concat('%',#{userParam},'%'))
+		</if>
+		<if test="null != deliveryStatus">
+			and o.delivery_status = #{deliveryStatus}
+		</if>
+		<if test="null != orderStartDate and orderStartDate != ''">
+			and date(o.create_time) &gt;= #{orderStartDate}
+		</if>
+		<if test="null != orderEndDate and orderEndDate != ''">
+			and date(o.create_time) &lt;= #{orderEndDate}
+		</if>
+	</select>
+</mapper>

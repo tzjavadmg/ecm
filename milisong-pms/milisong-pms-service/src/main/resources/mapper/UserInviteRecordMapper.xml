@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.UserInviteRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.UserInviteRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="activity_invite_id" property="activityInviteId" jdbcType="BIGINT" />
+    <result column="originate_user_id" property="originateUserId" jdbcType="BIGINT" />
+    <result column="receive_user_id" property="receiveUserId" jdbcType="BIGINT" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_portrait_url" property="headPortraitUrl" jdbcType="VARCHAR" />
+    <result column="coupon_name" property="couponName" jdbcType="VARCHAR" />
+    <result column="goods_code" property="goodsCode" jdbcType="VARCHAR" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="invite_success_time" property="inviteSuccessTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, activity_invite_id, originate_user_id, receive_user_id, nick_name, head_portrait_url, 
+    coupon_name, goods_code, discount, status, invite_success_time, remark, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bf_user_invite_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.UserInviteRecord" >
+    insert into bf_user_invite_record (id, activity_invite_id, originate_user_id, 
+      receive_user_id, nick_name, head_portrait_url, 
+      coupon_name, goods_code, discount, 
+      status, invite_success_time, remark, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{activityInviteId,jdbcType=BIGINT}, #{originateUserId,jdbcType=BIGINT}, 
+      #{receiveUserId,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{headPortraitUrl,jdbcType=VARCHAR}, 
+      #{couponName,jdbcType=VARCHAR}, #{goodsCode,jdbcType=VARCHAR}, #{discount,jdbcType=DECIMAL}, 
+      #{status,jdbcType=TINYINT}, #{inviteSuccessTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.UserInviteRecord" >
+    insert into bf_user_invite_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activityInviteId != null" >
+        activity_invite_id,
+      </if>
+      <if test="originateUserId != null" >
+        originate_user_id,
+      </if>
+      <if test="receiveUserId != null" >
+        receive_user_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="headPortraitUrl != null" >
+        head_portrait_url,
+      </if>
+      <if test="couponName != null" >
+        coupon_name,
+      </if>
+      <if test="goodsCode != null" >
+        goods_code,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="inviteSuccessTime != null" >
+        invite_success_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityInviteId != null" >
+        #{activityInviteId,jdbcType=BIGINT},
+      </if>
+      <if test="originateUserId != null" >
+        #{originateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveUserId != null" >
+        #{receiveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null" >
+        #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="couponName != null" >
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="inviteSuccessTime != null" >
+        #{inviteSuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.UserInviteRecord" >
+    update bf_user_invite_record
+    <set >
+      <if test="activityInviteId != null" >
+        activity_invite_id = #{activityInviteId,jdbcType=BIGINT},
+      </if>
+      <if test="originateUserId != null" >
+        originate_user_id = #{originateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveUserId != null" >
+        receive_user_id = #{receiveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null" >
+        head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="couponName != null" >
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="inviteSuccessTime != null" >
+        invite_success_time = #{inviteSuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.UserInviteRecord" >
+    update bf_user_invite_record
+    set activity_invite_id = #{activityInviteId,jdbcType=BIGINT},
+      originate_user_id = #{originateUserId,jdbcType=BIGINT},
+      receive_user_id = #{receiveUserId,jdbcType=BIGINT},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+      coupon_name = #{couponName,jdbcType=VARCHAR},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=TINYINT},
+      invite_success_time = #{inviteSuccessTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByActivityId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    <include refid="Base_Column_List"/>
+    from bf_user_invite_record
+    where
+    activity_invite_id = #{activityInviteId}
+  </select>
+  <select id="queryByOriginateUserId" resultType="com.milisong.pms.prom.dto.invite.UserInviteRecordDto" parameterType="java.lang.Long">
+    select id, activity_invite_id, originate_user_id, receive_user_id, nick_name, head_portrait_url, status, remark, update_time
+    from bf_user_invite_record
+    where originate_user_id = #{originateUserId}
+    order by update_time desc
+  </select>
+    <select id="queryByReceiveUserId"  resultMap="BaseResultMap"  parameterType="java.lang.Long">
+      select
+      <include refid="Base_Column_List"/>
+      from bf_user_invite_record
+      where
+      receive_user_id = #{receiveUserId}
+      limit 0,1
+    </select>
+  <select id="sumByActivityInviteIdAndStatus" resultType="java.lang.Integer">
+    select
+    count(1)
+    from bf_user_invite_record
+    where
+    activity_invite_id = #{activityInviteId}
+    and status = #{status}
+  </select>
+</mapper>

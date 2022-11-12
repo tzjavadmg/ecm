@@ -1,0 +1,33 @@
+spring:
+  rabbitmq:
+    addresses: amqp://mq.jshuii.com:5672
+    username: milisong-omsuser
+    password: 7TklcO2O7n6v3X4GMg
+  #    publisher-confirms: false
+  #    publisher-returns: false
+  cloud:
+    stream:
+      # 设置默认的binder
+      default-binder: oms
+      binders:
+        oms:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                # 连接到ecm的host和exchange
+                virtual-host: milisong-oms
+      bindings:
+        user_payment_input:
+          binder: oms
+          destination: OMS_PAYMENT
+          group: ucs_user_group
+      rabbit:
+        bindings:
+          user_payment_input:
+            consumer:
+              bindingRoutingKey: '#'
+              exchangeType: topic
+              autoBindDlq: true
+              republishToDlq: true
+              deadLetterExchange: ECM_PAYMENT_UCS_USER_DLX

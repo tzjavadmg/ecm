@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: milisong-ecm-order
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://dbtest.jshuii.com:3306/milisong_oms?characterEncoding=utf-8&amp;useOldAliasMetadataBehavior=true&amp;autoReconnectForPools=true;useSSL=false;
+    username: milisong_oms
+    password: 92F9yCtb1988e9Rb/90E9HLcgX3uPtJOluIg1Z2E03M=
+    type: com.farmland.core.db.SecureDruidDataSource
+
+idworker:
+  workerId: 0
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true

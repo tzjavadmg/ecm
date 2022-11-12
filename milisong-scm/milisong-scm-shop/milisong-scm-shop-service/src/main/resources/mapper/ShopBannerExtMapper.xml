@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.shop.mapper.ShopBannerExtMapper">
+  <resultMap id="BaseResultMap" extends="com.milisong.scm.shop.mapper.ShopBannerMapper.BaseResultMap" type="com.milisong.scm.shop.domain.ShopBanner"/>
+  <sql id="Base_Column_List">
+    <include refid="com.milisong.scm.shop.mapper.ShopBannerMapper.Base_Column_List"/>
+  </sql>
+ <select id="queryShopBanner" resultMap="BaseResultMap">
+   select
+   <include refid="Base_Column_List" />
+   from t_shop_banner
+   where is_deleted = 0
+ </select>
+    <select id="queryByShopCode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_shop_banner
+        where is_deleted = 0
+        and shop_code  = #{shopCode}
+    </select>
+
+    <select id="getShopIdsCount" parameterType="com.milisong.scm.shop.dto.config.ShopBannerParam" resultType="java.lang.Integer">
+        select
+        count(DISTINCT (shop_id))
+        from t_shop_banner
+        where is_deleted = 0
+        <if test="shopId != null">
+            and shop_id = #{shopId}
+        </if>
+    </select>
+    <select id="getShopIds" resultType="java.lang.Long">
+        select
+        DISTINCT (shop_id)
+        from t_shop_banner
+        where is_deleted = 0
+        <if test="shopId != null">
+            and shop_id = #{shopId}
+        </if>
+        <if test="pageNo != null and pageSize != null">
+            limit #{startRow},#{pageSize}
+        </if>
+        <if test="pageNo == null or pageSize == null">
+            limit 0,10
+        </if>
+    </select>
+    <select id="getShopBannerByIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_shop_banner
+        where is_deleted = 0
+        and shop_id IN (
+        <if test="ids.length >0">
+            ${ids}
+        </if>
+        <if test="ids == null or ids == ''">
+            ''
+        </if>
+        )
+    </select>
+    <select id="queryByShopId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_shop_banner
+        where is_deleted = 0
+        and shop_id  = #{shopId}
+    </select>
+
+    <update id="updateByPrimaryKeySelectiveClearLinKUrl" parameterType="com.milisong.scm.shop.domain.ShopBanner">
+        update t_shop_banner
+        <set>
+            <if test="shopId != null">
+                shop_id = #{shopId,jdbcType=BIGINT},
+            </if>
+            <if test="shopCode != null">
+                shop_code = #{shopCode,jdbcType=VARCHAR},
+            </if>
+            <if test="shopName != null">
+                shop_name = #{shopName,jdbcType=VARCHAR},
+            </if>
+            <if test="picture != null">
+                picture = #{picture,jdbcType=VARCHAR},
+            </if>
+            <if test="linkUrl != null">
+                link_url = #{linkUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="weight != null">
+                weight = #{weight,jdbcType=TINYINT},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=BIT},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

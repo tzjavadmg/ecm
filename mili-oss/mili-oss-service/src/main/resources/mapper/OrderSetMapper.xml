@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mili.oss.mapper.OrderSetMapper">
+  <select id="selectPage" resultType="com.mili.oss.dto.OrderSetDetailDto" parameterType="com.mili.oss.dto.OrderSetReqDto">
+    select
+    <include refid="com.mili.oss.mapper.base.BaseOrderSetMapper.Base_Column_List" />
+    from order_set
+    <include refid="searchSql" />
+    <if test="startRow != null and pageSize != null">
+      limit #{startRow, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <select id="selectCount" resultType="java.lang.Long" parameterType="com.mili.oss.dto.OrderSetReqDto">
+    select
+    count(*)
+    from order_set
+    <include refid="searchSql" />
+  </select>
+
+  <sql id="searchSql">
+    where shop_id = #{shopId}
+    <if test="null != company and company != ''" >
+      and (company_id = #{company} or company_abbreviation like concat('%',#{company},'%'))
+    </if>
+    <if test="null != deliveryDate and deliveryDate != ''">
+      and detail_delivery_date = #{deliveryDate}
+    </if>
+    <if test="null != orderType">
+      and order_type = #{orderType}
+    </if>
+    <if test="null != description and description != ''">
+			and detail_set_no_description = #{description}
+	</if>
+	<if test="null != descriptionList and descriptionList.size > 0">
+		and detail_set_no_description in
+		<foreach collection="descriptionList" item="item" open="(" close=")" separator="," index="index">
+			#{item}
+		</foreach>
+	</if>
+  </sql>
+  <select id="queryDelayOrderSet" resultType="java.lang.Long">
+    <![CDATA[
+	select id from order_set
+	where distribution_status = -1 and date_add(CONCAT(detail_delivery_date,' ',delivery_end_time), interval 2 hour) <= now()
+	]]>
+  </select>
+</mapper>

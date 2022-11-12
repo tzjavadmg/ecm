@@ -1,0 +1,89 @@
+server:
+  port: 10000
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:60100
+  zipkin:
+    base-url: http://localhost:60050
+  cloud:
+    config:
+      override-none: true
+ribbon:
+  ReadTimeout:  10000
+  SocketTimeout:  10000
+
+file:
+  oss:
+    #  本地备份路径
+    localBackupPath: /data/files/images/milisong/
+    #    oss上传路径
+    uploadUrl: http://testoss.jshuii.com/v1/uploadFileService/uploadByte
+    #    查询路径
+    viewUrl: http://jshuii-test.oss-cn-hangzhou.aliyuncs.com
+    #the maximum size of single file (unit:MB)
+    maxSingleFileSize: 2MB
+    #file format
+    format: txt,word,excel,jpg,png,gif,pdf
+#短信发送服务URL
+sms:
+  send-url: http://testsms.jshuii.com/api/v1/MobileSendService/sendSms
+  contact-phone: 400-042-9199
+  signNo: 3
+#用户评价和反馈
+user:
+  feedback:
+    mobiles: 17150313389,13162729849,18116246668
+  evaluation:
+    show-h5-url: http://devmls-h5.jshuii.com/activity/breakfast-evaluation-page/index.html?orderId=
+    short-url: http://api.weibo.com/2/short_url/shorten.json?source=2849184197&url_long=
+
+# 调用SCM获取门店信息
+scm:
+  base-url: http://devmls-bscmapi.jshuii.com
+  shop:
+    info-url: ${scm.base-url}/shop/get-display-info-byBuildingId?buildingId={buildingId}
+    info-byShopCode-url: ${scm.base-url}/shop/get-display-info-byCode?code={code}
+  order:
+    union-order-url: http://devml-oss.jshuii.com/orderset/query-detail-order-info?detailSetId={detailSetId}
+
+logging:
+  level:
+    com.milisong.ecm.user.mapper: DEBUG
+
+delay:
+  base-url: http://devmls-dqsapi.jshuii.com
+  ecm-url: http://devmls-bapiin.jshuii.com
+promotion:
+  base-url: http://devmls-emmapiin.jshuii.com
+
+building:
+  default-id: 1
+shop:
+  default-code: 31010001
+  default-categoryCode: H001
+redisexpire:
+  topic: __keyevent@${spring.redis.database}__:expired
+share:
+  pictureUrl: http://jshuii-test.oss-cn-hangzhou.aliyuncs.com/3/goods/201810/6d3d650cde2647afb1f37c8223187108.jpg
+  title: 【新人立减20元】你有一份午饭待查收～
+
+# LBS搜索的距离
+lbs:
+  distance: 5
+  address-service-url: http://devmls-lbs.jshuii.com/lbs/address
+  convert-service-url: http://devmls-lbs.jshuii.com/lbs/convert
+  search-company-service-url: http://devmls-lbs.jshuii.com/lbs/search-company
+
+sf:
+  dev-id: 1519574124
+  key: 6af86257030181daea950bed8bd1fed1
+  version: 17
+  base-url: https://commit-openic.sf-express.com/open/api/external
+
+local-cache:
+  expired-time: 1
+
+#标识服务的业务线
+business-line: 0

@@ -1,0 +1,21 @@
+upms:
+  config:
+    url: http://devmls-upmsapi.jshuii.com
+    app-name: MLB_DEV
+    upmsUserInfoUrl: ${upms.config.url}/auth/userinfo
+    upmsTokenUrl: ${upms.config.url}/auth/token
+    upmsCheckLoginUrl: ${upms.config.url}/auth/check-login
+    upmsCheckPermissionUrl: ${upms.config.url}/auth/check-permission
+    upmsGetMenuListUrl: ${upms.config.url}/auth/menu
+    upmsGetDataPermissionUrl: ${upms.config.url}/auth/data-permission
+  filter-url:
+    notHeadTokenUrls: /upload/oss,/order/export
+    whitelistUrls: /order-set/query-detail-order-info,/order-set/get-order-set-by-order-no,/orderset/task,
+      /orderset/destroy-pool,/orderset/compensate-send-mq,/orderset/push,/orderset/converge,
+      /shop/get-all-shop-list,
+      /goods-schedule/goods-schedule-task,
+      /goods/sync-category,
+      /goods/sync-goods,
+      /company/inside-query-by-id,/company/sync,
+      /order/check,
+      /redis/get,/redis/incr,/redis/set,

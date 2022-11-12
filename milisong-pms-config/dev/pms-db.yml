@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://dbtest.jshuii.com:3306/milisong_pms?characterEncoding=utf-8&amp;useOldAliasMetadataBehavior=true&amp;autoReconnectForPools=true;useSSL=false;
+    username: milisong_pms
+    password: TVLfAZNx8TUajrgrcRpqdhcfPwFCW4kQHLzjMsp2ldc=
+    type: com.farmland.core.db.SecureDruidDataSource
+  #设置外部属性配置为最低优先级，即不覆盖任何本地配置(默认false)
+  cloud:
+    config:
+      override-none: true
+#数据库主键生产策略
+idworker:
+  workerId: 0
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml,mapper/base/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+logging:
+  level:
+    com.milisong.pms.prom.mapper: DEBUG

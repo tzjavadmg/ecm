@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.breakfast.scm.configuration.mapper.ShopInterceptConfigMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.breakfast.scm.configuration.domain.ShopInterceptConfig">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="shop_code" jdbcType="VARCHAR" property="shopCode" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="order_intercept_time" jdbcType="TIME" property="orderInterceptTime" />
+    <result column="first_orderset_time" jdbcType="TIME" property="firstOrdersetTime" />
+    <result column="second_orderset_time" jdbcType="TIME" property="secondOrdersetTime" />
+    <result column="delivery_time_begin" jdbcType="TIME" property="deliveryTimeBegin" />
+    <result column="delivery_time_end" jdbcType="TIME" property="deliveryTimeEnd" />
+    <result column="dispatch_time" jdbcType="TIME" property="dispatchTime" />
+    <result column="is_default" jdbcType="BIT" property="isDefault" />
+    <result column="max_output" jdbcType="INTEGER" property="maxOutput" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, shop_id, shop_code, shop_name, order_intercept_time, first_orderset_time, second_orderset_time, 
+    delivery_time_begin, delivery_time_end, dispatch_time, is_default, max_output, status, 
+    is_deleted, create_by, create_time, update_by, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shop_intercept_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from shop_intercept_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.milisong.breakfast.scm.configuration.domain.ShopInterceptConfig">
+    insert into shop_intercept_config (id, shop_id, shop_code, 
+      shop_name, order_intercept_time, first_orderset_time, 
+      second_orderset_time, delivery_time_begin, delivery_time_end, 
+      dispatch_time, is_default, max_output, 
+      status, is_deleted, create_by, 
+      create_time, update_by, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT}, #{shopCode,jdbcType=VARCHAR}, 
+      #{shopName,jdbcType=VARCHAR}, #{orderInterceptTime,jdbcType=TIME}, #{firstOrdersetTime,jdbcType=TIME}, 
+      #{secondOrdersetTime,jdbcType=TIME}, #{deliveryTimeBegin,jdbcType=TIME}, #{deliveryTimeEnd,jdbcType=TIME}, 
+      #{dispatchTime,jdbcType=TIME}, #{isDefault,jdbcType=BIT}, #{maxOutput,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{isDeleted,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.breakfast.scm.configuration.domain.ShopInterceptConfig">
+    insert into shop_intercept_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="shopCode != null">
+        shop_code,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="orderInterceptTime != null">
+        order_intercept_time,
+      </if>
+      <if test="firstOrdersetTime != null">
+        first_orderset_time,
+      </if>
+      <if test="secondOrdersetTime != null">
+        second_orderset_time,
+      </if>
+      <if test="deliveryTimeBegin != null">
+        delivery_time_begin,
+      </if>
+      <if test="deliveryTimeEnd != null">
+        delivery_time_end,
+      </if>
+      <if test="dispatchTime != null">
+        dispatch_time,
+      </if>
+      <if test="isDefault != null">
+        is_default,
+      </if>
+      <if test="maxOutput != null">
+        max_output,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderInterceptTime != null">
+        #{orderInterceptTime,jdbcType=TIME},
+      </if>
+      <if test="firstOrdersetTime != null">
+        #{firstOrdersetTime,jdbcType=TIME},
+      </if>
+      <if test="secondOrdersetTime != null">
+        #{secondOrdersetTime,jdbcType=TIME},
+      </if>
+      <if test="deliveryTimeBegin != null">
+        #{deliveryTimeBegin,jdbcType=TIME},
+      </if>
+      <if test="deliveryTimeEnd != null">
+        #{deliveryTimeEnd,jdbcType=TIME},
+      </if>
+      <if test="dispatchTime != null">
+        #{dispatchTime,jdbcType=TIME},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="maxOutput != null">
+        #{maxOutput,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.breakfast.scm.configuration.domain.ShopInterceptConfig">
+    update shop_intercept_config
+    <set>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null">
+        shop_code = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderInterceptTime != null">
+        order_intercept_time = #{orderInterceptTime,jdbcType=TIME},
+      </if>
+      <if test="firstOrdersetTime != null">
+        first_orderset_time = #{firstOrdersetTime,jdbcType=TIME},
+      </if>
+      <if test="secondOrdersetTime != null">
+        second_orderset_time = #{secondOrdersetTime,jdbcType=TIME},
+      </if>
+      <if test="deliveryTimeBegin != null">
+        delivery_time_begin = #{deliveryTimeBegin,jdbcType=TIME},
+      </if>
+      <if test="deliveryTimeEnd != null">
+        delivery_time_end = #{deliveryTimeEnd,jdbcType=TIME},
+      </if>
+      <if test="dispatchTime != null">
+        dispatch_time = #{dispatchTime,jdbcType=TIME},
+      </if>
+      <if test="isDefault != null">
+        is_default = #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="maxOutput != null">
+        max_output = #{maxOutput,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.breakfast.scm.configuration.domain.ShopInterceptConfig">
+    update shop_intercept_config
+    set shop_id = #{shopId,jdbcType=BIGINT},
+      shop_code = #{shopCode,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      order_intercept_time = #{orderInterceptTime,jdbcType=TIME},
+      first_orderset_time = #{firstOrdersetTime,jdbcType=TIME},
+      second_orderset_time = #{secondOrdersetTime,jdbcType=TIME},
+      delivery_time_begin = #{deliveryTimeBegin,jdbcType=TIME},
+      delivery_time_end = #{deliveryTimeEnd,jdbcType=TIME},
+      dispatch_time = #{dispatchTime,jdbcType=TIME},
+      is_default = #{isDefault,jdbcType=BIT},
+      max_output = #{maxOutput,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

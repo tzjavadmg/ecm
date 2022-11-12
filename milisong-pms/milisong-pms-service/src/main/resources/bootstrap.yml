@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: milisong-pms-service
+  cloud:
+    config:
+      discovery:
+        #允许通过服务名称来访问服务配置中心
+        enabled: true
+        service-id: sunflow-cloud-config
+      label:  v1.5
+      name:  pms-prom-sys,pms-db,pms-redis,pms-redisson,pms-mq
+      #不覆盖系统参数（可带参数启动服务，如端口--server.port=8000）
+      override-system-properties: false
+      #如果服务无法连接配置服务器，则启动失败
+      fail-fast: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true

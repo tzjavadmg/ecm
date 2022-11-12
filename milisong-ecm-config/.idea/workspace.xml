@@ -1,0 +1,1163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/prod/ecm-lunch-redis.yml" line="3" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="997256c6-49c7-4e9d-ad52-a8aedb198803" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pre/ecm-breakfast-web-sys.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="551">
+              <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pre/ecm-breakfast-sys.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="741">
+              <caret line="39" column="12" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dev/ecm-lunch-wechat.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="31" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dev/ecm-breakfast-wechat.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/ecm-breakfast-wechat.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="31" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/ecm-breakfast-redis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="36" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/prod/ecm-breakfast-redis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dev/ecm-breakfast-mq.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="567">
+              <caret line="171" column="34" lean-forward="true" selection-start-line="171" selection-start-column="34" selection-end-line="171" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/ecm-db.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/ecm-lunch-wechat.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>dev</find>
+      <find>building_input</find>
+      <find>devmls-blbs</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="v1.4" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/prod/redis.yml" />
+        <option value="$PROJECT_DIR$/prod/wechat.yml" />
+        <option value="$PROJECT_DIR$/prod/application-prod.yml" />
+        <option value="$PROJECT_DIR$/prod/sys.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-mq.yml" />
+        <option value="$PROJECT_DIR$/test/mq.yml" />
+        <option value="$PROJECT_DIR$/pre/mq.yml" />
+        <option value="$PROJECT_DIR$/prod/mq.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-db.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-redis.yml" />
+        <option value="$PROJECT_DIR$/prod/ecm-redis.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-redis.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-redis.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-web-sys.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-web-sys.yml" />
+        <option value="$PROJECT_DIR$/prod/ecm-web-sys.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-web-sys.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-sys.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-breakfast-redis.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-lunch-wechat.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-lunch-redis.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-breakfast-redis.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-breakfast-wechat.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-lunch-wechat.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-breakfast-sys.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-lunch-wechat.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-breakfast-wechat.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-sys.yml" />
+        <option value="$PROJECT_DIR$/prod/ecm-breakfast-mq.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-breakfast-mq.yml" />
+        <option value="$PROJECT_DIR$/prod/ecm-lunch-mq.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-lunch-mq.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-lunch-redis.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-lunch-sys.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-sys.yml" />
+        <option value="$PROJECT_DIR$/prod/ecm-sys.yml" />
+        <option value="$PROJECT_DIR$/prod/ecm-lunch-redis.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-lunch-mq.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-breakfast-mq.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-breakfast-sys.yml" />
+        <option value="$PROJECT_DIR$/dev/ecm-lunch-sys.yml" />
+        <option value="$PROJECT_DIR$/test/ecm-lunch-sys.yml" />
+        <option value="$PROJECT_DIR$/prod/ecm-lunch-sys.yml" />
+        <option value="$PROJECT_DIR$/prod/ecm-breakfast-sys.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-lunch-redis.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-lunch-mq.yml" />
+        <option value="$PROJECT_DIR$/prod/ecm-breakfast-redis.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-breakfast-redis.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-breakfast-sys.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-breakfast-wechat.yml" />
+        <option value="$PROJECT_DIR$/pre/ecm-breakfast-mq.yml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="2586" />
+    <option name="height" value="1404" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Serialization issuesJava</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SerializableHasSerialVersionUIDField</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="milisong-ecm-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-ecm-config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="milisong-ecm-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-ecm-config" type="462c0819:PsiDirectoryNode" />
+              <item name="dev" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="milisong-ecm-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-ecm-config" type="462c0819:PsiDirectoryNode" />
+              <item name="pre" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="milisong-ecm-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-ecm-config" type="462c0819:PsiDirectoryNode" />
+              <item name="prod" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="milisong-ecm-config" type="b2602c69:ProjectViewProjectNode" />
+              <item name="milisong-ecm-config" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548475128891" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../milisong-oms-config" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\milisong-workspace\milisong-ecm-config\prod" />
+      <recent name="D:\milisong-workspace\milisong-ecm-config\pre" />
+      <recent name="D:\milisong-workspace\milisong-ecm-config\test" />
+      <recent name="D:\milisong-workspace\milisong-ecm-config\dev" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="997256c6-49c7-4e9d-ad52-a8aedb198803" name="Default Changelist" comment="" />
+      <created>1542596611500</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1542596611500</updated>
+      <workItem from="1542596614962" duration="9012000" />
+      <workItem from="1542701239256" duration="2591000" />
+      <workItem from="1542762233021" duration="605000" />
+      <workItem from="1542884303653" duration="6333000" />
+      <workItem from="1543210772388" duration="4727000" />
+      <workItem from="1543231201843" duration="10311000" />
+      <workItem from="1543557588194" duration="9056000" />
+      <workItem from="1543633677588" duration="762000" />
+      <workItem from="1543641826141" duration="2026000" />
+      <workItem from="1543657619675" duration="2271000" />
+      <workItem from="1543822569142" duration="1278000" />
+      <workItem from="1543835475918" duration="1594000" />
+      <workItem from="1543892261371" duration="5480000" />
+      <workItem from="1543978734602" duration="10304000" />
+      <workItem from="1544007985873" duration="18918000" />
+      <workItem from="1544351101046" duration="3480000" />
+      <workItem from="1544509759813" duration="608000" />
+      <workItem from="1544511034974" duration="5228000" />
+      <workItem from="1544581562868" duration="6984000" />
+      <workItem from="1544613119621" duration="87000" />
+      <workItem from="1544614199246" duration="4591000" />
+      <workItem from="1544683326254" duration="3803000" />
+      <workItem from="1544968996823" duration="9598000" />
+      <workItem from="1545049301070" duration="982000" />
+      <workItem from="1545191595387" duration="16513000" />
+      <workItem from="1545275306574" duration="259000" />
+      <workItem from="1545275726664" duration="7100000" />
+      <workItem from="1545395722271" duration="820000" />
+      <workItem from="1545540601390" duration="519000" />
+      <workItem from="1545619523189" duration="3419000" />
+      <workItem from="1545905892210" duration="2051000" />
+      <workItem from="1546398041626" duration="786000" />
+      <workItem from="1546652623443" duration="1299000" />
+      <workItem from="1547647325817" duration="3811000" />
+      <workItem from="1548035920313" duration="119000" />
+      <workItem from="1548142054367" duration="3342000" />
+      <workItem from="1548475176190" duration="281000" />
+      <workItem from="1548475512690" duration="597000" />
+      <workItem from="1548485136157" duration="599000" />
+      <workItem from="1550040179467" duration="1988000" />
+      <workItem from="1550196112208" duration="597000" />
+      <workItem from="1551668695195" duration="1154000" />
+    </task>
+    <task id="LOCAL-00027" summary="配置调整">
+      <created>1544000881650</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1544000881650</updated>
+    </task>
+    <task id="LOCAL-00028" summary="配置调整">
+      <created>1544000957777</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1544000957777</updated>
+    </task>
+    <task id="LOCAL-00029" summary="配置调整">
+      <created>1544002335448</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1544002335448</updated>
+    </task>
+    <task id="LOCAL-00030" summary="配置调整">
+      <created>1544002416355</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1544002416355</updated>
+    </task>
+    <task id="LOCAL-00031" summary="配置调整">
+      <created>1544002655774</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1544002655774</updated>
+    </task>
+    <task id="LOCAL-00032" summary="配置调整">
+      <created>1544002770968</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1544002770969</updated>
+    </task>
+    <task id="LOCAL-00033" summary="配置调整">
+      <created>1544002883368</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1544002883368</updated>
+    </task>
+    <task id="LOCAL-00034" summary="配置调整">
+      <created>1544002973542</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1544002973542</updated>
+    </task>
+    <task id="LOCAL-00035" summary="配置调整">
+      <created>1544003264244</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1544003264244</updated>
+    </task>
+    <task id="LOCAL-00036" summary="配置调整">
+      <created>1544003784752</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1544003784752</updated>
+    </task>
+    <task id="LOCAL-00037" summary="配置调整">
+      <created>1544006588600</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1544006588600</updated>
+    </task>
+    <task id="LOCAL-00038" summary="配置调整">
+      <created>1544150506503</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1544150506503</updated>
+    </task>
+    <task id="LOCAL-00039" summary="配置调整">
+      <created>1544150658970</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1544150658970</updated>
+    </task>
+    <task id="LOCAL-00040" summary="统一修改mq消费组">
+      <created>1544170599050</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1544170599050</updated>
+    </task>
+    <task id="LOCAL-00041" summary="测试环境配置修改">
+      <created>1544181503196</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1544181503196</updated>
+    </task>
+    <task id="LOCAL-00042" summary="测试环境配置修改">
+      <created>1544183637869</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1544183637869</updated>
+    </task>
+    <task id="LOCAL-00043" summary="测试环境配置修改">
+      <created>1544183846533</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1544183846533</updated>
+    </task>
+    <task id="LOCAL-00044" summary="测试环境配置修改">
+      <created>1544197843897</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1544197843897</updated>
+    </task>
+    <task id="LOCAL-00045" summary="测试环境配置修改">
+      <created>1544198310862</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1544198310862</updated>
+    </task>
+    <task id="LOCAL-00046" summary="生产配置没对齐">
+      <created>1544344941355</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1544344941355</updated>
+    </task>
+    <task id="LOCAL-00047" summary="blbs去掉b">
+      <created>1544346287232</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1544346287232</updated>
+    </task>
+    <task id="LOCAL-00048" summary="blbs去掉b">
+      <created>1544529510080</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1544529510080</updated>
+    </task>
+    <task id="LOCAL-00049" summary="blbs去掉b">
+      <created>1544531818926</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1544531818926</updated>
+    </task>
+    <task id="LOCAL-00050" summary="测试环境删除无用mq配置">
+      <created>1544581767337</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1544581767337</updated>
+    </task>
+    <task id="LOCAL-00051" summary="测试环境删除无用mq配置">
+      <created>1544586590963</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1544586590963</updated>
+    </task>
+    <task id="LOCAL-00052" summary="测试环境删除无用mq配置">
+      <created>1544594363806</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1544594363806</updated>
+    </task>
+    <task id="LOCAL-00053" summary="测试环境删除无用mq配置">
+      <created>1544597339530</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1544597339531</updated>
+    </task>
+    <task id="LOCAL-00054" summary="测试环境删除无用mq配置">
+      <created>1544617472726</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1544617472728</updated>
+    </task>
+    <task id="LOCAL-00055" summary="测试环境删除无用mq配置">
+      <created>1544684114226</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1544684114227</updated>
+    </task>
+    <task id="LOCAL-00056" summary="测试环境删除无用mq配置">
+      <created>1544973079128</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1544973079128</updated>
+    </task>
+    <task id="LOCAL-00057" summary="测试环境删除无用mq配置">
+      <created>1544983372606</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1544983372606</updated>
+    </task>
+    <task id="LOCAL-00058" summary="测试环境删除无用mq配置">
+      <created>1544983441020</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1544983441020</updated>
+    </task>
+    <task id="LOCAL-00059" summary="修改Redis配置：0 早餐 1 午餐">
+      <created>1545049424922</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1545049424923</updated>
+    </task>
+    <task id="LOCAL-00060" summary="健康检查测试">
+      <created>1545201248505</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1545201248505</updated>
+    </task>
+    <task id="LOCAL-00061" summary="健康检查测试">
+      <created>1545201915326</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1545201915326</updated>
+    </task>
+    <task id="LOCAL-00062" summary="健康检查测试">
+      <created>1545202034585</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1545202034586</updated>
+    </task>
+    <task id="LOCAL-00063" summary="健康检查测试">
+      <created>1545205084102</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1545205084102</updated>
+    </task>
+    <task id="LOCAL-00064" summary="健康检查测试">
+      <created>1545206220353</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1545206220353</updated>
+    </task>
+    <task id="LOCAL-00065" summary="健康检查测试">
+      <created>1545206614672</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1545206614672</updated>
+    </task>
+    <task id="LOCAL-00066" summary="健康检查测试">
+      <created>1545212369633</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1545212369633</updated>
+    </task>
+    <task id="LOCAL-00067" summary="健康检查测试">
+      <created>1545221584722</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1545221584722</updated>
+    </task>
+    <task id="LOCAL-00068" summary="zipkin测试">
+      <created>1545290586866</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1545290586867</updated>
+    </task>
+    <task id="LOCAL-00069" summary="zipkin测试">
+      <created>1545296094815</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1545296094815</updated>
+    </task>
+    <task id="LOCAL-00070" summary="zipkin测试">
+      <created>1545296329574</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1545296329574</updated>
+    </task>
+    <task id="LOCAL-00071" summary="zipkin测试">
+      <created>1545734373451</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1545734373451</updated>
+    </task>
+    <task id="LOCAL-00072" summary="zipkin测试">
+      <created>1545734391351</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1545734391351</updated>
+    </task>
+    <task id="LOCAL-00073" summary="zipkin测试">
+      <created>1547652137838</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1547652137838</updated>
+    </task>
+    <task id="LOCAL-00074" summary="zipkin测试">
+      <created>1547652296805</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1547652296805</updated>
+    </task>
+    <task id="LOCAL-00075" summary="zipkin测试">
+      <created>1547652379877</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1547652379877</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="165883000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1721" height="935" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Designer" order="0" />
+      <window_info id="UI Designer" order="1" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="4" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.28709874" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" weight="0.20410784" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" />
+      <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="6" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Database" order="2" weight="0.1780739" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Key Promoter X" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Palette" order="6" />
+      <window_info anchor="right" id="Commander" order="7" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="10" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Designer" order="0" />
+      <window_info id="UI Designer" order="1" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="4" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.23864324" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="0" visible="true" weight="0.20410784" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" />
+      <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="6" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Database" order="2" weight="0.1780739" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Key Promoter X" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Palette" order="6" />
+      <window_info anchor="right" id="Commander" order="7" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="10" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_WIDTH">
+      <map>
+        <entry key="3" value="202" />
+      </map>
+    </option>
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+    <MESSAGE value="ecm配置初始化" />
+    <MESSAGE value="每个配置文件统一添加ecm前缀" />
+    <MESSAGE value="分布式锁redis设置成db 15" />
+    <MESSAGE value="端口修正" />
+    <MESSAGE value="修改jackson时区" />
+    <MESSAGE value="去掉jackson时区配置" />
+    <MESSAGE value="早餐配置" />
+    <MESSAGE value="修改生产配置超时为10秒" />
+    <MESSAGE value="增加新的午餐配置" />
+    <MESSAGE value="还原最新配置" />
+    <MESSAGE value="配置调整" />
+    <MESSAGE value="统一修改mq消费组" />
+    <MESSAGE value="测试环境配置修改" />
+    <MESSAGE value="生产配置没对齐" />
+    <MESSAGE value="blbs去掉b" />
+    <MESSAGE value="测试环境删除无用mq配置" />
+    <MESSAGE value="修改Redis配置：0 早餐 1 午餐" />
+    <MESSAGE value="健康检查测试" />
+    <MESSAGE value="zipkin测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="zipkin测试" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/prod/ecm-web-sys.yml" />
+    <entry file="file://$PROJECT_DIR$/dev/ecm-lunch-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/ecm-lunch-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1520">
+          <caret line="80" column="17" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-mq.yml" />
+    <entry file="file://$PROJECT_DIR$/test/ecm-lunch-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-breakfast-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-mq.yml" />
+    <entry file="file://$PROJECT_DIR$/dev/ecm-redis.yml" />
+    <entry file="file://$PROJECT_DIR$/dev/ecm-sys.yml" />
+    <entry file="file://$PROJECT_DIR$/prod/ecm-sys.yml" />
+    <entry file="file://$PROJECT_DIR$/test/ecm-sys.yml" />
+    <entry file="file://$PROJECT_DIR$/prod/ecm-mq.yml" />
+    <entry file="file://$PROJECT_DIR$/test/ecm-web-sys.yml" />
+    <entry file="file://$PROJECT_DIR$/dev/ecm-breakfast-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-lunch-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-breakfast-web-sys.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-lunch-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-lunch-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-lunch-web-sys.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-lunch-web-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-lunch-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-breakfast-web-sys.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-db.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-breakfast-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="168" column="21" selection-start-line="168" selection-start-column="21" selection-end-line="168" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-db.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-lunch-web-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-lunch-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/ecm-lunch-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-lunch-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="22" lean-forward="true" selection-end-line="197" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/ecm-lunch-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="197" column="34" selection-start-line="197" selection-start-column="34" selection-end-line="197" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/ecm-db.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/ecm-breakfast-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-breakfast-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="79" column="19" selection-end-line="79" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-breakfast-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="21" selection-end-line="13" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/ecm-breakfast-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="65" selection-start-line="13" selection-start-column="65" selection-end-line="13" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-lunch-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-breakfast-web-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-breakfast-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-breakfast-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3040">
+          <caret line="160" column="15" selection-end-line="173" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-lunch-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/ecm-breakfast-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3173">
+          <caret line="167" column="30" selection-start-line="167" selection-start-column="30" selection-end-line="167" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/ecm-breakfast-web-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pre/ecm-breakfast-sys.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="39" column="12" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-lunch-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-breakfast-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-breakfast-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-breakfast-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-db.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ecm-lunch-wechat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ecm-breakfast-redis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ecm-breakfast-mq.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="171" column="34" lean-forward="true" selection-start-line="171" selection-start-column="34" selection-end-line="171" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

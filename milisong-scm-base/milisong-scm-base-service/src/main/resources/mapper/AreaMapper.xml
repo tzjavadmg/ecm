@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.scm.base.mapper.AreaMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.scm.base.domain.Area">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="p_code" jdbcType="VARCHAR" property="pCode" />
+    <result column="level" jdbcType="CHAR" property="level" />
+    <result column="py_first" jdbcType="CHAR" property="pyFirst" />
+    <result column="order_no" jdbcType="INTEGER" property="orderNo" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `id`, `code`, `name`, `p_code`, `level`, `py_first`, `order_no`, `status`, `create_time`, 
+    `create_by`, `update_time`, `update_by`
+  </sql>
+  <select id="selectByExample" parameterType="com.milisong.scm.base.domain.AreaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from `t_area`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `t_area`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `t_area`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.milisong.scm.base.domain.AreaExample">
+    delete from `t_area`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.milisong.scm.base.domain.Area">
+    insert into `t_area` (`id`, `code`, `name`, 
+      `p_code`, `level`, `py_first`, `order_no`, 
+      `status`, `create_time`, `create_by`, 
+      `update_time`, `update_by`)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{pCode,jdbcType=VARCHAR}, #{level,jdbcType=CHAR}, #{pyFirst,jdbcType=CHAR}, #{orderNo,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.scm.base.domain.Area">
+    insert into `t_area`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="code != null">
+        `code`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="pCode != null">
+        `p_code`,
+      </if>
+      <if test="level != null">
+        `level`,
+      </if>
+      <if test="pyFirst != null">
+        `py_first`,
+      </if>
+      <if test="orderNo != null">
+        `order_no`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createTime != null">
+        `create_time`,
+      </if>
+      <if test="createBy != null">
+        `create_by`,
+      </if>
+      <if test="updateTime != null">
+        `update_time`,
+      </if>
+      <if test="updateBy != null">
+        `update_by`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null">
+        #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=CHAR},
+      </if>
+      <if test="pyFirst != null">
+        #{pyFirst,jdbcType=CHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `t_area` (`id`, `code`, `name`, 
+      `p_code`, `level`, `py_first`, 
+      `order_no`, `status`, `create_time`, 
+      `create_by`, `update_time`, `update_by`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.code,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, 
+        #{item.pCode,jdbcType=VARCHAR}, #{item.level,jdbcType=CHAR}, #{item.pyFirst,jdbcType=CHAR}, 
+        #{item.orderNo,jdbcType=INTEGER}, #{item.status,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.createBy,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateBy,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `t_area`
+    (`id`, `code`, `name`, `p_code`, `level`, `py_first`, `order_no`, `status`, `create_time`, 
+      `create_by`, `update_time`, `update_by`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.code != null">
+          #{item.code,jdbcType=VARCHAR},
+        </if>
+        <if test="item.code == null">
+          NULL,
+        </if>
+        <if test="item.name != null">
+          #{item.name,jdbcType=VARCHAR},
+        </if>
+        <if test="item.name == null">
+          NULL,
+        </if>
+        <if test="item.pCode != null">
+          #{item.pCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.pCode == null">
+          NULL,
+        </if>
+        <if test="item.level != null">
+          #{item.level,jdbcType=CHAR},
+        </if>
+        <if test="item.level == null">
+          NULL,
+        </if>
+        <if test="item.pyFirst != null">
+          #{item.pyFirst,jdbcType=CHAR},
+        </if>
+        <if test="item.pyFirst == null">
+          NULL,
+        </if>
+        <if test="item.orderNo != null">
+          #{item.orderNo,jdbcType=INTEGER},
+        </if>
+        <if test="item.orderNo == null">
+          NULL,
+        </if>
+        <if test="item.status != null">
+          #{item.status,jdbcType=TINYINT},
+        </if>
+        <if test="item.status == null">
+          NULL,
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.createTime == null">
+          NULL,
+        </if>
+        <if test="item.createBy != null">
+          #{item.createBy,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createBy == null">
+          NULL,
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime == null">
+          NULL,
+        </if>
+        <if test="item.updateBy != null">
+          #{item.updateBy,jdbcType=VARCHAR},
+        </if>
+        <if test="item.updateBy == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <select id="countByExample" parameterType="com.milisong.scm.base.domain.AreaExample" resultType="java.lang.Long">
+    select count(*) from `t_area`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `t_area`
+    <set>
+      <if test="record.id != null">
+        `id` = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null">
+        `code` = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pCode != null">
+        `p_code` = #{record.pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        `level` = #{record.level,jdbcType=CHAR},
+      </if>
+      <if test="record.pyFirst != null">
+        `py_first` = #{record.pyFirst,jdbcType=CHAR},
+      </if>
+      <if test="record.orderNo != null">
+        `order_no` = #{record.orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null">
+        `create_time` = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null">
+        `create_by` = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        `update_time` = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        `update_by` = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `t_area`
+    set `id` = #{record.id,jdbcType=BIGINT},
+      `code` = #{record.code,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      `p_code` = #{record.pCode,jdbcType=VARCHAR},
+      `level` = #{record.level,jdbcType=CHAR},
+      `py_first` = #{record.pyFirst,jdbcType=CHAR},
+      `order_no` = #{record.orderNo,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=TINYINT},
+      `create_time` = #{record.createTime,jdbcType=TIMESTAMP},
+      `create_by` = #{record.createBy,jdbcType=VARCHAR},
+      `update_time` = #{record.updateTime,jdbcType=TIMESTAMP},
+      `update_by` = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.scm.base.domain.Area">
+    update `t_area`
+    <set>
+      <if test="code != null">
+        `code` = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null">
+        `p_code` = #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        `level` = #{level,jdbcType=CHAR},
+      </if>
+      <if test="pyFirst != null">
+        `py_first` = #{pyFirst,jdbcType=CHAR},
+      </if>
+      <if test="orderNo != null">
+        `order_no` = #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        `create_by` = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        `update_by` = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.scm.base.domain.Area">
+    update `t_area`
+    set `code` = #{code,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `p_code` = #{pCode,jdbcType=VARCHAR},
+      `level` = #{level,jdbcType=CHAR},
+      `py_first` = #{pyFirst,jdbcType=CHAR},
+      `order_no` = #{orderNo,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=TINYINT},
+      `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      `create_by` = #{createBy,jdbcType=VARCHAR},
+      `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      `update_by` = #{updateBy,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `t_area`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.code}
+        </foreach>
+      </trim>
+      <trim prefix="name =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.name}
+        </foreach>
+      </trim>
+      <trim prefix="pCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.pCode}
+        </foreach>
+      </trim>
+      <trim prefix="level =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.level}
+        </foreach>
+      </trim>
+      <trim prefix="pyFirst =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.pyFirst}
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderNo}
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.status}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createBy}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateBy}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `t_area`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.code != null ">
+            when  #{item.id} then #{item.code}
+          </if>
+          <if test="item.code == null ">
+            when  #{item.id} then `t_area`.`code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="name =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.name != null ">
+            when  #{item.id} then #{item.name}
+          </if>
+          <if test="item.name == null ">
+            when  #{item.id} then `t_area`.`name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="pCode =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.pCode != null ">
+            when  #{item.id} then #{item.pCode}
+          </if>
+          <if test="item.pCode == null ">
+            when  #{item.id} then `t_area`.`p_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="level =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.level != null ">
+            when  #{item.id} then #{item.level}
+          </if>
+          <if test="item.level == null ">
+            when  #{item.id} then `t_area`.`level`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="pyFirst =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.pyFirst != null ">
+            when  #{item.id} then #{item.pyFirst}
+          </if>
+          <if test="item.pyFirst == null ">
+            when  #{item.id} then `t_area`.`py_first`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderNo != null ">
+            when  #{item.id} then #{item.orderNo}
+          </if>
+          <if test="item.orderNo == null ">
+            when  #{item.id} then `t_area`.`order_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.id} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.id} then `t_area`.`status`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then `t_area`.`create_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.createBy != null ">
+            when  #{item.id} then #{item.createBy}
+          </if>
+          <if test="item.createBy == null ">
+            when  #{item.id} then `t_area`.`create_by`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then `t_area`.`update_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.updateBy != null ">
+            when  #{item.id} then #{item.updateBy}
+          </if>
+          <if test="item.updateBy == null ">
+            when  #{item.id} then `t_area`.`update_by`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByExample" parameterType="map">
+    update `t_area`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.code}
+        </foreach>
+      </trim>
+      <trim prefix="name =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.name}
+        </foreach>
+      </trim>
+      <trim prefix="pCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.pCode}
+        </foreach>
+      </trim>
+      <trim prefix="level =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.level}
+        </foreach>
+      </trim>
+      <trim prefix="pyFirst =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.pyFirst}
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderNo}
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.status}
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createTime}
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.createBy}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateTime}
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.updateBy}
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateBatchByExampleSelective" parameterType="map">
+    update `t_area`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.code != null ">
+            when  #{item.id} then #{item.code}
+          </if>
+          <if test="item.code == null ">
+            when  #{item.id} then `t_area`.`code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="name =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.name != null ">
+            when  #{item.id} then #{item.name}
+          </if>
+          <if test="item.name == null ">
+            when  #{item.id} then `t_area`.`name`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="pCode =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.pCode != null ">
+            when  #{item.id} then #{item.pCode}
+          </if>
+          <if test="item.pCode == null ">
+            when  #{item.id} then `t_area`.`p_code`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="level =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.level != null ">
+            when  #{item.id} then #{item.level}
+          </if>
+          <if test="item.level == null ">
+            when  #{item.id} then `t_area`.`level`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="pyFirst =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.pyFirst != null ">
+            when  #{item.id} then #{item.pyFirst}
+          </if>
+          <if test="item.pyFirst == null ">
+            when  #{item.id} then `t_area`.`py_first`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderNo =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.orderNo != null ">
+            when  #{item.id} then #{item.orderNo}
+          </if>
+          <if test="item.orderNo == null ">
+            when  #{item.id} then `t_area`.`order_no`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.status != null ">
+            when  #{item.id} then #{item.status}
+          </if>
+          <if test="item.status == null ">
+            when  #{item.id} then `t_area`.`status`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.createTime != null ">
+            when  #{item.id} then #{item.createTime}
+          </if>
+          <if test="item.createTime == null ">
+            when  #{item.id} then `t_area`.`create_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.createBy != null ">
+            when  #{item.id} then #{item.createBy}
+          </if>
+          <if test="item.createBy == null ">
+            when  #{item.id} then `t_area`.`create_by`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateTime =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.updateTime != null ">
+            when  #{item.id} then #{item.updateTime}
+          </if>
+          <if test="item.updateTime == null ">
+            when  #{item.id} then `t_area`.`update_time`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateBy =case id" suffix="end,">
+        <foreach collection="recordList" index="index" item="item" separator=" ">
+          <if test="item.updateBy != null ">
+            when  #{item.id} then #{item.updateBy}
+          </if>
+          <if test="item.updateBy == null ">
+            when  #{item.id} then `t_area`.`update_by`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

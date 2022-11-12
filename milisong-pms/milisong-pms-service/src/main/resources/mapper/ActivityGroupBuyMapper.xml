@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.ActivityGroupBuyMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.ActivityGroupBuy" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="goods_code" property="goodsCode" jdbcType="VARCHAR" />
+    <result column="buy_price" property="buyPrice" jdbcType="DECIMAL" />
+    <result column="min_join_num" property="minJoinNum" jdbcType="INTEGER" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="valid_period" property="validPeriod" jdbcType="INTEGER" />
+    <result column="delivery_date" property="deliveryDate" jdbcType="TIMESTAMP" />
+    <result column="banner_img" property="bannerImg" jdbcType="VARCHAR" />
+    <result column="bg_img" property="bgImg" jdbcType="VARCHAR" />
+    <result column="rule_img" property="ruleImg" jdbcType="VARCHAR" />
+    <result column="share_title" property="shareTitle" jdbcType="VARCHAR" />
+    <result column="share_img" property="shareImg" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, goods_code, buy_price, min_join_num, start_date, end_date, valid_period,
+    delivery_date, banner_img, bg_img, rule_img, share_title, share_img, create_time,
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from bf_activity_group_buy
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.ActivityGroupBuy" >
+    insert into bf_activity_group_buy (id, name, goods_code,
+      buy_price, min_join_num, start_date,
+      end_date, valid_period, delivery_date,
+      banner_img, bg_img, rule_img,
+      share_title, share_img, create_time,
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{goodsCode,jdbcType=VARCHAR},
+      #{buyPrice,jdbcType=DECIMAL}, #{minJoinNum,jdbcType=INTEGER}, #{startDate,jdbcType=TIMESTAMP},
+      #{endDate,jdbcType=TIMESTAMP}, #{validPeriod,jdbcType=INTEGER}, #{deliveryDate,jdbcType=TIMESTAMP},
+      #{bannerImg,jdbcType=VARCHAR}, #{bgImg,jdbcType=VARCHAR}, #{ruleImg,jdbcType=VARCHAR},
+      #{shareTitle,jdbcType=VARCHAR}, #{shareImg,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.ActivityGroupBuy" >
+    insert into bf_activity_group_buy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="goodsCode != null" >
+        goods_code,
+      </if>
+      <if test="buyPrice != null" >
+        buy_price,
+      </if>
+      <if test="minJoinNum != null" >
+        min_join_num,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="validPeriod != null" >
+        valid_period,
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date,
+      </if>
+      <if test="bannerImg != null" >
+        banner_img,
+      </if>
+      <if test="bgImg != null" >
+        bg_img,
+      </if>
+      <if test="ruleImg != null" >
+        rule_img,
+      </if>
+      <if test="shareTitle != null" >
+        share_title,
+      </if>
+      <if test="shareImg != null" >
+        share_img,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null" >
+        #{buyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="minJoinNum != null" >
+        #{minJoinNum,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validPeriod != null" >
+        #{validPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryDate != null" >
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bannerImg != null" >
+        #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bgImg != null" >
+        #{bgImg,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleImg != null" >
+        #{ruleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTitle != null" >
+        #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="shareImg != null" >
+        #{shareImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.ActivityGroupBuy" >
+    update bf_activity_group_buy
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null" >
+        buy_price = #{buyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="minJoinNum != null" >
+        min_join_num = #{minJoinNum,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validPeriod != null" >
+        valid_period = #{validPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bannerImg != null" >
+        banner_img = #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bgImg != null" >
+        bg_img = #{bgImg,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleImg != null" >
+        rule_img = #{ruleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTitle != null" >
+        share_title = #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="shareImg != null" >
+        share_img = #{shareImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.ActivityGroupBuy" >
+    update bf_activity_group_buy
+    set name = #{name,jdbcType=VARCHAR},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      buy_price = #{buyPrice,jdbcType=DECIMAL},
+      min_join_num = #{minJoinNum,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      valid_period = #{validPeriod,jdbcType=INTEGER},
+      delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      banner_img = #{bannerImg,jdbcType=VARCHAR},
+      bg_img = #{bgImg,jdbcType=VARCHAR},
+      rule_img = #{ruleImg,jdbcType=VARCHAR},
+      share_title = #{shareTitle,jdbcType=VARCHAR},
+      share_img = #{shareImg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="dto_Column_List" >
+    id, name, goods_code, buy_price, min_join_num, start_date, end_date, valid_period, delivery_date, banner_img,
+    bg_img, rule_img, share_title, share_img
+  </sql>
+  <select id="queryActiveGroupBuyDetail" resultType="com.milisong.pms.prom.dto.groupbuy.ActivityGroupBuyDto">
+    select <include refid="dto_Column_List" />
+    from bf_activity_group_buy
+    where #{currentDate} between start_date and end_date
+  </select>
+
+  <select id="selectByUserGroupBuyId" resultMap="BaseResultMap">
+    select agb.id, agb.name, agb.goods_code, agb.buy_price, agb.min_join_num, agb.start_date, agb.end_date, agb.valid_period,
+    agb.delivery_date, agb.banner_img, agb.bg_img, agb.rule_img, agb.share_title, agb.share_img, agb.create_time, agb.update_time
+    from bf_activity_group_buy agb left join bf_user_group_buy ugb on agb.id=ugb.activity_group_buy_id
+    where ugb.id = #{userGroupBuyId}
+  </select>
+</mapper>

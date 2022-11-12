@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.milisong.pms.prom.mapper.UserGroupBuyMapper" >
+  <resultMap id="BaseResultMap" type="com.milisong.pms.prom.domain.UserGroupBuy" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="activity_group_buy_id" property="activityGroupBuyId" jdbcType="BIGINT" />
+    <result column="origin_user_id" property="originUserId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="min_join_num" property="minJoinNum" jdbcType="INTEGER" />
+    <result column="valid_period" property="validPeriod" jdbcType="INTEGER" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="success_time" property="successTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, activity_group_buy_id, origin_user_id, company_id, status, min_join_num, valid_period, 
+    start_date, end_date, success_time, remark, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bf_user_group_buy
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.pms.prom.domain.UserGroupBuy" >
+    insert into bf_user_group_buy (id, activity_group_buy_id, origin_user_id, 
+      company_id, status, min_join_num, 
+      valid_period, start_date, end_date, 
+      success_time, remark, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{activityGroupBuyId,jdbcType=BIGINT}, #{originUserId,jdbcType=BIGINT}, 
+      #{companyId,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{minJoinNum,jdbcType=INTEGER}, 
+      #{validPeriod,jdbcType=INTEGER}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{successTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.pms.prom.domain.UserGroupBuy" >
+    insert into bf_user_group_buy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activityGroupBuyId != null" >
+        activity_group_buy_id,
+      </if>
+      <if test="originUserId != null" >
+        origin_user_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="minJoinNum != null" >
+        min_join_num,
+      </if>
+      <if test="validPeriod != null" >
+        valid_period,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="successTime != null" >
+        success_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityGroupBuyId != null" >
+        #{activityGroupBuyId,jdbcType=BIGINT},
+      </if>
+      <if test="originUserId != null" >
+        #{originUserId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="minJoinNum != null" >
+        #{minJoinNum,jdbcType=INTEGER},
+      </if>
+      <if test="validPeriod != null" >
+        #{validPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successTime != null" >
+        #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.pms.prom.domain.UserGroupBuy" >
+    update bf_user_group_buy
+    <set >
+      <if test="activityGroupBuyId != null" >
+        activity_group_buy_id = #{activityGroupBuyId,jdbcType=BIGINT},
+      </if>
+      <if test="originUserId != null" >
+        origin_user_id = #{originUserId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="minJoinNum != null" >
+        min_join_num = #{minJoinNum,jdbcType=INTEGER},
+      </if>
+      <if test="validPeriod != null" >
+        valid_period = #{validPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successTime != null" >
+        success_time = #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.pms.prom.domain.UserGroupBuy" >
+    update bf_user_group_buy
+    set activity_group_buy_id = #{activityGroupBuyId,jdbcType=BIGINT},
+      origin_user_id = #{originUserId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      min_join_num = #{minJoinNum,jdbcType=INTEGER},
+      valid_period = #{validPeriod,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      success_time = #{successTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryUserGroupBuyInfo" resultType="com.milisong.pms.prom.dto.groupbuy.UserGroupBuyDto">
+    select ugb.id, ugb.activity_group_buy_id, agb.name, agb.goods_code, agb.buy_price, agb.min_join_num, ugb.start_date, ugb.end_date, ugb.company_id,
+    ugb.valid_period, agb.delivery_date, ugb.status, agb.bg_img, agb.rule_img, agb.share_title, agb.share_img
+    from bf_user_group_buy ugb left join bf_activity_group_buy agb on ugb.activity_group_buy_id = agb.id
+    where ugb.id = #{userGroupBuyId}
+  </select>
+
+</mapper>

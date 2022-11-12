@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milisong.oms.mapper.base.BaseVirtualOrderDeliveryMapper">
+  <resultMap id="BaseResultMap" type="com.milisong.oms.domain.VirtualOrderDelivery">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="delivery_original_price" jdbcType="DECIMAL" property="deliveryOriginalPrice" />
+    <result column="delivery_actual_price" jdbcType="DECIMAL" property="deliveryActualPrice" />
+    <result column="total_package_original_amount" jdbcType="DECIMAL" property="totalPackageOriginalAmount" />
+    <result column="total_package_actual_amount" jdbcType="DECIMAL" property="totalPackageActualAmount" />
+    <result column="total_goods_count" jdbcType="INTEGER" property="totalGoodsCount" />
+    <result column="total_goods_original_amount" jdbcType="DECIMAL" property="totalGoodsOriginalAmount" />
+    <result column="total_goods_actual_amount" jdbcType="DECIMAL" property="totalGoodsActualAmount" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `order_id`, `delivery_date`, `delivery_original_price`, `delivery_actual_price`, 
+    `total_package_original_amount`, `total_package_actual_amount`, `total_goods_count`, 
+    `total_goods_original_amount`, `total_goods_actual_amount`, `total_amount`, `order_type`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `virtual_order_delivery`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.milisong.oms.domain.VirtualOrderDelivery">
+    insert into `virtual_order_delivery` (`id`, `order_id`, `delivery_date`, 
+      `delivery_original_price`, `delivery_actual_price`, 
+      `total_package_original_amount`, `total_package_actual_amount`, 
+      `total_goods_count`, `total_goods_original_amount`, 
+      `total_goods_actual_amount`, `total_amount`, `order_type`
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{deliveryDate,jdbcType=DATE}, 
+      #{deliveryOriginalPrice,jdbcType=DECIMAL}, #{deliveryActualPrice,jdbcType=DECIMAL}, 
+      #{totalPackageOriginalAmount,jdbcType=DECIMAL}, #{totalPackageActualAmount,jdbcType=DECIMAL}, 
+      #{totalGoodsCount,jdbcType=INTEGER}, #{totalGoodsOriginalAmount,jdbcType=DECIMAL}, 
+      #{totalGoodsActualAmount,jdbcType=DECIMAL}, #{totalAmount,jdbcType=DECIMAL}, #{orderType,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.milisong.oms.domain.VirtualOrderDelivery">
+    insert into `virtual_order_delivery`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="orderId != null">
+        `order_id`,
+      </if>
+      <if test="deliveryDate != null">
+        `delivery_date`,
+      </if>
+      <if test="deliveryOriginalPrice != null">
+        `delivery_original_price`,
+      </if>
+      <if test="deliveryActualPrice != null">
+        `delivery_actual_price`,
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        `total_package_original_amount`,
+      </if>
+      <if test="totalPackageActualAmount != null">
+        `total_package_actual_amount`,
+      </if>
+      <if test="totalGoodsCount != null">
+        `total_goods_count`,
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        `total_goods_original_amount`,
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        `total_goods_actual_amount`,
+      </if>
+      <if test="totalAmount != null">
+        `total_amount`,
+      </if>
+      <if test="orderType != null">
+        `order_type`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryOriginalPrice != null">
+        #{deliveryOriginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryActualPrice != null">
+        #{deliveryActualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageActualAmount != null">
+        #{totalPackageActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsCount != null">
+        #{totalGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `virtual_order_delivery` (`id`, `order_id`, `delivery_date`, 
+      `delivery_original_price`, `delivery_actual_price`, 
+      `total_package_original_amount`, `total_package_actual_amount`, 
+      `total_goods_count`, `total_goods_original_amount`, 
+      `total_goods_actual_amount`, `total_amount`, 
+      `order_type`)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}, #{item.deliveryDate,jdbcType=DATE}, 
+        #{item.deliveryOriginalPrice,jdbcType=DECIMAL}, #{item.deliveryActualPrice,jdbcType=DECIMAL}, 
+        #{item.totalPackageOriginalAmount,jdbcType=DECIMAL}, #{item.totalPackageActualAmount,jdbcType=DECIMAL}, 
+        #{item.totalGoodsCount,jdbcType=INTEGER}, #{item.totalGoodsOriginalAmount,jdbcType=DECIMAL}, 
+        #{item.totalGoodsActualAmount,jdbcType=DECIMAL}, #{item.totalAmount,jdbcType=DECIMAL}, 
+        #{item.orderType,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into `virtual_order_delivery`
+    (`id`, `order_id`, `delivery_date`, `delivery_original_price`, `delivery_actual_price`, 
+      `total_package_original_amount`, `total_package_actual_amount`, `total_goods_count`, 
+      `total_goods_original_amount`, `total_goods_actual_amount`, `total_amount`, `order_type`
+      )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.orderId != null">
+          #{item.orderId,jdbcType=BIGINT},
+        </if>
+        <if test="item.orderId == null">
+          NULL,
+        </if>
+        <if test="item.deliveryDate != null">
+          #{item.deliveryDate,jdbcType=DATE},
+        </if>
+        <if test="item.deliveryDate == null">
+          NULL,
+        </if>
+        <if test="item.deliveryOriginalPrice != null">
+          #{item.deliveryOriginalPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.deliveryOriginalPrice == null">
+          NULL,
+        </if>
+        <if test="item.deliveryActualPrice != null">
+          #{item.deliveryActualPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.deliveryActualPrice == null">
+          NULL,
+        </if>
+        <if test="item.totalPackageOriginalAmount != null">
+          #{item.totalPackageOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPackageOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalPackageActualAmount != null">
+          #{item.totalPackageActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalPackageActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsCount != null">
+          #{item.totalGoodsCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.totalGoodsCount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsOriginalAmount != null">
+          #{item.totalGoodsOriginalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalGoodsOriginalAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalGoodsActualAmount != null">
+          #{item.totalGoodsActualAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalGoodsActualAmount == null">
+          NULL,
+        </if>
+        <if test="item.totalAmount != null">
+          #{item.totalAmount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.totalAmount == null">
+          NULL,
+        </if>
+        <if test="item.orderType != null">
+          #{item.orderType,jdbcType=TINYINT},
+        </if>
+        <if test="item.orderType == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.milisong.oms.domain.VirtualOrderDelivery">
+    update `virtual_order_delivery`
+    <set>
+      <if test="orderId != null">
+        `order_id` = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryDate != null">
+        `delivery_date` = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryOriginalPrice != null">
+        `delivery_original_price` = #{deliveryOriginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryActualPrice != null">
+        `delivery_actual_price` = #{deliveryActualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageOriginalAmount != null">
+        `total_package_original_amount` = #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPackageActualAmount != null">
+        `total_package_actual_amount` = #{totalPackageActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsCount != null">
+        `total_goods_count` = #{totalGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalGoodsOriginalAmount != null">
+        `total_goods_original_amount` = #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalGoodsActualAmount != null">
+        `total_goods_actual_amount` = #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        `total_amount` = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderType != null">
+        `order_type` = #{orderType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.milisong.oms.domain.VirtualOrderDelivery">
+    update `virtual_order_delivery`
+    set `order_id` = #{orderId,jdbcType=BIGINT},
+      `delivery_date` = #{deliveryDate,jdbcType=DATE},
+      `delivery_original_price` = #{deliveryOriginalPrice,jdbcType=DECIMAL},
+      `delivery_actual_price` = #{deliveryActualPrice,jdbcType=DECIMAL},
+      `total_package_original_amount` = #{totalPackageOriginalAmount,jdbcType=DECIMAL},
+      `total_package_actual_amount` = #{totalPackageActualAmount,jdbcType=DECIMAL},
+      `total_goods_count` = #{totalGoodsCount,jdbcType=INTEGER},
+      `total_goods_original_amount` = #{totalGoodsOriginalAmount,jdbcType=DECIMAL},
+      `total_goods_actual_amount` = #{totalGoodsActualAmount,jdbcType=DECIMAL},
+      `total_amount` = #{totalAmount,jdbcType=DECIMAL},
+      `order_type` = #{orderType,jdbcType=TINYINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+    update `virtual_order_delivery`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderId}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryDate}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryOriginalPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryOriginalPrice}
+        </foreach>
+      </trim>
+      <trim prefix="deliveryActualPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.deliveryActualPrice}
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPackageOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalPackageActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsCount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsOriginalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalGoodsActualAmount}
+        </foreach>
+      </trim>
+      <trim prefix="totalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.totalAmount}
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          when  #{item.id} then #{item.orderType}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    update `virtual_order_delivery`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="orderId =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderId != null ">
+            when  #{item.id} then #{item.orderId}
+          </if>
+          <if test="item.orderId == null ">
+            when  #{item.id} then `virtual_order_delivery`.`order_id`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryDate =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryDate != null ">
+            when  #{item.id} then #{item.deliveryDate}
+          </if>
+          <if test="item.deliveryDate == null ">
+            when  #{item.id} then `virtual_order_delivery`.`delivery_date`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryOriginalPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryOriginalPrice != null ">
+            when  #{item.id} then #{item.deliveryOriginalPrice}
+          </if>
+          <if test="item.deliveryOriginalPrice == null ">
+            when  #{item.id} then `virtual_order_delivery`.`delivery_original_price`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="deliveryActualPrice =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.deliveryActualPrice != null ">
+            when  #{item.id} then #{item.deliveryActualPrice}
+          </if>
+          <if test="item.deliveryActualPrice == null ">
+            when  #{item.id} then `virtual_order_delivery`.`delivery_actual_price`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPackageOriginalAmount != null ">
+            when  #{item.id} then #{item.totalPackageOriginalAmount}
+          </if>
+          <if test="item.totalPackageOriginalAmount == null ">
+            when  #{item.id} then `virtual_order_delivery`.`total_package_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalPackageActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalPackageActualAmount != null ">
+            when  #{item.id} then #{item.totalPackageActualAmount}
+          </if>
+          <if test="item.totalPackageActualAmount == null ">
+            when  #{item.id} then `virtual_order_delivery`.`total_package_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsCount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsCount != null ">
+            when  #{item.id} then #{item.totalGoodsCount}
+          </if>
+          <if test="item.totalGoodsCount == null ">
+            when  #{item.id} then `virtual_order_delivery`.`total_goods_count`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsOriginalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsOriginalAmount != null ">
+            when  #{item.id} then #{item.totalGoodsOriginalAmount}
+          </if>
+          <if test="item.totalGoodsOriginalAmount == null ">
+            when  #{item.id} then `virtual_order_delivery`.`total_goods_original_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalGoodsActualAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalGoodsActualAmount != null ">
+            when  #{item.id} then #{item.totalGoodsActualAmount}
+          </if>
+          <if test="item.totalGoodsActualAmount == null ">
+            when  #{item.id} then `virtual_order_delivery`.`total_goods_actual_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="totalAmount =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.totalAmount != null ">
+            when  #{item.id} then #{item.totalAmount}
+          </if>
+          <if test="item.totalAmount == null ">
+            when  #{item.id} then `virtual_order_delivery`.`total_amount`
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="orderType =case id" suffix="end,">
+        <foreach collection="list" index="index" item="item" separator=" ">
+          <if test="item.orderType != null ">
+            when  #{item.id} then #{item.orderType}
+          </if>
+          <if test="item.orderType == null ">
+            when  #{item.id} then `virtual_order_delivery`.`order_type`
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in 
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+       #{item.id} 
+    </foreach>
+  </update>
+</mapper>

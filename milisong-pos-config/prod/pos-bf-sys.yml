@@ -1,0 +1,69 @@
+server:
+  port: 30022
+#management:
+## spring admin检测 默认开启
+#  health:
+#    defaults:
+#      enabled: false
+  
+spring:
+# json format
+  jackson:  
+    date-format:  yyyy-MM-dd HH:mm:ss
+    time-zone:  GMT+8
+    default-property-inclusion: NON_NULL
+  flyway:
+    # 配置sql脚本路径
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+  boot:
+    admin:
+      client:
+        url: http://172.16.14.60:60100
+        instance:
+          prefer-ip: true
+        auto-deregistration: true
+# 获取每日预生产数 
+scm:
+  init:
+    preProductionUrl: http://mls-scmapiin.jshuii.com/stock/get-goods-pre-production
+    dayPreproductionUrl: http://mls-scmapiin.jshuii.com/stock/get-day-goods-pre-production?shopId=
+    dayBuildingUrl: http://mls-scmapiin.jshuii.com/building/get-building-by-id?id=
+    query-company-url: http://mls-bscmapiin.jshuii.com/company/inside-query-by-id?id=
+      
+file:
+  oss:
+#  本地备份路径
+    localBackupPath: /data/files/images/milisong/
+#    oss上传路径
+    uploadUrl: http://oss.jshuii.com/v1/uploadFileService/uploadByte
+#    查询路径
+    viewUrl: http://images.jshuii.com
+#the maximum size of single file (unit:MB)
+    maxSingleFileSize: 4MB
+#file format
+    format: txt,word,excel,jpg,png,gif,pdf
+# 调用oss接口
+oss:
+  searchPosOrderSet: http://ml-oss.jshuii.com/order/pos/page
+  setOutOfStock: http://ml-oss.jshuii.com/order/pos/out-of-stock
+#健康检查
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    redis:
+      enabled: true
+    rabbit:
+      enabled: true
+    diskspace:
+      enabled: true
